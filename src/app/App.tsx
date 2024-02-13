@@ -1,18 +1,39 @@
 import React from "react";
 import "../css/App.css";
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Homepage } from "./screens/Homepage";
+import { ShopsPage } from "./component/Navbar/shops";
+import { OrdersPage } from "./screens/OrdersPage";
+import { CommunityPage } from "./screens/CommunityPage";
+import { HelpPage } from "./screens/HelpPage";
+import { NavbarPage } from "./component/Navbar";
+import { OthersNavbarPage } from "./component/Navbar/others";
+import { Footer } from "./component/footer";
+import { MemberPage } from "./screens/MemberPage";
+import { Shops } from "./screens/ShopsPage";
 
 function App() {
+  const location = useLocation();
   return (
-    <Container maxWidth="sm">
-      <Stack flexDirection={"column"}>
-        <Box sx={{ my: 4 }}>
-          <Typography variant="h4" component={"h1"} gutterBottom>
-            Create React App on Typscript with Redux
-          </Typography>
-        </Box>
-      </Stack>
-    </Container>
+    <>
+      {location.pathname == "/" ? (
+        <NavbarPage />
+      ) : location.pathname.includes("/shops") ? (
+        <ShopsPage />
+      ) : (
+        <OthersNavbarPage />
+      )}
+
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/shops" element={<Shops />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/community" element={<CommunityPage />} />
+        <Route path="/member-page" element={<MemberPage />} />
+        <Route path="/help" element={<HelpPage />} />
+      </Routes>
+      <Footer />
+    </>
   );
 }
 

@@ -1,0 +1,26 @@
+.nav-title {
+  border: "none";
+  text-align: "center";
+  font-size: "16px";
+  transition: "3s ease-out";
+}
+
+.nav-title:hover {
+  color: rgb(227, 191, 145);
+  opacity: 1;
+  border-bottom: 1px solid bisque;
+  border-top: 1px solid bisque;
+  text-shadow: #eee;
+}
+
+.nav-icon {
+  width: "29px";
+  height: "29px";
+  cursor: "pointer";
+}
+
+.nav-icon:hover:focus {
+  color: #129cb8;
+  fill: #129cb8;
+  opacity: 1;
+}
