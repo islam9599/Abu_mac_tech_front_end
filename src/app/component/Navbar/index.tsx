@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import "../../../css/header.css";
 import { Box, Container, Stack } from "@mui/system";
 import { Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Search from "@mui/icons-material/Search";
 import Marginer from "../marginer";
 import { Favorite, ShoppingCart } from "@mui/icons-material";
@@ -10,6 +10,16 @@ import { FaUser } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 
 export const NavbarPage = () => {
+  /** Initialization */
+  const navigate = useNavigate();
+
+  /** Handlers */
+  const changeToProductsHandler = () => {
+    navigate("/products");
+  };
+  const navigateHandler = () => {
+    navigate("/");
+  };
   return (
     <div
       style={{
@@ -76,7 +86,7 @@ export const NavbarPage = () => {
               </NavLink>
             </Box>
             <Box sx={{ mr: 2 }}>
-              <NavLink style={{ textDecoration: "none" }} to={"/shops"}>
+              <NavLink style={{ textDecoration: "none" }} to={"/products"}>
                 <Typography className="nav-title" color={"#fff"} variant="h5">
                   Do'konlar
                 </Typography>
@@ -125,6 +135,7 @@ export const NavbarPage = () => {
               alignItems={"center"}
               flexDirection={"row"}
               sx={{ cursor: "pointer" }}
+              onClick={navigateHandler}
             >
               <img
                 src="/home/macshop.jpg"
@@ -147,6 +158,7 @@ export const NavbarPage = () => {
             </Stack>
             <Stack flexDirection={"row"} alignItems={"center"}>
               <form
+                onClick={changeToProductsHandler}
                 action=""
                 style={{
                   width: "530px",
@@ -159,7 +171,7 @@ export const NavbarPage = () => {
                   color: "#fff",
                 }}
               >
-                <select
+                {/* <select
                   style={{
                     width: "auto",
                     height: "99%",
@@ -170,24 +182,27 @@ export const NavbarPage = () => {
                   }}
                   name=""
                   id=""
+                  
                 >
                   <option value="all">All Categories</option>
-                  <option value="all">Laptops</option>
-                  <option value="all">Cell-phones</option>
-                  <option value="all">Headsets</option>
-                </select>
-                <Marginer
+                  <option value="laptops">Laptops</option>
+                  <option value="phones">
+                    <a>Cell-phones</a>
+                  </option>
+                  <option value="etc">Headsets</option>
+                </select> */}
+                {/* <Marginer
                   direction="vertical"
                   width="1"
                   height="30"
                   bg="#129cb8"
-                />
+                /> */}
                 <input
                   type="text"
                   placeholder="Search product here"
                   style={{
-                    width: "70%",
-                    height: "90%",
+                    width: "100%",
+                    height: "100%",
                     margin: "5px",
                     background: "none",
                     border: "none",

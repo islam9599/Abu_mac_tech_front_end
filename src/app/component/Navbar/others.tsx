@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Container, Stack } from "@mui/system";
 import { Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../../../css/header.css";
 import Search from "@mui/icons-material/Search";
 import Marginer from "../marginer";
@@ -9,6 +9,11 @@ import { Favorite, ShoppingCart } from "@mui/icons-material";
 import { FaUser } from "react-icons/fa";
 
 export const OthersNavbarPage = () => {
+  const navigate = useNavigate();
+
+  const navigateHandler = () => {
+    navigate("/");
+  };
   return (
     <div
       style={{
@@ -40,6 +45,7 @@ export const OthersNavbarPage = () => {
               alignItems={"center"}
               flexDirection={"row"}
               sx={{ cursor: "pointer" }}
+              onClick={navigateHandler}
             >
               <img
                 src="/home/macshop.jpg"
@@ -69,7 +75,7 @@ export const OthersNavbarPage = () => {
                 </NavLink>
               </Box>
               <Box sx={{ mr: 2, mt: 5 }}>
-                <NavLink style={{ textDecoration: "none" }} to={"/shops"}>
+                <NavLink style={{ textDecoration: "none" }} to={"/products"}>
                   <Typography className="nav-title" color={"#fff"} variant="h5">
                     Do'konlar
                   </Typography>
@@ -147,7 +153,7 @@ export const OthersNavbarPage = () => {
       <div style={{ width: "100%", height: "110px" }}>
         <Container>
           <Stack
-            sx={{ width: "1200px", height: "100px" }}
+            sx={{ width: "100%", height: "100px" }}
             flexDirection={"row"}
             alignItems={"center"}
             justifyContent={"center"}

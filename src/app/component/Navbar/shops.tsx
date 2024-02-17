@@ -1,14 +1,20 @@
 import React from "react";
 import { Box, Container, Stack } from "@mui/system";
 import { Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../../../css/header.css";
 import Search from "@mui/icons-material/Search";
 import Marginer from "../marginer";
 import { Favorite, ShoppingCart } from "@mui/icons-material";
 import { FaUser } from "react-icons/fa";
+import { TypeAnimation } from "react-type-animation";
 
 export const ShopsPage = () => {
+  const navigate = useNavigate();
+
+  const navigateHandler = () => {
+    navigate("/");
+  };
   return (
     <div
       style={{
@@ -40,6 +46,7 @@ export const ShopsPage = () => {
               alignItems={"center"}
               flexDirection={"row"}
               sx={{ cursor: "pointer" }}
+              onClick={navigateHandler}
             >
               <img
                 src="/home/macshop.jpg"
@@ -50,7 +57,7 @@ export const ShopsPage = () => {
                   borderRadius: "10px",
                 }}
               ></img>
-              <Typography
+              {/* <Typography
                 style={{
                   fontFamily: "monospace",
                   fontWeight: "bold",
@@ -58,7 +65,31 @@ export const ShopsPage = () => {
                 }}
               >
                 Abu_Mac_Tech
-              </Typography>
+              </Typography> */}
+              <Box width={"150px"}>
+                <TypeAnimation
+                  sequence={[
+                    // Deletes 'One' and types 'Two'
+                    100, // Waits 2s
+                    "Abu", // Types 'Three' without deleting 'Two'
+                    100,
+                    "Abu_Mac_Tech",
+
+                    () => {
+                      console.log("Sequence completed");
+                    },
+                  ]}
+                  wrapper="p"
+                  cursor={true}
+                  repeat={Infinity}
+                  style={{
+                    fontSize: "25px",
+                    display: "inline-block",
+                    color: "#000",
+                    fontWeight: "bold",
+                  }}
+                />
+              </Box>
             </Stack>
             <Stack flexDirection={"row"} alignItems={"center"} mr={10}>
               <Box sx={{ mr: 2, mt: 5 }}>
@@ -69,7 +100,7 @@ export const ShopsPage = () => {
                 </NavLink>
               </Box>
               <Box sx={{ mr: 2, mt: 5 }}>
-                <NavLink style={{ textDecoration: "none" }} to={"/shops"}>
+                <NavLink style={{ textDecoration: "none" }} to={"/products"}>
                   <Typography className="nav-title" color={"#fff"} variant="h5">
                     Do'konlar
                   </Typography>
@@ -147,7 +178,7 @@ export const ShopsPage = () => {
       <div style={{ width: "100%", height: "110px" }}>
         <Container>
           <Stack
-            sx={{ width: "1200px", height: "100px" }}
+            sx={{ width: "100%", height: "100px" }}
             flexDirection={"row"}
             alignItems={"center"}
             justifyContent={"center"}
