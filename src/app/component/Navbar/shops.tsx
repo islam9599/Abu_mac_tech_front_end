@@ -178,15 +178,15 @@ export const ShopsPage = () => {
       <div style={{ width: "100%", height: "110px" }}>
         <Container>
           <Stack
-            sx={{ width: "100%", height: "100px" }}
             flexDirection={"row"}
             alignItems={"center"}
             justifyContent={"center"}
+            m={"50px"}
           >
             <form
               action=""
               style={{
-                width: "700px",
+                width: "530px",
                 height: "45px",
                 border: "1px solid #129cb8",
                 borderRadius: "9px",
@@ -196,35 +196,39 @@ export const ShopsPage = () => {
                 color: "#fff",
               }}
             >
-              <select
-                style={{
-                  width: "auto",
-                  height: "99%",
-                  border: "none",
-                  background: "none",
-                  margin: "10px",
-                  outline: "none",
-                }}
-                name=""
-                id=""
-              >
-                <option value="all">All Categories</option>
-                <option value="all">Laptops</option>
-                <option value="all">Cell-phones</option>
-                <option value="all">Headsets</option>
-              </select>
-              <Marginer
-                direction="vertical"
-                width="1"
-                height="30"
-                bg="#129cb8"
-              />
+              {/* <select
+                  style={{
+                    width: "auto",
+                    height: "99%",
+                    border: "none",
+                    background: "none",
+                    margin: "10px",
+                    outline: "none",
+                  }}
+                  name=""
+                  id=""
+                  
+                >
+                  <option value="all">All Categories</option>
+                  <option value="laptops">Laptops</option>
+                  <option value="phones">
+                    <a>Cell-phones</a>
+                  </option>
+                  <option value="etc">Headsets</option>
+                </select> */}
+              {/* <Marginer
+                  direction="vertical"
+                  width="1"
+                  height="30"
+                  bg="#129cb8"
+                /> */}
               <input
                 type="text"
                 placeholder="Search product here"
                 style={{
                   width: "100%",
-                  height: "90%",
+                  height: "100%",
+                  margin: "5px",
                   background: "none",
                   border: "none",
                   outline: "none",

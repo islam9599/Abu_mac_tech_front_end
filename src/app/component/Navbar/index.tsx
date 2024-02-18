@@ -123,13 +123,14 @@ export const NavbarPage = () => {
           </Stack>
         </Container>
       </div>
-      <div style={{ width: "100%", height: "110px" }}>
+      <div style={{ width: "100%", height: "120px", margin: "20px 0px" }}>
         <Container>
           <Stack
             sx={{ width: "1200px", height: "100px" }}
             flexDirection={"row"}
             alignItems={"center"}
             justifyContent={"space-between"}
+            mb={3}
           >
             <Stack
               alignItems={"center"}
@@ -142,7 +143,7 @@ export const NavbarPage = () => {
                 style={{
                   width: "69px",
                   height: "69px",
-                  marginRight: "10px",
+                  margin: "0px 20px",
                   borderRadius: "10px",
                 }}
               ></img>
