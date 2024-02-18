@@ -33,6 +33,7 @@ function App() {
         <Route path="/products" element={<Shops />}>
           <Route path=":product_id" element={<ChosenProduct />} />
           <Route path="phones" element={<PhoneProducts />} />
+          <Route path="laptops" element={<PhoneProducts />} />
         </Route>
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/community" element={<CommunityPage />} />

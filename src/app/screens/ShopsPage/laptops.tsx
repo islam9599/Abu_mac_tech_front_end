@@ -33,21 +33,17 @@ import ProductCard from "./productCards";
 
 /** Redux Slice */
 
-export function AllProducts() {
+export function Laptops() {
   /** Initialization */
   const navigate = useNavigate();
 
   /** Handlers */
-  const chosenProductHandler = () => {
-    navigate("/products/:product_id");
+  const changeAllProductsHandler = () => {
+    navigate("/products");
   };
   const changePhones = () => {
     navigate("/products/phones");
   };
-  const changeLaptops = () => {
-    navigate("/products/laptops");
-  };
-
   const [checked, setChecked] = React.useState([true, false]);
 
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,8 +83,8 @@ export function AllProducts() {
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className={"fit_search_box"} justifyContent={"center"}>
             <Box className={"fit_box"}>
-              <a>All Products</a>
-              <a onClick={changeLaptops}>Laptop</a>
+              <a onClick={changeAllProductsHandler}>All Products</a>
+              <a>Laptop</a>
               <a onClick={changePhones}>Phones</a>
               <a>Etc</a>
             </Box>
@@ -104,7 +100,7 @@ export function AllProducts() {
             >
               <Stack>
                 <FormControlLabel
-                  label="Brands"
+                  label="Memory"
                   control={
                     <Checkbox
                       checked={checked[0] && checked[1]}
@@ -116,25 +112,25 @@ export function AllProducts() {
 
                 <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
                   <FormControlLabel
-                    label="Apple"
+                    label="8 gb"
                     control={
                       <Checkbox checked={checked[0]} onChange={handleChange2} />
                     }
                   />
                   <FormControlLabel
-                    label="Samsung"
+                    label="16 gb"
                     control={
                       <Checkbox checked={checked[1]} onChange={handleChange3} />
                     }
                   />
                   <FormControlLabel
-                    label="Asus"
+                    label="32 gb"
                     control={
                       <Checkbox checked={checked[1]} onChange={handleChange3} />
                     }
                   />
                   <FormControlLabel
-                    label="Etc"
+                    label="64 gb"
                     control={
                       <Checkbox checked={checked[1]} onChange={handleChange3} />
                     }
@@ -143,7 +139,7 @@ export function AllProducts() {
               </Stack>
               <Stack sx={{ m: 5 }}>
                 <FormControlLabel
-                  label="Colors"
+                  label="Display"
                   control={
                     <Checkbox
                       checked={checked[0] && checked[1]}
@@ -152,32 +148,7 @@ export function AllProducts() {
                     />
                   }
                 />
-                <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
-                  <FormControlLabel
-                    label="Silver"
-                    control={
-                      <Checkbox checked={checked[0]} onChange={handleChange2} />
-                    }
-                  />
-                  <FormControlLabel
-                    label="Space Gray"
-                    control={
-                      <Checkbox checked={checked[1]} onChange={handleChange3} />
-                    }
-                  />
-                  <FormControlLabel
-                    label="Midnight"
-                    control={
-                      <Checkbox checked={checked[1]} onChange={handleChange3} />
-                    }
-                  />
-                  <FormControlLabel
-                    label="Etc"
-                    control={
-                      <Checkbox checked={checked[1]} onChange={handleChange3} />
-                    }
-                  />
-                </Box>
+                {children}
                 <Typography></Typography>
               </Stack>
             </Stack>

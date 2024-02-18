@@ -8,7 +8,15 @@ import {
   CssVarsProvider,
 } from "@mui/joy";
 import Typography from "@mui/joy/Typography";
-import { Box, Button, Container, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  Rating,
+  Stack,
+} from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -21,6 +29,7 @@ import assert from "assert";
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "reselect";
 import { useNavigate } from "react-router-dom";
+import ProductCard from "./productCards";
 
 /** Redux Slice */
 
@@ -29,191 +38,156 @@ export function PhoneProducts() {
   const navigate = useNavigate();
 
   /** Handlers */
-  const changeHandler = () => {
-    navigate("/products/:product_id");
+  const changeAllProductsHandler = () => {
+    navigate("/products");
+  };
+  const changePhones = () => {
+    navigate("/products/phones");
+  };
+  const [checked, setChecked] = React.useState([true, false]);
+
+  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([event.target.checked, event.target.checked]);
   };
 
+  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([event.target.checked, checked[1]]);
+  };
+
+  const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([checked[0], event.target.checked]);
+  };
+  const children = (
+    <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
+      <FormControlLabel
+        label="13 inch"
+        control={<Checkbox checked={checked[0]} onChange={handleChange2} />}
+      />
+      <FormControlLabel
+        label="14 inch"
+        control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
+      />
+      <FormControlLabel
+        label="15 inch"
+        control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
+      />
+      <FormControlLabel
+        label="16 inch"
+        control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
+      />
+    </Box>
+  );
   return (
     <div className="all_products">
       <Container>
         <Stack flexDirection={"column"} alignItems={"center"}>
-          <Box className={"fit_search_box"}>
+          <Box className={"fit_search_box"} justifyContent={"center"}>
             <Box className={"fit_box"}>
-              <a>All Products</a>
+              <a onClick={changeAllProductsHandler}>All Products</a>
               <a>Laptop</a>
-              <a>Phones</a>
+              <a onClick={changePhones}>Phones</a>
               <a>Etc</a>
             </Box>
-
-            {/* <Box className={"search_big_box"}>
-              <form className={"search_form"} action="">
-                <input
-                  type={"search"}
-                  className={"search_input"}
-                  name={"resSearch"}
-                  placeholder="qidiruv"
-                />
-                <Button
-                  className="button_search"
-                  variant="contained"
-                  endIcon={<Search />}
-                >
-                  Izlash
-                </Button>
-              </form>
-            </Box> */}
           </Box>
-          <Stack className={"all_res_box"}>
-            <CssVarsProvider>
-              {Array.from(Array(8).keys()).map((ele) => {
-                return (
-                  <Card
-                    onClick={changeHandler}
-                    variant="outlined"
-                    sx={{
-                      minHeight: 410,
-                      minWidth: 290,
-                      mx: "17px",
-                      my: "20px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <CardOverflow>
-                      <AspectRatio ratio={"1"}>
-                        <img
-                          src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-15-pro-max-family-select?wid=4000&hei=3794&fmt=jpeg&qlt=90&.v=1692893974945"
-                          alt=""
-                        />
-                      </AspectRatio>
-
-                      <IconButton
-                        aria-label="Like minimal phtography"
-                        size="md"
-                        variant="solid"
-                        color="neutral"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                        sx={{
-                          position: "absolute",
-                          zIndex: 2,
-                          borderRadius: "50%",
-                          right: "1rem",
-                          bottom: 0,
-                          transform: "translateY(50%)",
-                          color: "rgba(0,0,0,.4)",
-                        }}
-                      >
-                        <Favorite
-                        //   style={{
-                        //     fill:
-                        //       ele?.me_liked && ele?.me_liked[0]?.my_favorite
-                        //         ? "red"
-                        //         : "white",
-                        //   }}
-                        />
-                      </IconButton>
-                    </CardOverflow>
-                    <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
-                      Apple
-                    </Typography>
-                    <span
-                      style={{
-                        width: "200px",
-                        marginTop: 0.5,
-                        marginBottom: 2,
-                      }}
-                    >
-                      <Link
-                        href=""
-                        startDecorator={<LocationOnRounded />}
-                        textColor={"rgba(56, 55, 55, 0.90);"}
-                      >
-                        Salom kuyluk A uy
-                      </Link>
-                    </span>
-                    <Typography textColor="neutral.300">
-                      <Link
-                        href=""
-                        startDecorator={<Call />}
-                        textColor={"rgba(56, 55, 55, 0.90);"}
-                      >
-                        01023088288
-                      </Link>
-                    </Typography>
-                    <CardOverflow
-                      sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        gap: 1.5,
-                        py: 1.5,
-                        px: "var(--Card-padding)",
-                        borderTop: "1px solid",
-                      }}
-                    >
-                      <Typography
-                        sx={{
-                          fontWeight: "md",
-                          color: "rgba(56, 55, 55, 0.90);",
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
-                        {/* {ele.mb_views} */} 200
-                        <VisibilityIcon
-                          sx={{ fontSize: 20, marginLeft: "5px" }}
-                        />
-                      </Typography>
-                      <Box sx={{ width: 2, bgcolor: "divider" }}></Box>
-                      <Typography
-                        sx={{
-                          fontSize: "md",
-                          color: "rgba(56, 55, 55, 0.90);",
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
-                        {/* <div
-                          ref={(element) => (refs.current[ele._id] = element)}
-                        >
-                          {ele.mb_likes}
-                        </div> */}
-                        <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
-                      </Typography>
-                    </CardOverflow>
-                  </Card>
-                );
-              })}
-            </CssVarsProvider>
-          </Stack>
-
-          <Stack className="bottom_box">
-            <img
-              className="line_img_left"
-              src={"/icons/line_group.svg"}
-              alt=""
-            />
-            <Pagination
-              //   count={targetSearchObj.page >= 3 ? targetSearchObj.page + 1 : 3}
-              //   page={targetSearchObj.page}
-              renderItem={(item) => (
-                <PaginationItem
-                  components={{
-                    previous: ArrowBackIcon,
-                    next: ArrowForwardIcon,
-                  }}
-                  {...item}
-                  color="secondary"
+          <Stack className={"all_products_box"}>
+            <Stack
+              flexDirection={"column"}
+              width={"180px"}
+              height={"600px"}
+              sx={{ background: "rgb(215, 218, 221)", mt: 20, mr: 15 }}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Stack>
+                <FormControlLabel
+                  label="Memory"
+                  control={
+                    <Checkbox
+                      checked={checked[0] && checked[1]}
+                      indeterminate={checked[0] !== checked[1]}
+                      onChange={handleChange1}
+                    />
+                  }
                 />
-              )}
-              //   onChange={handlePaginationChange}
-            />
 
-            <img
-              className="line_img_right"
-              src={"/icons/line_group.svg"}
-              alt=""
-            />
+                <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
+                  <FormControlLabel
+                    label="8 gb"
+                    control={
+                      <Checkbox checked={checked[0]} onChange={handleChange2} />
+                    }
+                  />
+                  <FormControlLabel
+                    label="16 gb"
+                    control={
+                      <Checkbox checked={checked[1]} onChange={handleChange3} />
+                    }
+                  />
+                  <FormControlLabel
+                    label="32 gb"
+                    control={
+                      <Checkbox checked={checked[1]} onChange={handleChange3} />
+                    }
+                  />
+                  <FormControlLabel
+                    label="64 gb"
+                    control={
+                      <Checkbox checked={checked[1]} onChange={handleChange3} />
+                    }
+                  />
+                </Box>
+              </Stack>
+              <Stack sx={{ m: 5 }}>
+                <FormControlLabel
+                  label="Display"
+                  control={
+                    <Checkbox
+                      checked={checked[0] && checked[1]}
+                      indeterminate={checked[0] !== checked[1]}
+                      onChange={handleChange1}
+                    />
+                  }
+                />
+                {children}
+                <Typography></Typography>
+              </Stack>
+            </Stack>
+            <Stack
+              width={"950px"}
+              height={"auto"}
+              flexDirection={"row"}
+              sx={{ flexWrap: "wrap" }}
+            >
+              <ProductCard />
+              <Stack className="bottom_box">
+                <img
+                  className="line_img_left"
+                  src={"/icons/line_group.svg"}
+                  alt=""
+                />
+                <Pagination
+                  //   count={targetSearchObj.page >= 3 ? targetSearchObj.page + 1 : 3}
+                  //   page={targetSearchObj.page}
+                  renderItem={(item) => (
+                    <PaginationItem
+                      components={{
+                        previous: ArrowBackIcon,
+                        next: ArrowForwardIcon,
+                      }}
+                      {...item}
+                      color="secondary"
+                    />
+                  )}
+                  //   onChange={handlePaginationChange}
+                />
+
+                <img
+                  className="line_img_right"
+                  src={"/icons/line_group.svg"}
+                  alt=""
+                />
+              </Stack>
+            </Stack>
           </Stack>
         </Stack>
       </Container>

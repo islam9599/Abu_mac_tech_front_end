@@ -5,6 +5,7 @@ import { AllProducts } from "./allProducts";
 import { ChosenProduct } from "./chosenProduct";
 import "../../../css/shops.css";
 import { PhoneProducts } from "./phoneProducts";
+import { Laptops } from "./laptops";
 
 export const Shops = () => {
   return (
@@ -13,6 +14,7 @@ export const Shops = () => {
         <Route path="/" element={<AllProducts />} />
         <Route path="/:products_id" element={<ChosenProduct />} />
         <Route path="/phones" element={<PhoneProducts />} />
+        <Route path="/laptops" element={<Laptops />} />
       </Routes>
     </div>
   );
