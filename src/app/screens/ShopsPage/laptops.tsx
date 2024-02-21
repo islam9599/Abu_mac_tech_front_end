@@ -1,13 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Card,
-  CardOverflow,
-  IconButton,
-  AspectRatio,
-  Link,
-  CssVarsProvider,
-} from "@mui/joy";
-import Typography from "@mui/joy/Typography";
+
 import {
   Box,
   Button,
@@ -16,12 +8,19 @@ import {
   FormControlLabel,
   Rating,
   Stack,
+  Typography,
 } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { Call, Favorite, LocationOnRounded, Search } from "@mui/icons-material";
+import {
+  Call,
+  Favorite,
+  Home,
+  LocationOnRounded,
+  Search,
+} from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import assert from "assert";
@@ -30,6 +29,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "reselect";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "./productCards";
+import Marginer from "../../component/marginer";
 
 /** Redux Slice */
 
@@ -44,6 +44,9 @@ export function Laptops() {
   const changePhones = () => {
     navigate("/products/phones");
   };
+  const changeToAccessories = () => {
+    navigate("/products/accessories");
+  };
   const [checked, setChecked] = React.useState([true, false]);
 
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +59,9 @@ export function Laptops() {
 
   const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked([checked[0], event.target.checked]);
+  };
+  const navigateToHomeHandler = () => {
+    navigate("/");
   };
   const children = (
     <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
@@ -80,13 +86,35 @@ export function Laptops() {
   return (
     <div className="all_products">
       <Container>
+        <Stack flexDirection={"row"} alignItems={"center"}>
+          <Home sx={{ width: "29px", height: "29px" }} />
+          <Typography sx={{ margin: "15px" }} variant="h4">
+            Home
+          </Typography>
+          <Marginer width="1" height="20" bg="#000" direction="vertical" />
+
+          <Typography sx={{ margin: "15px" }} variant="h4">
+            Laptops
+            <a
+              href=""
+              onClick={navigateToHomeHandler}
+              style={{
+                textDecoration: "none",
+                cursor: "pointer",
+                marginLeft: "5px",
+              }}
+            >
+              x
+            </a>
+          </Typography>
+        </Stack>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className={"fit_search_box"} justifyContent={"center"}>
             <Box className={"fit_box"}>
               <a onClick={changeAllProductsHandler}>All Products</a>
               <a>Laptop</a>
               <a onClick={changePhones}>Phones</a>
-              <a>Etc</a>
+              <a onClick={changeToAccessories}>Etc</a>
             </Box>
           </Box>
           <Stack className={"all_products_box"}>

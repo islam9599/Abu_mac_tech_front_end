@@ -150,11 +150,6 @@ export const OthersNavbarPage = () => {
           </Stack>
         </Container>
       </div>
-      <div style={{ width: "100%", height: "110px" }}>
-        <Container>
-          <Marginer direction="horizontal" width="100%" height="1" bg="#999" />
-        </Container>
-      </div>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import {
   Button,
   Container,
   Stack,
+  Tabs,
   Typography,
 } from "@mui/material";
 import "../../../css/help.css";
@@ -14,9 +15,10 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { ExpandMore } from "@mui/icons-material";
+import { ExpandMore, Home } from "@mui/icons-material";
 import Marginer from "../../component/marginer";
 import { Textarea } from "@mui/joy";
+import { useNavigate } from "react-router-dom";
 
 export function HelpPage() {
   const [value, setValue] = React.useState("1");
@@ -70,113 +72,169 @@ export function HelpPage() {
     "Web sahifammiz copyrightga ega!",
     "Bu web sahifammiz manzur bo'lgan bo'lsa yaqinlarigizga ulashib qo'ysangiz samimiy xursand bo'lamiz!",
   ];
+  const navigate = useNavigate();
+
+  const navigateToHomeHandler = () => {
+    navigate("/");
+  };
   return (
     <div className="help_page">
-      <Container maxWidth="lg" sx={{ mt: "50px", mb: "50px" }}>
-        <Box
+      <Container>
+        <Stack
           sx={{
-            width: "100%",
-            typography: "body1",
+            m: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <TabList
-                onChange={handleChange}
-                aria-label="basic tabs example"
-                variant="fullWidth"
+          <Stack flexDirection={"row"} alignItems={"center"} mr={110}>
+            <Home sx={{ width: "29px", height: "29px" }} />
+            <Typography sx={{ margin: "15px" }} variant="h4">
+              Home
+            </Typography>
+            <Marginer width="1" height="20" bg="#000" direction="vertical" />
+
+            <Typography sx={{ margin: "15px" }} variant="h4">
+              Help
+              <a
+                href=""
+                onClick={navigateToHomeHandler}
+                style={{
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  marginLeft: "5px",
+                }}
               >
-                <Tab sx={{ color: "#fff" }} label="Qoidalar" value="1" />
-                <Tab sx={{ color: "#fff" }} label="FAQ" value="2" />
-                <Tab
-                  sx={{ color: "#fff" }}
-                  label="Adminga murojaat"
-                  value="3"
-                />
-              </TabList>
-            </Box>
-            <Stack alignItems={"center"} sx={{ width: "100%", height: "auto" }}>
-              <Box sx={{ mt: "30px" }}>
-                <Marginer width="1272" height="1" bg="#fff" />
+                x
+              </a>
+            </Typography>
+          </Stack>
+          <Box
+            sx={{
+              // borderBottom: 1,
+              // borderColor: "divider",
+              bgcolor: "silver",
+              width: "90%",
+              margin: 5,
+              borderRadius: "9px",
+              border: "2px solid #129cb8",
+            }}
+          >
+            <TabContext value={value}>
+              <Box sx={{ borderBottom: 2, borderColor: "divider" }}>
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  indicatorColor="primary"
+                  textColor="primary"
+                  variant="fullWidth"
+                  aria-label="lab API tabs example"
+                >
+                  <Tab
+                    sx={{ fontWeight: "bold", fontSize: "13px" }}
+                    label="Qoidalar"
+                    value="1"
+                  />
+                  <Tab
+                    sx={{ fontWeight: "bold", fontSize: "13px" }}
+                    label="FAQ"
+                    value="2"
+                  />
+                  <Tab
+                    sx={{ fontWeight: "bold", fontSize: "13px" }}
+                    label="Adminga murojaat"
+                    value="3"
+                  />
+                </Tabs>
               </Box>
-              <Stack className="help_main_container">
-                <TabPanel value="1">
-                  <Stack className="rule_box">
-                    <Box className="rule_ele">
-                      {rules.map((ele) => {
+              <Stack
+                alignItems={"center"}
+                sx={{
+                  width: "100%",
+                  height: "auto",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Stack className="help_main_container">
+                  <TabPanel value="1">
+                    <Stack className="rule_box">
+                      <Box className="rule_ele">
+                        {rules.map((ele) => {
+                          return (
+                            <div>
+                              <p>{ele}</p>
+                              <Marginer width="100%" height="1" bg="#C4C4C4" />
+                            </div>
+                          );
+                        })}
+                      </Box>
+                    </Stack>
+                  </TabPanel>
+                  <TabPanel value="2">
+                    <Stack className="faq_container">
+                      {faq.map((ele) => {
                         return (
-                          <div>
-                            <p>{ele}</p>
-                            <Marginer width="100%" height="1" bg="#C4C4C4" />
-                          </div>
+                          <Accordion>
+                            <AccordionSummary
+                              expandIcon={<ExpandMore />}
+                              aria-controls="panella-content"
+                              id="panella-header"
+                            >
+                              <Typography>{ele.question}</Typography>
+                            </AccordionSummary>
+
+                            <AccordionDetails>
+                              <Typography>{ele.answer}</Typography>
+                            </AccordionDetails>
+                          </Accordion>
                         );
                       })}
-                    </Box>
-                  </Stack>
-                </TabPanel>
-                <TabPanel value="2">
-                  <Stack className="faq_container">
-                    {faq.map((ele) => {
-                      return (
-                        <Accordion>
-                          <AccordionSummary
-                            expandIcon={<ExpandMore />}
-                            aria-controls="panella-content"
-                            id="panella-header"
-                          >
-                            <Typography>{ele.question}</Typography>
-                          </AccordionSummary>
-
-                          <AccordionDetails>
-                            <Typography>{ele.answer}</Typography>
-                          </AccordionDetails>
-                        </Accordion>
-                      );
-                    })}
-                  </Stack>
-                </TabPanel>
-                <TabPanel value="3">
-                  <Stack className="message_to_admin">
-                    <Stack className="message_title">
-                      <span>Adminga Xabar Qoldirish</span>
-                      <p>
-                        Assalomu alaykum! Adminga xabar qoldirish uchun pasdagi
-                        formlarni to’ldiring!
-                      </p>
                     </Stack>
-                    <form action="#" method="POST" className="message_frame">
-                      <div className="message_input_box">
-                        <label htmlFor="">Ism</label>
-                        <input
-                          type="text"
-                          name="mb_nick"
-                          placeholder="ismingiz"
-                        />
-                      </div>
-                      <div className="message_input_box">
-                        <label htmlFor="">Elektron Manzil</label>
-                        <input
-                          type="text"
-                          name="mb_email"
-                          placeholder="email"
-                        />
-                      </div>
-                      <div className="message_input_box">
-                        <label htmlFor="">Xabar</label>
-                        <textarea name="mb_msg" placeholder="xabar" />
-                      </div>
-                      <Box className="message_admin_btn">
-                        <Button type={"submit"} variant="contained">
-                          Jo’natish
-                        </Button>
-                      </Box>
-                    </form>
-                  </Stack>
-                </TabPanel>
+                  </TabPanel>
+                  <TabPanel value="3">
+                    <Stack className="message_to_admin">
+                      <Stack className="message_title">
+                        <span>Adminga Xabar Qoldirish</span>
+                        <p>
+                          Assalomu alaykum! Adminga xabar qoldirish uchun
+                          pasdagi formlarni to’ldiring!
+                        </p>
+                      </Stack>
+                      <form action="#" method="POST" className="message_frame">
+                        <div className="message_input_box">
+                          <label htmlFor="">Ism</label>
+                          <input
+                            type="text"
+                            name="mb_nick"
+                            placeholder="ismingiz"
+                          />
+                        </div>
+                        <div className="message_input_box">
+                          <label htmlFor="">Elektron Manzil</label>
+                          <input
+                            type="text"
+                            name="mb_email"
+                            placeholder="email"
+                          />
+                        </div>
+                        <div className="message_input_box">
+                          <label htmlFor="">Xabar</label>
+                          <textarea name="mb_msg" placeholder="xabar" />
+                        </div>
+                        <Box className="message_admin_btn">
+                          <Button variant="contained">Jo’natish</Button>
+                        </Box>
+                      </form>
+                    </Stack>
+                  </TabPanel>
+                </Stack>
               </Stack>
-            </Stack>
-          </TabContext>
-        </Box>
+            </TabContext>
+          </Box>
+        </Stack>
       </Container>
     </div>
   );

@@ -15,6 +15,7 @@ import { AllProducts } from "./screens/ShopsPage/allProducts";
 import { Shops } from "./screens/ShopsPage";
 import { ChosenProduct } from "./screens/ShopsPage/chosenProduct";
 import { PhoneProducts } from "./screens/ShopsPage/phoneProducts";
+import { Accessories } from "./screens/ShopsPage/accessories";
 
 function App() {
   const location = useLocation();
@@ -34,6 +35,7 @@ function App() {
           <Route path=":product_id" element={<ChosenProduct />} />
           <Route path="phones" element={<PhoneProducts />} />
           <Route path="laptops" element={<PhoneProducts />} />
+          <Route path="accessories" element={<Accessories />} />
         </Route>
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/community" element={<CommunityPage />} />

@@ -1,12 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Card,
-  CardOverflow,
-  IconButton,
-  AspectRatio,
-  Link,
-  CssVarsProvider,
-} from "@mui/joy";
 
 import {
   Box,
@@ -22,13 +14,7 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import {
-  Call,
-  Favorite,
-  Home,
-  LocationOnRounded,
-  Search,
-} from "@mui/icons-material";
+import { Home } from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import assert from "assert";
@@ -41,24 +27,20 @@ import Marginer from "../../component/marginer";
 
 /** Redux Slice */
 
-export function AllProducts() {
+export function Accessories() {
   /** Initialization */
   const navigate = useNavigate();
 
   /** Handlers */
-  const navigateToHomeHandler = () => {
-    navigate("/");
-  };
-  const chosenProductHandler = () => {
-    navigate("/products/:product_id");
+  const changeAllProductsHandler = () => {
+    navigate("/products");
   };
   const changePhones = () => {
     navigate("/products/phones");
   };
-  const changeLaptops = () => {
+  const changeToLaptopsHandler = () => {
     navigate("/products/laptops");
   };
-
   const [checked, setChecked] = React.useState([true, false]);
 
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,6 +53,9 @@ export function AllProducts() {
 
   const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked([checked[0], event.target.checked]);
+  };
+  const navigateToHomeHandler = () => {
+    navigate("/");
   };
   const children = (
     <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
@@ -95,33 +80,33 @@ export function AllProducts() {
   return (
     <div className="all_products">
       <Container>
-        <Stack flexDirection={"column"}>
-          <Stack flexDirection={"row"} alignItems={"center"}>
-            <Home sx={{ width: "29px", height: "29px" }} />
-            <Typography sx={{ margin: "15px" }} variant="h4">
-              Home
-            </Typography>
-            <Marginer width="1" height="20" bg="#000" direction="vertical" />
+        <Stack flexDirection={"row"} alignItems={"center"}>
+          <Home sx={{ width: "29px", height: "29px" }} />
+          <Typography sx={{ margin: "15px" }} variant="h4">
+            Home
+          </Typography>
+          <Marginer width="1" height="20" bg="#000" direction="vertical" />
 
-            <Typography sx={{ margin: "15px" }} variant="h4">
-              Products
-              <a
-                href=""
-                onClick={navigateToHomeHandler}
-                style={{
-                  textDecoration: "none",
-                  cursor: "pointer",
-                  marginLeft: "5px",
-                }}
-              >
-                x
-              </a>
-            </Typography>
-          </Stack>
+          <Typography sx={{ margin: "15px" }} variant="h4">
+            Accesories
+            <a
+              href=""
+              onClick={navigateToHomeHandler}
+              style={{
+                textDecoration: "none",
+                cursor: "pointer",
+                marginLeft: "5px",
+              }}
+            >
+              x
+            </a>
+          </Typography>
+        </Stack>
+        <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className={"fit_search_box"} justifyContent={"center"}>
             <Box className={"fit_box"}>
-              <a>All Products</a>
-              <a onClick={changeLaptops}>Laptop</a>
+              <a onClick={changeAllProductsHandler}>All Products</a>
+              <a onClick={changeToLaptopsHandler}>Laptop</a>
               <a onClick={changePhones}>Phones</a>
               <a>Etc</a>
             </Box>
@@ -137,7 +122,7 @@ export function AllProducts() {
             >
               <Stack>
                 <FormControlLabel
-                  label="Brands"
+                  label="Memory"
                   control={
                     <Checkbox
                       checked={checked[0] && checked[1]}
@@ -149,25 +134,25 @@ export function AllProducts() {
 
                 <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
                   <FormControlLabel
-                    label="Apple"
+                    label="8 gb"
                     control={
                       <Checkbox checked={checked[0]} onChange={handleChange2} />
                     }
                   />
                   <FormControlLabel
-                    label="Samsung"
+                    label="16 gb"
                     control={
                       <Checkbox checked={checked[1]} onChange={handleChange3} />
                     }
                   />
                   <FormControlLabel
-                    label="Asus"
+                    label="32 gb"
                     control={
                       <Checkbox checked={checked[1]} onChange={handleChange3} />
                     }
                   />
                   <FormControlLabel
-                    label="Etc"
+                    label="64 gb"
                     control={
                       <Checkbox checked={checked[1]} onChange={handleChange3} />
                     }
@@ -176,7 +161,7 @@ export function AllProducts() {
               </Stack>
               <Stack sx={{ m: 5 }}>
                 <FormControlLabel
-                  label="Colors"
+                  label="Display"
                   control={
                     <Checkbox
                       checked={checked[0] && checked[1]}
@@ -185,32 +170,7 @@ export function AllProducts() {
                     />
                   }
                 />
-                <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
-                  <FormControlLabel
-                    label="Silver"
-                    control={
-                      <Checkbox checked={checked[0]} onChange={handleChange2} />
-                    }
-                  />
-                  <FormControlLabel
-                    label="Space Gray"
-                    control={
-                      <Checkbox checked={checked[1]} onChange={handleChange3} />
-                    }
-                  />
-                  <FormControlLabel
-                    label="Midnight"
-                    control={
-                      <Checkbox checked={checked[1]} onChange={handleChange3} />
-                    }
-                  />
-                  <FormControlLabel
-                    label="Etc"
-                    control={
-                      <Checkbox checked={checked[1]} onChange={handleChange3} />
-                    }
-                  />
-                </Box>
+                {children}
                 <Typography></Typography>
               </Stack>
             </Stack>
