@@ -26,6 +26,7 @@ import { MySettings } from "./mySettings";
 import Marginer from "../../component/marginer";
 import { MemberPosts } from "./memberPost";
 import { useNavigate } from "react-router-dom";
+import { TuiEditor } from "../../component/tui_editor";
 export function VisitMyPage(props: any) {
   const navigate = useNavigate();
   const [value, setValue] = useState("1");
@@ -258,9 +259,9 @@ export function VisitMyPage(props: any) {
                 </TabPanel>
                 <TabPanel value="4">
                   <Box className="menu_name">Maqola yozish</Box>
-                  <Marginer width="750px" bg="#fff" height="1" />
+                  <Marginer width="750px" bg="#000" height="1" />
                   <Box className="menu_content">
-                    {/* <MemberFollowers /> */}
+                    <TuiEditor />
                   </Box>
                 </TabPanel>
                 <TabPanel value="5">
