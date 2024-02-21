@@ -88,7 +88,7 @@ export function CommunityPage() {
                       />
                       <Tab
                         sx={{ fontWeight: "bold", fontSize: "13px" }}
-                        label="OSHXONAGA BAHO"
+                        label="WEB SAHIFAGA BAHO"
                         value="3"
                       />
                     </TabList>

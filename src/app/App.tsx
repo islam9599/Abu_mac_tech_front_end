@@ -16,6 +16,7 @@ import { Shops } from "./screens/ShopsPage";
 import { ChosenProduct } from "./screens/ShopsPage/chosenProduct";
 import { PhoneProducts } from "./screens/ShopsPage/phoneProducts";
 import { Accessories } from "./screens/ShopsPage/accessories";
+import { VisitOtherPage } from "./screens/MemberPage/visitOtherPage";
 
 function App() {
   const location = useLocation();
@@ -39,7 +40,9 @@ function App() {
         </Route>
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/community" element={<CommunityPage />} />
-        <Route path="/member-page" element={<MemberPage />} />
+        <Route path="/member-page" element={<MemberPage />}>
+          <Route path="other" element={<VisitOtherPage />} />
+        </Route>
         <Route path="/help" element={<HelpPage />} />
       </Routes>
       <Footer />

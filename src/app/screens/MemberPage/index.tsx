@@ -1,10 +1,18 @@
-import { Container } from "@mui/system";
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+import { Container } from "@mui/material";
+import "../../../css/member-page.css";
 
-export const MemberPage = () => {
+import { VisitOtherPage } from "./visitOtherPage";
+import { VisitMyPage } from "./visitMyPage";
+
+export function MemberPage() {
   return (
-    <Container>
-      <h1>MemberPage</h1>
-    </Container>
+    <div className="member_page">
+      <Routes>
+        <Route path="/" element={<VisitMyPage />} />
+        <Route path="/other" element={<VisitOtherPage />} />
+      </Routes>
+    </div>
   );
-};
+}
