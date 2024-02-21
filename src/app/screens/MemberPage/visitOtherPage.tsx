@@ -37,55 +37,6 @@ export function VisitOtherPage(props: any) {
       >
         <Stack width={"100"} height={"750px"} flexDirection={"row"}>
           <TabContext value={value}>
-            <Stack className="my_page_left">
-              <Box display={"flex"} flexDirection={"column"}>
-                <TabPanel value="1">
-                  <Box className="menu_name"> Maqolalari</Box>
-                  <Marginer width="750px" bg="#fff" height="1" />
-
-                  <Box className="menu_content">
-                    <MemberPosts />
-                    <Pagination
-                      style={{ marginTop: "50px" }}
-                      count={3}
-                      page={1}
-                      renderItem={(item) => (
-                        <PaginationItem
-                          components={{
-                            previous: ArrowBackIcon,
-                            next: ArrowForwardIcon,
-                          }}
-                          {...item}
-                          color="secondary"
-                        />
-                      )}
-                    />
-                  </Box>
-                </TabPanel>
-                <TabPanel value="2">
-                  <Box className="menu_name">Followers</Box>
-                  <Marginer width="750px" bg="#fff" height="1" />
-                  <Box className="menu_content">
-                    <MemberFollowers actions_enabled={false} />
-                  </Box>
-                </TabPanel>
-                <TabPanel value="3">
-                  <Box className="menu_name">Followings</Box>
-                  <Marginer width="750px" bg="#fff" height="1" />
-                  <Box className="menu_content">
-                    <MemberFollowings actions_enabled={false} />
-                  </Box>
-                </TabPanel>
-
-                <TabPanel value="4">
-                  <Box className="menu_name">Tanlangan Maqola</Box>
-                  <Marginer width="750px" bg="#fff" height="1" />
-                  <Box className="menu_content">
-                    {/* <MemberFollowers /> */}
-                  </Box>
-                </TabPanel>
-              </Box>
-            </Stack>
             <Stack className="my_page_right">
               <Stack className="order_info_box">
                 <Box className="auth_user_img">
@@ -202,6 +153,55 @@ export function VisitOtherPage(props: any) {
                   />
                 </TabList>
               </Stack>
+            </Stack>
+            <Stack className="my_page_left">
+              <Box display={"flex"} flexDirection={"column"}>
+                <TabPanel value="1">
+                  <Box className="menu_name"> Maqolalari</Box>
+                  <Marginer width="750px" bg="#000" height="1" />
+
+                  <Box className="menu_content">
+                    <MemberPosts />
+                    <Pagination
+                      style={{ marginTop: "50px" }}
+                      count={3}
+                      page={1}
+                      renderItem={(item) => (
+                        <PaginationItem
+                          components={{
+                            previous: ArrowBackIcon,
+                            next: ArrowForwardIcon,
+                          }}
+                          {...item}
+                          color="secondary"
+                        />
+                      )}
+                    />
+                  </Box>
+                </TabPanel>
+                <TabPanel value="2">
+                  <Box className="menu_name">Followers</Box>
+                  <Marginer width="750px" bg="#000" height="1" />
+                  <Box className="menu_content">
+                    <MemberFollowers actions_enabled={false} />
+                  </Box>
+                </TabPanel>
+                <TabPanel value="3">
+                  <Box className="menu_name">Followings</Box>
+                  <Marginer width="750px" bg="#000" height="1" />
+                  <Box className="menu_content">
+                    <MemberFollowings actions_enabled={false} />
+                  </Box>
+                </TabPanel>
+
+                <TabPanel value="4">
+                  <Box className="menu_name">Tanlangan Maqola</Box>
+                  <Marginer width="750px" bg="#000" height="1" />
+                  <Box className="menu_content">
+                    {/* <MemberFollowers /> */}
+                  </Box>
+                </TabPanel>
+              </Box>
             </Stack>
           </TabContext>
         </Stack>
