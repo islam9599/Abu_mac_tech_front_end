@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Stack, Box, Button } from "@mui/material";
+import { Container, Stack, Box, Button, Typography } from "@mui/material";
 import {
   Facebook,
   Instagram,
@@ -8,6 +8,7 @@ import {
   Edit,
   Group,
   Person,
+  Home,
 } from "@mui/icons-material";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -23,11 +24,16 @@ import { MemberFollowings } from "./memberFollowings";
 import { MemberPosts } from "./memberPost";
 import { MySettings } from "./mySettings";
 import Marginer from "../../component/marginer";
+import { useNavigate } from "react-router-dom";
 
 export function VisitOtherPage(props: any) {
+  const navigate = useNavigate();
   const [value, setValue] = useState("1");
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
+  };
+  const navigateToHomeHandler = () => {
+    navigate("/");
   };
   return (
     <div className="my_page">
@@ -35,6 +41,29 @@ export function VisitOtherPage(props: any) {
         // maxWidth="lg"
         style={{ marginTop: "50px", marginBottom: "50px" }}
       >
+        <Stack flexDirection={"row"} alignItems={"center"} mr={75} mb={5}>
+          <Home sx={{ width: "29px", height: "29px" }} />
+          <Typography sx={{ margin: "15px" }} variant="h4">
+            Home
+          </Typography>
+          <Marginer width="1" height="20" bg="#000" direction="vertical" />
+
+          <Typography sx={{ margin: "15px" }} variant="h4">
+            Other Member Page
+            <a
+              href=""
+              onClick={navigateToHomeHandler}
+              style={{
+                textDecoration: "none",
+                cursor: "pointer",
+                marginLeft: "5px",
+                color: "none",
+              }}
+            >
+              x
+            </a>
+          </Typography>
+        </Stack>
         <Stack width={"100"} height={"750px"} flexDirection={"row"}>
           <TabContext value={value}>
             <Stack className="my_page_right">
@@ -184,6 +213,21 @@ export function VisitOtherPage(props: any) {
                   <Marginer width="750px" bg="#000" height="1" />
                   <Box className="menu_content">
                     <MemberFollowers actions_enabled={false} />
+                    <Pagination
+                      style={{ marginTop: "50px" }}
+                      count={3}
+                      page={1}
+                      renderItem={(item) => (
+                        <PaginationItem
+                          components={{
+                            previous: ArrowBackIcon,
+                            next: ArrowForwardIcon,
+                          }}
+                          {...item}
+                          color="secondary"
+                        />
+                      )}
+                    />
                   </Box>
                 </TabPanel>
                 <TabPanel value="3">
@@ -191,6 +235,21 @@ export function VisitOtherPage(props: any) {
                   <Marginer width="750px" bg="#000" height="1" />
                   <Box className="menu_content">
                     <MemberFollowings actions_enabled={false} />
+                    <Pagination
+                      style={{ marginTop: "50px" }}
+                      count={3}
+                      page={1}
+                      renderItem={(item) => (
+                        <PaginationItem
+                          components={{
+                            previous: ArrowBackIcon,
+                            next: ArrowForwardIcon,
+                          }}
+                          {...item}
+                          color="secondary"
+                        />
+                      )}
+                    />
                   </Box>
                 </TabPanel>
 
