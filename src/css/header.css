@@ -24,3 +24,10 @@
   fill: #129cb8;
   opacity: 1;
 }
+
+.hover-line a.active {
+  display: block;
+  content: "";
+  border-bottom: solid 2px #fff;
+  transition: 0.5s ease-in-out;
+}

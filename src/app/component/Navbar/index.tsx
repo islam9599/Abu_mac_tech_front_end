@@ -88,35 +88,35 @@ export const NavbarPage = () => {
                 </Typography>
               </NavLink>
             </Box>
-            <Box sx={{ mr: 2 }}>
+            <Box className="hover-line" sx={{ mr: 2 }}>
               <NavLink style={{ textDecoration: "none" }} to={"/products"}>
                 <Typography className="nav-title" color={"#fff"} variant="h5">
                   Do'konlar
                 </Typography>
               </NavLink>
             </Box>
-            <Box sx={{ mr: 2 }}>
+            <Box className="hover-line" sx={{ mr: 2 }}>
               <NavLink style={{ textDecoration: "none" }} to={"/orders"}>
                 <Typography className="nav-title" color={"#fff"} variant="h5">
                   Buyurtmalar
                 </Typography>
               </NavLink>
             </Box>
-            <Box sx={{ mr: 2 }}>
+            <Box className="hover-line" sx={{ mr: 2 }}>
               <NavLink style={{ textDecoration: "none" }} to={"/community"}>
                 <Typography className="nav-title" color={"#fff"} variant="h5">
                   Jamiyat
                 </Typography>
               </NavLink>
             </Box>
-            <Box sx={{ mr: 2 }}>
+            <Box className="hover-line" sx={{ mr: 2 }}>
               <NavLink style={{ textDecoration: "none" }} to={"/member-page"}>
                 <Typography className="nav-title" color={"#fff"} variant="h5">
                   Mening Sahifam
                 </Typography>
               </NavLink>
             </Box>
-            <Box sx={{ mr: 2 }}>
+            <Box className="hover-line" sx={{ mr: 2 }}>
               <NavLink style={{ textDecoration: "none" }} to={"/help"}>
                 <Typography className="nav-title" color={"#fff"} variant="h5">
                   Yordam

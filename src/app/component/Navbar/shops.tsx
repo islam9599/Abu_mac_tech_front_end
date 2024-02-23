@@ -91,7 +91,12 @@ export const ShopsPage = () => {
                 />
               </Box>
             </Stack>
-            <Stack flexDirection={"row"} alignItems={"center"} mr={10}>
+            <Stack
+              className="hover-line"
+              flexDirection={"row"}
+              alignItems={"center"}
+              mr={10}
+            >
               <Box sx={{ mr: 2, mt: 5 }}>
                 <NavLink style={{ textDecoration: "none" }} to={"/"}>
                   <Typography className="nav-title" color={"#fff"} variant="h5">
