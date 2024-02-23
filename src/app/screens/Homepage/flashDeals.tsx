@@ -149,6 +149,18 @@ const FlashCard = () => {
                     ></img>
                     <div className="productCard__content">
                       <h3 className="productName">{product.name}</h3>
+                      <Stack
+                        width={"100%"}
+                        flexDirection={"row"}
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
+                      >
+                        <h3 style={{ color: "red" }}>30% off</h3>
+                        <h2 style={{ textDecoration: "line-through" }}>
+                          $1799
+                        </h2>
+                      </Stack>
+
                       <div className="displayStack__1">
                         <div className="productPrice">${product.price}</div>
                         <div className="productSales">

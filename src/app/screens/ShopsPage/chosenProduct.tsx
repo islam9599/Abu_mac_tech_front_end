@@ -83,11 +83,11 @@ export const ChosenProduct = () => {
           </Typography>
         </Stack>
         <Box className="product_container">
-          <Stack>
+          <Stack mt={10}>
             <ImageGallery items={images} />
           </Stack>
 
-          <Stack className="chosen_product_info_container">
+          <Stack mt={10} className="chosen_product_info_container">
             <Box className="chosen_product_wrapper">
               <Stack flexDirection={"row"}>
                 <strong className="product_name">Macbook Pro </strong>{" "}

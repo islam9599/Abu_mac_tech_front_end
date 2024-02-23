@@ -1,9 +1,16 @@
-.swiper {
+.home-page {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-page .swiper {
   width: 100%;
   height: 100%;
 }
 
-.swiper-slide {
+.home-page .swiper-slide {
   text-align: center;
   font-size: 18px;
   /* Center slide text vertically */
@@ -12,14 +19,14 @@
   align-items: center;
 }
 
-.swiper-slide img {
+.home-page .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.autoplay-progress {
+.home-page .autoplay-progress {
   position: absolute;
   right: 16px;
   bottom: 16px;
@@ -33,7 +40,7 @@
   color: var(--swiper-theme-color);
 }
 
-.autoplay-progress svg {
+.home-page .autoplay-progress svg {
   --progress: 0;
   position: absolute;
   left: 0;
@@ -49,7 +56,7 @@
   transform: rotate(-90deg);
 }
 /*******************Event **********************/
-.event-info {
+.home-page .event-info {
   position: absolute;
   width: 40%;
   height: 400px;
@@ -60,28 +67,28 @@
   border-radius: 9px;
 }
 /*****************************************/
-.homeSlide h1 {
+.home-page .homeSlide h1 {
   font-size: 45px;
   line-height: 55px;
   margin: 50px 0 20px 0;
 }
-.homeSlide p {
+.home-page .homeSlide p {
   margin: 20px 0;
 }
-.homeSlide ul {
+.home-page .homeSlide ul {
   position: absolute;
   bottom: 20px;
 }
-.homeSlide ul li {
+.home-page .homeSlide ul li {
   border: 2px solid #b8b7b7;
   border-radius: 50%;
   padding: 10px;
 }
-.homeSlide ul li button {
+.home-page .homeSlide ul li button {
   background: transparent !important;
   color: transparent !important;
 }
-.homeSlide ul li button::before {
+.home-page .homeSlide ul li button::before {
   font-size: 15px !important;
   color: #0f3460;
   position: absolute;
@@ -98,6 +105,8 @@
   margin-top: 5rem;
   align-items: center;
   justify-content: center;
+  max-width: 300px;
+  max-height: 450px;
 }
 
 .productCard {
@@ -106,7 +115,7 @@
   margin: 1rem;
   flex: 1 0 15rem;
   width: 300px;
-  height: 400px;
+  height: 450px;
   transition: 0.2s;
   opacity: 0.9;
 }
@@ -119,7 +128,7 @@
 
 .productImage {
   width: 100%;
-  height: 150px;
+  height: 180px;
   object-fit: cover;
   margin-top: 40px;
 }
@@ -152,7 +161,7 @@
 .productCard__wishlist {
   position: absolute;
   right: 0rem;
-  bottom: 10px;
+  bottom: 20px;
   margin: 1rem;
   font-size: 2rem;
   transition: 0.2s;
@@ -174,7 +183,7 @@
 .productName {
   font-size: 1.5rem;
   width: 100%;
-  height: 100px;
+  height: 50px;
 }
 
 .displayStack__1,
@@ -193,4 +202,17 @@
 .productSales,
 .productTime {
   font-size: 1.1rem;
+}
+.home-page .home_card {
+  width: 300px;
+  height: auto;
+  margin: 1rem;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+.card_image {
+}
+.home-page .card_image:hover {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }

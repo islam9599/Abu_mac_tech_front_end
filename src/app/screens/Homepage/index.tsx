@@ -8,35 +8,11 @@ import { Features } from "./features";
 import { FollowInstagram } from "./follow";
 import { Categories } from "./categories";
 import { BestSelling } from "./bestSelling";
-import { TypeAnimation } from "react-type-animation";
 
 export const Homepage = () => {
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "auto",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <div className="home-page">
       <Container>
-        {/* <TypeAnimation
-          sequence={[
-            "Bizdan 10%", // Types 'One'
-            100, // Waits 1s
-            "Bizdan 10% chegirma sizning ", // Deletes 'One' and types 'Two'
-            200, // Waits 2s
-            "Bizdan 10% chegirma sizning birinchi buyurtmangizda!", // Types 'Three' without deleting 'Two'
-            () => {
-              console.log("Sequence completed");
-            },
-          ]}
-          wrapper="span"
-          cursor={true}
-          repeat={Infinity}
-          style={{ fontSize: "2em", display: "inline-block" }}
-        /> */}
         <HotDeal />
         <Categories />
         <BestSelling />

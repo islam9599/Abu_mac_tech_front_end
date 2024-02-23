@@ -9,21 +9,36 @@ import {
   Button,
   Container,
 } from "@mui/material";
-import { Favorite, RemoveRedEye } from "@mui/icons-material";
+import {
+  ArrowRight,
+  Favorite,
+  PriceChange,
+  RemoveRedEye,
+} from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 export const BestSelling = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <Container>
-        <Stack mt={10} justifyContent={"center"} alignItems={"center"}>
-          <Typography color={"#000"} variant="h3" fontWeight={"bold"}>
+        <Stack m={"70px 0px"} justifyContent={"center"} alignItems={"center"}>
+          <Typography m={3} color={"#000"} variant="h3" fontWeight={"bold"}>
             Best Selling Products
           </Typography>
+
           <Stack flexDirection={"row"}>
             {Array.from(Array(4).keys()).map((index) => {
               return (
-                <Card key={index} sx={{ maxWidth: 300, m: 3 }}>
+                <Card
+                  className="home_card"
+                  key={index}
+                  onClick={() => {
+                    navigate("/products/:product_id");
+                  }}
+                >
                   <CardMedia
+                    className="card_image"
                     sx={{
                       paddingTop: "15px",
                       boxShadow: "revert-layer",
@@ -38,6 +53,7 @@ export const BestSelling = () => {
                       variant="h5"
                       color={"InfoText"}
                       marginBottom={"10px"}
+                      fontWeight={"bold"}
                     >
                       MacBook Pro 16 inch
                     </Typography>
@@ -48,7 +64,34 @@ export const BestSelling = () => {
                     >
                       M3 chip, 16/512gb
                     </Typography>
+                    <Stack
+                      width={"100%"}
+                      justifyContent={"space-between"}
+                      flexDirection={"row"}
+                      alignItems={"center"}
+                      position={"relative"}
+                    >
+                      <h5
+                        style={{
+                          position: "absolute",
+                          bottom: 10,
+                          color: "red",
+                          fontSize: "12px",
+                        }}
+                      >
+                        20% off
+                      </h5>
+                      <p
+                        style={{
+                          fontSize: "12px",
+                          textDecoration: "line-through",
+                        }}
+                      >
+                        $1999
+                      </p>
 
+                      <p style={{ fontSize: "12px" }}>$1700</p>
+                    </Stack>
                     <Stack
                       flexDirection={"row"}
                       justifyContent={"space-between"}
@@ -90,6 +133,19 @@ export const BestSelling = () => {
                 </Card>
               );
             })}
+          </Stack>
+          <Stack
+            flexDirection={"row"}
+            alignItems={"center"}
+            justifyContent={"end"}
+            width={"100%"}
+            sx={{ cursor: "pointer" }}
+            onClick={() => {
+              navigate("/products");
+            }}
+          >
+            <ArrowRight />
+            <h3>See More</h3>
           </Stack>
         </Stack>
       </Container>

@@ -111,11 +111,15 @@ const ProductCard = () => {
           >
             {productData.map((product: any) => {
               return (
-                <div className="productList" onClick={chosenProductHandler}>
+                <Stack className="productList" onClick={chosenProductHandler}>
                   <div
                     key={product.id}
                     className="productCard"
-                    style={{ width: "220px", flex: "1 0 10rem" }}
+                    style={{
+                      width: "250px",
+                      height: "auto",
+                      flex: "1 0 10rem",
+                    }}
                   >
                     <Stack
                       flexDirection={"row"}
@@ -130,7 +134,7 @@ const ProductCard = () => {
                       />
                       <BookmarkBorder
                         className={"productCard__wishlist"}
-                        sx={{ width: "29px", height: "24px" }}
+                        sx={{ width: "29px", height: "24px", bottom: "25px" }}
                       />
                       <FavoriteBorder
                         className="productCard__fastSelling"
@@ -163,7 +167,23 @@ const ProductCard = () => {
                       className="productImage"
                     ></img>
                     <div className="productCard__content">
-                      <h3 className="productName">{product.name}</h3>
+                      <h3
+                        style={{ marginBottom: "30px" }}
+                        className="productName"
+                      >
+                        {product.name}
+                      </h3>
+                      <Stack
+                        width={"100%"}
+                        flexDirection={"row"}
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
+                      >
+                        <h3 style={{ color: "red" }}>30% off</h3>
+                        <h2 style={{ textDecoration: "line-through" }}>
+                          $1799
+                        </h2>
+                      </Stack>
                       <div className="displayStack__1">
                         <div className="productPrice">${product.price}</div>
                         <div className="productSales">
@@ -184,7 +204,7 @@ const ProductCard = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Stack>
               );
             })}
           </Stack>

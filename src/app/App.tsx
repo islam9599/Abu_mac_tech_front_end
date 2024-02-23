@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/App.css";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Homepage } from "./screens/Homepage";
 import { ShopsPage } from "./component/Navbar/shops";
 import { OrdersPage } from "./screens/OrdersPage";
@@ -11,7 +11,6 @@ import { OthersNavbarPage } from "./component/Navbar/others";
 import { Footer } from "./component/footer";
 import { MemberPage } from "./screens/MemberPage";
 
-import { AllProducts } from "./screens/ShopsPage/allProducts";
 import { Shops } from "./screens/ShopsPage";
 import { ChosenProduct } from "./screens/ShopsPage/chosenProduct";
 import { PhoneProducts } from "./screens/ShopsPage/phoneProducts";
