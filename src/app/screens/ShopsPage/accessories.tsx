@@ -14,7 +14,7 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { Home } from "@mui/icons-material";
+import { Cancel, Home } from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import assert from "assert";
@@ -81,26 +81,27 @@ export function Accessories() {
     <div className="all_products">
       <Container>
         <Stack flexDirection={"row"} alignItems={"center"}>
-          <Home sx={{ width: "29px", height: "29px" }} />
-          <Typography sx={{ margin: "15px" }} variant="h4">
+          <Home
+            className="navigate_home"
+            sx={{ width: "29px", height: "29px" }}
+          />
+          <Typography
+            className="navigate_home"
+            sx={{ margin: "15px" }}
+            variant="h4"
+          >
             Home
           </Typography>
           <Marginer width="1" height="20" bg="#000" direction="vertical" />
 
-          <Typography sx={{ margin: "15px" }} variant="h4">
-            Accesories
-            <a
-              href=""
-              onClick={navigateToHomeHandler}
-              style={{
-                textDecoration: "none",
-                cursor: "pointer",
-                marginLeft: "5px",
-              }}
-            >
-              x
-            </a>
+          <Typography
+            className="navigate_home"
+            sx={{ margin: "15px" }}
+            variant="h4"
+          >
+            Accessories
           </Typography>
+          <Cancel className="navigate_home" onClick={navigateToHomeHandler} />
         </Stack>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className={"fit_search_box"} justifyContent={"center"}>

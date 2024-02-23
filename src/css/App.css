@@ -15,3 +15,13 @@ html {
   grid-template-columns: 350px 350px 350px;
   justify-content: center;
 }
+
+.navigate_home:hover {
+  max-width: auto;
+  height: auto;
+  border-radius: 9px;
+  border-bottom: silver;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  transition: 0.5s ease-in-out;
+}

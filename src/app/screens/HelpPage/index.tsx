@@ -15,7 +15,7 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { ExpandMore, Home } from "@mui/icons-material";
+import { Cancel, ExpandMore, Home } from "@mui/icons-material";
 import Marginer from "../../component/marginer";
 import { Textarea } from "@mui/joy";
 import { useNavigate } from "react-router-dom";
@@ -89,27 +89,32 @@ export function HelpPage() {
             justifyContent: "center",
           }}
         >
-          <Stack flexDirection={"row"} alignItems={"center"} mr={110}>
-            <Home sx={{ width: "29px", height: "29px" }} />
-            <Typography sx={{ margin: "15px" }} variant="h4">
+          <Stack flexDirection={"row"} alignItems={"center"} mr={100} mb={5}>
+            <Home
+              className="navigate_home"
+              sx={{ width: "29px", height: "29px" }}
+            />
+            <Typography
+              className="navigate_home"
+              sx={{ margin: "15px" }}
+              variant="h4"
+            >
               Home
             </Typography>
             <Marginer width="1" height="20" bg="#000" direction="vertical" />
 
-            <Typography sx={{ margin: "15px" }} variant="h4">
-              Help
-              <a
-                href=""
-                onClick={navigateToHomeHandler}
-                style={{
-                  textDecoration: "none",
-                  cursor: "pointer",
-                  marginLeft: "5px",
-                }}
-              >
-                x
-              </a>
+            <Typography
+              className="navigate_home"
+              sx={{ margin: "15px" }}
+              variant="h4"
+            >
+              Help Page
             </Typography>
+            <Cancel
+              className="navigate_home"
+              style={{ cursor: "pointer" }}
+              onClick={navigateToHomeHandler}
+            />
           </Stack>
           <Box
             sx={{

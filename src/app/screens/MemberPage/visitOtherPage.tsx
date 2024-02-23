@@ -9,6 +9,7 @@ import {
   Group,
   Person,
   Home,
+  Cancel,
 } from "@mui/icons-material";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -41,28 +42,32 @@ export function VisitOtherPage(props: any) {
         // maxWidth="lg"
         style={{ marginTop: "50px", marginBottom: "50px" }}
       >
-        <Stack flexDirection={"row"} alignItems={"center"} mr={75} mb={5}>
-          <Home sx={{ width: "29px", height: "29px" }} />
-          <Typography sx={{ margin: "15px" }} variant="h4">
+        <Stack flexDirection={"row"} alignItems={"center"} mr={100} mb={5}>
+          <Home
+            className="navigate_home"
+            sx={{ width: "29px", height: "29px" }}
+          />
+          <Typography
+            className="navigate_home"
+            sx={{ margin: "15px" }}
+            variant="h4"
+          >
             Home
           </Typography>
           <Marginer width="1" height="20" bg="#000" direction="vertical" />
 
-          <Typography sx={{ margin: "15px" }} variant="h4">
+          <Typography
+            className="navigate_home"
+            sx={{ margin: "15px" }}
+            variant="h4"
+          >
             Other Member Page
-            <a
-              href=""
-              onClick={navigateToHomeHandler}
-              style={{
-                textDecoration: "none",
-                cursor: "pointer",
-                marginLeft: "5px",
-                color: "none",
-              }}
-            >
-              x
-            </a>
           </Typography>
+          <Cancel
+            className="navigate_home"
+            style={{ cursor: "pointer" }}
+            onClick={navigateToHomeHandler}
+          />
         </Stack>
         <Stack width={"100"} height={"750px"} flexDirection={"row"}>
           <TabContext value={value}>

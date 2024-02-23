@@ -120,6 +120,9 @@ export const OthersNavbarPage = () => {
               justifyContent={"space-between"}
             >
               <FaUser
+                onClick={() => {
+                  navigate("/member-page");
+                }}
                 className="nav-icon"
                 style={{
                   width: "19px",

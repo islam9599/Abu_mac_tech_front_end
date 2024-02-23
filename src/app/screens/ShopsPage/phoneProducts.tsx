@@ -24,6 +24,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import {
   Call,
+  Cancel,
   Favorite,
   Home,
   LocationOnRounded,
@@ -95,26 +96,27 @@ export function PhoneProducts() {
     <div className="all_products">
       <Container>
         <Stack flexDirection={"row"} alignItems={"center"}>
-          <Home sx={{ width: "29px", height: "29px" }} />
-          <Typography sx={{ margin: "15px" }} variant="h4">
+          <Home
+            className="navigate_home"
+            sx={{ width: "29px", height: "29px" }}
+          />
+          <Typography
+            className="navigate_home"
+            sx={{ margin: "15px" }}
+            variant="h4"
+          >
             Home
           </Typography>
           <Marginer width="1" height="20" bg="#000" direction="vertical" />
 
-          <Typography sx={{ margin: "15px" }} variant="h4">
+          <Typography
+            className="navigate_home"
+            sx={{ margin: "15px" }}
+            variant="h4"
+          >
             Phones
-            <a
-              href=""
-              onClick={navigateToHomeHandler}
-              style={{
-                textDecoration: "none",
-                cursor: "pointer",
-                marginLeft: "5px",
-              }}
-            >
-              x
-            </a>
           </Typography>
+          <Cancel className="navigate_home" onClick={navigateToHomeHandler} />
         </Stack>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className={"fit_search_box"} justifyContent={"center"}>

@@ -10,7 +10,7 @@ import { FinishedOrders } from "./finishedOrders";
 
 import LocationOn from "@mui/icons-material/LocationOn";
 import Marginer from "../../component/marginer";
-import { Home } from "@mui/icons-material";
+import { Cancel, Home } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 export function OrdersPage() {
@@ -26,28 +26,32 @@ export function OrdersPage() {
     <div className="order_page">
       <Container className="order_page_container" maxWidth="lg">
         <Stack className="order_left">
-          <Stack flexDirection={"row"} alignItems={"center"} mr={75}>
-            <Home sx={{ width: "29px", height: "29px" }} />
-            <Typography sx={{ margin: "15px" }} variant="h4">
+          <Stack flexDirection={"row"} alignItems={"center"} mr={70} mb={5}>
+            <Home
+              className="navigate_home"
+              sx={{ width: "29px", height: "29px" }}
+            />
+            <Typography
+              className="navigate_home"
+              sx={{ margin: "15px" }}
+              variant="h4"
+            >
               Home
             </Typography>
             <Marginer width="1" height="20" bg="#000" direction="vertical" />
 
-            <Typography sx={{ margin: "15px" }} variant="h4">
-              Orders
-              <a
-                href=""
-                onClick={navigateToHomeHandler}
-                style={{
-                  textDecoration: "none",
-                  cursor: "pointer",
-                  marginLeft: "5px",
-                  color: "none",
-                }}
-              >
-                x
-              </a>
+            <Typography
+              className="navigate_home"
+              sx={{ margin: "15px" }}
+              variant="h4"
+            >
+              Order Page
             </Typography>
+            <Cancel
+              className="navigate_home"
+              style={{ cursor: "pointer" }}
+              onClick={navigateToHomeHandler}
+            />
           </Stack>
           <TabContext value={value}>
             <Box className="order_nav_frame">

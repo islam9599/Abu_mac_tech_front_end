@@ -14,7 +14,7 @@ body {
 }
 
 .member_page .my_page .my_page_left {
-  width: 100%;
+  width: 90%;
   height: auto;
   display: flex;
   flex-direction: column;

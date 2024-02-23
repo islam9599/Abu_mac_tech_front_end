@@ -34,6 +34,9 @@ export const NavbarPage = () => {
           background: "#129cb8",
           display: "flex",
           alignItems: "center",
+          position: "sticky",
+          top: 0,
+          zIndex: 9999,
         }}
       >
         <Container>
@@ -78,7 +81,7 @@ export const NavbarPage = () => {
               ega bo'ling!
             </Typography> */}
 
-            <Box sx={{ mr: 2 }}>
+            <Box className="hover-line" sx={{ mr: 2 }}>
               <NavLink style={{ textDecoration: "none" }} to={"/"}>
                 <Typography className="nav-title" color={"#fff"} variant="h5">
                   Bosh Sahifa
@@ -236,6 +239,9 @@ export const NavbarPage = () => {
               alignItems={"center"}
             >
               <FaUser
+                onClick={() => {
+                  navigate("/member-page");
+                }}
                 className="nav-icon"
                 style={{
                   width: "29px",

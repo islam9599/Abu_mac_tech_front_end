@@ -16,6 +16,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import {
   Call,
+  Cancel,
   Favorite,
   Home,
   LocationOnRounded,
@@ -30,6 +31,8 @@ import { createSelector } from "reselect";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "./productCards";
 import Marginer from "../../component/marginer";
+import FilterShop from "./filter";
+import PriceRangeSlider from "./priceSlider";
 
 /** Redux Slice */
 
@@ -87,26 +90,27 @@ export function Laptops() {
     <div className="all_products">
       <Container>
         <Stack flexDirection={"row"} alignItems={"center"}>
-          <Home sx={{ width: "29px", height: "29px" }} />
-          <Typography sx={{ margin: "15px" }} variant="h4">
+          <Home
+            className="navigate_home"
+            sx={{ width: "29px", height: "29px" }}
+          />
+          <Typography
+            className="navigate_home"
+            sx={{ margin: "15px" }}
+            variant="h4"
+          >
             Home
           </Typography>
           <Marginer width="1" height="20" bg="#000" direction="vertical" />
 
-          <Typography sx={{ margin: "15px" }} variant="h4">
+          <Typography
+            className="navigate_home"
+            sx={{ margin: "15px" }}
+            variant="h4"
+          >
             Laptops
-            <a
-              href=""
-              onClick={navigateToHomeHandler}
-              style={{
-                textDecoration: "none",
-                cursor: "pointer",
-                marginLeft: "5px",
-              }}
-            >
-              x
-            </a>
           </Typography>
+          <Cancel className="navigate_home" onClick={navigateToHomeHandler} />
         </Stack>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className={"fit_search_box"} justifyContent={"center"}>
@@ -120,68 +124,41 @@ export function Laptops() {
           <Stack className={"all_products_box"}>
             <Stack
               flexDirection={"column"}
-              width={"180px"}
-              height={"600px"}
-              sx={{ background: "rgb(215, 218, 221)", mt: 20, mr: 15 }}
+              width={"230px"}
+              height={"900px"}
+              sx={{
+                mt: 20,
+                mr: 15,
+                boxShadow:
+                  "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+              }}
               alignItems={"center"}
               justifyContent={"center"}
             >
-              <Stack>
-                <FormControlLabel
-                  label="Memory"
-                  control={
-                    <Checkbox
-                      checked={checked[0] && checked[1]}
-                      indeterminate={checked[0] !== checked[1]}
-                      onChange={handleChange1}
-                    />
-                  }
-                />
-
-                <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
-                  <FormControlLabel
-                    label="8 gb"
-                    control={
-                      <Checkbox checked={checked[0]} onChange={handleChange2} />
-                    }
-                  />
-                  <FormControlLabel
-                    label="16 gb"
-                    control={
-                      <Checkbox checked={checked[1]} onChange={handleChange3} />
-                    }
-                  />
-                  <FormControlLabel
-                    label="32 gb"
-                    control={
-                      <Checkbox checked={checked[1]} onChange={handleChange3} />
-                    }
-                  />
-                  <FormControlLabel
-                    label="64 gb"
-                    control={
-                      <Checkbox checked={checked[1]} onChange={handleChange3} />
-                    }
-                  />
-                </Box>
-              </Stack>
+              <FilterShop
+                filterTitle={["Display", "Memory"]}
+                filterItem={[
+                  {
+                    color: ["All", "Silver", "Gold", "Gray", "Titanium", "Etc"],
+                  },
+                  {
+                    brand: [
+                      "All",
+                      "Apple",
+                      "Samsung",
+                      "Hp",
+                      "Microsoft",
+                      "Etc",
+                    ],
+                  },
+                ]}
+              />
               <Stack sx={{ m: 5 }}>
-                <FormControlLabel
-                  label="Display"
-                  control={
-                    <Checkbox
-                      checked={checked[0] && checked[1]}
-                      indeterminate={checked[0] !== checked[1]}
-                      onChange={handleChange1}
-                    />
-                  }
-                />
-                {children}
-                <Typography></Typography>
+                <PriceRangeSlider />
               </Stack>
             </Stack>
             <Stack
-              width={"950px"}
+              width={"70%"}
               height={"auto"}
               flexDirection={"row"}
               sx={{ flexWrap: "wrap" }}

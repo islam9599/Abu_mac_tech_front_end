@@ -57,7 +57,7 @@ const productData: any = [
     totalSales: 6347,
   },
   {
-    id: 3,
+    id: 4,
     name: "MASSDROP X SENNHEISER HD 58X JUBILEE HEADPHONES",
     image:
       "https://static1.xdaimages.com/wordpress/wp-content/uploads/wm/2023/10/space-black-macbook-pro-5.jpg",
