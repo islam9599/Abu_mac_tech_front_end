@@ -91,7 +91,7 @@ export function VisitMyPage(props: any) {
                 </Box>
                 <Box className="auth_user_name">
                   <span>Ergashev Islombek</span>
-                  <span>Foydalanuvchi</span>
+                  <span>User</span>
                 </Box>
                 <Stack
                   flexDirection={"row"}
@@ -120,7 +120,7 @@ export function VisitMyPage(props: any) {
                     aria-label="lab API tabs example"
                   >
                     <Button onClick={() => setValue("4")} variant="contained">
-                      MAQOLA YOZISH
+                      Create Blog
                     </Button>
                   </TabList>
                 </Box>
@@ -144,7 +144,7 @@ export function VisitMyPage(props: any) {
                           onClick={() => setValue("1")}
                         >
                           <Edit className="menu_box_edit" />
-                          <span>Maqolalarim</span>
+                          <span>My Blogs</span>
                         </div>
                       );
                     }}
@@ -195,7 +195,7 @@ export function VisitMyPage(props: any) {
             <Stack className="my_page_left">
               <Box display={"flex"} flexDirection={"column"}>
                 <TabPanel value="1">
-                  <Box className="menu_name">Mening Maqolalarim</Box>
+                  <Box className="menu_name">My Blogs</Box>
                   <Marginer width="350px" bg="#000" height="1" />
 
                   <Box className="menu_content">
@@ -263,21 +263,21 @@ export function VisitMyPage(props: any) {
                   </Box>
                 </TabPanel>
                 <TabPanel value="4">
-                  <Box className="menu_name">Maqola yozish</Box>
+                  <Box className="menu_name">Create Blog</Box>
                   <Marginer width="750px" bg="#000" height="1" />
                   <Box className="menu_content">
                     <TuiEditor />
                   </Box>
                 </TabPanel>
                 <TabPanel value="5">
-                  <Box className="menu_name">Tanlangan Maqola</Box>
+                  <Box className="menu_name">Chosen Blog</Box>
                   <Marginer width="750px" bg="#fff" height="1" />
                   <Box className="menu_content">
                     {/* <MemberFollowers /> */}
                   </Box>
                 </TabPanel>
                 <TabPanel value="6">
-                  <Box className="menu_name">Ma'lumotlarni o'zgartirish</Box>
+                  <Box className="menu_name">Edit My Settings</Box>
                   <Marginer width="750px" bg="#fff" height="1" />
                   <Box className="menu_content">
                     <MySettings />

@@ -4,7 +4,7 @@ import { Box, Container, Stack, Tabs, Typography } from "@mui/material";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
-import { PausedOrders } from "./puasedOrders";
+import { PausedOrders } from "./pausedOrders";
 import { ProceedOrders } from "./proccessOrders";
 import { FinishedOrders } from "./finishedOrders";
 
@@ -74,17 +74,17 @@ export function OrdersPage() {
                 >
                   <Tab
                     sx={{ fontWeight: "bold", fontSize: "13px" }}
-                    label="Buyurtmalarim"
+                    label="Orders"
                     value="1"
                   />
                   <Tab
                     sx={{ fontWeight: "bold", fontSize: "13px" }}
-                    label="Jarayonda"
+                    label="In Proccess"
                     value="2"
                   />
                   <Tab
                     sx={{ fontWeight: "bold", fontSize: "13px" }}
-                    label="Yakunlangan"
+                    label="Finished"
                     value="3"
                   />
                 </Tabs>
@@ -120,7 +120,7 @@ export function OrdersPage() {
                   <img src="/icons/mini-user.svg" alt="" />
                 </div>
                 <span>Ergashev Islombek</span>
-                Foydalanuvchi
+                User
               </div>
               <Marginer
                 direction="horizontal"

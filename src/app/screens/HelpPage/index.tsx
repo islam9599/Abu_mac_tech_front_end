@@ -89,33 +89,36 @@ export function HelpPage() {
             justifyContent: "center",
           }}
         >
-          <Stack flexDirection={"row"} alignItems={"center"} mr={100} mb={5}>
-            <Home
-              className="navigate_home"
-              sx={{ width: "29px", height: "29px" }}
-            />
-            <Typography
-              className="navigate_home"
-              sx={{ margin: "15px" }}
-              variant="h4"
-            >
-              Home
-            </Typography>
-            <Marginer width="1" height="20" bg="#000" direction="vertical" />
+          <Stack width={"100%"} justifyContent={"flex-start"}>
+            <Stack flexDirection={"row"} alignItems={"center"} ml={0} mb={5}>
+              <Home
+                className="navigate_home"
+                sx={{ width: "29px", height: "29px" }}
+              />
+              <Typography
+                className="navigate_home"
+                sx={{ margin: "15px" }}
+                variant="h4"
+              >
+                Home
+              </Typography>
+              <Marginer width="1" height="20" bg="#000" direction="vertical" />
 
-            <Typography
-              className="navigate_home"
-              sx={{ margin: "15px" }}
-              variant="h4"
-            >
-              Help Page
-            </Typography>
-            <Cancel
-              className="navigate_home"
-              style={{ cursor: "pointer" }}
-              onClick={navigateToHomeHandler}
-            />
+              <Typography
+                className="navigate_home"
+                sx={{ margin: "15px" }}
+                variant="h4"
+              >
+                Help Page
+              </Typography>
+              <Cancel
+                className="navigate_home"
+                style={{ cursor: "pointer" }}
+                onClick={navigateToHomeHandler}
+              />
+            </Stack>
           </Stack>
+
           <Box
             sx={{
               // borderBottom: 1,
@@ -139,7 +142,7 @@ export function HelpPage() {
                 >
                   <Tab
                     sx={{ fontWeight: "bold", fontSize: "13px" }}
-                    label="Qoidalar"
+                    label="Website Privacy"
                     value="1"
                   />
                   <Tab
@@ -149,7 +152,7 @@ export function HelpPage() {
                   />
                   <Tab
                     sx={{ fontWeight: "bold", fontSize: "13px" }}
-                    label="Adminga murojaat"
+                    label="Message to Admin"
                     value="3"
                   />
                 </Tabs>
@@ -202,23 +205,20 @@ export function HelpPage() {
                   <TabPanel value="3">
                     <Stack className="message_to_admin">
                       <Stack className="message_title">
-                        <span>Adminga Xabar Qoldirish</span>
-                        <p>
-                          Assalomu alaykum! Adminga xabar qoldirish uchun
-                          pasdagi formlarni to’ldiring!
-                        </p>
+                        <span>Message to Admin</span>
+                        <p>Please fill all fields!</p>
                       </Stack>
                       <form action="#" method="POST" className="message_frame">
                         <div className="message_input_box">
-                          <label htmlFor="">Ism</label>
+                          <label htmlFor="">Name</label>
                           <input
                             type="text"
                             name="mb_nick"
-                            placeholder="ismingiz"
+                            placeholder="Your name"
                           />
                         </div>
                         <div className="message_input_box">
-                          <label htmlFor="">Elektron Manzil</label>
+                          <label htmlFor="">Email</label>
                           <input
                             type="text"
                             name="mb_email"
@@ -226,11 +226,11 @@ export function HelpPage() {
                           />
                         </div>
                         <div className="message_input_box">
-                          <label htmlFor="">Xabar</label>
-                          <textarea name="mb_msg" placeholder="xabar" />
+                          <label htmlFor="">Message</label>
+                          <textarea name="mb_msg" placeholder="Message" />
                         </div>
                         <Box className="message_admin_btn">
-                          <Button variant="contained">Jo’natish</Button>
+                          <Button variant="contained">Send</Button>
                         </Box>
                       </form>
                     </Stack>

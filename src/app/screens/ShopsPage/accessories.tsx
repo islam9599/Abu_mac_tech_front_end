@@ -1,15 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import {
-  Box,
-  Button,
-  Checkbox,
-  Container,
-  FormControlLabel,
-  Rating,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -24,6 +15,8 @@ import { createSelector } from "reselect";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "./productCards";
 import Marginer from "../../component/marginer";
+import FilterShop from "./filter";
+import PriceRangeSlider from "./priceSlider";
 
 /** Redux Slice */
 
@@ -41,42 +34,7 @@ export function Accessories() {
   const changeToLaptopsHandler = () => {
     navigate("/products/laptops");
   };
-  const [checked, setChecked] = React.useState([true, false]);
 
-  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([event.target.checked, event.target.checked]);
-  };
-
-  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([event.target.checked, checked[1]]);
-  };
-
-  const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([checked[0], event.target.checked]);
-  };
-  const navigateToHomeHandler = () => {
-    navigate("/");
-  };
-  const children = (
-    <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
-      <FormControlLabel
-        label="13 inch"
-        control={<Checkbox checked={checked[0]} onChange={handleChange2} />}
-      />
-      <FormControlLabel
-        label="14 inch"
-        control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-      />
-      <FormControlLabel
-        label="15 inch"
-        control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-      />
-      <FormControlLabel
-        label="16 inch"
-        control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-      />
-    </Box>
-  );
   return (
     <div className="all_products">
       <Container>
@@ -101,7 +59,12 @@ export function Accessories() {
           >
             Accessories
           </Typography>
-          <Cancel className="navigate_home" onClick={navigateToHomeHandler} />
+          <Cancel
+            className="navigate_home"
+            onClick={() => {
+              navigate("/");
+            }}
+          />
         </Stack>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className={"fit_search_box"} justifyContent={"center"}>
@@ -115,68 +78,42 @@ export function Accessories() {
           <Stack className={"all_products_box"}>
             <Stack
               flexDirection={"column"}
-              width={"180px"}
-              height={"600px"}
-              sx={{ background: "rgb(215, 218, 221)", mt: 20, mr: 15 }}
+              marginLeft={5}
+              width={"20%"}
+              height={"900px"}
+              sx={{
+                m: "10rem 5rem",
+
+                boxShadow:
+                  "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+              }}
               alignItems={"center"}
               justifyContent={"center"}
             >
-              <Stack>
-                <FormControlLabel
-                  label="Memory"
-                  control={
-                    <Checkbox
-                      checked={checked[0] && checked[1]}
-                      indeterminate={checked[0] !== checked[1]}
-                      onChange={handleChange1}
-                    />
-                  }
-                />
-
-                <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
-                  <FormControlLabel
-                    label="8 gb"
-                    control={
-                      <Checkbox checked={checked[0]} onChange={handleChange2} />
-                    }
-                  />
-                  <FormControlLabel
-                    label="16 gb"
-                    control={
-                      <Checkbox checked={checked[1]} onChange={handleChange3} />
-                    }
-                  />
-                  <FormControlLabel
-                    label="32 gb"
-                    control={
-                      <Checkbox checked={checked[1]} onChange={handleChange3} />
-                    }
-                  />
-                  <FormControlLabel
-                    label="64 gb"
-                    control={
-                      <Checkbox checked={checked[1]} onChange={handleChange3} />
-                    }
-                  />
-                </Box>
-              </Stack>
+              <FilterShop
+                filterTitle={["Color", "Brands"]}
+                filterItem={[
+                  {
+                    color: ["All", "Silver", "Gold", "Gray", "Titanium", "Etc"],
+                  },
+                  {
+                    brand: [
+                      "All",
+                      "Apple",
+                      "Samsung",
+                      "Hp",
+                      "Microsoft",
+                      "Etc",
+                    ],
+                  },
+                ]}
+              />
               <Stack sx={{ m: 5 }}>
-                <FormControlLabel
-                  label="Display"
-                  control={
-                    <Checkbox
-                      checked={checked[0] && checked[1]}
-                      indeterminate={checked[0] !== checked[1]}
-                      onChange={handleChange1}
-                    />
-                  }
-                />
-                {children}
-                <Typography></Typography>
+                <PriceRangeSlider />
               </Stack>
             </Stack>
             <Stack
-              width={"950px"}
+              width={"70%"}
               height={"auto"}
               flexDirection={"row"}
               sx={{ flexWrap: "wrap" }}

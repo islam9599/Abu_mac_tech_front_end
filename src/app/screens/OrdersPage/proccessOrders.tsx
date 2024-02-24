@@ -50,18 +50,18 @@ export function ProceedOrders() {
                 style={{ background: "rgba(140, 102, 242, 0.81)" }}
               >
                 <Box className="box_total">
-                  <p>Mahsulot narxi</p>
+                  <p>Product Price</p>
                   <p>$60</p>
                   <img src="/icons/plus.svg" alt="" />
-                  <p>yetkazish xizmati</p>
+                  <p>Delivery Cost</p>
                   <p>$15</p>
-                  <p>Jami narx</p>
+                  <p>Total</p>
                   <img src="/icons/equal.svg" alt="" />
                   <p>$75</p>
                 </Box>
                 <Box className="total_price_btn">
                   <p>23-11-22 22:17</p>
-                  <Button variant="contained">Yakunlash</Button>
+                  <Button variant="contained">Submit</Button>
                 </Box>
               </Stack>
             </Box>

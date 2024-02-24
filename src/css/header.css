@@ -13,6 +13,14 @@
   text-shadow: #eee;
 }
 
+.nav-other-title:hover {
+  color: #129cb8;
+  opacity: 1;
+  border-bottom: 2px solid #000;
+  border-top: 2px solid #000;
+  text-shadow: #129cb8;
+}
+
 .nav-icon {
   width: "29px";
   height: "29px";
@@ -29,5 +37,11 @@
   display: block;
   content: "";
   border-bottom: solid 2px #fff;
+  transition: 0.5s ease-in-out;
+}
+.hover-line.nav-others a.active {
+  display: block;
+  content: "";
+  border-bottom: solid 2px #000;
   transition: 0.5s ease-in-out;
 }

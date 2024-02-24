@@ -53,9 +53,9 @@ export const NavbarPage = () => {
                 sequence={[
                   // Deletes 'One' and types 'Two'
                   100, // Waits 2s
-                  "Bizni do'stlaringiz bilan baham ko'ring", // Types 'Three' without deleting 'Two'
+                  "Share us with your relatives", // Types 'Three' without deleting 'Two'
                   200,
-                  "Bizni do'stlaringiz bilan baham ko'ring va 20% gacha chegirmalarga ega bo'ling!",
+                  "Share us with your relatives && friends and get up to 20% off!",
 
                   () => {
                     console.log("Sequence completed");
@@ -80,49 +80,55 @@ export const NavbarPage = () => {
               Bizni do'stlaringiz bilan baham ko'ring va 20% gacha chegirmalarga
               ega bo'ling!
             </Typography> */}
-
-            <Box className="hover-line" sx={{ mr: 2 }}>
-              <NavLink style={{ textDecoration: "none" }} to={"/"}>
-                <Typography className="nav-title" color={"#fff"} variant="h5">
-                  Bosh Sahifa
-                </Typography>
-              </NavLink>
-            </Box>
-            <Box className="hover-line" sx={{ mr: 2 }}>
-              <NavLink style={{ textDecoration: "none" }} to={"/products"}>
-                <Typography className="nav-title" color={"#fff"} variant="h5">
-                  Do'konlar
-                </Typography>
-              </NavLink>
-            </Box>
-            <Box className="hover-line" sx={{ mr: 2 }}>
-              <NavLink style={{ textDecoration: "none" }} to={"/orders"}>
-                <Typography className="nav-title" color={"#fff"} variant="h5">
-                  Buyurtmalar
-                </Typography>
-              </NavLink>
-            </Box>
-            <Box className="hover-line" sx={{ mr: 2 }}>
-              <NavLink style={{ textDecoration: "none" }} to={"/community"}>
-                <Typography className="nav-title" color={"#fff"} variant="h5">
-                  Jamiyat
-                </Typography>
-              </NavLink>
-            </Box>
-            <Box className="hover-line" sx={{ mr: 2 }}>
-              <NavLink style={{ textDecoration: "none" }} to={"/member-page"}>
-                <Typography className="nav-title" color={"#fff"} variant="h5">
-                  Mening Sahifam
-                </Typography>
-              </NavLink>
-            </Box>
-            <Box className="hover-line" sx={{ mr: 2 }}>
-              <NavLink style={{ textDecoration: "none" }} to={"/help"}>
-                <Typography className="nav-title" color={"#fff"} variant="h5">
-                  Yordam
-                </Typography>
-              </NavLink>
-            </Box>
+            <Stack
+              width={"40%"}
+              flexDirection={"row"}
+              justifyContent={"space-between"}
+              mr={15}
+            >
+              <Box className="hover-line" sx={{ mr: 2 }}>
+                <NavLink style={{ textDecoration: "none" }} to={"/"}>
+                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                    Home
+                  </Typography>
+                </NavLink>
+              </Box>
+              <Box className="hover-line" sx={{ mr: 2 }}>
+                <NavLink style={{ textDecoration: "none" }} to={"/products"}>
+                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                    Shop
+                  </Typography>
+                </NavLink>
+              </Box>
+              <Box className="hover-line" sx={{ mr: 2 }}>
+                <NavLink style={{ textDecoration: "none" }} to={"/orders"}>
+                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                    Orders
+                  </Typography>
+                </NavLink>
+              </Box>
+              <Box className="hover-line" sx={{ mr: 2 }}>
+                <NavLink style={{ textDecoration: "none" }} to={"/community"}>
+                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                    Community
+                  </Typography>
+                </NavLink>
+              </Box>
+              <Box className="hover-line" sx={{ mr: 2 }}>
+                <NavLink style={{ textDecoration: "none" }} to={"/member-page"}>
+                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                    My Page
+                  </Typography>
+                </NavLink>
+              </Box>
+              <Box className="hover-line" sx={{ mr: 2 }}>
+                <NavLink style={{ textDecoration: "none" }} to={"/help"}>
+                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                    FAQ
+                  </Typography>
+                </NavLink>
+              </Box>
+            </Stack>
           </Stack>
         </Container>
       </div>

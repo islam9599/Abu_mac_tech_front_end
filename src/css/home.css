@@ -204,11 +204,17 @@
   font-size: 1.1rem;
 }
 .home-page .home_card {
-  width: 300px;
+  width: 250px;
   height: auto;
   margin: 1rem;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.home-page .home_card:hover {
+  transform: translateY(-0.7rem);
+  box-shadow: 0.5rem 0.75rem 1.5rem #bbbbbb;
+  opacity: 1;
 }
 .card_image {
 }

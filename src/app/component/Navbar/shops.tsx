@@ -92,57 +92,59 @@ export const ShopsPage = () => {
               </Box>
             </Stack>
             <Stack
+              width={"40%"}
               className="hover-line"
               flexDirection={"row"}
               alignItems={"center"}
-              mr={10}
+              justifyContent={"space-between"}
+              m={"0 10rem"}
             >
               <Box sx={{ mr: 2, mt: 5 }}>
                 <NavLink style={{ textDecoration: "none" }} to={"/"}>
                   <Typography className="nav-title" color={"#fff"} variant="h5">
-                    Bosh Sahifa
+                    Home
                   </Typography>
                 </NavLink>
               </Box>
               <Box sx={{ mr: 2, mt: 5 }}>
                 <NavLink style={{ textDecoration: "none" }} to={"/products"}>
                   <Typography className="nav-title" color={"#fff"} variant="h5">
-                    Do'konlar
+                    Shop
                   </Typography>
                 </NavLink>
               </Box>
               <Box sx={{ mr: 2, mt: 5 }}>
                 <NavLink style={{ textDecoration: "none" }} to={"/orders"}>
                   <Typography className="nav-title" color={"#fff"} variant="h5">
-                    Buyurtmalar
+                    Orders
                   </Typography>
                 </NavLink>
               </Box>
               <Box sx={{ mr: 2, mt: 5 }}>
                 <NavLink style={{ textDecoration: "none" }} to={"/community"}>
                   <Typography className="nav-title" color={"#fff"} variant="h5">
-                    Jamiyat
+                    Community
                   </Typography>
                 </NavLink>
               </Box>
               <Box sx={{ mr: 2, mt: 5 }}>
                 <NavLink style={{ textDecoration: "none" }} to={"/member-page"}>
                   <Typography className="nav-title" color={"#fff"} variant="h5">
-                    Mening Sahifam
+                    My Page
                   </Typography>
                 </NavLink>
               </Box>
               <Box sx={{ mr: 2, mt: 5 }}>
                 <NavLink style={{ textDecoration: "none" }} to={"/help"}>
                   <Typography className="nav-title" color={"#fff"} variant="h5">
-                    Yordam
+                    FAQ
                   </Typography>
                 </NavLink>
               </Box>
             </Stack>
 
             <Stack
-              width={"100px"}
+              width={"150px"}
               height={"auto"}
               mt={5}
               flexDirection={"row"}

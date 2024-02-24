@@ -15,7 +15,6 @@ export const Homepage = () => {
       <Container>
         <HotDeal />
         <Categories />
-        <BestSelling />
         <FlashCard />
       </Container>
 
@@ -29,7 +28,7 @@ export const Homepage = () => {
           padding: "30px 0",
         }}
       >
-        <NewArrivals />
+        <BestSelling />
       </div>
       <Advertisements />
       <div>

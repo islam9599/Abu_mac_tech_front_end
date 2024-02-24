@@ -22,13 +22,51 @@ export const BestSelling = () => {
   return (
     <div>
       <Container>
-        <Stack m={"70px 0px"} justifyContent={"center"} alignItems={"center"}>
-          <Typography m={3} color={"#000"} variant="h3" fontWeight={"bold"}>
-            Best Selling Products
-          </Typography>
+        <Stack alignItems={"center"}>
+          <Stack
+            width={"60%"}
+            flexDirection={"row"}
+            justifyContent={"space-between"}
+            m={5}
+            sx={{
+              width: "60%",
+              height: "auto",
 
-          <Stack flexDirection={"row"}>
-            {Array.from(Array(4).keys()).map((index) => {
+              borderRadius: "9px",
+              cursor: "pointer",
+            }}
+          >
+            <Typography
+              m={3}
+              color={"#fff"}
+              variant="h4"
+              fontWeight={"bold"}
+              sx={{
+                width: "33%",
+                height: "auto",
+                background: "#129cb8",
+                borderRadius: "9px",
+                textAlign: "center",
+              }}
+            >
+              Best Selling Products
+            </Typography>
+            <Typography m={3} color={"#000"} variant="h4" fontWeight={"bold"}>
+              Most Liked Products
+            </Typography>
+            <Typography m={3} color={"#000"} variant="h4" fontWeight={"bold"}>
+              New Arrivals
+            </Typography>
+          </Stack>
+
+          <Stack
+            width={"100%"}
+            flexDirection={"row"}
+            flexWrap={"wrap"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            {Array.from(Array(8).keys()).map((index) => {
               return (
                 <Card
                   className="home_card"
@@ -138,7 +176,7 @@ export const BestSelling = () => {
             flexDirection={"row"}
             alignItems={"center"}
             justifyContent={"end"}
-            width={"100%"}
+            width={"85%"}
             sx={{ cursor: "pointer" }}
             onClick={() => {
               navigate("/products");

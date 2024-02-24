@@ -15,9 +15,9 @@ import { useNavigate } from "react-router-dom";
 import ProductCard from "./productCards";
 import Marginer from "../../component/marginer";
 import { Range } from "react-range";
-import RangeSlider from "./priceSlider";
-import CustomizedSlider from "./priceSlider";
+
 import FilterShop from "./filter";
+import PriceRangeSlider from "./priceSlider";
 
 /** Redux Slice */
 
@@ -40,8 +40,6 @@ export function AllProducts() {
   const changeLaptops = () => {
     navigate("/products/laptops");
   };
-
-  const [checked, setChecked] = React.useState([true, false]);
 
   return (
     <div className="all_products">
@@ -66,14 +64,9 @@ export function AllProducts() {
               sx={{ margin: "15px" }}
               variant="h4"
             >
-              All Products{" "}
-              <strong
-                style={{ cursor: "pointer" }}
-                onClick={navigateToHomeHandler}
-              >
-                <Cancel />
-              </strong>
+              All Products
             </Typography>
+            <Cancel className="navigate_home" onClick={navigateToHomeHandler} />
           </Stack>
           <Box className={"fit_search_box"} justifyContent={"center"}>
             <Box className={"fit_box"}>
@@ -92,11 +85,12 @@ export function AllProducts() {
           <Stack className={"all_products_box"}>
             <Stack
               flexDirection={"column"}
-              width={"230px"}
+              marginLeft={5}
+              width={"20%"}
               height={"900px"}
               sx={{
-                mt: 20,
-                mr: 15,
+                m: "10rem 5rem",
+
                 boxShadow:
                   "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
               }}
@@ -122,11 +116,11 @@ export function AllProducts() {
                 ]}
               />
               <Stack sx={{ m: 5 }}>
-                <CustomizedSlider />
+                <PriceRangeSlider />
               </Stack>
             </Stack>
             <Stack
-              width={"70%"}
+              width={"65%"}
               height={"auto"}
               flexDirection={"row"}
               sx={{ flexWrap: "wrap" }}
@@ -156,6 +150,7 @@ export function AllProducts() {
 
                 <img
                   className="line_img_right"
+                  style={{ color: "#129cb8" }}
                   src={"/icons/line_group.svg"}
                   alt=""
                 />

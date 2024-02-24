@@ -82,17 +82,17 @@ export function CommunityPage() {
                     >
                       <Tab
                         sx={{ fontWeight: "bold", fontSize: "13px" }}
-                        label="BARCHA MAQOLALAR"
+                        label="All Blogs"
                         value="1"
                       />
                       <Tab
                         sx={{ fontWeight: "bold", fontSize: "13px" }}
-                        label="MASHXURLAR"
+                        label="Featured Blogs"
                         value="2"
                       />
                       <Tab
                         sx={{ fontWeight: "bold", fontSize: "13px" }}
-                        label="WEB SAHIFAGA BAHO"
+                        label="Feedbacks to website"
                         value="3"
                       />
                     </TabList>

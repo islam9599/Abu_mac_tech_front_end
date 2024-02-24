@@ -8,7 +8,7 @@ export function MySettings(props: any) {
       <Stack className="img_upload_wrapper">
         <img src="/icons/author_default.jpeg" alt="" />
         <Stack>
-          <span>Rasm Yuklash</span>
+          <span>Image Upload</span>
           <p>JPG, JPEG, PNG rasmlarini yuklay olasiz!</p>
           <div
             style={{
@@ -26,7 +26,7 @@ export function MySettings(props: any) {
         </Stack>
       </Stack>
       <Stack className="edit_name">
-        <label htmlFor="">Ism</label>
+        <label htmlFor="">Name</label>
         <input
           className="mb_nick"
           name="mb_nick"
@@ -45,7 +45,7 @@ export function MySettings(props: any) {
           />
         </Stack>
         <Stack className="edit_phone">
-          <label htmlFor="">Manzil</label>
+          <label htmlFor="">Adress</label>
           <input
             type="text"
             className="mb_adress"
@@ -55,18 +55,18 @@ export function MySettings(props: any) {
         </Stack>
       </Stack>
       <Stack className="edit_info">
-        <label htmlFor="">Ma'lumot</label>
+        <label htmlFor="">Information</label>
         <textarea
           className="mb_description"
           name="mb_description"
           id=""
-          placeholder=" Assalomu Alaylum, Men Papays  Developerlaridan biriman!!"
+          placeholder=" Assalomu Alaylum!"
           cols={30}
           rows={10}
         ></textarea>
       </Stack>
       <Stack className="edit_btn">
-        <Button variant="contained">Saqlash</Button>
+        <Button variant="contained">Save</Button>
       </Stack>
     </form>
   );

@@ -87,7 +87,7 @@ export function VisitOtherPage(props: any) {
                 </Box>
                 <Box className="auth_user_name">
                   <span>Ilhomjonov Abdulloh</span>
-                  <span>Foydalanuvchi</span>
+                  <span>User</span>
                 </Box>
                 <Stack
                   flexDirection={"row"}
@@ -116,7 +116,7 @@ export function VisitOtherPage(props: any) {
                     aria-label="lab API tabs example"
                   > */}
                   <Button variant="contained" color="secondary">
-                    Bekor Qilish
+                    Unfollow
                   </Button>
                   {/* </TabList> */}
                 </Box>
@@ -140,7 +140,7 @@ export function VisitOtherPage(props: any) {
                           onClick={() => setValue("1")}
                         >
                           <Edit className="menu_box_edit" />
-                          <span>Maqolalari</span>
+                          <span>Blogs</span>
                         </div>
                       );
                     }}
@@ -191,7 +191,7 @@ export function VisitOtherPage(props: any) {
             <Stack className="my_page_left">
               <Box display={"flex"} flexDirection={"column"}>
                 <TabPanel value="1">
-                  <Box className="menu_name"> Maqolalari</Box>
+                  <Box className="menu_name">Blogs</Box>
                   <Marginer width="750px" bg="#000" height="1" />
 
                   <Box className="menu_content">
@@ -259,7 +259,7 @@ export function VisitOtherPage(props: any) {
                 </TabPanel>
 
                 <TabPanel value="4">
-                  <Box className="menu_name">Tanlangan Maqola</Box>
+                  <Box className="menu_name">Chosen Blog</Box>
                   <Marginer width="750px" bg="#000" height="1" />
                   <Box className="menu_content">
                     {/* <MemberFollowers /> */}

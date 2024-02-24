@@ -53,20 +53,20 @@ export function PausedOrders() {
 
               <Box className="total_price_box black_solid">
                 <Box className="box_total">
-                  <p>Mahsulot narxi</p>
+                  <p>Product Price</p>
                   <p>$60</p>
                   <img src="/icons/plus.svg" alt="" />
-                  <p>yetkazish xizmati</p>
+                  <p>Delivery Cost</p>
                   <p>$15</p>
-                  <p>Jami narx</p>
+                  <p>Total</p>
                   <img src="/icons/equal.svg" alt="" />
                   <p>$75</p>
                 </Box>
                 <Box className="total_price_btn">
                   <Button variant="contained" color="secondary">
-                    Bekor Qilish
+                    Cancel
                   </Button>
-                  <Button variant="contained">To'lash</Button>
+                  <Button variant="contained">Pay</Button>
                 </Box>
               </Box>
             </Box>

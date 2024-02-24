@@ -30,7 +30,7 @@ export function MemberFollowings(props: any) {
                   <Box className="follow_btn">
                     <Button sx={{ background: "#E81010" }} variant="contained">
                       <Person sx={{ ml: "5px" }} />
-                      Bekor Qilish
+                      Unfollow
                     </Button>
                   </Box>
                 )}

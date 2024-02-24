@@ -1,27 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import {
-  Box,
-  Button,
-  Checkbox,
-  Container,
-  FormControlLabel,
-  Rating,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import {
-  Call,
-  Cancel,
-  Favorite,
-  Home,
-  LocationOnRounded,
-  Search,
-} from "@mui/icons-material";
+import { Cancel, Home } from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import assert from "assert";
@@ -52,40 +36,10 @@ export function Laptops() {
   };
   const [checked, setChecked] = React.useState([true, false]);
 
-  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([event.target.checked, event.target.checked]);
-  };
-
-  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([event.target.checked, checked[1]]);
-  };
-
-  const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([checked[0], event.target.checked]);
-  };
   const navigateToHomeHandler = () => {
     navigate("/");
   };
-  const children = (
-    <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
-      <FormControlLabel
-        label="13 inch"
-        control={<Checkbox checked={checked[0]} onChange={handleChange2} />}
-      />
-      <FormControlLabel
-        label="14 inch"
-        control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-      />
-      <FormControlLabel
-        label="15 inch"
-        control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-      />
-      <FormControlLabel
-        label="16 inch"
-        control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-      />
-    </Box>
-  );
+
   return (
     <div className="all_products">
       <Container>
@@ -124,11 +78,10 @@ export function Laptops() {
           <Stack className={"all_products_box"}>
             <Stack
               flexDirection={"column"}
-              width={"230px"}
+              width={"20%"}
               height={"900px"}
               sx={{
-                mt: 20,
-                mr: 15,
+                m: "10rem 5rem",
                 boxShadow:
                   "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
               }}

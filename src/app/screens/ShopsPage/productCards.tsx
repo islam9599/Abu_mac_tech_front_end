@@ -91,56 +91,54 @@ const ProductCard = () => {
   };
 
   return (
-    <div>
-      <Container>
-        <Stack
-          width={"100%"}
-          height={"auto"}
-          alignItems={"center"}
-          mt={"50px"}
-          justifyContent={"center"}
-        >
-          {/* <Typography variant="h3" fontWeight={"bold"}>
+    <Stack
+      width={"100%"}
+      height={"auto"}
+      alignItems={"center"}
+      mt={"50px"}
+      justifyContent={"center"}
+    >
+      {/* <Typography variant="h3" fontWeight={"bold"}>
             Hot Sale
           </Typography> */}
-          <Stack
-            width={"100%"}
-            height={"auto"}
-            flexDirection={"row"}
-            sx={{ flexWrap: "wrap" }}
-          >
-            {productData.map((product: any) => {
-              return (
-                <Stack className="productList" onClick={chosenProductHandler}>
-                  <div
-                    key={product.id}
-                    className="productCard"
-                    style={{
-                      width: "250px",
-                      height: "auto",
-                      flex: "1 0 10rem",
-                    }}
-                  >
-                    <Stack
-                      flexDirection={"row"}
-                      className="icon-container"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
-                    >
-                      <ShoppingCartRounded
-                        className={"productCard__cart"}
-                        sx={{ width: "29px", height: "24px" }}
-                      />
-                      <BookmarkBorder
-                        className={"productCard__wishlist"}
-                        sx={{ width: "29px", height: "24px", bottom: "25px" }}
-                      />
-                      <FavoriteBorder
-                        className="productCard__fastSelling"
-                        sx={{ width: "29px", height: "24px" }}
-                      />
-                      {/* <Checkbox
+      <Stack
+        width={"100%"}
+        height={"auto"}
+        flexDirection={"row"}
+        sx={{ flexWrap: "wrap" }}
+      >
+        {productData.map((product: any) => {
+          return (
+            <Stack className="productList" onClick={chosenProductHandler}>
+              <div
+                key={product.id}
+                className="productCard"
+                style={{
+                  width: "250px",
+                  height: "auto",
+                  flex: "1 0 10rem",
+                }}
+              >
+                <Stack
+                  flexDirection={"row"}
+                  className="icon-container"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  <ShoppingCartRounded
+                    className={"productCard__cart"}
+                    sx={{ width: "29px", height: "24px" }}
+                  />
+                  <BookmarkBorder
+                    className={"productCard__wishlist"}
+                    sx={{ width: "29px", height: "24px", bottom: "25px" }}
+                  />
+                  <FavoriteBorder
+                    className="productCard__fastSelling"
+                    sx={{ width: "29px", height: "24px" }}
+                  />
+                  {/* <Checkbox
                     className="productCard__fastSelling"
                     // id={chosenProduct?._id}
                     // onClick={targetLikeProduct}
@@ -160,57 +158,50 @@ const ProductCard = () => {
                     // }
                     checked={false}
                   /> */}
-                    </Stack>
-                    <img
-                      src={product.image}
-                      alt="product-img"
-                      className="productImage"
-                    ></img>
-                    <div className="productCard__content">
-                      <h3
-                        style={{ marginBottom: "30px" }}
-                        className="productName"
-                      >
-                        {product.name}
-                      </h3>
-                      <Stack
-                        width={"100%"}
-                        flexDirection={"row"}
-                        alignItems={"center"}
-                        justifyContent={"space-between"}
-                      >
-                        <h3 style={{ color: "red" }}>30% off</h3>
-                        <h2 style={{ textDecoration: "line-through" }}>
-                          $1799
-                        </h2>
-                      </Stack>
-                      <div className="displayStack__1">
-                        <div className="productPrice">${product.price}</div>
-                        <div className="productSales">
-                          {product.totalSales} units sold
-                        </div>
-                      </div>
-                      <div className="displayStack__2">
-                        <div className="productRating">
-                          <Rating
-                            className="half_rating"
-                            defaultValue={3.5}
-                            precision={0.5}
-                          />
-                        </div>
-                        <div className="productTime">
-                          {product.timeLeft} days left
-                        </div>
-                      </div>
+                </Stack>
+                <img
+                  src={product.image}
+                  alt="product-img"
+                  className="productImage"
+                ></img>
+                <div className="productCard__content">
+                  <h3 style={{ marginBottom: "30px" }} className="productName">
+                    {product.name}
+                  </h3>
+                  <Stack
+                    width={"100%"}
+                    flexDirection={"row"}
+                    alignItems={"center"}
+                    justifyContent={"space-between"}
+                  >
+                    <h3 style={{ color: "red" }}>30% off</h3>
+                    <h2 style={{ textDecoration: "line-through" }}>$1799</h2>
+                  </Stack>
+                  <div className="displayStack__1">
+                    <div className="productPrice">${product.price}</div>
+                    <div className="productSales">
+                      {product.totalSales} units sold
                     </div>
                   </div>
-                </Stack>
-              );
-            })}
-          </Stack>
-        </Stack>
-      </Container>
-    </div>
+                  <div className="displayStack__2">
+                    <div className="productRating">
+                      <Rating
+                        className="half_rating"
+                        defaultValue={3.5}
+                        precision={0.5}
+                      />
+                    </div>
+                    <div className="productTime">
+                      {product.timeLeft} days left
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Stack>
+          );
+        })}
+      </Stack>
+    </Stack>
   );
 };
 
