@@ -20,6 +20,7 @@ export const OthersNavbarPage = () => {
       style={{
         width: "100%",
         height: "auto",
+        background: "silver",
       }}
     >
       <div
@@ -28,7 +29,7 @@ export const OthersNavbarPage = () => {
           height: "400px",
           backgroundImage: "url(/home/home-others.webp)",
           backgroundSize: "cover",
-
+          zIndex: "999",
           display: "flex",
           alignItems: "center",
         }}
@@ -59,15 +60,7 @@ export const OthersNavbarPage = () => {
                   borderRadius: "10px",
                 }}
               ></img>
-              {/* <Typography
-                style={{
-                  fontFamily: "monospace",
-                  fontWeight: "bold",
-                  fontSize: "25px",
-                }}
-              >
-                Abu_Mac_Tech
-              </Typography> */}
+
               <Box width={"150px"}>
                 <TypeAnimation
                   sequence={[

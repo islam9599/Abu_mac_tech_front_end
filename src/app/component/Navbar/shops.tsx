@@ -29,6 +29,9 @@ export const ShopsPage = () => {
           background: "#129cb8",
           display: "flex",
           alignItems: "center",
+          position: "sticky",
+          top: 0,
+          zIndex: "999",
         }}
       >
         <Container>
@@ -97,7 +100,7 @@ export const ShopsPage = () => {
               flexDirection={"row"}
               alignItems={"center"}
               justifyContent={"space-between"}
-              m={"0 10rem"}
+              ml={"10"}
             >
               <Box sx={{ mr: 2, mt: 5 }}>
                 <NavLink style={{ textDecoration: "none" }} to={"/"}>

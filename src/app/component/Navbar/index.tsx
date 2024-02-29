@@ -25,6 +25,9 @@ export const NavbarPage = () => {
       style={{
         width: "100%",
         height: "auto",
+        position: "sticky",
+        top: 0,
+        zIndex: 9999,
       }}
     >
       <div
@@ -34,9 +37,6 @@ export const NavbarPage = () => {
           background: "#129cb8",
           display: "flex",
           alignItems: "center",
-          position: "sticky",
-          top: 0,
-          zIndex: 9999,
         }}
       >
         <Container>
@@ -44,7 +44,6 @@ export const NavbarPage = () => {
             flexDirection={"row"}
             width={"100%"}
             height={"60px"}
-            padding={"11px 0px"}
             justifyContent={"space-between"}
             alignItems={"center"}
           >
@@ -71,15 +70,6 @@ export const NavbarPage = () => {
                 }}
               />
             </Box>
-            {/* <Typography
-              variant="h6"
-              sx={{ fontFamily: "Verdana" }}
-              color={"#fff"}
-              marginRight={7}
-            >
-              Bizni do'stlaringiz bilan baham ko'ring va 20% gacha chegirmalarga
-              ega bo'ling!
-            </Typography> */}
             <Stack
               width={"40%"}
               flexDirection={"row"}
@@ -132,14 +122,21 @@ export const NavbarPage = () => {
           </Stack>
         </Container>
       </div>
-      <div style={{ width: "100%", height: "120px", margin: "20px 0px" }}>
+      <div
+        style={{
+          width: "100%",
+          height: "120px",
+          position: "sticky",
+          zIndex: 9999,
+          background: "#fff",
+        }}
+      >
         <Container>
           <Stack
             sx={{ width: "1200px", height: "100px" }}
             flexDirection={"row"}
             alignItems={"center"}
             justifyContent={"space-between"}
-            mb={3}
           >
             <Stack
               alignItems={"center"}
@@ -181,32 +178,6 @@ export const NavbarPage = () => {
                   color: "#fff",
                 }}
               >
-                {/* <select
-                  style={{
-                    width: "auto",
-                    height: "99%",
-                    border: "none",
-                    background: "none",
-                    margin: "10px",
-                    outline: "none",
-                  }}
-                  name=""
-                  id=""
-                  
-                >
-                  <option value="all">All Categories</option>
-                  <option value="laptops">Laptops</option>
-                  <option value="phones">
-                    <a>Cell-phones</a>
-                  </option>
-                  <option value="etc">Headsets</option>
-                </select> */}
-                {/* <Marginer
-                  direction="vertical"
-                  width="1"
-                  height="30"
-                  bg="#129cb8"
-                /> */}
                 <input
                   type="text"
                   placeholder="Search product here"
