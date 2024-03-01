@@ -73,7 +73,7 @@ export const NavbarPage = (props: any) => {
               />
             </Box>
             <Stack
-              width={"60%"}
+              width={"70%"}
               flexDirection={"row"}
               justifyContent={"space-between"}
               mr={15}
@@ -162,16 +162,9 @@ export const NavbarPage = (props: any) => {
                 </Box>
               ) : (
                 <Box>
-                  <img
-                    style={{
-                      width: "29px",
-                      height: "29px",
-                      borderRadius: "24px",
-                    }}
-                    src={verifiedMemberdata.mb_image}
-                    // alt="member_img"
-                    onClick={props.handleLogoutClick}
-                  />
+                  <Typography className="nav-title" color={"#fff"} variant="h6">
+                    Welcome back, {verifiedMemberdata?.mb_nick}!
+                  </Typography>
                 </Box>
               )}
               {verifiedMemberdata ? (
@@ -180,7 +173,7 @@ export const NavbarPage = (props: any) => {
                     onClick={props.handleLogoutRequest}
                     className="nav-title"
                     color={"#fff"}
-                    variant="h5"
+                    variant="h6"
                   >
                     Logout
                   </Typography>
