@@ -1,17 +1,19 @@
 import React, { useRef, useState } from "react";
 import "../../../css/header.css";
 import { Box, Container, Stack } from "@mui/system";
-import { Typography } from "@mui/material";
+import { ListItemIcon, Menu, MenuItem, Typography } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import Search from "@mui/icons-material/Search";
 import Marginer from "../marginer";
-import { Favorite, ShoppingCart } from "@mui/icons-material";
+import { Favorite, Logout, ShoppingCart } from "@mui/icons-material";
 import { FaUser } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
+import { verifiedMemberdata } from "../../apiServices/verify";
 
-export const NavbarPage = () => {
+export const NavbarPage = (props: any) => {
   /** Initialization */
   const navigate = useNavigate();
+  const { handleSignupOpen, handleLoginOpen } = props;
 
   /** Handlers */
   const changeToProductsHandler = () => {
@@ -71,14 +73,18 @@ export const NavbarPage = () => {
               />
             </Box>
             <Stack
-              width={"40%"}
+              width={"60%"}
               flexDirection={"row"}
               justifyContent={"space-between"}
               mr={15}
             >
               <Box className="hover-line" sx={{ mr: 2 }}>
-                <NavLink style={{ textDecoration: "none" }} to={"/"}>
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                <NavLink
+                  className="nav-title"
+                  style={{ textDecoration: "none" }}
+                  to={"/"}
+                >
+                  <Typography color={"#fff"} variant="h5">
                     Home
                   </Typography>
                 </NavLink>
@@ -90,13 +96,19 @@ export const NavbarPage = () => {
                   </Typography>
                 </NavLink>
               </Box>
-              <Box className="hover-line" sx={{ mr: 2 }}>
-                <NavLink style={{ textDecoration: "none" }} to={"/orders"}>
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
-                    Orders
-                  </Typography>
-                </NavLink>
-              </Box>
+              {verifiedMemberdata ? (
+                <Box className="hover-line" sx={{ mr: 2 }}>
+                  <NavLink style={{ textDecoration: "none" }} to={"/orders"}>
+                    <Typography
+                      className="nav-title"
+                      color={"#fff"}
+                      variant="h5"
+                    >
+                      Orders
+                    </Typography>
+                  </NavLink>
+                </Box>
+              ) : null}
               <Box className="hover-line" sx={{ mr: 2 }}>
                 <NavLink style={{ textDecoration: "none" }} to={"/community"}>
                   <Typography className="nav-title" color={"#fff"} variant="h5">
@@ -104,13 +116,22 @@ export const NavbarPage = () => {
                   </Typography>
                 </NavLink>
               </Box>
-              <Box className="hover-line" sx={{ mr: 2 }}>
-                <NavLink style={{ textDecoration: "none" }} to={"/member-page"}>
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
-                    My Page
-                  </Typography>
-                </NavLink>
-              </Box>
+              {verifiedMemberdata ? (
+                <Box className="hover-line" sx={{ mr: 2 }}>
+                  <NavLink
+                    style={{ textDecoration: "none" }}
+                    to={"/member-page"}
+                  >
+                    <Typography
+                      className="nav-title"
+                      color={"#fff"}
+                      variant="h5"
+                    >
+                      My Page
+                    </Typography>
+                  </NavLink>
+                </Box>
+              ) : null}
               <Box className="hover-line" sx={{ mr: 2 }}>
                 <NavLink style={{ textDecoration: "none" }} to={"/help"}>
                   <Typography className="nav-title" color={"#fff"} variant="h5">
@@ -118,6 +139,53 @@ export const NavbarPage = () => {
                   </Typography>
                 </NavLink>
               </Box>
+              {!verifiedMemberdata ? (
+                <Box
+                  className="hover-line"
+                  sx={{ mr: 2 }}
+                  onClick={handleSignupOpen}
+                >
+                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                    Signup
+                  </Typography>
+                </Box>
+              ) : null}
+              {!verifiedMemberdata ? (
+                <Box
+                  className="hover-line"
+                  sx={{ mr: 2 }}
+                  onClick={handleLoginOpen}
+                >
+                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                    Login
+                  </Typography>
+                </Box>
+              ) : (
+                <Box>
+                  <img
+                    style={{
+                      width: "29px",
+                      height: "29px",
+                      borderRadius: "24px",
+                    }}
+                    src={verifiedMemberdata.mb_image}
+                    // alt="member_img"
+                    onClick={props.handleLogoutClick}
+                  />
+                </Box>
+              )}
+              {verifiedMemberdata ? (
+                <Box className="hover-line" sx={{ mr: 2 }}>
+                  <Typography
+                    onClick={props.handleLogoutRequest}
+                    className="nav-title"
+                    color={"#fff"}
+                    variant="h5"
+                  >
+                    Logout
+                  </Typography>
+                </Box>
+              ) : null}
             </Stack>
           </Stack>
         </Container>

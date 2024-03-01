@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../css/App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Homepage } from "./screens/Homepage";
@@ -16,17 +16,81 @@ import { ChosenProduct } from "./screens/ShopsPage/chosenProduct";
 import { PhoneProducts } from "./screens/ShopsPage/phoneProducts";
 import { Accessories } from "./screens/ShopsPage/accessories";
 import { VisitOtherPage } from "./screens/MemberPage/visitOtherPage";
+import AuthentificationModal from "./auth";
+import { serverApi } from "./lib/config";
+import { Member } from "./types/user";
+import MemberApiService from "./apiServices/memberApiService";
+import {
+  sweetFailureProvider,
+  sweetTopSmallSuccessAlert,
+} from "./lib/sweetAlert";
+import { Definer } from "./lib/Definer";
 
 function App() {
+  /** Initializations */
+
   const location = useLocation();
+  const [signupOpen, setSignupOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  /** Handlers */
+  const handleSignupOpen = () => {
+    setSignupOpen(true);
+  };
+  const handleSignupClose = () => {
+    setSignupOpen(false);
+  };
+  const handleLoginOpen = () => {
+    setLoginOpen(true);
+  };
+  const handleLoginClose = () => {
+    setLoginOpen(false);
+  };
+  const handleLogoutClick = (e: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(e.currentTarget);
+  };
+  const handleCloseLogout = (e: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(null);
+  };
+  const handleLogoutRequest = async () => {
+    try {
+      const member = new MemberApiService();
+      await member.logoutRequest();
+      await sweetTopSmallSuccessAlert("success", 700, true);
+    } catch (err: any) {
+      console.log(err);
+      sweetFailureProvider(Definer.general_err1);
+    }
+  };
+
   return (
     <>
       {location.pathname == "/" ? (
-        <NavbarPage />
+        <NavbarPage
+          handleSignupOpen={handleSignupOpen}
+          handleLoginOpen={handleLoginOpen}
+          anchorEl={anchorEl}
+          open={open}
+          handleLogoutRequest={handleLogoutRequest}
+        />
       ) : location.pathname.includes("/products") ? (
-        <ShopsPage />
+        <ShopsPage
+          handleSignupOpen={handleSignupOpen}
+          handleLoginOpen={handleLoginOpen}
+          anchorEl={anchorEl}
+          open={open}
+          handleLogoutRequest={handleLogoutRequest}
+        />
       ) : (
-        <OthersNavbarPage />
+        <OthersNavbarPage
+          handleSignupOpen={handleSignupOpen}
+          handleLoginOpen={handleLoginOpen}
+          anchorEl={anchorEl}
+          open={open}
+          handleLogoutRequest={handleLogoutRequest}
+        />
       )}
 
       <Routes>
@@ -45,6 +109,14 @@ function App() {
         <Route path="/help" element={<HelpPage />} />
       </Routes>
       <Footer />
+      <AuthentificationModal
+        loginOpen={loginOpen}
+        handleLoginOpen={handleLoginOpen}
+        handleLoginClose={handleLoginClose}
+        signupOpen={signupOpen}
+        handleSignupOpen={handleSignupOpen}
+        handleSignupClose={handleSignupClose}
+      />
     </>
   );
 }
