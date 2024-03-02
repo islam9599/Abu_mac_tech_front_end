@@ -29,7 +29,7 @@ export function TargetArticles(props: any) {
                   marginTop={"15px"}
                 >
                   <Box className="author_info">
-                    <Person sx={{ color: "#fff" }} />
+                    <Person sx={{ color: "#000" }} />
                     <span>@nurse</span>
                   </Box>
                   <Box className="article_desc">

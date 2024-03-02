@@ -38,13 +38,13 @@ export const BestSelling = () => {
           >
             <Typography
               m={3}
-              color={"#fff"}
+              color={"#000"}
               variant="h4"
               fontWeight={"bold"}
               sx={{
                 width: "33%",
                 height: "auto",
-                background: "#129cb8",
+                background: "#1995ad",
                 borderRadius: "9px",
                 textAlign: "center",
               }}

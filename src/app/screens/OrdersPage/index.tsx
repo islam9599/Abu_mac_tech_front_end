@@ -12,6 +12,7 @@ import LocationOn from "@mui/icons-material/LocationOn";
 import Marginer from "../../component/marginer";
 import { Cancel, Home } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { verifiedMemberdata } from "../../apiServices/verify";
 
 export function OrdersPage() {
   const navigate = useNavigate();
@@ -119,7 +120,11 @@ export function OrdersPage() {
                 <div className="mini_user">
                   <img src="/icons/mini-user.svg" alt="" />
                 </div>
-                <span>Ergashev Islombek</span>
+                <span>
+                  {verifiedMemberdata?.mb_nick
+                    ? verifiedMemberdata?.mb_nick
+                    : "Not auth user!"}
+                </span>
                 User
               </div>
               <Marginer

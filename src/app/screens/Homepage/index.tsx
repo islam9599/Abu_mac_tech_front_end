@@ -22,7 +22,7 @@ export const Homepage = () => {
         style={{
           width: "100%",
           height: "auto",
-          background: "#D7DADD",
+          background: "#f1f1f2",
           marginTop: "30px",
           marginBottom: "30px",
           padding: "30px 0",

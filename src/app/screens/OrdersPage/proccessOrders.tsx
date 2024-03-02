@@ -47,7 +47,7 @@ export function ProceedOrders() {
 
               <Stack
                 className="total_price_box black_solid"
-                style={{ background: "rgba(140, 102, 242, 0.81)" }}
+                style={{ background: "rgba(217, 217, 217, 0.5)" }}
               >
                 <Box className="box_total">
                   <p>Product Price</p>

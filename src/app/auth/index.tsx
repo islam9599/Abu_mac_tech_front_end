@@ -128,7 +128,11 @@ export default function AuthentificationModal(props: any) {
             direction={"row"}
             sx={{ width: "700px" }}
           >
-            <img src="/auth/password.jpg" alt="camera" />
+            <img
+              src="/auth/signup.webp"
+              style={{ width: "70%" }}
+              alt="camera"
+            />
             <Stack sx={{ marginLeft: "69px", alignItems: "center" }}>
               <h2>Signup Form</h2>
               <TextField
@@ -151,6 +155,7 @@ export default function AuthentificationModal(props: any) {
                 id="outlined-basic"
                 label="password"
                 variant="outlined"
+                type="password"
                 onKeyPress={passwordKeyPressHandler}
               />
 

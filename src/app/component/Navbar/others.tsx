@@ -148,12 +148,11 @@ export const OthersNavbarPage = (props: any) => {
               {verifiedMemberdata ? (
                 <Box className="hover-line" sx={{ mr: 2 }}>
                   <NavLink
-                    className="nav-other-title"
                     style={{ textDecoration: "none" }}
                     to={"/member-page"}
                   >
                     <Typography
-                      className="nav-title"
+                      className="nav-other-title"
                       color={"#000"}
                       variant="h5"
                     >

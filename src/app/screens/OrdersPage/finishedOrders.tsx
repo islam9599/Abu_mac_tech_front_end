@@ -16,7 +16,6 @@ export function FinishedOrders() {
                 {order.map((item) => {
                   return (
                     <Stack>
-                      {" "}
                       <Box className="order_name_price">
                         <img
                           src={img_path}
@@ -46,7 +45,7 @@ export function FinishedOrders() {
 
               <Stack
                 className="total_price_box black_solid"
-                style={{ background: "#FF3434" }}
+                style={{ background: "rgba(217, 217, 217, 0.5)" }}
               >
                 <Box className="box_total">
                   <p>Product Price</p>
