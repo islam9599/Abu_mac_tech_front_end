@@ -12,7 +12,7 @@ export const Shops = () => {
   return (
     <div className="shop_page" style={{ width: "100%", height: "auto" }}>
       <Routes>
-        <Route path="/" element={<AllProducts />} />
+        <Route path="/" element={<AllProducts />}></Route>
         <Route path="/:products_id" element={<ChosenProduct />} />
         <Route path="/phones" element={<PhoneProducts />} />
         <Route path="/laptops" element={<Laptops />} />

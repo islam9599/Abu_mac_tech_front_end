@@ -1,26 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import moment, { Moment } from "moment";
 import {
   ArrowBack,
   ArrowForward,
-  Bookmark,
   BookmarkBorder,
-  Favorite,
   FavoriteBorder,
-  ShoppingCart,
   ShoppingCartRounded,
 } from "@mui/icons-material";
-import { Checkbox, Container, Rating, Stack, Typography } from "@mui/material";
-import {
-  FaShoppingCart,
-  FaRegBookmark,
-  FaStar,
-  FaFireAlt,
-} from "react-icons/fa";
-
+import { Container, Rating, Stack, Typography } from "@mui/material";
 import "../../../css/home.css";
+import { Product } from "../../types/product";
+import ProductApiService from "../../apiServices/productApiService";
+
+// Redux
+
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setSaleProducts } from "./slice";
+import { Shop } from "../../types/user";
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveSaleProducts } from "./selector";
+import { verifiedMemberdata } from "../../apiServices/verify";
+import { useNavigate } from "react-router-dom";
+import { serverApi } from "../../lib/config";
+import Countdown from "react-countdown";
+
+/** Redux Slice */
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setSaleProducts: (data: Product[]) => dispatch(setSaleProducts(data)),
+});
+
+/** Redux Selector*/
+const saleProductsRetriever = createSelector(
+  retrieveSaleProducts,
+  (saleProducts) => ({
+    saleProducts,
+  })
+);
 
 const productData: any = [
   {
@@ -70,6 +91,10 @@ const productData: any = [
 ];
 
 const FlashCard = () => {
+  /** Initialization */
+  const { setSaleProducts } = actionDispatch(useDispatch());
+  const { saleProducts } = useSelector(saleProductsRetriever);
+  console.log("saleProducts::::::selector!!!", saleProducts);
   const [count, setCount] = useState(0);
   const increment = () => {
     setCount(count + 1);
@@ -83,6 +108,17 @@ const FlashCard = () => {
     nextArrow: <ArrowBack />,
     prevArrow: <ArrowForward />,
   };
+
+  useEffect(() => {
+    const shopApiService = new ProductApiService();
+    shopApiService
+      .getSaleProducts()
+      .then((data) => {
+        setSaleProducts(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  /** Handlers */
 
   return (
     <div>
@@ -104,10 +140,12 @@ const FlashCard = () => {
               justifyContent: "center",
             }}
           >
-            {productData.map((product: any) => {
+            {saleProducts.map((product: Product) => {
+              const image_path = `${serverApi}/${product.product_images[0]}`;
+
               return (
                 <div className="productList">
-                  <div key={product.id} className="productCard">
+                  <div key={product._id} className="productCard">
                     <Stack flexDirection={"row"} className="icon-container">
                       <ShoppingCartRounded
                         className={"productCard__cart"}
@@ -143,28 +181,34 @@ const FlashCard = () => {
                   /> */}
                     </Stack>
                     <img
-                      src={product.image}
+                      src={image_path}
                       alt="product-img"
                       className="productImage"
                     ></img>
                     <div className="productCard__content">
-                      <h3 className="productName">{product.name}</h3>
+                      <h3 className="productName">{product.product_name}</h3>
                       <Stack
                         width={"100%"}
                         flexDirection={"row"}
                         alignItems={"center"}
                         justifyContent={"space-between"}
                       >
-                        <h3 style={{ color: "red" }}>30% off</h3>
+                        <h3 style={{ color: "red" }}>
+                          {product?.product_discount}% off
+                        </h3>
                         <h2 style={{ textDecoration: "line-through" }}>
-                          $1799
+                          {product?.product_price}
                         </h2>
                       </Stack>
 
                       <div className="displayStack__1">
-                        <div className="productPrice">${product.price}</div>
+                        <div className="productPrice">
+                          $
+                          {product.product_price -
+                            product.product_price / product.product_discount}
+                        </div>
                         <div className="productSales">
-                          {product.totalSales} units sold
+                          {product.product_left_cnt} units left
                         </div>
                       </div>
                       <div className="displayStack__2">
@@ -175,9 +219,7 @@ const FlashCard = () => {
                             precision={0.5}
                           />
                         </div>
-                        <div className="productTime">
-                          {product.timeLeft} days left
-                        </div>
+                        <div className="productTime">29 days left</div>
                       </div>
                     </div>
                   </div>

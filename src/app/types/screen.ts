@@ -4,6 +4,7 @@ import { Member, Shop } from "./user";
 /** React app state */
 export interface AppRootState {
   homePage: HomePageState;
+  shopsPage: ShopPageState;
 }
 
 /** Homepage */
@@ -13,4 +14,14 @@ export interface HomePageState {
   trendProducts: Product[];
   bestProducts: Product[];
   newArrivals: Product[];
+}
+
+/** Shop */
+
+export interface ShopPageState {
+  targetBrands: Shop[];
+  randomBrands: Shop[];
+  chosenShop: Shop | null;
+  targetProducts: Product[];
+  chosenProduct: Product | null;
 }

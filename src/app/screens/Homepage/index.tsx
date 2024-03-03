@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HotDeal } from "./hotDeal";
 import { Container, Stack } from "@mui/material";
 import { NewArrivals } from "./newArrivals";
@@ -8,8 +8,35 @@ import { Features } from "./features";
 import { FollowInstagram } from "./follow";
 import { Categories } from "./categories";
 import { BestSelling } from "./bestSelling";
+import ShopApiService from "../../apiServices/shopApiService";
+
+// Redux
+
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setTopBrands } from "./slice";
+import { Shop } from "../../types/user";
+
+/** Redux Slice */
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTopBrands: (data: Shop[]) => dispatch(setTopBrands(data)),
+});
 
 export const Homepage = () => {
+  /** Initialization */
+
+  const { setTopBrands } = actionDispatch(useDispatch());
+
+  useEffect(() => {
+    const shopApiService = new ShopApiService();
+    shopApiService
+      .getBrands()
+      .then((data) => {
+        setTopBrands(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className="home-page">
       <Container>
