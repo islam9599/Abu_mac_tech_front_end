@@ -27,7 +27,6 @@ import { retrieveSaleProducts } from "./selector";
 import { verifiedMemberdata } from "../../apiServices/verify";
 import { useNavigate } from "react-router-dom";
 import { serverApi } from "../../lib/config";
-import Countdown from "react-countdown";
 
 /** Redux Slice */
 
@@ -42,53 +41,6 @@ const saleProductsRetriever = createSelector(
     saleProducts,
   })
 );
-
-const productData: any = [
-  {
-    id: 1,
-    name: "Macbook Pro 16 inch M3 Pro",
-    image:
-      "https://cdn0.vox-cdn.com/hermano/verge/product/image/10207/236896_MacBook_Pro_16_M3_AKrales_0641.jpg",
-    productType: "openBackHeadphones",
-    price: 2999,
-    rating: 5,
-    timeLeft: 27,
-    totalSales: 7479,
-  },
-  {
-    id: 2,
-    name: "DROP + SENNHEISER PC38X GAMING HEADSET",
-    image:
-      "https://www.apple.com/newsroom/images/2023/10/apple-unveils-new-macbook-pro-featuring-m3-chips/article/Apple-MacBook-Pro-2up-231030_Full-Bleed-Image.jpg.large.jpg",
-    productType: "openBackHeadphones",
-    price: 169,
-    rating: 5,
-    timeLeft: 24,
-    totalSales: 6898,
-  },
-  {
-    id: 3,
-    name: "MASSDROP X SENNHEISER HD 58X JUBILEE HEADPHONES",
-    image:
-      "https://photos5.appleinsider.com/gallery/57189-116491-16-inch-MacBook-Pro-Space-Black-xl.jpg",
-    productType: "openBackHeadphones",
-    price: 170,
-    rating: 4,
-    timeLeft: 21,
-    totalSales: 6347,
-  },
-  {
-    id: 4,
-    name: "MASSDROP X SENNHEISER HD 58X JUBILEE HEADPHONES",
-    image:
-      "https://static1.xdaimages.com/wordpress/wp-content/uploads/wm/2023/10/space-black-macbook-pro-5.jpg",
-    productType: "openBackHeadphones",
-    price: 170,
-    rating: 4,
-    timeLeft: 21,
-    totalSales: 6347,
-  },
-];
 
 const FlashCard = () => {
   /** Initialization */
@@ -144,8 +96,8 @@ const FlashCard = () => {
               const image_path = `${serverApi}/${product.product_images[0]}`;
 
               return (
-                <div className="productList">
-                  <div key={product._id} className="productCard">
+                <div key={product._id} className="productList">
+                  <div className="productCard">
                     <Stack flexDirection={"row"} className="icon-container">
                       <ShoppingCartRounded
                         className={"productCard__cart"}

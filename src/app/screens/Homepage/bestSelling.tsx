@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Stack,
   Typography,
@@ -9,15 +9,61 @@ import {
   Button,
   Container,
 } from "@mui/material";
-import {
-  ArrowRight,
-  Favorite,
-  PriceChange,
-  RemoveRedEye,
-} from "@mui/icons-material";
+import { ArrowRight, Favorite, RemoveRedEye } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { Product } from "../../types/product";
+import ProductApiService from "../../apiServices/productApiService";
+
+// Redux
+
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { Shop } from "../../types/user";
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveBestProducts, retrieveSaleProducts } from "./selector";
+import { verifiedMemberdata } from "../../apiServices/verify";
+import { serverApi } from "../../lib/config";
+import { ProductSearchObj } from "../../types/other";
+import { setBestProducts } from "./slice";
+
+/** Redux Slice */
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setBestProducts: (data: Product[]) => dispatch(setBestProducts(data)),
+});
+
+/** Redux Selector*/
+const setBestProductsRetriever = createSelector(
+  retrieveBestProducts,
+  (bestProducts) => ({
+    bestProducts,
+  })
+);
 
 export const BestSelling = () => {
+  /** Initialization */
+
+  const { setBestProducts } = actionDispatch(useDispatch());
+  const { bestProducts } = useSelector(setBestProductsRetriever);
+  console.log("bestProducts::::::selector!!!", bestProducts);
+  const [targetProductSearchObj, setTargetProductSearchObj] =
+    useState<ProductSearchObj>({
+      page: 1,
+      limit: 6,
+      order: "product_price",
+    });
+
+  useEffect(() => {
+    const productService = new ProductApiService();
+    productService
+      .getTargetProducts(targetProductSearchObj)
+      .then((data) => {
+        setBestProducts(data);
+      })
+      .catch((err) => console.log(err));
+  }, [targetProductSearchObj]);
+  /** Handlers */
   const navigate = useNavigate();
   return (
     <div>
@@ -36,19 +82,7 @@ export const BestSelling = () => {
               cursor: "pointer",
             }}
           >
-            <Typography
-              m={3}
-              color={"#000"}
-              variant="h4"
-              fontWeight={"bold"}
-              sx={{
-                width: "33%",
-                height: "auto",
-                background: "#1995ad",
-                borderRadius: "9px",
-                textAlign: "center",
-              }}
-            >
+            <Typography m={3} color={"#000"} variant="h4" fontWeight={"bold"}>
               Best Selling Products
             </Typography>
             <Typography m={3} color={"#000"} variant="h4" fontWeight={"bold"}>
@@ -66,11 +100,14 @@ export const BestSelling = () => {
             alignItems={"center"}
             justifyContent={"center"}
           >
-            {Array.from(Array(8).keys()).map((index) => {
+            {/*@ts-ignore */}
+            {bestProducts.map((product: Product) => {
+              const image_path = `${serverApi}/${product.product_images[0]}`;
+
               return (
                 <Card
                   className="home_card"
-                  key={index}
+                  key={product?._id}
                   onClick={() => {
                     navigate("/products/:product_id");
                   }}
@@ -84,7 +121,10 @@ export const BestSelling = () => {
                     component="img"
                     alt="green iguana"
                     height="250"
-                    image="https://9to5mac.com/wp-content/uploads/sites/6/2020/11/apple-november-event.jpeg?quality=82&strip=all&w=1424"
+                    image={image_path}
+                    style={{
+                      objectFit: "cover",
+                    }}
                   />
                   <CardContent>
                     <Typography
@@ -92,15 +132,25 @@ export const BestSelling = () => {
                       color={"InfoText"}
                       marginBottom={"10px"}
                       fontWeight={"bold"}
+                      sx={{
+                        width: "90%",
+                        height: "30px",
+                      }}
                     >
-                      MacBook Pro 16 inch
+                      {product.product_name}
                     </Typography>
                     <Typography
                       variant="h6"
                       color={"InfoText"}
                       marginBottom={"10px"}
+                      style={{
+                        width: "90%",
+                        height: "60px",
+                        overflow: "scroll",
+                        fontSize: "12px",
+                      }}
                     >
-                      M3 chip, 16/512gb
+                      {product.product_description}
                     </Typography>
                     <Stack
                       width={"100%"}
@@ -111,24 +161,16 @@ export const BestSelling = () => {
                     >
                       <h5
                         style={{
-                          position: "absolute",
-                          bottom: 10,
                           color: "red",
                           fontSize: "12px",
                         }}
                       >
-                        20% off
+                        {product?.product_discount}% off
                       </h5>
-                      <p
-                        style={{
-                          fontSize: "12px",
-                          textDecoration: "line-through",
-                        }}
-                      >
-                        $1999
-                      </p>
 
-                      <p style={{ fontSize: "12px" }}>$1700</p>
+                      <p style={{ fontSize: "12px" }}>
+                        ${product?.product_price}
+                      </p>
                     </Stack>
                     <Stack
                       flexDirection={"row"}
