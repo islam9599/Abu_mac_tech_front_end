@@ -229,6 +229,7 @@ export const BestSelling = () => {
                       </p>
                     </Stack>
                     <Stack
+                      m={"0 5px"}
                       onClick={(e) => {
                         e.stopPropagation();
                       }}
@@ -253,7 +254,7 @@ export const BestSelling = () => {
                         />
                       </Stack>
                       <Stack
-                        width={"30px"}
+                        width={"40px"}
                         flexDirection={"row"}
                         alignItems={"center"}
                         justifyContent={"space-between"}

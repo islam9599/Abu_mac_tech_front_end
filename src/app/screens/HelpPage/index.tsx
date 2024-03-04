@@ -80,17 +80,17 @@ export function HelpPage() {
   return (
     <div className="help_page">
       <Container>
-        <Stack
-          sx={{
-            m: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Stack width={"100%"} justifyContent={"flex-start"}>
-            <Stack flexDirection={"row"} alignItems={"center"} ml={0} mb={5}>
+        <Stack>
+          <Box mt={5}>
+            <Marginer
+              direction="horizontal"
+              width="100%"
+              height="2"
+              bg="#999"
+            />
+          </Box>
+          <Stack width={"100%"} mt={2}>
+            <Stack flexDirection={"row"} alignItems={"center"} mb={5}>
               <Home
                 className="navigate_home"
                 sx={{ width: "29px", height: "29px" }}
@@ -118,127 +118,144 @@ export function HelpPage() {
               />
             </Stack>
           </Stack>
-
-          <Box
+          <Stack
             sx={{
-              // borderBottom: 1,
-              // borderColor: "divider",
-              bgcolor: "silver",
-              width: "90%",
-              margin: 5,
-              borderRadius: "9px",
-              border: "2px solid #129cb8",
+              m: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <TabContext value={value}>
-              <Box sx={{ borderBottom: 2, borderColor: "divider" }}>
-                <Tabs
-                  value={value}
-                  onChange={handleChange}
-                  indicatorColor="primary"
-                  textColor="primary"
-                  variant="fullWidth"
-                  aria-label="lab API tabs example"
+            <Box
+              sx={{
+                // borderBottom: 1,
+                // borderColor: "divider",
+                bgcolor: "silver",
+                width: "90%",
+                margin: 5,
+                borderRadius: "9px",
+                border: "2px solid #129cb8",
+              }}
+            >
+              <TabContext value={value}>
+                <Box sx={{ borderBottom: 2, borderColor: "divider" }}>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    variant="fullWidth"
+                    aria-label="lab API tabs example"
+                  >
+                    <Tab
+                      sx={{ fontWeight: "bold", fontSize: "13px" }}
+                      label="Website Privacy"
+                      value="1"
+                    />
+                    <Tab
+                      sx={{ fontWeight: "bold", fontSize: "13px" }}
+                      label="FAQ"
+                      value="2"
+                    />
+                    <Tab
+                      sx={{ fontWeight: "bold", fontSize: "13px" }}
+                      label="Message to Admin"
+                      value="3"
+                    />
+                  </Tabs>
+                </Box>
+                <Stack
+                  alignItems={"center"}
+                  sx={{
+                    width: "100%",
+                    height: "auto",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
-                  <Tab
-                    sx={{ fontWeight: "bold", fontSize: "13px" }}
-                    label="Website Privacy"
-                    value="1"
-                  />
-                  <Tab
-                    sx={{ fontWeight: "bold", fontSize: "13px" }}
-                    label="FAQ"
-                    value="2"
-                  />
-                  <Tab
-                    sx={{ fontWeight: "bold", fontSize: "13px" }}
-                    label="Message to Admin"
-                    value="3"
-                  />
-                </Tabs>
-              </Box>
-              <Stack
-                alignItems={"center"}
-                sx={{
-                  width: "100%",
-                  height: "auto",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Stack className="help_main_container">
-                  <TabPanel value="1">
-                    <Stack className="rule_box">
-                      <Box className="rule_ele">
-                        {rules.map((ele) => {
+                  <Stack className="help_main_container">
+                    <TabPanel value="1">
+                      <Stack className="rule_box">
+                        <Box className="rule_ele">
+                          {rules.map((ele) => {
+                            return (
+                              <div>
+                                <p>{ele}</p>
+                                <Marginer
+                                  width="100%"
+                                  height="1"
+                                  bg="#C4C4C4"
+                                />
+                              </div>
+                            );
+                          })}
+                        </Box>
+                      </Stack>
+                    </TabPanel>
+                    <TabPanel value="2">
+                      <Stack className="faq_container">
+                        {faq.map((ele) => {
                           return (
-                            <div>
-                              <p>{ele}</p>
-                              <Marginer width="100%" height="1" bg="#C4C4C4" />
-                            </div>
+                            <Accordion>
+                              <AccordionSummary
+                                expandIcon={<ExpandMore />}
+                                aria-controls="panella-content"
+                                id="panella-header"
+                              >
+                                <Typography>{ele.question}</Typography>
+                              </AccordionSummary>
+
+                              <AccordionDetails>
+                                <Typography>{ele.answer}</Typography>
+                              </AccordionDetails>
+                            </Accordion>
                           );
                         })}
-                      </Box>
-                    </Stack>
-                  </TabPanel>
-                  <TabPanel value="2">
-                    <Stack className="faq_container">
-                      {faq.map((ele) => {
-                        return (
-                          <Accordion>
-                            <AccordionSummary
-                              expandIcon={<ExpandMore />}
-                              aria-controls="panella-content"
-                              id="panella-header"
-                            >
-                              <Typography>{ele.question}</Typography>
-                            </AccordionSummary>
-
-                            <AccordionDetails>
-                              <Typography>{ele.answer}</Typography>
-                            </AccordionDetails>
-                          </Accordion>
-                        );
-                      })}
-                    </Stack>
-                  </TabPanel>
-                  <TabPanel value="3">
-                    <Stack className="message_to_admin">
-                      <Stack className="message_title">
-                        <span>Message to Admin</span>
-                        <p>Please fill all fields!</p>
                       </Stack>
-                      <form action="#" method="POST" className="message_frame">
-                        <div className="message_input_box">
-                          <label htmlFor="">Name</label>
-                          <input
-                            type="text"
-                            name="mb_nick"
-                            placeholder="Your name"
-                          />
-                        </div>
-                        <div className="message_input_box">
-                          <label htmlFor="">Email</label>
-                          <input
-                            type="text"
-                            name="mb_email"
-                            placeholder="email"
-                          />
-                        </div>
-                        <div className="message_input_box">
-                          <label htmlFor="">Message</label>
-                          <textarea name="mb_msg" placeholder="Message" />
-                        </div>
-                        <Box className="message_admin_btn">
-                          <Button variant="contained">Send</Button>
-                        </Box>
-                      </form>
-                    </Stack>
-                  </TabPanel>
+                    </TabPanel>
+                    <TabPanel value="3">
+                      <Stack className="message_to_admin">
+                        <Stack className="message_title">
+                          <span>Message to Admin</span>
+                          <p>Please fill all fields!</p>
+                        </Stack>
+                        <form
+                          action="#"
+                          method="POST"
+                          className="message_frame"
+                        >
+                          <div className="message_input_box">
+                            <label htmlFor="">Name</label>
+                            <input
+                              type="text"
+                              name="mb_nick"
+                              placeholder="Your name"
+                            />
+                          </div>
+                          <div className="message_input_box">
+                            <label htmlFor="">Email</label>
+                            <input
+                              type="text"
+                              name="mb_email"
+                              placeholder="email"
+                            />
+                          </div>
+                          <div className="message_input_box">
+                            <label htmlFor="">Message</label>
+                            <textarea name="mb_msg" placeholder="Message" />
+                          </div>
+                          <Box className="message_admin_btn">
+                            <Button variant="contained">Send</Button>
+                          </Box>
+                        </form>
+                      </Stack>
+                    </TabPanel>
+                  </Stack>
                 </Stack>
-              </Stack>
-            </TabContext>
-          </Box>
+              </TabContext>
+            </Box>
+          </Stack>
         </Stack>
       </Container>
     </div>

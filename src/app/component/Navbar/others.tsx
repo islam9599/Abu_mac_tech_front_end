@@ -24,14 +24,14 @@ export const OthersNavbarPage = (props: any) => {
       style={{
         width: "100%",
         height: "auto",
-        background: "silver",
+        background: "#EEF5FF",
       }}
     >
       <div
         style={{
           width: "100%",
-          height: "400px",
-          backgroundImage: "url(/home/home-others.webp)",
+          height: "100px",
+          // backgroundImage: "url(/home/home-others.webp)",
           backgroundSize: "cover",
           zIndex: "999",
           display: "flex",
@@ -254,6 +254,16 @@ export const OthersNavbarPage = (props: any) => {
           </Stack>
         </Container>
       </div>
+      <Box sx={{ width: "100%", height: "300px" }}>
+        <img
+          style={{ width: "100%", height: "300px", objectFit: "cover" }}
+          src="/home/home-others.webp"
+          alt=""
+        />
+        <Container sx={{ mt: 5 }}>
+          <Marginer direction="horizontal" width="100%" height="2" bg="#999" />
+        </Container>
+      </Box>
     </div>
   );
 };

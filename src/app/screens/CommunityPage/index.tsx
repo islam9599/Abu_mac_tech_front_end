@@ -66,7 +66,7 @@ export function CommunityPage() {
                 onClick={navigateToHomeHandler}
               />
             </Stack>
-            <Stack className="tab_main_wrapper">
+            <Stack className="tab_main_wrapper" justifyContent={"center"}>
               <TabContext value={value}>
                 <Box className="order_nav_frame">
                   <Box sx={{ borderBottom: 1, borderColor: "divider" }}>

@@ -305,7 +305,7 @@ export const NavbarPage = (props: any) => {
               />
             </Stack>
           </Stack>
-          <Marginer direction="horizontal" width="100%" height="1" bg="#999" />
+          <Marginer direction="horizontal" width="100%" height="2" bg="#999" />
         </Container>
       </div>
     </div>

@@ -18,7 +18,7 @@
 
 .community_page .tab_main_wrapper {
   position: relative;
-  width: 100%;
+  width: 90%;
   height: auto;
   border-radius: 34px;
   margin-top: 50px;
@@ -46,13 +46,13 @@
 }
 
 .community_page .target_articles_container {
-  width: 300px;
+  width: 280px;
   height: 450px;
   margin: 15px;
   display: flex;
   flex-direction: column;
   border-radius: 30px;
-  background: #dee2e6;
+  background: #129cb8;
   margin-bottom: 15px;
   text-decoration: none;
   cursor: pointer;
@@ -106,7 +106,7 @@
   margin-top: 15px;
 }
 .community_page .target_articles_container .article_desc span {
-  color: #cf7f08;
+  color: #f1f1f2;
   font-family: "Poppins";
   font-size: 16px;
   font-style: normal;
