@@ -27,9 +27,6 @@ export const NavbarPage = (props: any) => {
       style={{
         width: "100%",
         height: "auto",
-        position: "sticky",
-        top: 0,
-        zIndex: 9999,
       }}
     >
       <div
@@ -39,6 +36,9 @@ export const NavbarPage = (props: any) => {
           background: "#129cb8",
           display: "flex",
           alignItems: "center",
+          position: "sticky",
+          top: 0,
+          zIndex: 9999,
         }}
       >
         <Container>
@@ -187,9 +187,6 @@ export const NavbarPage = (props: any) => {
         style={{
           width: "100%",
           height: "120px",
-          position: "sticky",
-          zIndex: 9999,
-          background: "#fff",
         }}
       >
         <Container>

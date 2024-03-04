@@ -7,13 +7,21 @@ import {
   ArrowBack,
   ArrowForward,
   BookmarkBorder,
+  Favorite,
   FavoriteBorder,
   ShoppingCartRounded,
 } from "@mui/icons-material";
-import { Container, Rating, Stack, Typography } from "@mui/material";
+import { Checkbox, Container, Rating, Stack, Typography } from "@mui/material";
 import "../../../css/home.css";
 import { Product } from "../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
+import assert from "assert";
+import { Definer } from "../../lib/Definer";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../lib/sweetAlert";
 
 // Redux
 
@@ -48,18 +56,7 @@ const FlashCard = () => {
   const { saleProducts } = useSelector(saleProductsRetriever);
   console.log("saleProducts::::::selector!!!", saleProducts);
   const [count, setCount] = useState(0);
-  const increment = () => {
-    setCount(count + 1);
-  };
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    nextArrow: <ArrowBack />,
-    prevArrow: <ArrowForward />,
-  };
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
   useEffect(() => {
     const shopApiService = new ProductApiService();
@@ -69,8 +66,27 @@ const FlashCard = () => {
         setSaleProducts(data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [productRebuild]);
   /** Handlers */
+  const targetLikeProduct = async (e: any) => {
+    try {
+      assert.ok(verifiedMemberdata, Definer.auth_err1);
+
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: e.target.id,
+          group_type: "product",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      setProductRebuild(new Date());
+
+      await sweetTopSmallSuccessAlert("success", 700, false);
+    } catch (err: any) {
+      console.log("err: targetLikeProduct", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <div>
@@ -107,30 +123,27 @@ const FlashCard = () => {
                         className={"productCard__wishlist"}
                         sx={{ width: "29px", height: "24px" }}
                       />
-                      <FavoriteBorder
-                        className="productCard__fastSelling"
-                        sx={{ width: "29px", height: "24px" }}
+                      <Checkbox
+                        className={"productCard__cart"}
+                        onClick={targetLikeProduct}
+                        icon={
+                          <FavoriteBorder
+                            sx={{ width: "29px", height: "24px" }}
+                          />
+                        }
+                        id={product._id}
+                        checkedIcon={
+                          <Favorite
+                            sx={{ width: "29px", height: "24px" }}
+                            style={{ color: "red" }}
+                          />
+                        }
+                        checked={
+                          product?.me_liked && product?.me_liked[0]?.my_favorite
+                            ? true
+                            : false
+                        }
                       />
-                      {/* <Checkbox
-                    className="productCard__fastSelling"
-                    // id={chosenProduct?._id}
-                    // onClick={targetLikeProduct}
-                    icon={
-                      <FavoriteBorder sx={{ width: "29px", height: "24px" }} />
-                    }
-                    checkedIcon={
-                      <Favorite
-                        style={{ color: "red", width: "29px", height: "24px" }}
-                      />
-                    }
-                    // checked={
-                    //   chosenProduct?.me_liked &&
-                    //   chosenProduct.me_liked[0]?.my_favorite
-                    //     ? true
-                    //     : false
-                    // }
-                    checked={false}
-                  /> */}
                     </Stack>
                     <img
                       src={image_path}
