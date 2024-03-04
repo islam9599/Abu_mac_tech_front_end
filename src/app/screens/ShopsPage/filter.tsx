@@ -5,9 +5,11 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { Stack } from "@mui/material";
+import PriceRangeSlider from "./priceSlider";
 
 export default function FilterShop(props: any) {
-  const { filterTitle, filterItem } = props;
+  /** Initialization */
+  const { searchCollectionHandler } = props;
   return (
     <Stack>
       <FormControl
@@ -17,7 +19,7 @@ export default function FilterShop(props: any) {
           sx={{ fontWeight: "bold", fontSize: "14px" }}
           id="demo-radio-buttons-group-label"
         >
-          Filter by {filterTitle[0]}
+          Filter by
         </FormLabel>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
@@ -27,38 +29,33 @@ export default function FilterShop(props: any) {
           <FormControlLabel
             value="All"
             control={<Radio />}
-            label={filterItem[0].color[0]}
+            label="Best-selling"
+            onClick={() => searchCollectionHandler()}
           />
           <FormControlLabel
-            value="Silver"
+            value="is_onsale"
             control={<Radio />}
-            label={filterItem[0].color[1]}
+            label="On-sale"
+            onClick={() => searchCollectionHandler("product_discount")}
           />
           <FormControlLabel
-            value="Gold"
+            value="updatedAt"
             control={<Radio />}
-            label={filterItem[0].color[2]}
+            label="New-arrivals"
+            onClick={() => searchCollectionHandler("updatedAt")}
           />
           <FormControlLabel
-            value="Gray"
+            value="product_views"
             control={<Radio />}
-            label={filterItem[0].color[3]}
+            label="Most-viewed"
+            onClick={() => searchCollectionHandler("product_views")}
           />
           <FormControlLabel
-            value="Titanium"
+            value="product_likes"
             control={<Radio />}
-            label={filterItem[0].color[4]}
+            label="Most-liked"
+            onClick={() => searchCollectionHandler("product_likes")}
           />
-          <FormControlLabel
-            value="Etc"
-            control={<Radio />}
-            label={filterItem[0].color[5]}
-          />
-          {/* <FormControlLabel
-            value="16 inch"
-            control={<Radio />}
-            label="16 inch"
-          /> */}
         </RadioGroup>
       </FormControl>
       <FormControl
@@ -68,45 +65,32 @@ export default function FilterShop(props: any) {
           sx={{ fontWeight: "bold", fontSize: "14px" }}
           id="demo-radio-buttons-group-label"
         >
-          Filter by {filterTitle[1]}
+          Filter By Brand
         </FormLabel>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
           defaultValue="All"
           name="radio-buttons-group"
         >
-          <FormControlLabel
-            value="All"
-            control={<Radio />}
-            label={filterItem[1].brand[0]}
-          />
-          <FormControlLabel
-            value="Apple"
-            control={<Radio />}
-            label={filterItem[1].brand[1]}
-          />
+          <FormControlLabel value="All" control={<Radio />} label="All" />
+          <FormControlLabel value="Apple" control={<Radio />} label="Apple" />
           <FormControlLabel
             value="Samsung"
             control={<Radio />}
-            label={filterItem[1].brand[2]}
+            label="Samsung"
           />
-          <FormControlLabel
-            value="Hp"
-            control={<Radio />}
-            label={filterItem[1].brand[3]}
-          />
+          <FormControlLabel value="Hp" control={<Radio />} label="Hp" />
           <FormControlLabel
             value="Microsoft"
             control={<Radio />}
-            label={filterItem[1].brand[4]}
+            label="Microsoft"
           />
-          <FormControlLabel
-            value="Etc"
-            control={<Radio />}
-            label={filterItem[1].brand[5]}
-          />
+          <FormControlLabel value="Etc" control={<Radio />} label="Etc" />
         </RadioGroup>
       </FormControl>
+      <Stack sx={{ m: 5 }}>
+        <PriceRangeSlider />
+      </Stack>
     </Stack>
   );
 }

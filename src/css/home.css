@@ -130,7 +130,6 @@
   width: 100%;
   height: 180px;
   object-fit: cover;
-  margin-top: 40px;
 }
 
 .productImage:hover {
@@ -177,7 +176,7 @@
 }
 
 .productCard__content {
-  margin: 2rem;
+  margin: 1rem;
 }
 
 .productName {

@@ -8,31 +8,66 @@ import { Cancel, Home } from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import assert from "assert";
-// Redux
-import { useSelector, useDispatch } from "react-redux";
-import { createSelector } from "reselect";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "./productCards";
 import Marginer from "../../component/marginer";
 import { Range } from "react-range";
-
 import FilterShop from "./filter";
 import PriceRangeSlider from "./priceSlider";
 
+// Redux
+
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveAllProducts } from "./selector";
+import { verifiedMemberdata } from "../../apiServices/verify";
+
+import { ProductSearchObj } from "../../types/other";
+import { setAllProducts } from "./slice";
+import { Product } from "../../types/product";
+import ProductApiService from "../../apiServices/productApiService";
+
 /** Redux Slice */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setAllProducts: (data: Product[]) => dispatch(setAllProducts(data)),
+});
+/** Redux Selector*/
+const setAllProductsRetriever = createSelector(
+  retrieveAllProducts,
+  (allProducts) => ({
+    allProducts,
+  })
+);
 
 export function AllProducts() {
   /** Initialization */
+  const { setAllProducts } = actionDispatch(useDispatch());
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
   const [state, setState] = useState({ values: [40] });
   const navigate = useNavigate();
+  const [targetProductSearchObj, setTargetProductSearchObj] =
+    useState<ProductSearchObj>({
+      page: 1,
+      limit: 8,
+      order: "product_point",
+    });
+  useEffect(() => {
+    const productService = new ProductApiService();
+    productService
+      .getTargetProducts(targetProductSearchObj)
+      .then((data) => {
+        setAllProducts(data);
+      })
+      .catch((err) => console.log(err));
+  }, [targetProductSearchObj, productRebuild]);
 
   /** Handlers */
-  const navigateToHomeHandler = () => {
-    navigate("/");
-  };
-  const chosenProductHandler = () => {
-    navigate("/products/:product_id");
+  const searchCollectionHandler = (order: string) => {
+    targetProductSearchObj.order = order;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
   };
   const changePhones = () => {
     navigate("/products/phones");
@@ -66,7 +101,12 @@ export function AllProducts() {
             >
               All Products
             </Typography>
-            <Cancel className="navigate_home" onClick={navigateToHomeHandler} />
+            <Cancel
+              className="navigate_home"
+              onClick={() => {
+                navigate("/");
+              }}
+            />
           </Stack>
           <Box className={"fit_search_box"} justifyContent={"center"}>
             <Box className={"fit_box"}>
@@ -97,27 +137,7 @@ export function AllProducts() {
               alignItems={"center"}
               justifyContent={"center"}
             >
-              <FilterShop
-                filterTitle={["Color", "Brands"]}
-                filterItem={[
-                  {
-                    color: ["All", "Silver", "Gold", "Gray", "Titanium", "Etc"],
-                  },
-                  {
-                    brand: [
-                      "All",
-                      "Apple",
-                      "Samsung",
-                      "Hp",
-                      "Microsoft",
-                      "Etc",
-                    ],
-                  },
-                ]}
-              />
-              <Stack sx={{ m: 5 }}>
-                <PriceRangeSlider />
-              </Stack>
+              <FilterShop searchCollectionHandler={searchCollectionHandler} />
             </Stack>
             <Stack
               width={"65%"}
@@ -125,7 +145,7 @@ export function AllProducts() {
               flexDirection={"row"}
               sx={{ flexWrap: "wrap" }}
             >
-              <ProductCard />
+              <ProductCard setProductRebuild={setProductRebuild} />
               <Stack className="bottom_box">
                 <img
                   className="line_img_left"

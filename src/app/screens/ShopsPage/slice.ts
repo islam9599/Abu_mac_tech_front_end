@@ -2,19 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ShopPageState } from "../../types/screen";
 
 const initialState: ShopPageState = {
-  targetBrands: [],
+  allProducts: [],
   randomBrands: [],
   chosenShop: null,
   targetProducts: [],
   chosenProduct: null,
 };
 
-const RestaurantSlice = createSlice({
+const ShopPageSlice = createSlice({
   name: "shopPage",
   initialState,
   reducers: {
-    setTargetBrands: (state, action) => {
-      state.targetBrands = action.payload;
+    setAllProducts: (state, action) => {
+      state.allProducts = action.payload;
     },
     setRandomBrands: (state, action) => {
       state.randomBrands = action.payload;
@@ -33,12 +33,12 @@ const RestaurantSlice = createSlice({
 });
 
 export const {
-  setTargetBrands,
+  setAllProducts,
   setRandomBrands,
   setChosenShop,
   setTargetProducts,
   setChosenProduct,
-} = RestaurantSlice.actions;
+} = ShopPageSlice.actions;
 
-const ShopPageReducer = RestaurantSlice.reducer;
+const ShopPageReducer = ShopPageSlice.reducer;
 export default ShopPageReducer;

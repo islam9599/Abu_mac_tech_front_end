@@ -3,23 +3,23 @@ import { AppRootState } from "../../types/screen";
 
 const selectShopPage = (state: AppRootState) => state.shopsPage;
 
-export const retrieveTargetBrands = createSelector(
+export const retrieveAllProducts = createSelector(
   selectShopPage,
-  (RestaurantPage) => RestaurantPage.targetBrands
+  (ShopsPage) => ShopsPage.allProducts
 );
 export const retrieveRandomRestaurants = createSelector(
   selectShopPage,
-  (RestaurantPage) => RestaurantPage.randomBrands
+  (shopsPage) => shopsPage.randomBrands
 );
 export const retrieveChosenShop = createSelector(
   selectShopPage,
-  (RestaurantPage) => RestaurantPage.chosenShop
+  (shopsPage) => shopsPage.chosenShop
 );
 export const retrieveTargetProducts = createSelector(
   selectShopPage,
-  (RestaurantPage) => RestaurantPage.targetProducts
+  (ProductPage) => ProductPage.targetProducts
 );
 export const retrieveChosenProduct = createSelector(
   selectShopPage,
-  (RestaurantPage) => RestaurantPage.chosenProduct
+  (ProductPage) => ProductPage.chosenProduct
 );

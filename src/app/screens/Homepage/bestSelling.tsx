@@ -31,7 +31,6 @@ import {
 
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveBestProducts } from "./selector";

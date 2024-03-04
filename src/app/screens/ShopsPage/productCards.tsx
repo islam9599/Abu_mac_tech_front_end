@@ -9,19 +9,34 @@ import {
   BookmarkBorder,
   Favorite,
   FavoriteBorder,
+  RemoveRedEye,
   ShoppingCart,
   ShoppingCartRounded,
 } from "@mui/icons-material";
-import { Checkbox, Container, Rating, Stack, Typography } from "@mui/material";
-import {
-  FaShoppingCart,
-  FaRegBookmark,
-  FaStar,
-  FaFireAlt,
-} from "react-icons/fa";
-
+import { Checkbox, Container, Rating, Stack } from "@mui/material";
 import "../../../css/home.css";
 import { useNavigate } from "react-router-dom";
+import { createSelector } from "@reduxjs/toolkit";
+import { retrieveAllProducts } from "./selector";
+import { useSelector } from "react-redux";
+import { Product } from "../../types/product";
+import { serverApi } from "../../lib/config";
+import { verifiedMemberdata } from "../../apiServices/verify";
+import { Definer } from "../../lib/Definer";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+  sweetTopSuccessAlert,
+} from "../../lib/sweetAlert";
+import assert from "assert";
+/** Redux Selector*/
+const setAllProductsRetriever = createSelector(
+  retrieveAllProducts,
+  (allProducts) => ({
+    allProducts,
+  })
+);
 
 const productData: any = [
   {
@@ -70,26 +85,32 @@ const productData: any = [
   },
 ];
 
-const ProductCard = () => {
+const ProductCard = (props: any) => {
+  /** Initialization */
+  const { allProducts } = useSelector(setAllProductsRetriever);
+  console.log("allProducts:::::", allProducts);
   const navigate = useNavigate();
 
-  const [count, setCount] = useState(0);
-  const chosenProductHandler = () => {
-    navigate("/products/:product_id");
-  };
-  const increment = () => {
-    setCount(count + 1);
-  };
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    nextArrow: <ArrowBack />,
-    prevArrow: <ArrowForward />,
-  };
+  /** Handlers */
+  const targetLikeProduct = async (e: any) => {
+    try {
+      assert.ok(verifiedMemberdata, Definer.auth_err1);
 
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: e.target.id,
+          group_type: "product",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      props.setProductRebuild(new Date());
+
+      await sweetTopSmallSuccessAlert("success", 700);
+    } catch (err: any) {
+      console.log("err: targetLikeProduct", err);
+      sweetErrorHandling(err).then();
+    }
+  };
   return (
     <Stack
       width={"100%"}
@@ -107,11 +128,18 @@ const ProductCard = () => {
         flexDirection={"row"}
         sx={{ flexWrap: "wrap" }}
       >
-        {productData.map((product: any) => {
+        {allProducts.map((product: Product) => {
+          const image_path = `${serverApi}/${product.product_images[0]}`;
+
           return (
-            <Stack className="productList" onClick={chosenProductHandler}>
+            <Stack
+              className="productList"
+              onClick={() => {
+                navigate(`/products/${product?._id}`);
+              }}
+            >
               <div
-                key={product.id}
+                key={product?._id}
                 className="productCard"
                 style={{
                   width: "250px",
@@ -121,6 +149,7 @@ const ProductCard = () => {
               >
                 <Stack
                   flexDirection={"row"}
+                  alignContent={"center"}
                   className="icon-container"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -134,54 +163,64 @@ const ProductCard = () => {
                     className={"productCard__wishlist"}
                     sx={{ width: "29px", height: "24px", bottom: "25px" }}
                   />
-                  <FavoriteBorder
-                    className="productCard__fastSelling"
-                    sx={{ width: "29px", height: "24px" }}
-                  />
-                  {/* <Checkbox
-                    className="productCard__fastSelling"
-                    // id={chosenProduct?._id}
-                    // onClick={targetLikeProduct}
+                  <Checkbox
+                    className={"productCard__cart"}
+                    onClick={targetLikeProduct}
                     icon={
                       <FavoriteBorder sx={{ width: "29px", height: "24px" }} />
                     }
+                    id={product._id}
                     checkedIcon={
                       <Favorite
-                        style={{ color: "red", width: "29px", height: "24px" }}
+                        style={{ width: "29px", height: "24px", color: "red" }}
                       />
                     }
-                    // checked={
-                    //   chosenProduct?.me_liked &&
-                    //   chosenProduct.me_liked[0]?.my_favorite
-                    //     ? true
-                    //     : false
-                    // }
-                    checked={false}
-                  /> */}
+                    checked={
+                      product?.me_liked && product?.me_liked[0]?.my_favorite
+                        ? true
+                        : false
+                    }
+                  />
                 </Stack>
                 <img
-                  src={product.image}
+                  src={image_path}
                   alt="product-img"
                   className="productImage"
                 ></img>
                 <div className="productCard__content">
-                  <h3 style={{ marginBottom: "30px" }} className="productName">
-                    {product.name}
-                  </h3>
+                  <h3 className="productName">{product?.product_name}</h3>
                   <Stack
                     width={"100%"}
                     flexDirection={"row"}
                     alignItems={"center"}
                     justifyContent={"space-between"}
                   >
-                    <h3 style={{ color: "red" }}>30% off</h3>
-                    <h2 style={{ textDecoration: "line-through" }}>$1799</h2>
+                    <h2 style={{ color: "red" }}>
+                      {product?.product_discount}%
+                    </h2>
+                    <h2>{product?.product_price}</h2>
                   </Stack>
                   <div className="displayStack__1">
-                    <div className="productPrice">${product.price}</div>
-                    <div className="productSales">
-                      {product.totalSales} units sold
+                    <div className="productPrice">
+                      ${product?.product_price}
                     </div>
+                    <Stack
+                      width={"30px"}
+                      flexDirection={"row"}
+                      alignItems={"center"}
+                      justifyContent={"space-between"}
+                    >
+                      <h2>{product?.product_views}</h2>
+
+                      <RemoveRedEye
+                        className="icon-container"
+                        style={{
+                          width: "19px",
+                          height: "19px",
+                          cursor: "pointer",
+                        }}
+                      />
+                    </Stack>
                   </div>
                   <div className="displayStack__2">
                     <div className="productRating">
@@ -191,9 +230,7 @@ const ProductCard = () => {
                         precision={0.5}
                       />
                     </div>
-                    <div className="productTime">
-                      {product.timeLeft} days left
-                    </div>
+                    <div className="productTime">29 days left</div>
                   </div>
                 </div>
               </div>
