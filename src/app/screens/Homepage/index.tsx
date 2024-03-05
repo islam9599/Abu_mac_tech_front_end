@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { HotDeal } from "./hotDeal";
-import { Container, Stack } from "@mui/material";
-import { NewArrivals } from "./newArrivals";
+import { Container } from "@mui/material";
 import { Advertisements } from "./advertisement";
 import FlashCard from "./flashDeals";
 import { Features } from "./features";

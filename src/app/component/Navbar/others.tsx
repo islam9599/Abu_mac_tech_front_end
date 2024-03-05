@@ -3,7 +3,6 @@ import { Box, Container, Stack } from "@mui/system";
 import { Typography } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../../../css/header.css";
-import Search from "@mui/icons-material/Search";
 import Marginer from "../marginer";
 import { Favorite, ShoppingCart } from "@mui/icons-material";
 import { FaUser } from "react-icons/fa";
@@ -31,7 +30,6 @@ export const OthersNavbarPage = (props: any) => {
         style={{
           width: "100%",
           height: "100px",
-          // backgroundImage: "url(/home/home-others.webp)",
           backgroundSize: "cover",
           zIndex: "999",
           display: "flex",

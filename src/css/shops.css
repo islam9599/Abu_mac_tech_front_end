@@ -157,6 +157,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .shop_page .all_products .bottom_box {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../css/App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Homepage } from "./screens/Homepage";
@@ -17,8 +17,6 @@ import { PhoneProducts } from "./screens/ShopsPage/phoneProducts";
 import { Accessories } from "./screens/ShopsPage/accessories";
 import { VisitOtherPage } from "./screens/MemberPage/visitOtherPage";
 import AuthentificationModal from "./auth";
-import { serverApi } from "./lib/config";
-import { Member } from "./types/user";
 import MemberApiService from "./apiServices/memberApiService";
 import {
   sweetFailureProvider,
@@ -48,12 +46,7 @@ function App() {
   const handleLoginClose = () => {
     setLoginOpen(false);
   };
-  const handleLogoutClick = (e: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(e.currentTarget);
-  };
-  const handleCloseLogout = (e: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(null);
-  };
+
   const handleLogoutRequest = async () => {
     try {
       const member = new MemberApiService();
@@ -67,7 +60,7 @@ function App() {
 
   return (
     <>
-      {location.pathname == "/" ? (
+      {location.pathname === "/" ? (
         <NavbarPage
           handleSignupOpen={handleSignupOpen}
           handleLoginOpen={handleLoginOpen}

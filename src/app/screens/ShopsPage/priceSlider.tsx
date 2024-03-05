@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Slider from "@mui/material/Slider";
 import { makeStyles } from "@mui/styles";
 import { Stack } from "@mui/material";
-import { SliderHome } from "../Homepage/slider";
-import { SliderThumb } from "@mui/material-next";
 
 const useStyles = makeStyles({
   root: {
@@ -13,7 +11,7 @@ const useStyles = makeStyles({
   thumb: {
     backgroundImage:
       "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJR_jwHT-9Lz9dqCmGDcW10lIwxSgplIPmYQ&usqp=CAU)",
-    backgroundSize: "contain",
+    backgroundSize: "cover",
     "&:hover, &$active": {
       boxShadow: "0px 0px 0px 8px rgba(82, 175, 119, 0.16)",
     },
@@ -32,7 +30,8 @@ const useStyles = makeStyles({
   },
 });
 
-const PriceRangeSlider = () => {
+const PriceRangeSlider = (props: any) => {
+  const { searchCollectionHandler } = props;
   const classes = useStyles();
   const [priceRange, setPriceRange] = useState([0, 5000]);
 

@@ -30,9 +30,7 @@ export function CommunityPage() {
       <div
         style={{
           display: "flex",
-          // flexDirection: "row",
-          // alignItems: "center",
-          // justifyContent: "space-between",
+
           width: "100%",
           height: "auto",
         }}
@@ -98,16 +96,7 @@ export function CommunityPage() {
                     </TabList>
                   </Box>
                 </Box>
-                <Stack
-                  flexDirection={"row"}
-                  className="tabpanel_wrapper"
-                  // style={{ width: "100%", height: "980px", marginTop: "15px" }}
-                >
-                  {/* <Marginer
-                    width="863"
-                    height="1"
-                    bg="rgba(228, 228, 228, 0.83)"
-                  /> */}
+                <Stack flexDirection={"row"} className="tabpanel_wrapper">
                   <Stack className="main_article">
                     <TabPanel value="1">
                       <TargetArticles targetBoArticles={[1, 2, 3, 4, 5, 6]} />

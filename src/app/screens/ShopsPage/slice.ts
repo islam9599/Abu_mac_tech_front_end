@@ -3,7 +3,7 @@ import { ShopPageState } from "../../types/screen";
 
 const initialState: ShopPageState = {
   allProducts: [],
-  randomBrands: [],
+  productsByBrand: [],
   chosenShop: null,
   targetProducts: [],
   chosenProduct: null,
@@ -16,8 +16,8 @@ const ShopPageSlice = createSlice({
     setAllProducts: (state, action) => {
       state.allProducts = action.payload;
     },
-    setRandomBrands: (state, action) => {
-      state.randomBrands = action.payload;
+    setProductsByBrand: (state, action) => {
+      state.productsByBrand = action.payload;
     },
     setChosenShop: (state, action) => {
       state.chosenShop = action.payload;
@@ -34,7 +34,7 @@ const ShopPageSlice = createSlice({
 
 export const {
   setAllProducts,
-  setRandomBrands,
+  setProductsByBrand,
   setChosenShop,
   setTargetProducts,
   setChosenProduct,

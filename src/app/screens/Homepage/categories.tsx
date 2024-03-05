@@ -1,20 +1,14 @@
 import { Container, Stack } from "@mui/material";
-import React, { useRef, useState } from "react";
-// Import Swiper React components
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-
-// import required modules
 import { Pagination, Navigation } from "swiper/modules";
+
 // Redux
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveTopBrands } from "./selector";
-import { Shop } from "../../types/user";
-import { verifiedMemberdata } from "../../apiServices/verify";
 import { useNavigate } from "react-router-dom";
 import { serverApi } from "../../lib/config";
 /** Redux Selector*/

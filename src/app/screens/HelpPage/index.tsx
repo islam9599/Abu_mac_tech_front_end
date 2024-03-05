@@ -129,8 +129,6 @@ export function HelpPage() {
           >
             <Box
               sx={{
-                // borderBottom: 1,
-                // borderColor: "divider",
                 bgcolor: "silver",
                 width: "90%",
                 margin: 5,

@@ -58,7 +58,7 @@ export const BestSelling = () => {
 
   const { setBestProducts } = actionDispatch(useDispatch());
   const { bestProducts } = useSelector(setBestProductsRetriever);
-  console.log("bestProducts::::::selector!!!", bestProducts);
+  // console.log("bestProducts::::::selector!!!", bestProducts);
   const [targetProductSearchObj, setTargetProductSearchObj] =
     useState<ProductSearchObj>({
       page: 1,

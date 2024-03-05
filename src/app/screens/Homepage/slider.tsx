@@ -11,12 +11,3 @@ export const SliderHome = () => {
     </Stack>
   );
 };
-
-// export default SliderHome;
-
-//  <section className="home">
-//    <div className="container d_flex">
-
-//      <SliderHome />
-//    </div>
-//  </section>;

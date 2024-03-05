@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect } from "react";
 import "../../../css/header.css";
 import { Box, Container, Stack } from "@mui/system";
-import { ListItemIcon, Menu, MenuItem, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import Search from "@mui/icons-material/Search";
 import Marginer from "../marginer";
-import { Favorite, Logout, ShoppingCart } from "@mui/icons-material";
+import { Favorite, ShoppingCart } from "@mui/icons-material";
 import { FaUser } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 import { verifiedMemberdata } from "../../apiServices/verify";
@@ -14,6 +14,7 @@ export const NavbarPage = (props: any) => {
   /** Initialization */
   const navigate = useNavigate();
   const { handleSignupOpen, handleLoginOpen } = props;
+  useEffect(() => {}, []);
 
   /** Handlers */
   const changeToProductsHandler = () => {
@@ -58,9 +59,7 @@ export const NavbarPage = (props: any) => {
                   200,
                   "Share us with your relatives && friends and get up to 20% off!",
 
-                  () => {
-                    console.log("Sequence completed");
-                  },
+                  () => {},
                 ]}
                 wrapper="p"
                 cursor={true}

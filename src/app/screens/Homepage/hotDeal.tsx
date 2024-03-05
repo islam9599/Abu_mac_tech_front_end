@@ -1,22 +1,15 @@
-import React, { useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useRef } from "react";
 import "../../../css/home.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
+
 import Typography from "@mui/material/Typography";
-// Import Swiper React components
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-// import required modules
 import { Container, Stack } from "@mui/system";
 import { Box } from "@mui/material";
-import { TypeAnimation } from "react-type-animation";
 
 const infoData = [
   {
@@ -130,17 +123,6 @@ export const HotDeal = () => {
                   >
                     Kuzatishda davom eting!
                   </Typography>
-
-                  {/* <img
-                    style={{
-                      width: "49%",
-                      height: "400px",
-                      boxShadow: "revert",
-                      borderRadius: "5px",
-                    }}
-                    src="https://9to5mac.com/wp-content/uploads/sites/6/2020/11/apple-november-event.jpeg?quality=82&strip=all&w=1424"
-                    alt=""
-                  /> */}
                 </Stack>
               </SwiperSlide>
             );
@@ -156,5 +138,3 @@ export const HotDeal = () => {
     </Container>
   );
 };
-
-// Import Swiper styles

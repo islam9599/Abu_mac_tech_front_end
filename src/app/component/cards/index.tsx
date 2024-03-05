@@ -51,9 +51,6 @@ export default function Card() {
     <div
       className="card"
       ref={cardRef}
-      //   style={{
-      //     transform: `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`,
-      //   }}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

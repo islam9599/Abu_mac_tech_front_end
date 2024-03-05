@@ -1,6 +1,6 @@
+import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import React from "react";
 import "../../../css/footer.css";
 import Marginer from "../marginer";
 import {

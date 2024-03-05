@@ -64,28 +64,10 @@ export const ShopsPage = (props: any) => {
                   borderRadius: "10px",
                 }}
               ></img>
-              {/* <Typography
-                style={{
-                  fontFamily: "monospace",
-                  fontWeight: "bold",
-                  fontSize: "25px",
-                }}
-              >
-                Abu_Mac_Tech
-              </Typography> */}
+
               <Box width={"150px"}>
                 <TypeAnimation
-                  sequence={[
-                    // Deletes 'One' and types 'Two'
-                    100, // Waits 2s
-                    "Abu", // Types 'Three' without deleting 'Two'
-                    100,
-                    "Abu_Mac_Tech",
-
-                    () => {
-                      console.log("Sequence completed");
-                    },
-                  ]}
+                  sequence={[100, "Abu", 100, "Abu_Mac_Tech", () => {}]}
                   wrapper="p"
                   cursor={true}
                   repeat={Infinity}
@@ -263,32 +245,6 @@ export const ShopsPage = (props: any) => {
                 color: "#fff",
               }}
             >
-              {/* <select
-                  style={{
-                    width: "auto",
-                    height: "99%",
-                    border: "none",
-                    background: "none",
-                    margin: "10px",
-                    outline: "none",
-                  }}
-                  name=""
-                  id=""
-                  
-                >
-                  <option value="all">All Categories</option>
-                  <option value="laptops">Laptops</option>
-                  <option value="phones">
-                    <a>Cell-phones</a>
-                  </option>
-                  <option value="etc">Headsets</option>
-                </select> */}
-              {/* <Marginer
-                  direction="vertical"
-                  width="1"
-                  height="30"
-                  bg="#129cb8"
-                /> */}
               <input
                 type="text"
                 placeholder="Search product here"

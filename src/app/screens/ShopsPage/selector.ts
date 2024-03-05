@@ -7,9 +7,9 @@ export const retrieveAllProducts = createSelector(
   selectShopPage,
   (ShopsPage) => ShopsPage.allProducts
 );
-export const retrieveRandomRestaurants = createSelector(
+export const retrieveProductsByBrand = createSelector(
   selectShopPage,
-  (shopsPage) => shopsPage.randomBrands
+  (shopsPage) => shopsPage.productsByBrand
 );
 export const retrieveChosenShop = createSelector(
   selectShopPage,

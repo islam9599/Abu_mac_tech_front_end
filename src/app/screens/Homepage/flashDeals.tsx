@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import moment, { Moment } from "moment";
 import {
-  ArrowBack,
-  ArrowForward,
   BookmarkBorder,
   Favorite,
   FavoriteBorder,
@@ -28,12 +24,10 @@ import {
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setSaleProducts } from "./slice";
-import { Shop } from "../../types/user";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveSaleProducts } from "./selector";
 import { verifiedMemberdata } from "../../apiServices/verify";
-import { useNavigate } from "react-router-dom";
 import { serverApi } from "../../lib/config";
 
 /** Redux Slice */

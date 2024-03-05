@@ -20,7 +20,7 @@ export interface HomePageState {
 
 export interface ShopPageState {
   allProducts: Product[];
-  randomBrands: Shop[];
+  productsByBrand: Shop[];
   chosenShop: Shop | null;
   targetProducts: Product[];
   chosenProduct: Product | null;

@@ -9,7 +9,7 @@ import PriceRangeSlider from "./priceSlider";
 
 export default function FilterShop(props: any) {
   /** Initialization */
-  const { searchCollectionHandler } = props;
+  const { searchCollectionHandler, searchProductBybrandHandler } = props;
   return (
     <Stack>
       <FormControl
@@ -72,12 +72,18 @@ export default function FilterShop(props: any) {
           defaultValue="All"
           name="radio-buttons-group"
         >
-          <FormControlLabel value="All" control={<Radio />} label="All" />
-          <FormControlLabel value="Apple" control={<Radio />} label="Apple" />
           <FormControlLabel
-            value="Samsung"
+            value="apple"
+            control={<Radio />}
+            label="Apple"
+            onClick={() => searchProductBybrandHandler("apple")}
+          />
+
+          <FormControlLabel
+            value="samsung"
             control={<Radio />}
             label="Samsung"
+            onClick={() => searchProductBybrandHandler("samsung")}
           />
           <FormControlLabel value="Hp" control={<Radio />} label="Hp" />
           <FormControlLabel
@@ -89,7 +95,7 @@ export default function FilterShop(props: any) {
         </RadioGroup>
       </FormControl>
       <Stack sx={{ m: 5 }}>
-        <PriceRangeSlider />
+        <PriceRangeSlider searchCollectionHandler={searchCollectionHandler} />
       </Stack>
     </Stack>
   );
