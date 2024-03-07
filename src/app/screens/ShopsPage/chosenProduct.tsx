@@ -35,11 +35,7 @@ import { useDispatch } from "react-redux";
 import { Dispatch, original } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import {
-  retrieveAllProducts,
-  retrieveChosenProduct,
-  retrieveProductsByBrand,
-} from "./selector";
+import { retrieveChosenProduct, retrieveProductsByBrand } from "./selector";
 import { verifiedMemberdata } from "../../apiServices/verify";
 
 import { ProductSearchObj } from "../../types/other";
@@ -48,6 +44,12 @@ import { Product } from "../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
 import { useEffect, useState } from "react";
 import { serverApi } from "../../lib/config";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../lib/sweetAlert";
+import { Definer } from "../../lib/Definer";
 
 /** Redux Slice */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -114,6 +116,28 @@ export const ChosenProduct = () => {
   useEffect(() => {
     chosenProductRelatedProcess().then();
   }, [productRebuild]);
+
+  /** Handlers */
+
+  const targetLikeProduct = async (e: any) => {
+    try {
+      assert.ok(verifiedMemberdata, Definer.auth_err1);
+
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: e.target.id,
+          group_type: "product",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      setProductRebuild(new Date());
+
+      await sweetTopSmallSuccessAlert("success", 700, false);
+    } catch (err: any) {
+      console.log("err: targetLikeProduct", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <div className="chosen_product">
@@ -276,15 +300,27 @@ export const ChosenProduct = () => {
 
           <Stack mt={10} className="chosen_product_info_container">
             <Box className="chosen_product_wrapper">
-              <Stack flexDirection={"row"} alignItems={"center"}>
+              <Stack
+                flexDirection={"row"}
+                alignItems={"center"}
+                justifyContent={"space-between"}
+              >
                 <strong className="product_name">
                   {chosenProduct?.product_name}{" "}
                 </strong>{" "}
                 <Checkbox
                   // {...label}
-                  // id={chosenProduct?._id}
-                  // onClick={targetLikeProduct}
-                  icon={<FavoriteBorder />}
+                  id={chosenProduct?._id}
+                  onClick={targetLikeProduct}
+                  icon={
+                    <FavoriteBorder
+                      style={{
+                        color: "#000",
+                        width: "29px",
+                        height: "29px",
+                      }}
+                    />
+                  }
                   checkedIcon={
                     <Favorite
                       style={{
@@ -313,10 +349,14 @@ export const ChosenProduct = () => {
                   precision={0.5}
                 />
                 <div className="evaluation_box">
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <RemoveRedEye style={{ marginRight: "10px" }} />
-                    <span>{chosenProduct?.product_views}</span>
-                  </div>
+                  <span>{chosenProduct?.product_views}</span>
+                  <RemoveRedEye
+                    style={{
+                      width: "19px",
+                      height: "19px",
+                      marginLeft: "10px",
+                    }}
+                  />
                 </div>
               </Box>
               <Stack flexDirection={"column"} margin={"10px 0px"}>
@@ -332,7 +372,7 @@ export const ChosenProduct = () => {
                 : "No description!!!"} */}
                   {chosenProduct?.product_storage
                     ? chosenProduct?.product_storage + "Gb SSD"
-                    : "No sorage info avalaible"}
+                    : "No storage information avalaible"}
                 </p>
               </Stack>
 

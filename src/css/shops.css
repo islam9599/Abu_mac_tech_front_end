@@ -363,18 +363,22 @@ body {
 }
 
 .shop_page .chosen_product .chosen_product_wrapper .evaluation_box {
+  width: 40px;
+
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
-
+.shop_page .chosen_product .chosen_product_wrapper .evaluation_box span {
+  font-size: 15px;
+}
 .shop_page .chosen_product .chosen_product_wrapper .product_desc_info {
   width: 100%;
   height: auto;
   color: #000;
   font-family: "Poppins";
-  font-size: 15px;
+  font-size: 20px;
   font-style: 15px;
   line-height: normal;
 }
@@ -391,7 +395,7 @@ body {
   color: #000;
 
   font-family: "Poppins";
-  font-size: 15px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
