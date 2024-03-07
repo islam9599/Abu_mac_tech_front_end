@@ -55,7 +55,7 @@ const PriceRangeSlider = (props: any) => {
         onChange={handleChange}
         valueLabelDisplay="auto"
         min={0}
-        max={5000}
+        max={100}
         step={50}
       />
       <Stack

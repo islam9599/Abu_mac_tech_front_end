@@ -26,6 +26,21 @@ class ProductApiService {
       throw err;
     }
   }
+  async getProductsBySearchText(): Promise<Product[]> {
+    try {
+      const url = "/products/sale?page=1&limit=4",
+        result = await axios.get(this.path + url, {
+          withCredentials: true,
+        });
+      assert.ok(result, Definer.general_err1);
+      console.log("state:", result.data.state);
+      const saleProducts: Product[] = result.data.data;
+      return saleProducts;
+    } catch (err: any) {
+      console.log(`error:: getProductsBySearchText ${err.message}`);
+      throw err;
+    }
+  }
   async getTargetProducts(data: ProductSearchObj): Promise<Product[]> {
     try {
       const url = "/products",
@@ -53,6 +68,21 @@ class ProductApiService {
       return products;
     } catch (err: any) {
       console.log(`error:: getProductsByBrand ${err.message}`);
+      throw err;
+    }
+  }
+  async getChosenProduct(product_id: any): Promise<Product> {
+    try {
+      const url = `/products/${product_id}`,
+        result = await axios.get(this.path + url, {
+          withCredentials: true,
+        });
+      assert.ok(result, Definer.general_err1);
+      console.log("state:", result.data.state);
+      const product: Product = result.data.data;
+      return product;
+    } catch (err: any) {
+      console.log(`error:: getChosenProduct ${err.message}`);
       throw err;
     }
   }

@@ -13,6 +13,9 @@ export interface Product {
   product_left_cnt: number;
   product_size: string;
   product_collection: string;
+  product_brand: string;
+  product_storage: string;
+  product_memory: string;
   product_volume: number;
   product_description: string;
   product_images: string[];

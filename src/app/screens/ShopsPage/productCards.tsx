@@ -108,15 +108,16 @@ const ProductCard = (props: any) => {
                     sx={{ width: "29px", height: "24px", bottom: "25px" }}
                   />
                   <Stack position={"relative"}>
-                    <h2
+                    <p
                       style={{
                         position: "absolute",
-                        bottom: "12px",
+                        bottom: "15px",
                         left: "30px",
+                        fontSize: "12px",
                       }}
                     >
                       {product?.product_likes}
-                    </h2>
+                    </p>
                     <Checkbox
                       className={"productCard__cart"}
                       onClick={targetLikeProduct}

@@ -224,61 +224,6 @@ export const ShopsPage = (props: any) => {
           </Stack>
         </Container>
       </div>
-      <div style={{ width: "100%", height: "110px" }}>
-        <Container>
-          <Stack
-            flexDirection={"row"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            m={"50px"}
-          >
-            <form
-              action=""
-              style={{
-                width: "530px",
-                height: "45px",
-                border: "1px solid #129cb8",
-                borderRadius: "9px",
-                display: "flex",
-                alignItems: "center",
-                background: "none",
-                color: "#fff",
-              }}
-            >
-              <input
-                type="text"
-                placeholder="Search product here"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  margin: "5px",
-                  background: "none",
-                  border: "none",
-                  outline: "none",
-                }}
-              />
-              <Box
-                width={"auto"}
-                height={"100%"}
-                sx={{ bgcolor: "#129cb8", borderRadius: "0 9px 9px 0" }}
-                alignItems={"center"}
-                justifyContent={"center"}
-              >
-                <Search
-                  sx={{
-                    width: "100%",
-                    height: "99%",
-                    color: "#fff",
-                    padding: "5px",
-                    cursor: "pointer",
-                  }}
-                />
-              </Box>
-            </form>
-          </Stack>
-          <Marginer direction="horizontal" width="100%" height="1" bg="#999" />
-        </Container>
-      </div>
     </div>
   );
 };

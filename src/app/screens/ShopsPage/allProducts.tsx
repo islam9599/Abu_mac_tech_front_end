@@ -4,7 +4,7 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { Cancel, Home } from "@mui/icons-material";
+import { Cancel, Home, Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "./productCards";
 import Marginer from "../../component/marginer";
@@ -46,11 +46,9 @@ const setProductsByBrandRetriever = createSelector(
 export function AllProducts() {
   /** Initialization */
   const { setAllProducts, setProductsByBrand } = actionDispatch(useDispatch());
-  const { productsByBrand } = useSelector(setProductsByBrandRetriever);
+
   // console.log("productsByBrand::", productsByBrand);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
-
-  const [state, setState] = useState({ values: [40] });
   const navigate = useNavigate();
   const [targetProductSearchObj, setTargetProductSearchObj] =
     useState<ProductSearchObj>({
@@ -68,33 +66,24 @@ export function AllProducts() {
         setAllProducts(data);
       })
       .catch((err) => console.log(err));
-    // productService
-    //   .getProductsByBrand(targetProductSearchObj)
-    //   .then((data) => {
-    //     setAllProducts(data);
-    //   })
-    //   .catch((err) => console.log(err));
   }, [targetProductSearchObj, productRebuild]);
 
   /** Handlers */
-  const searchCollectionHandler = (order: string) => {
+  const searchAllPorducts = (order: string) => {
     targetProductSearchObj.order = order;
     setTargetProductSearchObj({ ...targetProductSearchObj });
   };
-  const searchProductBybrandHandler = (brand: string) => {
+  const searchProductBybrandHandler = (order: string, brand: string) => {
+    targetProductSearchObj.order = order;
     targetProductSearchObj.product_brand = brand;
     setTargetProductSearchObj({ ...targetProductSearchObj });
   };
-  const searchBrandHandler = (order: string) => {
+  const searchByCollection = (order: string, collection: string) => {
     targetProductSearchObj.order = order;
+    targetProductSearchObj.product_collection = collection;
     setTargetProductSearchObj({ ...targetProductSearchObj });
   };
-  const changePhones = () => {
-    navigate("/products/phones");
-  };
-  const changeLaptops = () => {
-    navigate("/products/laptops");
-  };
+
   const handlePaginationChange = (event: any, value: number) => {
     targetProductSearchObj.page = value;
     setTargetProductSearchObj({ ...targetProductSearchObj });
@@ -103,6 +92,59 @@ export function AllProducts() {
   return (
     <div className="all_products">
       <Container>
+        <Container>
+          <Stack
+            flexDirection={"row"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            m={"50px"}
+          >
+            <form
+              action=""
+              style={{
+                width: "530px",
+                height: "45px",
+                border: "1px solid #129cb8",
+                borderRadius: "9px",
+                display: "flex",
+                alignItems: "center",
+                background: "none",
+                color: "#fff",
+              }}
+            >
+              <input
+                type="text"
+                placeholder="Search product here"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  margin: "5px",
+                  background: "none",
+                  border: "none",
+                  outline: "none",
+                }}
+              />
+              <Box
+                width={"auto"}
+                height={"100%"}
+                sx={{ bgcolor: "#129cb8", borderRadius: "0 9px 9px 0" }}
+                alignItems={"center"}
+                justifyContent={"center"}
+              >
+                <Search
+                  sx={{
+                    width: "100%",
+                    height: "99%",
+                    color: "#fff",
+                    padding: "5px",
+                    cursor: "pointer",
+                  }}
+                />
+              </Box>
+            </form>
+          </Stack>
+          <Marginer direction="horizontal" width="100%" height="1" bg="#999" />
+        </Container>
         <Stack flexDirection={"column"}>
           <Stack flexDirection={"row"} alignItems={"center"}>
             <Home
@@ -134,10 +176,18 @@ export function AllProducts() {
           </Stack>
           <Box className={"fit_search_box"} justifyContent={"center"}>
             <Box className={"fit_box"}>
-              <a>All Products</a>
-              <a>Laptop</a>
-              <a>Phones</a>
-              <a>Etc</a>
+              <a onClick={() => searchAllPorducts("all")}>All Products</a>
+              <a onClick={() => searchByCollection("collection", "laptop")}>
+                Laptop
+              </a>
+              <a onClick={() => searchByCollection("collection", "phone")}>
+                Phones
+              </a>
+              <a
+                onClick={() => searchByCollection("collection", "accessories")}
+              >
+                Etc
+              </a>
             </Box>
           </Box>
           <Stack className={"all_products_box"}>
@@ -153,8 +203,9 @@ export function AllProducts() {
               justifyContent={"center"}
             >
               <FilterShop
-                searchCollectionHandler={searchCollectionHandler}
-                searchBrandHandler={searchBrandHandler}
+                searchAllPorducts={searchAllPorducts}
+                searchBrandHandler={searchByCollection}
+                searchByCollection={searchByCollection}
                 searchProductBybrandHandler={searchProductBybrandHandler}
               />
             </Stack>
