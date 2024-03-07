@@ -9,6 +9,9 @@ import { Favorite, ShoppingCart } from "@mui/icons-material";
 import { FaUser } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 import { verifiedMemberdata } from "../../apiServices/verify";
+import { Basket } from "./basket";
+import { sweetFailureProvider } from "../../lib/sweetAlert";
+import { AuthUser } from "./authUser";
 
 export const NavbarPage = (props: any) => {
   /** Initialization */
@@ -272,36 +275,23 @@ export const NavbarPage = (props: any) => {
               justifyContent={"space-between"}
               alignItems={"center"}
             >
-              <FaUser
-                onClick={() => {
-                  navigate("/member-page");
-                }}
-                className="nav-icon"
-                style={{
-                  width: "29px",
-                  height: "29px",
-                  cursor: "pointer",
-                  opacity: "0.7",
-                }}
-              />
+              <AuthUser handleLogoutRequest={props.handleLogoutRequest} />
+
               <Favorite
+                onClick={() => {
+                  !verifiedMemberdata
+                    ? sweetFailureProvider("Please login first, kindly!")
+                    : navigate("/member-page");
+                }}
                 className="nav-icon"
                 sx={{
-                  width: "29px",
-                  height: "29px",
+                  width: "25px",
+                  height: "25px",
                   cursor: "pointer",
                   opacity: "0.7",
                 }}
               />
-              <ShoppingCart
-                className="nav-icon"
-                sx={{
-                  width: "29px",
-                  height: "29px",
-                  cursor: "pointer",
-                  opacity: "0.7",
-                }}
-              />
+              <Basket />
             </Stack>
           </Stack>
           <Marginer direction="horizontal" width="100%" height="2" bg="#999" />

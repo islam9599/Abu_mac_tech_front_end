@@ -9,6 +9,8 @@ import { Favorite, ShoppingCart } from "@mui/icons-material";
 import { FaUser } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 import { verifiedMemberdata } from "../../apiServices/verify";
+import { Basket } from "./basket";
+import { AuthUser } from "./authUser";
 
 export const ShopsPage = (props: any) => {
   /** Initialization */
@@ -179,33 +181,8 @@ export const ShopsPage = (props: any) => {
                   alignItems={"center"}
                   justifyContent={"space-between"}
                 >
-                  <FaUser
-                    onClick={() => {
-                      navigate("/member-page");
-                    }}
-                    className="nav-icon"
-                    style={{
-                      width: "19px",
-                      height: "19px",
-                      cursor: "pointer",
-                    }}
-                  />
-                  <Favorite
-                    className="nav-icon"
-                    sx={{
-                      width: "19px",
-                      height: "19px",
-                      cursor: "pointer",
-                    }}
-                  />
-                  <ShoppingCart
-                    className="nav-icon"
-                    sx={{
-                      width: "19px",
-                      height: "19px",
-                      cursor: "pointer",
-                    }}
-                  />
+                  <AuthUser handleLogoutRequest={props.handleLogoutRequest} />
+                  <Basket />
                 </Stack>
               )}
               {verifiedMemberdata ? (
