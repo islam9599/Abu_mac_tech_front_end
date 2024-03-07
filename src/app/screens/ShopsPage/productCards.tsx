@@ -100,6 +100,10 @@ const ProductCard = (props: any) => {
                   }}
                 >
                   <ShoppingCartRounded
+                    onClick={(e) => {
+                      props.onAdd(product);
+                      e.stopPropagation();
+                    }}
                     className={"productCard__cart"}
                     sx={{ width: "29px", height: "24px" }}
                   />

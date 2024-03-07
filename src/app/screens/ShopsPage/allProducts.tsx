@@ -43,7 +43,7 @@ const setProductsByBrandRetriever = createSelector(
   })
 );
 
-export function AllProducts() {
+export function AllProducts(props: any) {
   /** Initialization */
   const { setAllProducts, setProductsByBrand } = actionDispatch(useDispatch());
 
@@ -215,7 +215,10 @@ export function AllProducts() {
               flexDirection={"row"}
               sx={{ flexWrap: "wrap" }}
             >
-              <ProductCard setProductRebuild={setProductRebuild} />
+              <ProductCard
+                setProductRebuild={setProductRebuild}
+                onAdd={props.onAdd}
+              />
               <Stack className="bottom_box">
                 <img
                   className="line_img_left"

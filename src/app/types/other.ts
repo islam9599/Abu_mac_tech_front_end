@@ -19,3 +19,11 @@ export interface BrandSearchObj {
   shop_mb_id?: string;
   product_collection?: string;
 }
+
+export interface CartItem {
+  _id: string;
+  quantity: number;
+  name: string;
+  price: number;
+  image: string;
+}

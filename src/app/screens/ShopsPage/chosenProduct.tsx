@@ -69,7 +69,7 @@ const setProductsByBrandRetriever = createSelector(
   })
 );
 
-export const ChosenProduct = () => {
+export const ChosenProduct = (props: any) => {
   /** Initialization */
   const { setChosenProduct } = actionDispatch(useDispatch());
 
@@ -383,17 +383,17 @@ export const ChosenProduct = () => {
                 bg="#000"
               />
               <div className="dish_price_box">
-                <span>Narxi</span>
+                <span>Price</span>
                 <span>${chosenProduct?.product_price}</span>
               </div>
               <div className="btn_box">
                 <Button
                   variant="contained"
-                  // onClick={(e) => {
-                  //   props.onAdd(chosenProduct);
-                  // }}
+                  onClick={(e) => {
+                    props.onAdd(chosenProduct);
+                  }}
                 >
-                  Savatga qo’shish
+                  Add to cart
                 </Button>
               </div>
             </Box>

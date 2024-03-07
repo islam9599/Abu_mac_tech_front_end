@@ -182,7 +182,14 @@ export const ShopsPage = (props: any) => {
                   justifyContent={"space-between"}
                 >
                   <AuthUser handleLogoutRequest={props.handleLogoutRequest} />
-                  <Basket />
+                  <Basket
+                    cartItems={props.cartItems}
+                    onAdd={props.onAdd}
+                    onRemove={props.onRemove}
+                    onDelete={props.onDelete}
+                    onDeleteAll={props.onDeleteAll}
+                    setOrderRebuild={props.setOrderRebuild}
+                  />
                 </Stack>
               )}
               {verifiedMemberdata ? (

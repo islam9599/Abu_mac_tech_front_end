@@ -291,7 +291,14 @@ export const NavbarPage = (props: any) => {
                   opacity: "0.7",
                 }}
               />
-              <Basket />
+              <Basket
+                cartItems={props.cartItems}
+                onAdd={props.onAdd}
+                onRemove={props.onRemove}
+                onDelete={props.onDelete}
+                onDeleteAll={props.onDeleteAll}
+                setOrderRebuild={props.setOrderRebuild}
+              />
             </Stack>
           </Stack>
           <Marginer direction="horizontal" width="100%" height="2" bg="#999" />
