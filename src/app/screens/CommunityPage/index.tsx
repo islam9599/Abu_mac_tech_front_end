@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import "../../../css/community.css";
 import Tab from "@mui/material/Tab";
@@ -13,15 +13,74 @@ import { TargetArticles } from "./targetArticles";
 import Marginer from "../../component/marginer";
 import { Cancel, Home } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveTargetboArticles } from "./selector";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setTargetboArticles } from "./slice";
+import { BoArticle, SearchArticleObj } from "../../types/boArticle";
+import CommunityApiService from "../../apiServices/communityApiService";
+
+/** Redux Slice */
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTargetboArticles: (data: BoArticle[]) =>
+    dispatch(setTargetboArticles(data)),
+});
+
+/** Redux Selector*/
+const targetboArticlesRetriever = createSelector(
+  retrieveTargetboArticles,
+  (targetboArticles) => ({
+    targetboArticles,
+  })
+);
 
 const targetBoArticles = [1, 2, 3, 4, 5];
 
 export function CommunityPage() {
-  const navigate = useNavigate();
+  /** Initializations */
+  const { setTargetboArticles } = actionDispatch(useDispatch());
+  const { targetboArticles } = useSelector(targetboArticlesRetriever);
   const [value, setValue] = useState("1");
+  const [searchArticlesObj, setSearchArticleObj] = useState<SearchArticleObj>({
+    bo_id: "all",
+    page: 1,
+    limit: 5,
+  });
+  const [articleRebiild, setArticleRebuild] = useState<Date>(new Date());
+
+  useEffect(() => {
+    const communityService = new CommunityApiService();
+    communityService
+      .getTargetArticle(searchArticlesObj)
+      .then((data) => setTargetboArticles(data))
+      .catch((err) => console.log(err));
+  }, [searchArticlesObj, articleRebiild]);
+
+  /** Handlers */
   const handleChange = (event: any, newValue: string) => {
+    searchArticlesObj.page = 1;
+    switch (newValue) {
+      case "1":
+        searchArticlesObj.bo_id = "all";
+        break;
+      case "2":
+        searchArticlesObj.bo_id = "celebrity";
+        break;
+      case "3":
+        searchArticlesObj.bo_id = "evaluation";
+        break;
+    }
+    setSearchArticleObj({ ...searchArticlesObj });
     setValue(newValue);
   };
+  const handlePaginationChange = (event: any, value: number) => {
+    searchArticlesObj.page = value;
+    setSearchArticleObj({ ...searchArticlesObj });
+  };
+  const navigate = useNavigate();
   const navigateToHomeHandler = () => {
     navigate("/");
   };
@@ -99,24 +158,34 @@ export function CommunityPage() {
                 <Stack flexDirection={"row"} className="tabpanel_wrapper">
                   <Stack className="main_article">
                     <TabPanel value="1">
-                      <TargetArticles targetBoArticles={[1, 2, 3, 4, 5, 6]} />
+                      <TargetArticles
+                        targetBoArticles={targetboArticles}
+                        setArticleRebuild={setArticleRebuild}
+                      />
                     </TabPanel>
                     <TabPanel value="2">
-                      <TargetArticles targetBoArticles={[1, 2, 3, 4, 5]} />
+                      <TargetArticles
+                        targetBoArticles={targetboArticles}
+                        setArticleRebuild={setArticleRebuild}
+                      />
                     </TabPanel>
                     <TabPanel value="3">
-                      <TargetArticles targetBoArticles={[1, 2]} />
-                    </TabPanel>
-                    <TabPanel value="4">
-                      <TargetArticles targetBoArticles={[1, 2]} />
+                      <TargetArticles
+                        targetBoArticles={targetboArticles}
+                        setArticleRebuild={setArticleRebuild}
+                      />
                     </TabPanel>
                   </Stack>
                 </Stack>
                 {/* <Marginer width="863" height="1" bg="#007655" /> */}
                 <Stack className="aricle_pagination" spacing={4}>
                   <Pagination
-                    count={3}
-                    page={1}
+                    count={
+                      searchArticlesObj.page >= 3
+                        ? searchArticlesObj.page + 1
+                        : 3
+                    }
+                    page={searchArticlesObj.page}
                     renderItem={(item) => (
                       <PaginationItem
                         components={{
@@ -127,6 +196,7 @@ export function CommunityPage() {
                         color="secondary"
                       />
                     )}
+                    onChange={handlePaginationChange}
                   />
                 </Stack>
               </TabContext>

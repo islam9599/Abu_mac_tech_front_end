@@ -1,3 +1,4 @@
+import { BoArticle } from "./boArticle";
 import { Order } from "./order";
 import { Product } from "./product";
 import { Member, Shop } from "./user";
@@ -7,6 +8,7 @@ export interface AppRootState {
   homePage: HomePageState;
   shopsPage: ShopPageState;
   ordersPage: OrdersPageState;
+  communityPage: CommunityPageState;
 }
 
 /** Homepage */
@@ -33,4 +35,9 @@ export interface OrdersPageState {
   pausedOrders: Order[];
   processOrders: Order[];
   finishedOrders: Order[];
+}
+
+/** Community */
+export interface CommunityPageState {
+  targetboArticles: BoArticle[];
 }

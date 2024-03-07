@@ -18,7 +18,7 @@
 
 .community_page .tab_main_wrapper {
   position: relative;
-  width: 90%;
+  width: 100%;
   height: auto;
   border-radius: 34px;
   margin-top: 50px;
@@ -46,13 +46,13 @@
 }
 
 .community_page .target_articles_container {
-  width: 280px;
-  height: 450px;
+  width: 400px;
+  max-height: 700px;
   margin: 15px;
   display: flex;
   flex-direction: column;
   border-radius: 30px;
-  background: #129cb8;
+  background: #f1f1f2;
   margin-bottom: 15px;
   text-decoration: none;
   cursor: pointer;
@@ -82,11 +82,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 98%;
+  height: 100px;
 }
 
 .community_page .target_articles_container .author_info img {
-  border-radius: 35px;
-  background: lightgray 50% / cover no-repeat;
+  border-radius: 19px;
+  object-fit: contain;
   margin-right: 10px;
 }
 
@@ -94,24 +96,25 @@
   margin-left: 10px;
   color: #000;
   font-family: "Poppins";
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 26px; /* 162.5% */
 }
 
 .community_page .target_articles_container .article_desc {
-  width: 200px;
+  width: ;
   height: 30px;
   margin-top: 15px;
 }
 .community_page .target_articles_container .article_desc span {
-  color: #f1f1f2;
+  color: #000;
   font-family: "Poppins";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  overflow: hidden;
 }
 
 .community_page .target_articles_container .article_date {
