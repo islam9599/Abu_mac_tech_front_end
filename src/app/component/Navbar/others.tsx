@@ -203,24 +203,23 @@ export const OthersNavbarPage = (props: any) => {
                 </Box>
               ) : (
                 <Stack
-                  width={"100px"}
+                  width={"40px"}
                   height={"auto"}
                   flexDirection={"row"}
                   alignItems={"center"}
                   justifyContent={"space-between"}
                 >
                   <AuthUser handleLogoutRequest={props.handleLogoutRequest} />
-
-                  <Basket
-                    cartItems={props.cartItems}
-                    onAdd={props.onAdd}
-                    onRemove={props.onRemove}
-                    onDelete={props.onDelete}
-                    onDeleteAll={props.onDeleteAll}
-                    setOrderRebuild={props.setOrderRebuild}
-                  />
                 </Stack>
               )}
+              <Basket
+                cartItems={props.cartItems}
+                onAdd={props.onAdd}
+                onRemove={props.onRemove}
+                onDelete={props.onDelete}
+                onDeleteAll={props.onDeleteAll}
+                setOrderRebuild={props.setOrderRebuild}
+              />
               {verifiedMemberdata ? (
                 <Box className="hover-line" sx={{ mr: 2 }}>
                   <Typography

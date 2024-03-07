@@ -2,18 +2,39 @@ import React, { useState } from "react";
 import { Box, Button, Container, Stack } from "@mui/material";
 import { TabPanel } from "@mui/lab";
 import Marginer from "../../component/marginer";
+/** Redux */
+import { createSelector } from "reselect";
+import { retrieveFinishedOrders } from "./selector";
+import { useSelector } from "react-redux";
+
+import { Product } from "../../types/product";
+import { Order } from "../../types/order";
+import { serverApi } from "../../lib/config";
+
+/** Redux Selector*/
+const finishedOrdersRetriever = createSelector(
+  retrieveFinishedOrders,
+  (finishedOrders) => ({
+    finishedOrders,
+  })
+);
 
 const pausedOrders = [[1, 2, 3]];
-export function FinishedOrders() {
+export function FinishedOrders(props: any) {
+  /** Initialization */
+  const { finishedOrders } = useSelector(finishedOrdersRetriever);
   return (
     <div>
       <TabPanel value={"3"}>
-        {pausedOrders?.map((order) => {
-          const img_path = `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsZFIY4ateUIKs0TkdkztSDa8rYMdUJqL0Yg&usqp=CAU`;
+        {finishedOrders?.map((order: Order) => {
           return (
             <Box className="order_main_box">
               <Box className="order_box_scroll">
-                {order.map((item) => {
+                {order.order_items.map((item) => {
+                  const product: Product = order.product_data.filter(
+                    (ele) => ele._id === item.product_id
+                  )[0];
+                  const img_path = `${serverApi}/${product?.product_images[0]}`;
                   return (
                     <Stack>
                       <Box className="order_name_price">
@@ -28,13 +49,15 @@ export function FinishedOrders() {
                           }}
                           alt=""
                         />
-                        <p className="title_dish">Apple Watch 5</p>
+                        <p className="title_dish">{product.product_name}</p>
                         <Box className="price_box">
-                          <p>$399</p>
+                          <p>${item.item_price}</p>
                           <img src="/icons/close.svg" alt="" />
-                          <p>2</p>
+                          <p>{item.item_quantity}</p>
                           <img src="/icons/equal.svg" alt="" />
-                          <p style={{ marginLeft: "15px" }}>$20</p>
+                          <p style={{ marginLeft: "15px" }}>
+                            ${item.item_price * item.item_quantity}
+                          </p>
                         </Box>
                       </Box>
                       <Marginer width="100%" height="0.5" bg="#000" />
@@ -49,13 +72,13 @@ export function FinishedOrders() {
               >
                 <Box className="box_total">
                   <p>Product Price</p>
-                  <p>$60</p>
+                  <p>${order.order_total_amount - order.order_delivery_cost}</p>
                   <img src="/icons/plus.svg" alt="" />
                   <p>Delivery Cost</p>
-                  <p>$15</p>
+                  <p>${order.order_delivery_cost}</p>
                   <p>Total</p>
                   <img src="/icons/equal.svg" alt="" />
-                  <p>$75</p>
+                  <p>${order.order_total_amount}</p>
                 </Box>
               </Stack>
             </Box>

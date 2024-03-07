@@ -173,7 +173,15 @@ function App() {
           <Route path="laptops" element={<PhoneProducts />} />
           <Route path="accessories" element={<Accessories />} />
         </Route>
-        <Route path="/orders" element={<OrdersPage />} />
+        <Route
+          path="/orders"
+          element={
+            <OrdersPage
+              orderRebuild={orderRebuild}
+              setOrderRebuild={setOrderRebuild}
+            />
+          }
+        />
         <Route path="/community" element={<CommunityPage />} />
         <Route path="/member-page" element={<MemberPage />}>
           <Route path="other" element={<VisitOtherPage />} />

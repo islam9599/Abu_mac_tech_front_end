@@ -38,8 +38,9 @@
 
 .order_page .order_main_content {
   width: 80%;
-  height: auto;
+  max-height: 700px;
   display: flex;
+  overflow-x: scroll;
 }
 
 .order_page .order_right .order_info_box {
@@ -76,8 +77,8 @@
 
 .order_page .order_right .order_info_box .mini_user {
   position: absolute;
-  top: 96px;
-  left: 133px;
+  top: 100px;
+  left: 95px;
 }
 
 .order_page .order_right .order_info_box .order_user_img span {
@@ -269,7 +270,7 @@
 }
 
 .order_page .total_price_box .box_total {
-  width: 70%;
+  width: 90%;
   height: auto;
   display: flex;
   flex-direction: row;

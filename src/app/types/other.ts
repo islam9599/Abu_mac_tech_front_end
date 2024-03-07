@@ -6,6 +6,11 @@ export interface ProductSearchObj {
   product_collection?: string;
   product_brand?: string;
 }
+export interface OrderSearchObj {
+  page: number;
+  limit: number;
+  status: string;
+}
 export interface MemberLiken {
   like_group: string;
   like_status: number;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../css/orders.css";
 import { Box, Container, Stack, Tabs, Typography } from "@mui/material";
 import Tab from "@mui/material/Tab";
@@ -12,11 +12,52 @@ import LocationOn from "@mui/icons-material/LocationOn";
 import Marginer from "../../component/marginer";
 import { Cancel, Home } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { verifiedMemberdata } from "../../apiServices/verify";
+import { Order } from "../../types/order";
 
-export function OrdersPage() {
+import { Member } from "../../types/user";
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+
+import { Dispatch } from "@reduxjs/toolkit";
+import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
+import { verifiedMemberdata } from "../../apiServices/verify";
+import OrderApiService from "../../apiServices/orderApiService";
+
+/** Redux Slice */
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
+  setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
+  setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
+});
+
+export function OrdersPage(props: any) {
+  /** Initialization */
+  const { setPausedOrders, setProcessOrders, setFinishedOrders } =
+    actionDispatch(useDispatch());
+
   const navigate = useNavigate();
   const [value, setValue] = useState("1");
+  useEffect(() => {
+    const order = new OrderApiService();
+    // paused orders
+    order
+      .getMyOrders("paused")
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+    // process orders
+    order
+      .getMyOrders("process")
+      .then((data) => setProcessOrders(data))
+      .catch((err) => console.log(err));
+    // finished orders
+    order
+      .getMyOrders("finished")
+      .then((data) => setFinishedOrders(data))
+      .catch((err) => console.log(err));
+  }, [props.orderRebuild]);
+
+  /** Handlers */
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
   };
@@ -92,8 +133,14 @@ export function OrdersPage() {
               </Box>
             </Box>
             <Stack className="order_main_content">
-              <PausedOrders />
-              <ProceedOrders />
+              <PausedOrders
+                setOrderRebuild={props.setOrderRebuild}
+                setValue={setValue}
+              />
+              <ProceedOrders
+                setOrderRebuild={props.setOrderRebuild}
+                setValue={setValue}
+              />
               <FinishedOrders />
             </Stack>
           </TabContext>

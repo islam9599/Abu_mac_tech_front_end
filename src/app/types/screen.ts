@@ -1,3 +1,4 @@
+import { Order } from "./order";
 import { Product } from "./product";
 import { Member, Shop } from "./user";
 
@@ -5,6 +6,7 @@ import { Member, Shop } from "./user";
 export interface AppRootState {
   homePage: HomePageState;
   shopsPage: ShopPageState;
+  ordersPage: OrdersPageState;
 }
 
 /** Homepage */
@@ -24,4 +26,11 @@ export interface ShopPageState {
   chosenShop: Shop | null;
   targetProducts: Product[];
   chosenProduct: Product | null;
+}
+
+/** Orders */
+export interface OrdersPageState {
+  pausedOrders: Order[];
+  processOrders: Order[];
+  finishedOrders: Order[];
 }

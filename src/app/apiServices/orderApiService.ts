@@ -3,6 +3,7 @@ import assert from "assert";
 import { serverApi } from "../lib/config";
 import { CartItem } from "../types/other";
 import { Definer } from "../lib/Definer";
+import { Order } from "../types/order";
 
 class OrderApiService {
   private readonly path: string;
@@ -29,7 +30,7 @@ class OrderApiService {
     }
   }
 
-  async getMyOrders(order_status: string) {
+  async getMyOrders(order_status: string): Promise<Order[]> {
     try {
       const url = `/orders?status=${order_status}`,
         result = await axios.get(this.path + url, {
@@ -39,7 +40,7 @@ class OrderApiService {
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
       console.log("state:", result.data.state);
-      const orders: any = result.data.data;
+      const orders: Order[] = result.data.data;
       return orders;
     } catch (err: any) {
       console.log(`error:: getMyOrders ${err.message}`);
