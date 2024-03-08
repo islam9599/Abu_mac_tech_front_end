@@ -96,31 +96,26 @@ export function CommunityPage() {
       >
         <Container>
           <Stack className="community_page_wrapper">
-            <Stack flexDirection={"row"} alignItems={"center"} mr={100} mb={5}>
-              <Home
-                className="navigate_home"
-                sx={{ width: "29px", height: "29px" }}
-              />
-              <Typography
-                className="navigate_home"
-                sx={{ margin: "15px" }}
-                variant="h4"
-              >
-                Home
+            <Stack
+              className="navigate_home_wrapper"
+              flexDirection={"row"}
+              alignItems={"center"}
+            >
+              <Home className="navigate_home navigate_home_icon" />
+              <Typography className="navigate_home" variant="h6">
+                Homepage
               </Typography>
-              <Marginer width="1" height="20" bg="#000" direction="vertical" />
+              <Marginer width="1" height="15" bg="#000" direction="vertical" />
+              <Typography className="navigate_home" variant="h6">
+                Community
+              </Typography>
 
-              <Typography
-                className="navigate_home"
-                sx={{ margin: "15px" }}
-                variant="h4"
-              >
-                Community Page
-              </Typography>
               <Cancel
-                className="navigate_home"
-                style={{ cursor: "pointer" }}
-                onClick={navigateToHomeHandler}
+                sx={{ width: "10px", height: "10px" }}
+                className="navigate_home navigate_home_icon"
+                onClick={() => {
+                  navigate("/");
+                }}
               />
             </Stack>
             <Stack className="tab_main_wrapper" justifyContent={"center"}>

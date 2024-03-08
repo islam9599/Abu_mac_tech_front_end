@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Stack, Box, Button, Typography } from "@mui/material";
 import {
   Facebook,
@@ -28,49 +28,156 @@ import Marginer from "../../component/marginer";
 import { MemberPosts } from "./memberPost";
 import { useNavigate } from "react-router-dom";
 import { TuiEditor } from "../../component/tui_editor";
+import CommunityApiService from "../../apiServices/communityApiService";
+import MemberApiService from "../../apiServices/memberApiService";
+
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import { createSelector } from "reselect";
+import {
+  retrieveChosenMember,
+  retrieveChosenMemberBoArticles,
+  retrieveChosenSingleBoArticle,
+} from "./selector";
+import { Dispatch } from "@reduxjs/toolkit";
+import {
+  setChosenMember,
+  setChosenMemberBoArticles,
+  setChosenSingleBoArticle,
+} from "./slice";
+import { verifiedMemberdata } from "../../apiServices/verify";
+import { Member } from "../../types/user";
+import { BoArticle, SearchMemberArticleObj } from "../../types/boArticle";
+import { sweetErrorHandling, sweetFailureProvider } from "../../lib/sweetAlert";
+import { TViewer } from "../../component/tui_editor/TViewer";
+import { serverApi } from "../../lib/config";
+
+/** Redux Slice */
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setChosenMember: (data: Member) => dispatch(setChosenMember(data)),
+  setChosenMemberBoArticles: (data: BoArticle[]) =>
+    dispatch(setChosenMemberBoArticles(data)),
+  setChosenSingleBoArticle: (data: BoArticle) =>
+    dispatch(setChosenSingleBoArticle(data)),
+});
+
+/** Redux Selector*/
+const chosenMemberRetriever = createSelector(
+  retrieveChosenMember,
+  (chosenMember) => ({
+    chosenMember,
+  })
+);
+
+const chosenMemberBoArticlesRetriever = createSelector(
+  retrieveChosenMemberBoArticles,
+  (chosenMemberBoArticles) => ({
+    chosenMemberBoArticles,
+  })
+);
+
+const chosenSingleBoArticleRetriever = createSelector(
+  retrieveChosenSingleBoArticle,
+  (chosenSingleBoArticle) => ({
+    chosenSingleBoArticle,
+  })
+);
 export function VisitMyPage(props: any) {
+  /** Initializations */
+  const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
+  const {
+    setChosenMember,
+    setChosenMemberBoArticles,
+    setChosenSingleBoArticle,
+  } = actionDispatch(useDispatch());
+  const { chosenMember } = useSelector(chosenMemberRetriever);
+  const { chosenMemberBoArticles } = useSelector(
+    chosenMemberBoArticlesRetriever
+  );
+  const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
   const navigate = useNavigate();
   const [value, setValue] = useState("1");
+
+  const [followRebuild, setFollowRebuild] = useState<boolean>(false);
+  const [memberAticleSearchObj, setMemberAticleSearchObj] =
+    useState<SearchMemberArticleObj>({
+      page: 1,
+      limit: 2,
+      mb_id: "none" || verifiedMemberdata?.mb_id,
+    });
+  useEffect(() => {
+    if (!verifiedMemberdata) {
+      sweetFailureProvider("Please login first!!!", true, true);
+    }
+
+    const communityService = new CommunityApiService();
+    communityService
+      .getMemberCommunityArticle(memberAticleSearchObj)
+      .then((data) => setChosenMemberBoArticles(data))
+      .catch((err) => console.log(err));
+
+    const memberService = new MemberApiService();
+    memberService
+      .getChosenMember(verifiedMemberdata?._id)
+      .then((data) => setChosenMember(data))
+      .catch((err) => console.log(err));
+  }, [memberAticleSearchObj, articleRebuild, followRebuild]);
+  /** Handlers */
+  const navigateToHomeHandler = () => {
+    navigate("/");
+  };
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
   };
-  const navigateToHomeHandler = () => {
-    navigate("/");
+  const renderChosenArticlesHandeler = async (art_id: string) => {
+    try {
+      const communityService = new CommunityApiService();
+      communityService
+        .getChosenArticle(art_id)
+        .then((data) => {
+          setChosenSingleBoArticle(data);
+          setValue("5");
+        })
+        .catch((err) => console.log(err));
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+  const handlePaginationChange = (event: any, value: number) => {
+    memberAticleSearchObj.page = value;
+    setMemberAticleSearchObj({ ...memberAticleSearchObj });
   };
   return (
     <div className="my_page">
       <Container
         // maxWidth="lg"
-        style={{ marginTop: "50px", marginBottom: "50px" }}
+        style={{ marginTop: "40px", marginBottom: "50px" }}
       >
-        <Stack flexDirection={"row"} alignItems={"center"} mr={100} mb={5}>
-          <Home
-            className="navigate_home"
-            sx={{ width: "29px", height: "29px" }}
-          />
-          <Typography
-            className="navigate_home"
-            sx={{ margin: "15px" }}
-            variant="h4"
-          >
-            Home
+        <Stack
+          className="navigate_home_wrapper"
+          flexDirection={"row"}
+          alignItems={"center"}
+        >
+          <Home className="navigate_home navigate_home_icon" />
+          <Typography className="navigate_home" variant="h6">
+            Homepage
           </Typography>
-          <Marginer width="1" height="20" bg="#000" direction="vertical" />
+          <Marginer width="1" height="15" bg="#000" direction="vertical" />
+          <Typography className="navigate_home" variant="h6">
+            Mypage
+          </Typography>
 
-          <Typography
-            className="navigate_home"
-            sx={{ margin: "15px" }}
-            variant="h4"
-          >
-            My Page
-          </Typography>
           <Cancel
-            className="navigate_home"
-            style={{ cursor: "pointer" }}
-            onClick={navigateToHomeHandler}
+            sx={{ width: "10px", height: "10px" }}
+            className="navigate_home navigate_home_icon"
+            onClick={() => {
+              navigate("/");
+            }}
           />
         </Stack>
-        <Stack width={"100"} height={"750px"} flexDirection={"row"}>
+        <Stack mt={10} width={"100"} height={"750px"} flexDirection={"row"}>
           <TabContext value={value}>
             <Stack className="my_page_right">
               <Stack className="order_info_box">
@@ -79,19 +186,32 @@ export function VisitMyPage(props: any) {
                 </a>
                 <Box className="auth_user_img">
                   <div>
-                    <img src="/icons/author_default.jpeg" alt="" />
+                    <img
+                      src={
+                        chosenMember?.mb_image
+                          ? `${serverApi}/${chosenMember?.mb_image}`
+                          : "/auth/author_default.jpeg"
+                      }
+                      alt=""
+                    />
                   </div>
                   <div>
                     <img
                       className="auth_user_avatar"
-                      src="/icons/author_default.jpeg"
-                      alt=""
+                      src={
+                        chosenMember?.mb_type === "RESTAURANT"
+                          ? "/icons/restaurant_type.webp"
+                          : "/icons/author_default.jpeg"
+                      }
+                      alt="mb_type"
                     />
                   </div>
                 </Box>
                 <Box className="auth_user_name">
-                  <span>Ergashev Islombek</span>
-                  <span>User</span>
+                  <span>{chosenMember?.mb_nick}</span>
+                  <span>
+                    {chosenMember?.mb_type ? chosenMember?.mb_type : "User"}
+                  </span>
                 </Box>
                 <Stack
                   flexDirection={"row"}
@@ -106,8 +226,8 @@ export function VisitMyPage(props: any) {
                   <Telegram sx={{ color: "blue" }} />
                 </Stack>
                 <Box className="auth_follow">
-                  <span>Followers: 2</span>
-                  <span>Following: 3</span>
+                  <span>Followers: {chosenMember?.mb_follow_cnt}</span>
+                  <span>Following: {chosenMember?.mb_subscriber_cnt}</span>
                 </Box>
                 <p>Assalomu Alaykum!</p>
                 <Box
@@ -199,21 +319,14 @@ export function VisitMyPage(props: any) {
                   <Marginer width="350px" bg="#000" height="1" />
 
                   <Box className="menu_content">
-                    <MemberPosts />
-                    <Pagination
-                      style={{ marginTop: "50px" }}
-                      count={3}
-                      page={1}
-                      renderItem={(item) => (
-                        <PaginationItem
-                          components={{
-                            previous: ArrowBackIcon,
-                            next: ArrowForwardIcon,
-                          }}
-                          {...item}
-                          color="secondary"
-                        />
-                      )}
+                    <MemberPosts
+                      chosenMemberBoArticles={chosenMemberBoArticles}
+                      renderChosenArticlesHandeler={
+                        renderChosenArticlesHandeler
+                      }
+                      setArticleRebuild={setArticleRebuild}
+                      memberAticleSearchObj={memberAticleSearchObj}
+                      setMemberAticleSearchObj={setMemberAticleSearchObj}
                     />
                   </Box>
                 </TabPanel>
@@ -221,21 +334,11 @@ export function VisitMyPage(props: any) {
                   <Box className="menu_name">Followers</Box>
                   <Marginer width="350px" bg="#000" height="1" />{" "}
                   <Box className="menu_content">
-                    <MemberFollowers actions_enabled={true} />
-                    <Pagination
-                      style={{ marginTop: "50px" }}
-                      count={3}
-                      page={1}
-                      renderItem={(item) => (
-                        <PaginationItem
-                          components={{
-                            previous: ArrowBackIcon,
-                            next: ArrowForwardIcon,
-                          }}
-                          {...item}
-                          color="secondary"
-                        />
-                      )}
+                    <MemberFollowers
+                      actions_enabled={true}
+                      mb_id={verifiedMemberdata?._id}
+                      setFollowRebuild={setFollowRebuild}
+                      followRebuild={followRebuild}
                     />
                   </Box>
                 </TabPanel>
@@ -244,21 +347,11 @@ export function VisitMyPage(props: any) {
                   <Marginer width="750px" bg="#000" height="1" />
                   <Box className="menu_content">
                     <Marginer width="750px" bg="#000" height="1" />
-                    <MemberFollowings actions_enabled={true} />
-                    <Pagination
-                      style={{ marginTop: "50px" }}
-                      count={3}
-                      page={1}
-                      renderItem={(item) => (
-                        <PaginationItem
-                          components={{
-                            previous: ArrowBackIcon,
-                            next: ArrowForwardIcon,
-                          }}
-                          {...item}
-                          color="secondary"
-                        />
-                      )}
+                    <MemberFollowings
+                      actions_enabled={true}
+                      mb_id={verifiedMemberdata?._id}
+                      setFollowRebuild={setFollowRebuild}
+                      followRebuild={followRebuild}
                     />
                   </Box>
                 </TabPanel>
@@ -271,16 +364,16 @@ export function VisitMyPage(props: any) {
                 </TabPanel>
                 <TabPanel value="5">
                   <Box className="menu_name">Chosen Blog</Box>
-                  <Marginer width="750px" bg="#fff" height="1" />
+                  <Marginer width="750px" bg="#000" height="1" />
                   <Box className="menu_content">
-                    {/* <MemberFollowers /> */}
+                    <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
                   </Box>
                 </TabPanel>
                 <TabPanel value="6">
                   <Box className="menu_name">Edit My Settings</Box>
-                  <Marginer width="750px" bg="#fff" height="1" />
+                  <Marginer width="750px" bg="#000" height="1" />
                   <Box className="menu_content">
-                    <MySettings />
+                    <MySettings chosenMember={chosenMember} />
                   </Box>
                 </TabPanel>
               </Box>

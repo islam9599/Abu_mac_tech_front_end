@@ -83,7 +83,15 @@ export function TargetArticles(props: any) {
             ? `${serverApi}/${article?.member_data.mb_image}`
             : "/auth/author_default.jpeg";
           return (
-            <Card sx={{ maxWidth: 345 }} className="target_articles_container">
+            <Card
+              onClick={() =>
+                navigate(
+                  `/member-page/other?mb_id=${article?.mb_id}&art_id=${article._id}`
+                )
+              }
+              sx={{ maxWidth: 345 }}
+              className="target_articles_container"
+            >
               <CardHeader
                 className="author_info "
                 avatar={
@@ -117,7 +125,12 @@ export function TargetArticles(props: any) {
                   #{article?.bo_id}
                 </Typography>
               </CardContent>
-              <CardActions disableSpacing>
+              <CardActions
+                disableSpacing
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
                 <IconButton aria-label="add to favorites">
                   <CheckBox
                     onClick={targetLikeHandler}

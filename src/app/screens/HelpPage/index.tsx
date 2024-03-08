@@ -29,48 +29,48 @@ export function HelpPage() {
 
   const faq = [
     {
-      question: "To'lov qanday amalga oshiriladi?",
-      answer: "To'lovni Click, Payme ilovalar orqali amalga oshira olasiz!",
+      question: "How Secure Is Information About Me",
+      answer:
+        "We work to protect the security of your personal information during transmission by using encryption protocols and software. We maintain physical, electronic, and procedural safeguards in connection with the collection, storage, and disclosure of customer personal information. Our security procedures mean that we may ask to verify your identity before we disclose personal information to you.",
     },
     {
-      question: "Buyurtmalar qancha vaqtda yetkazib beriladi?",
+      question: "What About Advertising?",
       answer:
-        "Bu manzilingiz va buyurtmagizga bogliq boladi. Odatda 30~50 minut oralig'ida!",
+        "Third-Party Advertisers and Links to Other Websites: our services may include third-party advertising and links to other websites and apps. Third-party advertising partners may collect information about you when you interact with their content, advertising, and services. For more information about third-party advertising at Amazon, including interest-based ads, please read our Interest-Based Ads notice. To adjust your advertising preferences, please go to the Your Ads Privacy Choices page.",
     },
     {
-      question: "Sizning web sahifangiz xavsizmi foydalinishga?",
+      question: "REVIEWS, COMMENTS, COMMUNICATIONS, AND OTHER CONTENT?",
       answer:
-        "Biz sizni ma'lumotlaringizni dasturchi sifatida xavsizligini ta'milaymiz!",
+        "You may post reviews, comments, photos, videos, and other content; send e-cards and other communications; and submit suggestions, ideas, comments, questions, or other information, so long as the content is not illegal, obscene, threatening, defamatory, invasive of privacy, infringing of intellectual property rights (including publicity rights), or otherwise injurious to third parties or objectionable, and does not consist of or contain software viruses, political campaigning, commercial solicitation, chain letters, mass mailings, or any form of spam or unsolicited commercial electronic messages. You may not use a false e-mail address, impersonate any person or entity, or otherwise mislead as to the origin of a card or other content!",
     },
     {
-      question: "Karta ma'lumotlarini qayerga kiritaman?",
+      question: "How do I promote my products?",
       answer:
-        "Karta ma'lumotlarini mening sahifam o'ng tomonida mavjud bo'lgan jadvalga kiriting!",
+        "There are numerous ways to boost your sales through promotion. Head to our Seller University for helpful tips, articles, videos & manuals!!",
     },
     {
-      question: "Maqola yozishizni xohlayman?",
+      question: "How long does it take to sign up to Abu_Mac_Tech Marketplace?",
       answer:
-        "Maqola yozish uchun mening sahifamdagi maqola yozish tugmasini bosish orqali yoza olasiz!",
+        "It usually takes up to 5 business days if all documents are correctly submitted!",
     },
     {
-      question: "Jonli muloqatga men ham qatnash olamanmi?",
+      question:
+        "If I want to find out more about which rules apply to my products, where can I look?",
       answer:
-        "Ha albatt! Bunig uchun birinchi navbatda ro'yhatdan o'tingiz talab qilinadi!",
+        "You can refer to our list of government resources here. Please note this is not an exhaustive list but to provide some useful starting guides!",
     },
   ];
 
   const rules = [
-    "Web sahifadan to'loqonli ya'ni buyurtmalar qilish va jonli muloqotlardan foydalanish uchun birinchi navbatda ro'yhatdan o'tishingiz kerak!",
-    "Buyurtmalaringizga to'lov amalga oshirilgandan so'ng bekor qilishni iloji yo'q. Shu sababli tolovlarni amalga oshirishdan oldin yaxshilab tekshirib oling!",
-    "Jonli muloqatlarda behayo so'zlardan foydalanish qatiyan taqiqlanadi!",
-    "Shaxsiy reklamalarni adminni ruhsatisiz tarqatish qatiyan man qilinadi!",
-    "Maqolalaringiz odob doirasida bo'lishi kerak!",
-    "Barcha harakatlaringiz adminlarimiz nazorati ostida, shu sababli talablarimizni xurmat qiling!",
-    "Talab va taklirangizni bizga murojaat qiling!",
-    "Har qanday shikoyat bolsa adminlarimizga bog'laning!",
-    "Iltimos hurmatli foydalanuvchialr bir-biringizga hurmatda bo'ling!",
-    "Web sahifammiz copyrightga ega!",
-    "Bu web sahifammiz manzur bo'lgan bo'lsa yaqinlarigizga ulashib qo'ysangiz samimiy xursand bo'lamiz!",
+    "Purchase and delivery of products and services. We use your personal information to take and handle orders, deliver products and services, process payments, and communicate with you about orders, products and services, and promotional offers!",
+    "Provide, troubleshoot, and improve our Services. We use your personal information to provide functionality, analyze performance, fix errors, and improve the usability and effectiveness of the our Services!",
+    "Recommendations and personalization. We use your personal information to recommend features, products, and services that might be of interest to you, identify your preferences, and personalize your experience with Abu_Mac_Tech Services!",
+    "Advertising. We use your personal information to display interest-based ads for features, products, and services that might be of interest to you. We do not use information that personally identifies you to display interest-based ads. To learn more, please read our Interest-Based Ads notice!",
+    "To enable our systems to recognize your browser or device and to provide and improve Abu_Mac_Tech Services, we use cookies and other identifiers. For more information about cookies and how we use them, please read our Cookies Notice!",
+    "Third-Party Service Providers: We employ other companies and individuals to perform functions on our behalf. Examples include fulfilling orders for products or services, delivering packages, sending postal mail and email, removing repetitive information from customer lists, analyzing data, providing marketing assistance, providing search results and links (including paid listings and links), processing payments, transmitting content, scoring, assessing and managing credit risk, and providing customer service. These third-party service providers have access to personal information needed to perform their functions, but may not use it for other purposes!",
+    "Business Transfers: As we continue to develop our business, we might sell or buy other businesses or services. In such transactions, customer information generally is one of the transferred business assets but remains subject to the promises made in any pre-existing Privacy Notice (unless, of course, the customer consents otherwise). Also, in the unlikely event that abu_mac_tech.com, Inc. or substantially all of its assets are acquired, customer information will of course be one of the transferred assets!",
+    "Information from Other Sources: We might receive information about you from other sources, such as updated delivery and address information from our carriers, which we use to correct our records and deliver your next purchase more easily. Click here to see additional examples of the information we receive!",
+    "Other than as set out above, you will receive notice when personal information about you might be shared with third parties, and you will have an opportunity to choose not to share the information!",
   ];
   const navigate = useNavigate();
 
@@ -89,32 +89,27 @@ export function HelpPage() {
               bg="#999"
             />
           </Box>
-          <Stack width={"100%"} mt={2}>
-            <Stack flexDirection={"row"} alignItems={"center"} mb={5}>
-              <Home
-                className="navigate_home"
-                sx={{ width: "29px", height: "29px" }}
-              />
-              <Typography
-                className="navigate_home"
-                sx={{ margin: "15px" }}
-                variant="h4"
-              >
-                Home
+          <Stack width={"100%"}>
+            <Stack
+              className="navigate_home_wrapper"
+              flexDirection={"row"}
+              alignItems={"center"}
+            >
+              <Home className="navigate_home navigate_home_icon" />
+              <Typography className="navigate_home" variant="h6">
+                Homepage
               </Typography>
-              <Marginer width="1" height="20" bg="#000" direction="vertical" />
+              <Marginer width="1" height="15" bg="#000" direction="vertical" />
+              <Typography className="navigate_home" variant="h6">
+                Help-page
+              </Typography>
 
-              <Typography
-                className="navigate_home"
-                sx={{ margin: "15px" }}
-                variant="h4"
-              >
-                Help Page
-              </Typography>
               <Cancel
-                className="navigate_home"
-                style={{ cursor: "pointer" }}
-                onClick={navigateToHomeHandler}
+                sx={{ width: "10px", height: "10px" }}
+                className="navigate_home navigate_home_icon"
+                onClick={() => {
+                  navigate("/");
+                }}
               />
             </Stack>
           </Stack>
@@ -129,7 +124,7 @@ export function HelpPage() {
           >
             <Box
               sx={{
-                bgcolor: "silver",
+                bgcolor: "#f1f1f2",
                 width: "90%",
                 margin: 5,
                 borderRadius: "9px",
@@ -179,12 +174,8 @@ export function HelpPage() {
                           {rules.map((ele) => {
                             return (
                               <div>
-                                <p>{ele}</p>
-                                <Marginer
-                                  width="100%"
-                                  height="1"
-                                  bg="#C4C4C4"
-                                />
+                                <h3>{ele}</h3>
+                                <Marginer width="100%" height="2" bg="#000" />
                               </div>
                             );
                           })}
@@ -195,17 +186,22 @@ export function HelpPage() {
                       <Stack className="faq_container">
                         {faq.map((ele) => {
                           return (
-                            <Accordion>
+                            <Accordion sx={{ background: "whitesmoke" }}>
                               <AccordionSummary
                                 expandIcon={<ExpandMore />}
                                 aria-controls="panella-content"
                                 id="panella-header"
+                                color="#f1f1f2"
                               >
-                                <Typography>{ele.question}</Typography>
+                                <Typography variant="h5">
+                                  {ele.question}
+                                </Typography>
                               </AccordionSummary>
 
                               <AccordionDetails>
-                                <Typography>{ele.answer}</Typography>
+                                <Typography variant="h6">
+                                  {ele.answer}
+                                </Typography>
                               </AccordionDetails>
                             </Accordion>
                           );

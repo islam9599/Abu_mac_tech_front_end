@@ -1,4 +1,5 @@
 import { BoArticle } from "./boArticle";
+import { Follower, Following } from "./follow";
 import { Order } from "./order";
 import { Product } from "./product";
 import { Member, Shop } from "./user";
@@ -9,6 +10,7 @@ export interface AppRootState {
   shopsPage: ShopPageState;
   ordersPage: OrdersPageState;
   communityPage: CommunityPageState;
+  memberPage: MemberPageState;
 }
 
 /** Homepage */
@@ -40,4 +42,12 @@ export interface OrdersPageState {
 /** Community */
 export interface CommunityPageState {
   targetboArticles: BoArticle[];
+}
+
+export interface MemberPageState {
+  chosenMember?: Member | null;
+  chosenMemberBoArticles: BoArticle[];
+  chosenSingleBoArticle?: BoArticle | null;
+  memberFollowers: Follower[];
+  memberFollowings: Following[];
 }

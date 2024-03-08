@@ -74,9 +74,7 @@ export const OthersNavbarPage = (props: any) => {
                     100,
                     "Abu_Mac_Tech",
 
-                    () => {
-                      console.log("Sequence completed");
-                    },
+                    () => {},
                   ]}
                   wrapper="p"
                   cursor={true}

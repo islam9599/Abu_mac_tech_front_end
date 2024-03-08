@@ -4,7 +4,7 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { Cancel, Home, Search } from "@mui/icons-material";
+import { Cancel, CancelRounded, Home, Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "./productCards";
 import Marginer from "../../component/marginer";
@@ -92,83 +92,76 @@ export function AllProducts(props: any) {
   return (
     <div className="all_products">
       <Container>
-        <Container>
-          <Stack
-            flexDirection={"row"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            m={"50px"}
+        \
+        <Stack
+          flexDirection={"row"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          m={"50px"}
+        >
+          <form
+            action=""
+            style={{
+              width: "530px",
+              height: "45px",
+              border: "1px solid #129cb8",
+              borderRadius: "9px",
+              display: "flex",
+              alignItems: "center",
+              background: "none",
+              color: "#fff",
+            }}
           >
-            <form
-              action=""
+            <input
+              type="text"
+              placeholder="Search product here"
               style={{
-                width: "530px",
-                height: "45px",
-                border: "1px solid #129cb8",
-                borderRadius: "9px",
-                display: "flex",
-                alignItems: "center",
+                width: "100%",
+                height: "100%",
+                margin: "5px",
                 background: "none",
-                color: "#fff",
+                border: "none",
+                outline: "none",
               }}
+            />
+            <Box
+              width={"auto"}
+              height={"100%"}
+              sx={{ bgcolor: "#129cb8", borderRadius: "0 9px 9px 0" }}
+              alignItems={"center"}
+              justifyContent={"center"}
             >
-              <input
-                type="text"
-                placeholder="Search product here"
-                style={{
+              <Search
+                sx={{
                   width: "100%",
-                  height: "100%",
-                  margin: "5px",
-                  background: "none",
-                  border: "none",
-                  outline: "none",
+                  height: "99%",
+                  color: "#fff",
+                  padding: "5px",
+                  cursor: "pointer",
                 }}
               />
-              <Box
-                width={"auto"}
-                height={"100%"}
-                sx={{ bgcolor: "#129cb8", borderRadius: "0 9px 9px 0" }}
-                alignItems={"center"}
-                justifyContent={"center"}
-              >
-                <Search
-                  sx={{
-                    width: "100%",
-                    height: "99%",
-                    color: "#fff",
-                    padding: "5px",
-                    cursor: "pointer",
-                  }}
-                />
-              </Box>
-            </form>
-          </Stack>
-          <Marginer direction="horizontal" width="100%" height="1" bg="#999" />
-        </Container>
+            </Box>
+          </form>
+        </Stack>
+        <Marginer direction="horizontal" width="100%" height="1" bg="#999" />
         <Stack flexDirection={"column"}>
-          <Stack flexDirection={"row"} alignItems={"center"}>
-            <Home
-              className="navigate_home"
-              sx={{ width: "29px", height: "29px" }}
-            />
-            <Typography
-              className="navigate_home"
-              sx={{ margin: "15px" }}
-              variant="h4"
-            >
+          <Stack
+            className="navigate_home_wrapper"
+            flexDirection={"row"}
+            alignItems={"center"}
+          >
+            <Home className="navigate_home navigate_home_icon" />
+            <Typography className="navigate_home" variant="h6">
               Home
             </Typography>
-            <Marginer width="1" height="20" bg="#000" direction="vertical" />
+            <Marginer width="1" height="15" bg="#000" direction="vertical" />
 
-            <Typography
-              className="navigate_home"
-              sx={{ margin: "15px" }}
-              variant="h4"
-            >
+            <Typography className="navigate_home" variant="h6">
               All Products
             </Typography>
             <Cancel
-              className="navigate_home"
+              sx={{ width: "10px", height: "10px" }}
+              className="navigate_home navigate_home_icon"
               onClick={() => {
                 navigate("/");
               }}

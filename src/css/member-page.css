@@ -25,15 +25,15 @@ body {
   color: #000;
   text-align: center;
   font-family: "Poppins";
-  font-size: 45px;
+  font-size: 25px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .member_page .my_page .my_page_left .menu_name:hover {
-  color: #e3c08d;
+  color: #0288d1;
   transition: 1s ease-out;
 }
 
@@ -588,7 +588,7 @@ body {
   .order_info_box
   .auth_user_name
   span:nth-child(2) {
-  color: #a1a1a1;
+  color: #000;
   font-family: "Commissioner";
   font-size: 20px;
   font-style: normal;
@@ -607,7 +607,7 @@ body {
 }
 
 .member_page .my_page .my_page_right .order_info_box .auth_follow span {
-  color: #616164;
+  color: #000;
   font-family: "DM Sans";
   font-size: 16px;
   font-style: normal;
@@ -616,7 +616,7 @@ body {
 }
 
 .member_page .my_page .my_page_right .order_info_box p {
-  color: #616164;
+  color: #000;
   font-family: "DM Sans";
   font-size: 16px;
   font-style: normal;

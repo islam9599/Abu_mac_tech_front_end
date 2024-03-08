@@ -73,7 +73,7 @@ export function PausedOrders(props: any) {
   };
   return (
     <div>
-      <Stack style={{ marginTop: "30px" }}>
+      <Stack>
         <Marginer direction="horizontal" width="877" height="1" bg="#fff" />
       </Stack>
       <TabPanel value={"1"}>

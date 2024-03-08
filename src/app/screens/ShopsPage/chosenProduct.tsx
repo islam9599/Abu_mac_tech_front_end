@@ -18,6 +18,7 @@ import ImageGallery from "react-image-gallery";
 import ReactImageMagnify from "react-image-magnify";
 
 import {
+  Cancel,
   Favorite,
   FavoriteBorder,
   Home,
@@ -195,30 +196,28 @@ export const ChosenProduct = (props: any) => {
           </Stack>
           <Marginer direction="horizontal" width="1320" height="1" bg="#999" />
         </Stack>
-        <Stack flexDirection={"row"} alignItems={"center"}>
-          <Home sx={{ width: "29px", height: "29px" }} />
-          <Typography sx={{ margin: "15px" }} variant="h4">
+        <Stack
+          className="navigate_home_wrapper"
+          flexDirection={"row"}
+          alignItems={"center"}
+        >
+          <Home className="navigate_home navigate_home_icon" />
+          <Typography className="navigate_home" variant="h6">
             Home
           </Typography>
-          <Marginer width="1" height="20" bg="#000" direction="vertical" />
-          <Typography sx={{ margin: "15px" }} variant="h4">
+          <Marginer width="1" height="15" bg="#000" direction="vertical" />
+          <Typography className="navigate_home" variant="h6">
             Products
           </Typography>
-          <Marginer width="1" height="20" bg="#000" direction="vertical" />
-          <Typography sx={{ margin: "15px" }} variant="h4">
-            Product
-            <a
-              href=""
-              onClick={changeToAllProductsHandler}
-              style={{
-                textDecoration: "none",
-                cursor: "pointer",
-                marginLeft: "5px",
-              }}
-            >
-              x
-            </a>
-          </Typography>
+          <Marginer width="1" height="15" bg="#000" direction="vertical" />
+          <Typography variant="h6">Product</Typography>
+          <Cancel
+            sx={{ width: "10px", height: "10px" }}
+            className="navigate_home navigate_home_icon"
+            onClick={() => {
+              navigate("/products");
+            }}
+          />
         </Stack>
         <Box className="product_container">
           <Stack mt={10} width={"39%"} height={"100%"}>
