@@ -47,7 +47,7 @@ export function CommunityPage() {
   const [searchArticlesObj, setSearchArticleObj] = useState<SearchArticleObj>({
     bo_id: "all",
     page: 1,
-    limit: 5,
+    limit: 6,
   });
   const [articleRebiild, setArticleRebuild] = useState<Date>(new Date());
 

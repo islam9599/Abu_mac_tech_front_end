@@ -29,6 +29,7 @@ import { createSelector } from "reselect";
 import { retrieveSaleProducts } from "./selector";
 import { verifiedMemberdata } from "../../apiServices/verify";
 import { serverApi } from "../../lib/config";
+import { useNavigate } from "react-router-dom";
 
 /** Redux Slice */
 
@@ -51,6 +52,7 @@ const FlashCard = () => {
   console.log("saleProducts::::::selector!!!", saleProducts);
   const [count, setCount] = useState(0);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
+  const navigate = useNavigate();
 
   useEffect(() => {
     const shopApiService = new ProductApiService();
@@ -106,7 +108,13 @@ const FlashCard = () => {
               const image_path = `${serverApi}/${product.product_images[0]}`;
 
               return (
-                <div key={product._id} className="productList">
+                <div
+                  key={product._id}
+                  className="productList"
+                  onClick={() => {
+                    navigate(`/products/${product?._id}`);
+                  }}
+                >
                   <div className="productCard">
                     <Stack flexDirection={"row"} className="icon-container">
                       <ShoppingCartRounded
@@ -128,8 +136,7 @@ const FlashCard = () => {
                         id={product._id}
                         checkedIcon={
                           <Favorite
-                            sx={{ width: "29px", height: "24px" }}
-                            style={{ color: "red" }}
+                            sx={{ width: "29px", height: "24px", color: "red" }}
                           />
                         }
                         checked={

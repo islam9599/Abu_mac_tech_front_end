@@ -18,6 +18,8 @@ export const sweetErrorHandling = async (
       icon: "error",
       text: error_message,
       showConfirmButton: false,
+      width: "600px",
+      titleText: "So sorry, smth went wrong!",
     });
   }
 };
@@ -32,6 +34,7 @@ export const sweetTopSuccessAlert = async (
     title: msg,
     showConfirmButton: false,
     timer: duration,
+    width: "400px",
   });
   window.location.reload();
 };
@@ -52,6 +55,7 @@ export const sweetTopSmallSuccessAlert = async (
   Toast.fire({
     icon: "success",
     title: msg,
+    width: 400,
   }).then((data) => {
     if (enable_forward) {
       window.location.reload();
@@ -70,6 +74,8 @@ export const sweetFailureProvider = async (
     title: msg,
     showConfirmButton: show_button,
     confirmButtonText: "OK",
+    width: 500,
+    titleText: "So sorry, smth went wrong!",
   }).then((data) => {
     if (enable_forward) {
       window.location.replace(forward_url);

@@ -85,6 +85,7 @@ const chosenSingleBoArticleRetriever = createSelector(
 );
 export function VisitMyPage(props: any) {
   /** Initializations */
+
   const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
   const {
     setChosenMember,
@@ -249,14 +250,14 @@ export function VisitMyPage(props: any) {
               <Stack className="my_page_menu">
                 <TabList
                   onChange={handleChange}
-                  aria-label="lab API tabs example"
+                  orientation="vertical"
+                  variant="scrollable"
+                  aria-label="Vertical tabs example"
+                  sx={{ borderRight: 2, borderColor: "#f1f1f2", width: "85%" }}
                 >
                   <Tab
                     style={{ flexDirection: "column" }}
                     value={"1"}
-                    TabIndicatorProps={{
-                      style: { transition: "none" },
-                    }}
                     component={(e) => {
                       return (
                         <div
@@ -269,14 +270,9 @@ export function VisitMyPage(props: any) {
                       );
                     }}
                   />
-                </TabList>
-                <TabList
-                  onChange={handleChange}
-                  aria-label="lab API tabs example"
-                >
                   <Tab
                     style={{ flexDirection: "column" }}
-                    value={"1"}
+                    value={"2"}
                     component={(e) => {
                       return (
                         <div
@@ -289,14 +285,9 @@ export function VisitMyPage(props: any) {
                       );
                     }}
                   />
-                </TabList>
-                <TabList
-                  onChange={handleChange}
-                  aria-label="lab API tabs example"
-                >
                   <Tab
                     style={{ flexDirection: "column" }}
-                    value={"1"}
+                    value={"3"}
                     component={(e) => {
                       return (
                         <div
@@ -321,10 +312,10 @@ export function VisitMyPage(props: any) {
                   <Box className="menu_content">
                     <MemberPosts
                       chosenMemberBoArticles={chosenMemberBoArticles}
+                      setArticleRebuild={setArticleRebuild}
                       renderChosenArticlesHandeler={
                         renderChosenArticlesHandeler
                       }
-                      setArticleRebuild={setArticleRebuild}
                       memberAticleSearchObj={memberAticleSearchObj}
                       setMemberAticleSearchObj={setMemberAticleSearchObj}
                     />

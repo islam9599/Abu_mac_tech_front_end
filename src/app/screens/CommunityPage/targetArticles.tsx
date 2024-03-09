@@ -46,7 +46,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 export function TargetArticles(props: any) {
   /** Initialization */
   const [expanded, setExpanded] = React.useState(false);
-
+  const { targetBoArticles } = props;
   const refs: any = useRef([]);
   const navigate = useNavigate();
   const setArticleRebuild = props.setArticleRebuild;
@@ -69,13 +69,11 @@ export function TargetArticles(props: any) {
       sweetErrorHandling(err).then();
     }
   };
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const handleExpandClick = (id: string) => {};
   return (
     <Stack>
       <Stack className="bo_articles_container" flexDirection={"row"}>
-        {props.targetBoArticles.map((article: BoArticle) => {
+        {targetBoArticles.map((article: BoArticle) => {
           const art_image_url = article?.art_image
             ? `${serverApi}/${article.art_image}`
             : "/auth/gallery.png";
@@ -86,23 +84,14 @@ export function TargetArticles(props: any) {
             <Card
               onClick={() =>
                 navigate(
-                  `/member-page/other?mb_id=${article?.mb_id}&art_id=${article._id}`
+                  `/member-page/other?mb_id=${article?.mb_id}&art_id=${article?._id}`
                 )
               }
               sx={{ maxWidth: 345 }}
               className="target_articles_container"
             >
               <CardHeader
-                className="author_info "
-                avatar={
-                  <Avatar
-                    src={auth_image}
-                    // sx={{ bgcolor: red[500] }}
-                    aria-label="recipe"
-                  >
-                    {art_image_url}
-                  </Avatar>
-                }
+                className="author_info"
                 action={
                   <IconButton aria-label="settings">
                     <MoreVertIcon />
@@ -118,9 +107,23 @@ export function TargetArticles(props: any) {
                 alt="Paella dish"
               />
               <CardContent>
-                <Typography variant="h5" color="text.secondary">
-                  By {article?.member_data?.mb_nick}
-                </Typography>
+                <Stack flexDirection={"row"} alignItems={"center"} mb={3}>
+                  <img
+                    src={auth_image}
+                    alt=""
+                    style={{
+                      width: "39px",
+                      height: "39px",
+                      objectFit: "cover",
+                      borderRadius: "19px",
+                      marginRight: "15px",
+                    }}
+                  />
+                  <Typography variant="h5" color="text.secondary">
+                    By @{article?.member_data?.mb_nick}
+                  </Typography>
+                </Stack>
+
                 <Typography variant="h6" color="text.secondary">
                   #{article?.bo_id}
                 </Typography>
@@ -150,9 +153,8 @@ export function TargetArticles(props: any) {
                 </IconButton>
                 <ExpandMore
                   expand={expanded}
-                  /*@ts-ignore */
                   id={article?._id}
-                  onClick={handleExpandClick}
+                  onClick={() => handleExpandClick(article?._id)}
                   aria-expanded={expanded}
                   aria-label="show more"
                 >
@@ -167,58 +169,6 @@ export function TargetArticles(props: any) {
                 </CardContent>
               </Collapse>
             </Card>
-            // <Link className="target_articles_container" key={article._id}>
-            //   <Stack
-            //     flexDirection={"column"}
-            //     justifyContent={"center"}
-            //     alignItems={"center"}
-            //   >
-            //     <Box>
-            //       <img className="user_img" src={art_image_url} alt="" />
-            //     </Box>
-            //     <Stack
-            //       flexDirection={"column"}
-            //       width={"90%"}
-            //       height={"auto"}
-            //       marginLeft={"15px"}
-            //       marginTop={"15px"}
-            //     >
-            //       <Box className="author_info">
-            //         <img
-            //           src={auth_image}
-            //           style={{ width: "29px", height: "29px" }}
-            //           alt=""
-            //         />
-            //         <span>{article?.member_data?.mb_nick}</span>
-            //       </Box>
-            //       <Box className="article_desc">
-            //         <span>#{article?.bo_id}</span>
-            //       </Box>
-            //       <Box className="article_desc">
-            //         <span>{article?.art_subject}</span>
-            //       </Box>
-            //       <Stack className="article_date">
-            //         <p>{moment(article.createdAt).format("YY-MM-DD HH:mm")}</p>
-            //         <CheckBox
-            //           onClick={targetLikeHandler}
-            //           icon={<FavoriteBorder style={{ color: "#000" }} />}
-            //           id={article?._id}
-            //           checkedIcon={<Favorite style={{ color: "red" }} />}
-            //           // onClick={}
-            //           checked={
-            //             article?.me_liked && article?.me_liked[0]?.my_favorite
-            //               ? true
-            //               : false
-            //           }
-            //         />
-
-            //         <p>{article?.art_likes}</p>
-            //         <RemoveRedEye />
-            //         <p>{article?.art_views}</p>
-            //       </Stack>
-            //     </Stack>
-            //   </Stack>
-            // </Link>
           );
         })}
       </Stack>

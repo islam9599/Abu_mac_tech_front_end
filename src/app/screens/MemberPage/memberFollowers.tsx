@@ -113,26 +113,6 @@ export function MemberFollowers(props: any) {
                     </p>
                   </Stack>
                 </Stack>
-                {props.actions_enabled &&
-                  (follower.me_followed &&
-                  follower?.me_followed[0]?.my_following ? (
-                    <Box className="follow_btn">
-                      <Button variant="contained">Following</Button>
-                    </Box>
-                  ) : (
-                    <Box className="follow_btn">
-                      <Button
-                        onClick={(e) =>
-                          subscribeHandler(e, follower?.subscriber_id)
-                        }
-                        variant="contained"
-                        sx={{ background: "#30945E", alignItems: "center" }}
-                      >
-                        <Person sx={{ mr: "5px" }} />
-                        Follow Back
-                      </Button>
-                    </Box>
-                  ))}
               </Stack>
             </Link>
           );

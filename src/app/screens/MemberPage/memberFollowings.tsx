@@ -110,7 +110,10 @@ export function MemberFollowings(props: any) {
                       onClick={() => visitMemberHandler(following?.follow_id)}
                     />
                   </Box>
-                  <Stack className="member_follower_name">
+                  <Stack
+                    className="member_follower_name"
+                    justifyContent={"center"}
+                  >
                     <span>
                       {following?.follow_member_data?.mb_type ?? "USER"}
                     </span>
@@ -121,22 +124,22 @@ export function MemberFollowings(props: any) {
                       {following?.follow_member_data?.mb_nick}
                     </p>
                   </Stack>
-                </Stack>
 
-                {props.actions_enabled && (
-                  <Box className="follow_btn">
-                    <Button
-                      sx={{ background: "#E81010" }}
-                      variant="contained"
-                      onClick={(e) =>
-                        unsubscribeHandler(e, following?.follow_id)
-                      }
-                    >
-                      <Person sx={{ ml: "5px" }} />
-                      Bekor Qilish
-                    </Button>
-                  </Box>
-                )}
+                  {props.actions_enabled && (
+                    <Box className="follow_btn">
+                      <Button
+                        sx={{ background: "#E81010" }}
+                        variant="contained"
+                        onClick={(e) =>
+                          unsubscribeHandler(e, following?.follow_id)
+                        }
+                      >
+                        <Person sx={{ ml: "5px" }} />
+                        Bekor Qilish
+                      </Button>
+                    </Box>
+                  )}
+                </Stack>
               </Stack>
             </Link>
           );

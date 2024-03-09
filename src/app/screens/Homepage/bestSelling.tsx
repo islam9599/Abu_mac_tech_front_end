@@ -10,12 +10,7 @@ import {
   Container,
   Checkbox,
 } from "@mui/material";
-import {
-  ArrowRight,
-  Favorite,
-  FavoriteBorder,
-  RemoveRedEye,
-} from "@mui/icons-material";
+import { ArrowRight, Favorite, RemoveRedEye } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
@@ -26,6 +21,10 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../lib/sweetAlert";
+import { verifiedMemberdata } from "../../apiServices/verify";
+import { serverApi } from "../../lib/config";
+import { ProductSearchObj } from "../../types/other";
+import { setBestProducts } from "./slice";
 
 // Redux
 
@@ -34,10 +33,6 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveBestProducts } from "./selector";
-import { verifiedMemberdata } from "../../apiServices/verify";
-import { serverApi } from "../../lib/config";
-import { ProductSearchObj } from "../../types/other";
-import { setBestProducts } from "./slice";
 
 /** Redux Slice */
 
@@ -194,19 +189,6 @@ export const BestSelling = () => {
                     >
                       {product.product_name}
                     </Typography>
-                    <Typography
-                      variant="h6"
-                      color={"InfoText"}
-                      marginBottom={"10px"}
-                      style={{
-                        width: "90%",
-                        height: "60px",
-                        overflow: "scroll",
-                        fontSize: "12px",
-                      }}
-                    >
-                      {product.product_description}
-                    </Typography>
                     <Stack
                       width={"100%"}
                       justifyContent={"space-between"}
@@ -214,21 +196,13 @@ export const BestSelling = () => {
                       alignItems={"center"}
                       position={"relative"}
                     >
-                      <h5
-                        style={{
-                          color: "red",
-                          fontSize: "12px",
-                        }}
-                      >
-                        {product?.product_discount}% off
-                      </h5>
+                      <h2>{product?.product_left_cnt} units left</h2>
 
-                      <p style={{ fontSize: "12px" }}>
+                      <h2 style={{ fontSize: "18px" }}>
                         ${product?.product_price}
-                      </p>
+                      </h2>
                     </Stack>
                     <Stack
-                      m={"0 5px"}
                       onClick={(e) => {
                         e.stopPropagation();
                       }}
@@ -239,32 +213,39 @@ export const BestSelling = () => {
                         width={"30px"}
                         flexDirection={"row"}
                         alignItems={"center"}
-                        justifyContent={"space-between"}
                       >
-                        <h2>{product?.product_views}</h2>
-
                         <RemoveRedEye
                           className="icon-container"
                           style={{
-                            width: "19px",
-                            height: "19px",
+                            width: "22px",
+                            height: "25px",
                             cursor: "pointer",
                           }}
                         />
+                        <h2>{product?.product_views}</h2>
                       </Stack>
-                      <Stack
-                        width={"40px"}
-                        flexDirection={"row"}
-                        alignItems={"center"}
-                        justifyContent={"space-between"}
-                      >
-                        <h2>{product?.product_likes}</h2>
-
+                      <Stack flexDirection={"row"} alignItems={"center"}>
                         <Checkbox
                           onClick={targetLikeProduct}
-                          icon={<FavoriteBorder style={{ color: "#000" }} />}
+                          icon={
+                            <Favorite
+                              style={{
+                                color: "#000",
+                                width: "22px",
+                                height: "25px",
+                              }}
+                            />
+                          }
                           id={product._id}
-                          checkedIcon={<Favorite style={{ color: "red" }} />}
+                          checkedIcon={
+                            <Favorite
+                              style={{
+                                color: "red",
+                                width: "22px",
+                                height: "25px",
+                              }}
+                            />
+                          }
                           checked={
                             product?.me_liked &&
                             product?.me_liked[0]?.my_favorite
@@ -272,6 +253,7 @@ export const BestSelling = () => {
                               : false
                           }
                         />
+                        <h2>{product?.product_likes}</h2>
                       </Stack>
                     </Stack>
                   </CardContent>

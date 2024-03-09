@@ -3,7 +3,6 @@ import { Editor } from "@toast-ui/react-editor";
 // import "@toast-ui/editor/dist/toastui-editor.css";
 
 import {
-  Container,
   Stack,
   Box,
   Button,
@@ -11,7 +10,6 @@ import {
   FormControl,
   Select,
   MenuItem,
-  Menu,
   TextField,
 } from "@mui/material";
 import { BoArticleInput } from "../../types/boArticle";

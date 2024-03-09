@@ -79,6 +79,9 @@ export function Basket(props: any) {
         PaperProps={{
           elevation: 0,
           sx: {
+            width: "500px",
+            height: "400px",
+            borderRadius: "19px",
             overflow: "visible",
             filter: "drop-shadow(0px, 2px, 8px, rgba(0, 0, 0, 0.32))",
             mt: 1.5,
@@ -92,6 +95,7 @@ export function Basket(props: any) {
               content: '""',
               display: "block",
               position: "absolute",
+              transition: "1s ease",
               top: 0,
               right: 14,
               width: 10,

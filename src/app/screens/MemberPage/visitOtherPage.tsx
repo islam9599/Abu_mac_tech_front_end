@@ -53,6 +53,7 @@ import { Definer } from "../../lib/Definer";
 import FollowApiService from "../../apiServices/followApiService";
 import MemberApiService from "../../apiServices/memberApiService";
 import { serverApi } from "../../lib/config";
+import { TViewer } from "../../component/tui_editor/TViewer";
 
 /** Redux Slice */
 
@@ -104,7 +105,7 @@ export function VisitOtherPage(props: any) {
   const [memberAticleSearchObj, setMemberAticleSearchObj] =
     useState<SearchMemberArticleObj>({
       page: 1,
-      limit: 3,
+      limit: 2,
       mb_id: chosen_mb_id || verifiedMemberdata?.mb_id,
     });
   const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
@@ -141,7 +142,7 @@ export function VisitOtherPage(props: any) {
       .getMemberCommunityArticle(memberAticleSearchObj)
       .then((data) => setChosenMemberBoArticles(data))
       .catch((err) => console.log(err));
-  }, [memberAticleSearchObj, chosen_mb_id, articleRebuild]);
+  }, [chosen_mb_id, articleRebuild]);
 
   /** Handlers */
 
@@ -323,14 +324,14 @@ export function VisitOtherPage(props: any) {
               <Stack className="my_page_menu">
                 <TabList
                   onChange={handleChange}
-                  aria-label="lab API tabs example"
+                  orientation="vertical"
+                  variant="scrollable"
+                  aria-label="Vertical tabs example"
+                  sx={{ borderRight: 2, borderColor: "#f1f1f2", width: "85%" }}
                 >
                   <Tab
                     style={{ flexDirection: "column" }}
                     value={"1"}
-                    TabIndicatorProps={{
-                      style: { transition: "none" },
-                    }}
                     component={(e) => {
                       return (
                         <div
@@ -343,14 +344,9 @@ export function VisitOtherPage(props: any) {
                       );
                     }}
                   />
-                </TabList>
-                <TabList
-                  onChange={handleChange}
-                  aria-label="lab API tabs example"
-                >
                   <Tab
                     style={{ flexDirection: "column" }}
-                    value={"1"}
+                    value={"2"}
                     component={(e) => {
                       return (
                         <div
@@ -363,14 +359,10 @@ export function VisitOtherPage(props: any) {
                       );
                     }}
                   />
-                </TabList>
-                <TabList
-                  onChange={handleChange}
-                  aria-label="lab API tabs example"
-                >
+
                   <Tab
                     style={{ flexDirection: "column" }}
-                    value={"1"}
+                    value={"3"}
                     component={(e) => {
                       return (
                         <div
@@ -395,10 +387,10 @@ export function VisitOtherPage(props: any) {
                   <Box className="menu_content">
                     <MemberPosts
                       chosenMemberBoArticles={chosenMemberBoArticles}
-                      setArticleRebuild={setArticleRebuild}
                       renderChosenArticlesHandeler={
                         renderChosenArticlesHandeler
                       }
+                      setArticleRebuild={setArticleRebuild}
                       memberAticleSearchObj={memberAticleSearchObj}
                       setMemberAticleSearchObj={setMemberAticleSearchObj}
                     />
@@ -433,7 +425,7 @@ export function VisitOtherPage(props: any) {
                   <Box className="menu_name">Chosen Blog</Box>
                   <Marginer width="750px" bg="#000" height="1" />
                   <Box className="menu_content">
-                    {/* <MemberFollowers /> */}
+                    <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
                   </Box>
                 </TabPanel>
               </Box>

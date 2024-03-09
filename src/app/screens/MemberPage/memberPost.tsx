@@ -60,9 +60,9 @@ export function MemberPosts(props: any) {
     <Stack width={"700px"}>
       <Stack
         style={{
-          overflow: "scroll",
+          overflow: "hidden",
           width: "100%",
-          height: "600px",
+          maxHeight: "600px",
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
@@ -144,7 +144,7 @@ export function MemberPosts(props: any) {
       <Stack alignItems={"center"} justifyContent={"center"}>
         <Pagination
           count={
-            memberAticleSearchObj.page >= 3 ? memberAticleSearchObj.page + 1 : 3
+            memberAticleSearchObj.page >= 2 ? memberAticleSearchObj.page + 1 : 2
           }
           page={memberAticleSearchObj.page}
           renderItem={(item) => (
