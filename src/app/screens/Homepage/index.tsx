@@ -46,7 +46,7 @@ export const Homepage = () => {
 
       <div
         style={{
-          width: "100%",
+          maxWidth: "100%",
           height: "auto",
           background: "#f1f1f2",
           marginTop: "30px",

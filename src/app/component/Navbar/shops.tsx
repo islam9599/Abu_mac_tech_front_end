@@ -3,10 +3,6 @@ import { Box, Container, Stack } from "@mui/system";
 import { Typography } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../../../css/header.css";
-import Search from "@mui/icons-material/Search";
-import Marginer from "../marginer";
-import { Favorite, ShoppingCart } from "@mui/icons-material";
-import { FaUser } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 import { verifiedMemberdata } from "../../apiServices/verify";
 import { Basket } from "./basket";
@@ -22,24 +18,8 @@ export const ShopsPage = (props: any) => {
     navigate("/");
   };
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "auto",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          height: "100px",
-          background: "#129cb8",
-          display: "flex",
-          alignItems: "center",
-          position: "sticky",
-          top: 0,
-          zIndex: "999",
-        }}
-      >
+    <div>
+      <div className="nav_shop_wrapper">
         <Container>
           <Stack
             flexDirection={"row"}
@@ -65,7 +45,7 @@ export const ShopsPage = (props: any) => {
                   marginRight: "10px",
                   borderRadius: "10px",
                 }}
-              ></img>
+              />
 
               <Box width={"150px"}>
                 <TypeAnimation
@@ -93,61 +73,50 @@ export const ShopsPage = (props: any) => {
             >
               <Box className="hover-line" sx={{ mr: 2 }}>
                 <NavLink
-                  className="nav-title"
+                  className="nav_link"
                   style={{ textDecoration: "none" }}
                   to={"/"}
                 >
-                  <Typography color={"#fff"} variant="h5">
+                  <Typography className="nav-title" variant="h5">
                     Home
                   </Typography>
                 </NavLink>
               </Box>
               <Box className="hover-line" sx={{ mr: 2 }}>
-                <NavLink style={{ textDecoration: "none" }} to={"/products"}>
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                <NavLink className="nav_link" to={"/products"}>
+                  <Typography className="nav-title" variant="h5">
                     Shop
                   </Typography>
                 </NavLink>
               </Box>
               {verifiedMemberdata ? (
                 <Box className="hover-line" sx={{ mr: 2 }}>
-                  <NavLink style={{ textDecoration: "none" }} to={"/orders"}>
-                    <Typography
-                      className="nav-title"
-                      color={"#fff"}
-                      variant="h5"
-                    >
+                  <NavLink className="nav_link" to={"/orders"}>
+                    <Typography className="nav-title" variant="h5">
                       Orders
                     </Typography>
                   </NavLink>
                 </Box>
               ) : null}
               <Box className="hover-line" sx={{ mr: 2 }}>
-                <NavLink style={{ textDecoration: "none" }} to={"/community"}>
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                <NavLink className="nav_link" to={"/community"}>
+                  <Typography className="nav-title" variant="h5">
                     Community
                   </Typography>
                 </NavLink>
               </Box>
               {verifiedMemberdata ? (
                 <Box className="hover-line" sx={{ mr: 2 }}>
-                  <NavLink
-                    style={{ textDecoration: "none" }}
-                    to={"/member-page"}
-                  >
-                    <Typography
-                      className="nav-title"
-                      color={"#fff"}
-                      variant="h5"
-                    >
+                  <NavLink className="nav_link" to={"/member-page"}>
+                    <Typography className="nav-title" variant="h5">
                       My Page
                     </Typography>
                   </NavLink>
                 </Box>
               ) : null}
               <Box className="hover-line" sx={{ mr: 2 }}>
-                <NavLink style={{ textDecoration: "none" }} to={"/help"}>
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                <NavLink className="nav_link" to={"/help"}>
+                  <Typography className="nav-title" variant="h5">
                     FAQ
                   </Typography>
                 </NavLink>
@@ -158,7 +127,7 @@ export const ShopsPage = (props: any) => {
                   sx={{ mr: 2 }}
                   onClick={handleSignupOpen}
                 >
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                  <Typography className="nav-title" variant="h5">
                     Signup
                   </Typography>
                 </Box>
@@ -169,7 +138,7 @@ export const ShopsPage = (props: any) => {
                   sx={{ mr: 2 }}
                   onClick={handleLoginOpen}
                 >
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                  <Typography className="nav-title" variant="h5">
                     Login
                   </Typography>
                 </Box>
@@ -197,7 +166,6 @@ export const ShopsPage = (props: any) => {
                   <Typography
                     onClick={props.handleLogoutRequest}
                     className="nav-title"
-                    color={"#fff"}
                     variant="h5"
                   >
                     Logout

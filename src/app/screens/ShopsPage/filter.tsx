@@ -169,7 +169,10 @@ export default function FilterShop(props: any) {
       </FormControl>
 
       <Stack sx={{ m: 5 }}>
-        <PriceRangeSlider searchAllPorducts={searchAllPorducts} />
+        <PriceRangeSlider
+          searchAllPorducts={searchAllPorducts}
+          allProducts={props.allProducts}
+        />
       </Stack>
     </Stack>
   );

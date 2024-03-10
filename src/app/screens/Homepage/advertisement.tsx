@@ -4,7 +4,7 @@ export function Advertisements() {
   return (
     <div
       style={{
-        width: "100%",
+        maxWidth: "100%",
         height: "auto",
         display: "flex",
         flexDirection: "column",
@@ -14,7 +14,7 @@ export function Advertisements() {
     >
       <video
         style={{
-          width: "100%",
+          maxWidth: "100%",
           height: "auto",
           display: "flex",
           flexDirection: "column",

@@ -5,6 +5,7 @@ export interface ProductSearchObj {
   shop_mb_id?: string;
   product_collection?: string;
   product_brand?: string;
+  searchText?: string;
 }
 export interface OrderSearchObj {
   page: number;

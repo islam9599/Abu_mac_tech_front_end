@@ -27,24 +27,8 @@ export const NavbarPage = (props: any) => {
     navigate("/");
   };
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "auto",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          height: "60px",
-          background: "#129cb8",
-          display: "flex",
-          alignItems: "center",
-          position: "sticky",
-          top: 0,
-          zIndex: 9999,
-        }}
-      >
+    <div className="navbar_page">
+      <div className="navbar_home">
         <Container>
           <Stack
             flexDirection={"row"}
@@ -55,6 +39,7 @@ export const NavbarPage = (props: any) => {
           >
             <Box width={"600px"}>
               <TypeAnimation
+                className="nav_text_animation"
                 sequence={[
                   // Deletes 'One' and types 'Two'
                   100, // Waits 2s
@@ -67,11 +52,6 @@ export const NavbarPage = (props: any) => {
                 wrapper="p"
                 cursor={true}
                 repeat={Infinity}
-                style={{
-                  fontSize: "15px",
-                  display: "inline-block",
-                  color: "#f4f4f4",
-                }}
               />
             </Box>
             <Stack
@@ -81,62 +61,47 @@ export const NavbarPage = (props: any) => {
               mr={15}
             >
               <Box className="hover-line" sx={{ mr: 2 }}>
-                <NavLink
-                  className="nav-title"
-                  style={{ textDecoration: "none" }}
-                  to={"/"}
-                >
-                  <Typography color={"#fff"} variant="h5">
+                <NavLink className="nav_link" to={"/"}>
+                  <Typography className="nav-title" variant="h5">
                     Home
                   </Typography>
                 </NavLink>
               </Box>
               <Box className="hover-line" sx={{ mr: 2 }}>
-                <NavLink style={{ textDecoration: "none" }} to={"/products"}>
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                <NavLink className="nav_link" to={"/products"}>
+                  <Typography className="nav-title" variant="h5">
                     Shop
                   </Typography>
                 </NavLink>
               </Box>
               {verifiedMemberdata ? (
                 <Box className="hover-line" sx={{ mr: 2 }}>
-                  <NavLink style={{ textDecoration: "none" }} to={"/orders"}>
-                    <Typography
-                      className="nav-title"
-                      color={"#fff"}
-                      variant="h5"
-                    >
+                  <NavLink className="nav_link" to={"/orders"}>
+                    <Typography className="nav-title" variant="h5">
                       Orders
                     </Typography>
                   </NavLink>
                 </Box>
               ) : null}
               <Box className="hover-line" sx={{ mr: 2 }}>
-                <NavLink style={{ textDecoration: "none" }} to={"/community"}>
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                <NavLink className="nav_link" to={"/community"}>
+                  <Typography className="nav-title" variant="h5">
                     Community
                   </Typography>
                 </NavLink>
               </Box>
               {verifiedMemberdata ? (
                 <Box className="hover-line" sx={{ mr: 2 }}>
-                  <NavLink
-                    style={{ textDecoration: "none" }}
-                    to={"/member-page"}
-                  >
-                    <Typography
-                      className="nav-title"
-                      color={"#fff"}
-                      variant="h5"
-                    >
+                  <NavLink className="nav_link" to={"/member-page"}>
+                    <Typography className="nav-title" variant="h5">
                       My Page
                     </Typography>
                   </NavLink>
                 </Box>
               ) : null}
               <Box className="hover-line" sx={{ mr: 2 }}>
-                <NavLink style={{ textDecoration: "none" }} to={"/help"}>
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                <NavLink className="nav_link" to={"/help"}>
+                  <Typography className="nav-title" variant="h5">
                     FAQ
                   </Typography>
                 </NavLink>
@@ -147,7 +112,7 @@ export const NavbarPage = (props: any) => {
                   sx={{ mr: 2 }}
                   onClick={handleSignupOpen}
                 >
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                  <Typography className="nav-title" variant="h5">
                     Signup
                   </Typography>
                 </Box>
@@ -158,13 +123,13 @@ export const NavbarPage = (props: any) => {
                   sx={{ mr: 2 }}
                   onClick={handleLoginOpen}
                 >
-                  <Typography className="nav-title" color={"#fff"} variant="h5">
+                  <Typography className="nav-title" variant="h5">
                     Login
                   </Typography>
                 </Box>
               ) : (
                 <Box>
-                  <Typography className="nav-title" color={"#fff"} variant="h6">
+                  <Typography className="nav-title" variant="h6">
                     Welcome back, {verifiedMemberdata?.mb_nick}!
                   </Typography>
                 </Box>
@@ -174,7 +139,6 @@ export const NavbarPage = (props: any) => {
                   <Typography
                     onClick={props.handleLogoutRequest}
                     className="nav-title"
-                    color={"#fff"}
                     variant="h6"
                   >
                     Logout
@@ -185,110 +149,37 @@ export const NavbarPage = (props: any) => {
           </Stack>
         </Container>
       </div>
-      <div
-        style={{
-          width: "100%",
-          height: "120px",
-        }}
-      >
+      <div className="nav_search_container">
         <Container>
-          <Stack
-            sx={{ width: "1200px", height: "100px" }}
-            flexDirection={"row"}
-            alignItems={"center"}
-            justifyContent={"space-between"}
-          >
-            <Stack
-              alignItems={"center"}
-              flexDirection={"row"}
-              sx={{ cursor: "pointer" }}
-              onClick={navigateHandler}
-            >
-              <img
-                src="/home/macshop.jpg"
-                style={{
-                  width: "69px",
-                  height: "69px",
-                  margin: "0px 20px",
-                  borderRadius: "10px",
-                }}
-              ></img>
-              <Typography
-                style={{
-                  fontFamily: "monospace",
-                  fontWeight: "bold",
-                  fontSize: "25px",
-                }}
-              >
-                Abu_Mac_Tech
-              </Typography>
+          <Stack className={"nav_form_search_wrapper"}>
+            <Stack className="nav_form_logo_wrapper" onClick={navigateHandler}>
+              <img className="nav_form_img" src="/home/macshop.jpg"></img>
+              <Typography className="nav_form_title">Abu_Mac_Tech</Typography>
             </Stack>
             <Stack flexDirection={"row"} alignItems={"center"}>
               <form
+                className="nav_form_wrapper"
                 onClick={changeToProductsHandler}
                 action=""
-                style={{
-                  width: "530px",
-                  height: "45px",
-                  border: "1px solid #129cb8",
-                  borderRadius: "9px",
-                  display: "flex",
-                  alignItems: "center",
-                  background: "none",
-                  color: "#fff",
-                }}
               >
                 <input
+                  className="nav_form_input"
                   type="text"
                   placeholder="Search product here"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    margin: "5px",
-                    background: "none",
-                    border: "none",
-                    outline: "none",
-                  }}
                 />
-                <Box
-                  width={"auto"}
-                  height={"100%"}
-                  sx={{ bgcolor: "#129cb8", borderRadius: "0 9px 9px 0" }}
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  <Search
-                    sx={{
-                      width: "100%",
-                      height: "99%",
-                      color: "#fff",
-                      padding: "5px",
-                      cursor: "pointer",
-                    }}
-                  />
+                <Box className="nav_form_search">
+                  <Search className="nav_form_search_icon" />
                 </Box>
               </form>
             </Stack>
-            <Stack
-              sx={{ width: "150px", height: "60px" }}
-              flexDirection={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
+            <Stack className="nav_icons_wrapper">
               <AuthUser handleLogoutRequest={props.handleLogoutRequest} />
-
               <Favorite
+                className="nav_favorite_icon"
                 onClick={() => {
                   !verifiedMemberdata
                     ? sweetFailureProvider("Please login first, kindly!")
                     : navigate("/member-page");
-                }}
-                className="nav-icon"
-                sx={{
-                  width: "25px",
-                  height: "25px",
-                  cursor: "pointer",
-                  opacity: "0.7",
                 }}
               />
               <Basket

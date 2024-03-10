@@ -67,6 +67,7 @@ export function Basket(props: any) {
               height: "25px",
               cursor: "pointer",
               opacity: "1",
+              color: "#000",
             }}
           />
         </Badge>

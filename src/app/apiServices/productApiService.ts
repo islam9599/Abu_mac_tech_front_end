@@ -26,21 +26,22 @@ class ProductApiService {
       throw err;
     }
   }
-  async getProductsBySearchText(): Promise<Product[]> {
+  async getProductsBySearchText(product_name: string): Promise<Product[]> {
     try {
-      const url = "/products/sale?page=1&limit=4",
+      const url = `/products/search?text=${product_name}`,
         result = await axios.get(this.path + url, {
           withCredentials: true,
         });
       assert.ok(result, Definer.general_err1);
       console.log("state:", result.data.state);
-      const saleProducts: Product[] = result.data.data;
-      return saleProducts;
+      const ProductsByText: Product[] = result.data.data;
+      return ProductsByText;
     } catch (err: any) {
       console.log(`error:: getProductsBySearchText ${err.message}`);
       throw err;
     }
   }
+
   async getTargetProducts(data: ProductSearchObj): Promise<Product[]> {
     try {
       const url = "/products",

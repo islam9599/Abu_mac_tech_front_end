@@ -36,16 +36,11 @@ const setAllProductsRetriever = createSelector(
     allProducts,
   })
 );
-const setProductsByBrandRetriever = createSelector(
-  retrieveProductsByBrand,
-  (productsByBrand) => ({
-    productsByBrand,
-  })
-);
 
 export function AllProducts(props: any) {
   /** Initialization */
   const { setAllProducts, setProductsByBrand } = actionDispatch(useDispatch());
+  const { allProducts } = useSelector(setAllProductsRetriever);
 
   // console.log("productsByBrand::", productsByBrand);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
@@ -56,6 +51,7 @@ export function AllProducts(props: any) {
       limit: 8,
       order: "product_point",
       product_brand: "apple",
+      searchText: "",
     });
 
   useEffect(() => {
@@ -83,6 +79,10 @@ export function AllProducts(props: any) {
     targetProductSearchObj.product_collection = collection;
     setTargetProductSearchObj({ ...targetProductSearchObj });
   };
+  const searchByText = (text: string) => {
+    targetProductSearchObj.searchText = text;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
 
   const handlePaginationChange = (event: any, value: number) => {
     targetProductSearchObj.page = value;
@@ -92,7 +92,6 @@ export function AllProducts(props: any) {
   return (
     <div className="all_products">
       <Container>
-        \
         <Stack
           flexDirection={"row"}
           alignItems={"center"}
@@ -114,6 +113,7 @@ export function AllProducts(props: any) {
           >
             <input
               type="text"
+              onChange={(e) => searchByText(e.target.value)}
               placeholder="Search product here"
               style={{
                 width: "100%",
@@ -196,6 +196,7 @@ export function AllProducts(props: any) {
               justifyContent={"center"}
             >
               <FilterShop
+                allProducts={allProducts}
                 searchAllPorducts={searchAllPorducts}
                 searchBrandHandler={searchByCollection}
                 searchByCollection={searchByCollection}
@@ -212,6 +213,7 @@ export function AllProducts(props: any) {
                 setProductRebuild={setProductRebuild}
                 onAdd={props.onAdd}
               />
+
               <Stack className="bottom_box">
                 <img
                   className="line_img_left"

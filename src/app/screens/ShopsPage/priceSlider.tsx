@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 });
 
 const PriceRangeSlider = (props: any) => {
-  const { searchCollectionHandler } = props;
+  const { searchAllPorducts } = props;
   const classes = useStyles();
   const [priceRange, setPriceRange] = useState([0, 5000]);
 
@@ -57,6 +57,7 @@ const PriceRangeSlider = (props: any) => {
         min={0}
         max={100}
         step={50}
+        onClick={() => props.allProducts}
       />
       <Stack
         flexDirection={"row"}

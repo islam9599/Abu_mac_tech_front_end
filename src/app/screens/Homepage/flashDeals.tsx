@@ -88,7 +88,7 @@ const FlashCard = () => {
     <div>
       <Container>
         <Stack
-          width={"100%"}
+          maxWidth={"100%"}
           height={"auto"}
           alignItems={"center"}
           mt={"50px"}
