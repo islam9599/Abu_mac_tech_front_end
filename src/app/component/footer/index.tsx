@@ -13,15 +13,16 @@ import {
   LinkedIn,
   Twitter,
 } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { verifiedMemberdata } from "../../apiServices/verify";
+import { sweetFailureProvider } from "../../lib/sweetAlert";
 export const Footer = () => {
+  /** Initializations */
+  const navigate = useNavigate();
+  /** Handlers */
+
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "auto",
-        background: "#129cb8",
-      }}
-    >
+    <div className="footer_main_wrapper">
       <Container sx={{ display: "flex", flexDirection: "column" }}>
         <Stack
           flexDirection={"row"}
@@ -29,21 +30,53 @@ export const Footer = () => {
           height={"auto"}
           justifyContent={"space-between"}
         >
-          <Stack flexDirection={"column"} m={"50px 40px"}>
-            <Typography color={"Background"} variant="h4">
+          <Stack
+            flexDirection={"column"}
+            m={"50px 40px"}
+            sx={{ cursor: "pointer" }}
+          >
+            <Typography
+              onClick={() => navigate("/help")}
+              color={"Background"}
+              variant="h4"
+            >
               Help
             </Typography>
-            <Typography color={"InfoText"} mt={3} variant="h5">
+            <Typography
+              onClick={() => navigate("/products")}
+              color={"InfoText"}
+              mt={3}
+              variant="h5"
+            >
               Delivery and returns
             </Typography>
-            <Typography color={"InfoText"} mt={3} variant="h5">
-              FAQ
+            <Typography
+              onClick={() => {
+                !verifiedMemberdata
+                  ? sweetFailureProvider("Please login first, kindly!")
+                  : navigate("/member-page");
+              }}
+              color={"InfoText"}
+              mt={3}
+              variant="h5"
+            >
+              My Page
             </Typography>
-            <Typography color={"InfoText"} mt={3} variant="h5">
+            <Typography
+              onClick={() => navigate("/community")}
+              color={"InfoText"}
+              mt={3}
+              variant="h5"
+            >
               Blog
             </Typography>
           </Stack>
-          <Stack flexDirection={"column"} m={"50px 40px"}>
+          <Stack
+            flexDirection={"column"}
+            m={"50px 40px"}
+            sx={{ cursor: "pointer" }}
+            onClick={() => navigate("/products")}
+          >
             <Typography color={"Background"} variant="h4">
               Shop
             </Typography>
@@ -80,21 +113,33 @@ export const Footer = () => {
               sx={{ cursor: "pointer" }}
             >
               <a
-                style={{ color: "none" }}
+                className="footer_icon_link"
                 href="https://www.facebook.com/islombek.ergashev.315"
               >
                 <Facebook />
               </a>
-              <a href="https://www.instagram.com/macshop_uz/">
+              <a
+                className="footer_icon_link"
+                href="https://www.instagram.com/macshop_uz/"
+              >
                 <Instagram />
               </a>
-              <a href="https://github.com/islam9599">
+              <a
+                className="footer_icon_link"
+                href="https://github.com/islam9599"
+              >
                 <GitHub />
               </a>
-              <a href="https://twitter.com/Islombek9995">
+              <a
+                className="footer_icon_link"
+                href="https://twitter.com/Islombek9995"
+              >
                 <Twitter />
               </a>
-              <a href="https://www.linkedin.com/in/islombek-ergashev-6479681b7/">
+              <a
+                className="footer_icon_link"
+                href="https://www.linkedin.com/in/islombek-ergashev-6479681b7/"
+              >
                 <LinkedIn />
               </a>
             </Stack>

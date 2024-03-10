@@ -1,3 +1,9 @@
+.footer_main_wrapper {
+  width: 100%;
+  height: auto;
+  background: #129cb8;
+}
+
 footer {
   padding: 100px 0;
   color: #fff;
@@ -31,4 +37,8 @@ footer h2 {
 footer li {
   margin-bottom: 10px;
   opacity: 0.5;
+}
+
+.footer_icon_link {
+  color: #000;
 }
