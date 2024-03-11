@@ -70,6 +70,7 @@ export const HotDeal = () => {
             return (
               <SwiperSlide
                 key={index.id}
+                className="home_event_wrapper"
                 style={{
                   width: "100%",
                   height: "500px",
@@ -92,9 +93,15 @@ export const HotDeal = () => {
                   </Typography>
                   <Stack flexDirection={"row"}>
                     <Box
-                      width={"180px"}
-                      height={"230px"}
+                      maxWidth={"180px"}
+                      maxHeight={"230px"}
                       sx={{
+                        display: {
+                          xs: "none",
+                          sm: "none",
+                          md: "none",
+                          lg: "block",
+                        },
                         background: "gray",
                         borderRadius: "9px",
                         margin: "30px",
@@ -108,8 +115,8 @@ export const HotDeal = () => {
                       src={index.img}
                       alt=""
                       style={{
-                        width: "180px",
-                        height: "230px",
+                        maxWidth: "180px",
+                        maxHeight: "230px",
                         objectFit: "cover",
                         borderRadius: "9px",
                         margin: "30px",

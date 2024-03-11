@@ -90,6 +90,7 @@ const FlashCard = () => {
         <Stack
           maxWidth={"100%"}
           height={"auto"}
+          flexWrap={"wrap"}
           alignItems={"center"}
           mt={"50px"}
           justifyContent={"center"}
@@ -98,6 +99,8 @@ const FlashCard = () => {
             Hot Sale
           </Typography>
           <Stack
+            maxWidth={"100%"}
+            flexWrap={"wrap"}
             sx={{
               display: "flex",
               flexDirection: "row",

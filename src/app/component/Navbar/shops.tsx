@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Container, Stack } from "@mui/system";
 import { Typography } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -7,19 +7,25 @@ import { TypeAnimation } from "react-type-animation";
 import { verifiedMemberdata } from "../../apiServices/verify";
 import { Basket } from "./basket";
 import { AuthUser } from "./authUser";
+import { MobileNavbar } from "./mbileNavigation";
 
 export const ShopsPage = (props: any) => {
   /** Initialization */
   const navigate = useNavigate();
   const { handleSignupOpen, handleLoginOpen } = props;
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   /** Handlers */
   const navigateHandler = () => {
     navigate("/");
   };
   return (
-    <div>
-      <div className="nav_shop_wrapper">
+    <div className="nav_shop_wrapper">
+      {isMobile ? (
+        <Stack width={"100%"} m={"0 20px"}>
+          <MobileNavbar />
+        </Stack>
+      ) : (
         <Container>
           <Stack
             flexDirection={"row"}
@@ -175,7 +181,7 @@ export const ShopsPage = (props: any) => {
             </Stack>
           </Stack>
         </Container>
-      </div>
+      )}
     </div>
   );
 };

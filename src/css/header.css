@@ -20,12 +20,24 @@
 }
 
 .navbar_page .nav_search_container {
-  width: 100%;
+  max-width: 100%;
   height: 120px;
   margin: 20px 0px;
 }
+@media (max-width: 768px) {
+  .navbar_page .navbar_home {
+    height: 80px;
+  }
+
+  .navbar_page .nav_search_container {
+    display: none;
+    width: 700px;
+    height: auto;
+    margin: 10px 0px;
+  }
+}
 .navbar_page .nav_search_container .nav_form_search_wrapper {
-  width: 1200px;
+  width: 1320px;
   height: 100px;
   display: flex;
   flex-direction: row;
@@ -325,4 +337,76 @@
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+}
+
+/* Start mobile version*/
+
+.mobile_nav {
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile_nav .mobile_nav_wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.mobile_nav .mobile_nav_wrapper .mobile_nav_log_wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 20%;
+  height: auto;
+}
+
+.mobile_nav .mobile_nav_wrapper .mobile_nav_log_wrapper img {
+  width: 49px;
+  height: 49px;
+  border-radius: 9px;
+  margin-right: 10px;
+}
+
+.mobile_nav .mobile_nav_wrapper .mobile_nav_log_wrapper h4 {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.mobile_nav .mobile_nav_wrapper .mobile_nav_menu_icon {
+  width: 49px;
+  height: 49px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.mobile_nav .mobile_nav_link {
+  position: absolute;
+  top: "60px";
+  right: 0;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.mobile_nav .mobile_nav_title {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.mobile_nav .nav_mobile_arrow_up {
+  width: 29px;
+  height: 29px;
+  margin-bottom: 20px;
 }

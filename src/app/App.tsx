@@ -25,6 +25,7 @@ import {
 import { Definer } from "./lib/Definer";
 import { CartItem } from "./types/other";
 import { Product } from "./types/product";
+import { Chatbox } from "./component/chatbox";
 
 function App() {
   /** Initializations */
@@ -188,6 +189,7 @@ function App() {
         </Route>
         <Route path="/help" element={<HelpPage />} />
       </Routes>
+      <Chatbox />
       <Footer />
       <AuthentificationModal
         loginOpen={loginOpen}

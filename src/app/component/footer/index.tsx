@@ -33,7 +33,15 @@ export const Footer = () => {
           <Stack
             flexDirection={"column"}
             m={"50px 40px"}
-            sx={{ cursor: "pointer" }}
+            sx={{
+              display: {
+                xs: "none",
+                sm: "none",
+                md: "none",
+                lg: "flex",
+              },
+              cursor: "pointer",
+            }}
           >
             <Typography
               onClick={() => navigate("/help")}
@@ -74,7 +82,15 @@ export const Footer = () => {
           <Stack
             flexDirection={"column"}
             m={"50px 40px"}
-            sx={{ cursor: "pointer" }}
+            sx={{
+              display: {
+                xs: "none",
+                sm: "none",
+                md: "none",
+                lg: "flex",
+              },
+              cursor: "pointer",
+            }}
             onClick={() => navigate("/products")}
           >
             <Typography color={"Background"} variant="h4">

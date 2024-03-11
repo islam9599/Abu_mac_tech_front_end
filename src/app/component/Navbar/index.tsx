@@ -1,20 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../css/header.css";
 import { Box, Container, Stack } from "@mui/system";
 import { Typography } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import Search from "@mui/icons-material/Search";
 import Marginer from "../marginer";
-import { Favorite, ShoppingCart } from "@mui/icons-material";
-import { FaUser } from "react-icons/fa";
+import { Favorite } from "@mui/icons-material";
 import { TypeAnimation } from "react-type-animation";
 import { verifiedMemberdata } from "../../apiServices/verify";
 import { Basket } from "./basket";
 import { sweetFailureProvider } from "../../lib/sweetAlert";
 import { AuthUser } from "./authUser";
+import { MobileNavbar } from "./mbileNavigation";
 
 export const NavbarPage = (props: any) => {
   /** Initialization */
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const navigate = useNavigate();
   const { handleSignupOpen, handleLoginOpen } = props;
   useEffect(() => {}, []);
@@ -37,7 +38,12 @@ export const NavbarPage = (props: any) => {
             justifyContent={"space-between"}
             alignItems={"center"}
           >
-            <Box width={"600px"}>
+            <Box
+              sx={{
+                display: { xs: "none", sm: "none", md: "none", lg: "block" },
+                width: { xs: "none", lg: "600px" },
+              }}
+            >
               <TypeAnimation
                 className="nav_text_animation"
                 sequence={[
@@ -56,6 +62,9 @@ export const NavbarPage = (props: any) => {
             </Box>
             <Stack
               width={"70%"}
+              sx={{
+                display: { xs: "none", sm: "none", md: "flex", lg: "flex" },
+              }}
               flexDirection={"row"}
               justifyContent={"space-between"}
               mr={15}
@@ -130,7 +139,7 @@ export const NavbarPage = (props: any) => {
               ) : (
                 <Box>
                   <Typography className="nav-title" variant="h6">
-                    Welcome back, {verifiedMemberdata?.mb_nick}!
+                    Welcome back, {verifiedMemberdata?.mb_nick.toUpperCase()}!
                   </Typography>
                 </Box>
               )}
@@ -145,6 +154,15 @@ export const NavbarPage = (props: any) => {
                   </Typography>
                 </Box>
               ) : null}
+            </Stack>
+            <Stack
+              width={"100%"}
+              height={"auto"}
+              sx={{
+                display: { xs: "flex", sx: "none", md: "none", lg: "none" },
+              }}
+            >
+              <MobileNavbar />
             </Stack>
           </Stack>
         </Container>
@@ -192,7 +210,7 @@ export const NavbarPage = (props: any) => {
               />
             </Stack>
           </Stack>
-          <Marginer direction="horizontal" width="100%" height="2" bg="#999" />
+          <Marginer direction="horizontal" width="1320" height="2" bg="#999" />
         </Container>
       </div>
     </div>

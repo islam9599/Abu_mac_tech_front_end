@@ -63,7 +63,7 @@ export function AllProducts(props: any) {
       })
       .catch((err) => console.log(err));
   }, [targetProductSearchObj, productRebuild]);
-
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   /** Handlers */
   const searchAllPorducts = (order: string) => {
     targetProductSearchObj.order = order;
@@ -91,166 +91,183 @@ export function AllProducts(props: any) {
 
   return (
     <div className="all_products">
-      <Container>
-        <Stack
-          flexDirection={"row"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          m={"50px"}
-        >
-          <form
-            action=""
-            style={{
-              width: "530px",
-              height: "45px",
-              border: "1px solid #129cb8",
-              borderRadius: "9px",
-              display: "flex",
-              alignItems: "center",
-              background: "none",
-              color: "#fff",
-            }}
-          >
-            <input
-              type="text"
-              onChange={(e) => searchByText(e.target.value)}
-              placeholder="Search product here"
-              style={{
-                width: "100%",
-                height: "100%",
-                margin: "5px",
-                background: "none",
-                border: "none",
-                outline: "none",
-              }}
-            />
-            <Box
-              width={"auto"}
-              height={"100%"}
-              sx={{ bgcolor: "#129cb8", borderRadius: "0 9px 9px 0" }}
-              alignItems={"center"}
-              justifyContent={"center"}
-            >
-              <Search
-                sx={{
-                  width: "100%",
-                  height: "99%",
-                  color: "#fff",
-                  padding: "5px",
-                  cursor: "pointer",
-                }}
-              />
-            </Box>
-          </form>
-        </Stack>
-        <Marginer direction="horizontal" width="100%" height="1" bg="#999" />
-        <Stack flexDirection={"column"}>
+      {isMobile ? (
+        <Container sx={{ width: "400px", height: "400px", mt: "400px" }}>
           <Stack
-            className="navigate_home_wrapper"
-            flexDirection={"row"}
+            width={"100%"}
+            height={"300px"}
+            justifyContent={"center"}
             alignItems={"center"}
           >
-            <Home className="navigate_home navigate_home_icon" />
-            <Typography className="navigate_home" variant="h6">
-              Home
-            </Typography>
-            <Marginer width="1" height="15" bg="#000" direction="vertical" />
-
-            <Typography className="navigate_home" variant="h6">
-              All Products
-            </Typography>
-            <Cancel
-              sx={{ width: "10px", height: "10px" }}
-              className="navigate_home navigate_home_icon"
-              onClick={() => {
-                navigate("/");
-              }}
-            />
+            <h1>
+              Mobile version is under developing proccess. Please use our web!
+            </h1>
           </Stack>
-          <Box className={"fit_search_box"} justifyContent={"center"}>
-            <Box className={"fit_box"}>
-              <a onClick={() => searchAllPorducts("all")}>All Products</a>
-              <a onClick={() => searchByCollection("collection", "laptop")}>
-                Laptop
-              </a>
-              <a onClick={() => searchByCollection("collection", "phone")}>
-                Phones
-              </a>
-              <a
-                onClick={() => searchByCollection("collection", "accessories")}
-              >
-                Etc
-              </a>
-            </Box>
-          </Box>
-          <Stack className={"all_products_box"}>
-            <Stack
-              flexDirection={"column"}
-              width={"14%"}
-              height={"900px"}
-              sx={{
-                boxShadow:
-                  "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+        </Container>
+      ) : (
+        <Container>
+          <Stack
+            flexDirection={"row"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            m={"50px"}
+          >
+            <form
+              action=""
+              style={{
+                width: "530px",
+                height: "45px",
+                border: "1px solid #129cb8",
+                borderRadius: "9px",
+                display: "flex",
+                alignItems: "center",
+                background: "none",
+                color: "#fff",
               }}
-              alignItems={"center"}
-              justifyContent={"center"}
             >
-              <FilterShop
-                allProducts={allProducts}
-                searchAllPorducts={searchAllPorducts}
-                searchBrandHandler={searchByCollection}
-                searchByCollection={searchByCollection}
-                searchProductBybrandHandler={searchProductBybrandHandler}
+              <input
+                type="text"
+                onChange={(e) => searchByText(e.target.value)}
+                placeholder="Search product here"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  margin: "5px",
+                  background: "none",
+                  border: "none",
+                  outline: "none",
+                }}
+              />
+              <Box
+                width={"auto"}
+                height={"100%"}
+                sx={{ bgcolor: "#129cb8", borderRadius: "0 9px 9px 0" }}
+                alignItems={"center"}
+                justifyContent={"center"}
+              >
+                <Search
+                  sx={{
+                    width: "100%",
+                    height: "99%",
+                    color: "#fff",
+                    padding: "5px",
+                    cursor: "pointer",
+                  }}
+                />
+              </Box>
+            </form>
+          </Stack>
+          <Marginer direction="horizontal" width="100%" height="1" bg="#999" />
+          <Stack flexDirection={"column"}>
+            <Stack
+              className="navigate_home_wrapper"
+              flexDirection={"row"}
+              alignItems={"center"}
+            >
+              <Home className="navigate_home navigate_home_icon" />
+              <Typography className="navigate_home" variant="h6">
+                Home
+              </Typography>
+              <Marginer width="1" height="15" bg="#000" direction="vertical" />
+
+              <Typography className="navigate_home" variant="h6">
+                All Products
+              </Typography>
+              <Cancel
+                sx={{ width: "10px", height: "10px" }}
+                className="navigate_home navigate_home_icon"
+                onClick={() => {
+                  navigate("/");
+                }}
               />
             </Stack>
-            <Stack
-              width={"85%"}
-              height={"auto"}
-              flexDirection={"row"}
-              sx={{ flexWrap: "wrap" }}
-            >
-              <ProductCard
-                setProductRebuild={setProductRebuild}
-                onAdd={props.onAdd}
-              />
-
-              <Stack className="bottom_box">
-                <img
-                  className="line_img_left"
-                  src={"/icons/line_group.svg"}
-                  alt=""
-                />
-                <Pagination
-                  count={
-                    targetProductSearchObj.page >= 3
-                      ? targetProductSearchObj.page + 1
-                      : 3
+            <Box className={"fit_search_box"} justifyContent={"center"}>
+              <Box className={"fit_box"}>
+                <a onClick={() => searchAllPorducts("all")}>All Products</a>
+                <a onClick={() => searchByCollection("collection", "laptop")}>
+                  Laptop
+                </a>
+                <a onClick={() => searchByCollection("collection", "phone")}>
+                  Phones
+                </a>
+                <a
+                  onClick={() =>
+                    searchByCollection("collection", "accessories")
                   }
-                  page={targetProductSearchObj.page}
-                  renderItem={(item) => (
-                    <PaginationItem
-                      components={{
-                        previous: ArrowBackIcon,
-                        next: ArrowForwardIcon,
-                      }}
-                      {...item}
-                      color="secondary"
-                    />
-                  )}
-                  onChange={handlePaginationChange}
+                >
+                  Etc
+                </a>
+              </Box>
+            </Box>
+            <Stack className={"all_products_box"}>
+              <Stack
+                flexDirection={"column"}
+                width={"14%"}
+                height={"900px"}
+                sx={{
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+                }}
+                alignItems={"center"}
+                justifyContent={"center"}
+              >
+                <FilterShop
+                  allProducts={allProducts}
+                  searchAllPorducts={searchAllPorducts}
+                  searchBrandHandler={searchByCollection}
+                  searchByCollection={searchByCollection}
+                  searchProductBybrandHandler={searchProductBybrandHandler}
+                />
+              </Stack>
+              <Stack
+                width={"85%"}
+                height={"auto"}
+                flexDirection={"row"}
+                sx={{ flexWrap: "wrap" }}
+              >
+                <ProductCard
+                  setProductRebuild={setProductRebuild}
+                  onAdd={props.onAdd}
                 />
 
-                <img
-                  className="line_img_right"
-                  style={{ color: "#129cb8" }}
-                  src={"/icons/line_group.svg"}
-                  alt=""
-                />
+                <Stack className="bottom_box">
+                  <img
+                    className="line_img_left"
+                    src={"/icons/line_group.svg"}
+                    alt=""
+                  />
+                  <Pagination
+                    count={
+                      targetProductSearchObj.page >= 3
+                        ? targetProductSearchObj.page + 1
+                        : 3
+                    }
+                    page={targetProductSearchObj.page}
+                    renderItem={(item) => (
+                      <PaginationItem
+                        components={{
+                          previous: ArrowBackIcon,
+                          next: ArrowForwardIcon,
+                        }}
+                        {...item}
+                        color="secondary"
+                      />
+                    )}
+                    onChange={handlePaginationChange}
+                  />
+
+                  <img
+                    className="line_img_right"
+                    style={{ color: "#129cb8" }}
+                    src={"/icons/line_group.svg"}
+                    alt=""
+                  />
+                </Stack>
               </Stack>
             </Stack>
           </Stack>
-        </Stack>
-      </Container>
+        </Container>
+      )}
     </div>
   );
 }

@@ -8,9 +8,14 @@ export const FollowInstagram = () => {
     <div>
       <Container
         sx={{
+          display: {
+            xs: "none",
+            sm: "none",
+            md: "none",
+            lg: "flex",
+          },
           width: "100%",
           height: "140px",
-          display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
@@ -37,29 +42,31 @@ export const FollowInstagram = () => {
                 marginRight: "5px",
                 width: "29px",
                 height: "29px",
+                cursor: "pointer",
               }}
             />
             <h3>Follow on Instagram</h3>
           </a>
         </Stack>
+
         <img
-          src="https://i.guim.co.uk/img/media/18badfc0b64b09f917fd14bbe47d73fd92feeb27/189_335_5080_3048/master/5080.jpg?width=620&dpr=2&s=none"
-          style={{ height: "150px" }}
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA9FKWa3buP9P1ZhdV4BS53yNjYKDAQkUHEQ&usqp=CAU"
+          style={{ maxHeight: "150px" }}
           alt=""
         />
         <img
-          src="https://i.guim.co.uk/img/media/18badfc0b64b09f917fd14bbe47d73fd92feeb27/189_335_5080_3048/master/5080.jpg?width=620&dpr=2&s=none"
-          style={{ height: "150px" }}
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE9nD-J0DVxpbBOU1YCdKRkD4IbCaNEwGVqA&usqp=CAU"
+          style={{ maxHeight: "150px" }}
           alt=""
         />
         <img
-          src="https://i.guim.co.uk/img/media/18badfc0b64b09f917fd14bbe47d73fd92feeb27/189_335_5080_3048/master/5080.jpg?width=620&dpr=2&s=none"
-          style={{ height: "150px" }}
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqQT_h6OgYvE49n1LJ_JR-_ZaIJoFMqNheoQ&usqp=CAU"
+          style={{ maxHeight: "150px" }}
           alt=""
         />
         <img
-          src="https://i.guim.co.uk/img/media/18badfc0b64b09f917fd14bbe47d73fd92feeb27/189_335_5080_3048/master/5080.jpg?width=620&dpr=2&s=none"
-          style={{ height: "150px" }}
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiHCo8MFPGUS4ZxRoDe4cAPdWAz5M0QevzGg&usqp=CAU"
+          style={{ maxHeight: "150px" }}
           alt=""
         />
       </Container>
