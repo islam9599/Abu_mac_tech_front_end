@@ -22,9 +22,9 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setTopBrands: (data: Shop[]) => dispatch(setTopBrands(data)),
 });
 
-export const Homepage = () => {
+export const Homepage = (props: any) => {
   /** Initialization */
-
+  const { onAdd } = props;
   const { setTopBrands } = actionDispatch(useDispatch());
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export const Homepage = () => {
       <Container>
         <HotDeal />
         <Categories />
-        <FlashCard />
+        <FlashCard onAdd={onAdd} />
       </Container>
 
       <div

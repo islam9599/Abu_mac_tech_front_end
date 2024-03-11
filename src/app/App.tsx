@@ -167,7 +167,7 @@ function App() {
       )}
 
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage onAdd={onAdd} />} />
         <Route path="/products" element={<Shops onAdd={onAdd} />}>
           <Route path=":product_id" element={<ChosenProduct />} />
           <Route path="phones" element={<PhoneProducts />} />

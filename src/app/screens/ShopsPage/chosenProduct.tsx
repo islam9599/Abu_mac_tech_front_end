@@ -339,7 +339,7 @@ export const ChosenProduct = (props: any) => {
               </Stack>
 
               <h2 className="product_brand">
-                By {chosenProduct?.product_brand} Company
+                By {chosenProduct?.product_brand.toLocaleUpperCase()} Company
               </h2>
               <Box className="rating_box">
                 <Rating
@@ -400,12 +400,13 @@ export const ChosenProduct = (props: any) => {
         </Box>
 
         <Stack
+          height={"auto"}
           flexDirection={"column"}
           justifyContent={"center"}
           alignItems={"center"}
         >
           <Typography variant="h2">Related Products</Typography>
-          <Stack flexDirection={"row"} width={"90%"} justifyContent={"center"}>
+          <Stack flexDirection={"row"} width={"100%"} justifyContent={"center"}>
             <ProductCard />
           </Stack>
           <Typography m={"40px 0px"} variant="h3">

@@ -45,7 +45,7 @@ const saleProductsRetriever = createSelector(
   })
 );
 
-const FlashCard = () => {
+const FlashCard = (props: any) => {
   /** Initialization */
   const { setSaleProducts } = actionDispatch(useDispatch());
   const { saleProducts } = useSelector(saleProductsRetriever);
@@ -129,6 +129,10 @@ const FlashCard = () => {
                       <ShoppingCartRounded
                         className={"productCard__cart"}
                         sx={{ width: "29px", height: "24px" }}
+                        onClick={(e) => {
+                          props.onAdd(product);
+                          e.stopPropagation();
+                        }}
                       />
                       <BookmarkBorder
                         className={"productCard__wishlist"}

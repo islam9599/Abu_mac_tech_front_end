@@ -81,14 +81,16 @@ const ProductCard = (props: any) => {
               onClick={() => {
                 navigate(`/products/${product?._id}`);
               }}
+              m={1}
             >
               <div
                 key={product?._id}
                 className="productCard"
                 style={{
-                  width: "250px",
+                  width: "280px",
                   height: "auto",
                   flex: "1 0 10rem",
+                  margin: "20px",
                 }}
               >
                 <Stack

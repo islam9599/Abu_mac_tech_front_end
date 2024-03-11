@@ -4,7 +4,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import PriceRangeSlider from "./priceSlider";
 
 // Redux
@@ -75,13 +75,13 @@ export default function FilterShop(props: any) {
     <Stack alignItems={"center"}>
       <FormControl
         style={{
+          width: "100%",
           display: "flex",
-          alignItems: "center",
-          marginBottom: "30px",
+          margin: "70px 0px",
         }}
       >
         <FormLabel
-          sx={{ fontWeight: "bold", fontSize: "14px" }}
+          sx={{ fontWeight: "bold", fontSize: "16px" }}
           id="demo-radio-buttons-group-label"
           onClick={() => sethide(!hide)}
         >
@@ -92,88 +92,106 @@ export default function FilterShop(props: any) {
           defaultValue="all"
           name="radio-buttons-group"
         >
-          <FormControlLabel
-            value="all"
-            control={<Radio />}
-            label="All"
-            onClick={() => searchAllPorducts("all")}
-          />
-          <FormControlLabel
-            value="apple"
-            control={<Radio />}
-            label="Apple"
+          <Stack flexDirection={"row"} onClick={() => searchAllPorducts("all")}>
+            <Radio value={"all"} />
+            <h3>All</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
             onClick={() => searchProductBybrandHandler("brand", "apple")}
-          />
-
-          <FormControlLabel
-            value="samsung"
-            control={<Radio />}
-            label="Samsung"
+          >
+            <Radio value={"apple"} />
+            <h3>Apple</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
             onClick={() => searchProductBybrandHandler("brand", "samsung")}
-          />
-          <FormControlLabel value="Hp" control={<Radio />} label="Hp" />
-          <FormControlLabel
-            value="Microsoft"
-            control={<Radio />}
-            label="Microsoft"
-          />
-          <FormControlLabel value="Etc" control={<Radio />} label="Etc" />
+          >
+            <Radio value={"samsung"} />
+            <h3>Samsung</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
+            // onClick={() => searchProductBybrandHandler("brand", "samsung")}
+          >
+            <Radio value={"hp"} />
+            <h3>Hp</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
+            // onClick={() => searchProductBybrandHandler("brand", "samsung")}
+          >
+            <Radio value={"microsoft"} />
+            <h3>Microsoft</h3>
+          </Stack>
         </RadioGroup>
       </FormControl>
 
       <FormControl
-        style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}
+        style={{
+          display: "flex",
+        }}
       >
         <FormLabel
-          sx={{ fontWeight: "bold", fontSize: "14px" }}
+          sx={{ fontWeight: "bold", fontSize: "16px" }}
           id="demo-radio-buttons-group-label"
+          onClick={() => sethide(!hide)}
         >
-          Filter by
+          Default Filtering
         </FormLabel>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="All"
+          defaultValue="all"
           name="radio-buttons-group"
         >
-          <FormControlLabel
-            value="All"
-            control={<Radio />}
-            label="Best-selling"
-            onClick={() => searchAllPorducts()}
-          />
-          <FormControlLabel
-            value="is_onsale"
-            control={<Radio />}
-            label="On-sale"
+          <Stack flexDirection={"row"} onClick={() => searchAllPorducts()}>
+            <Radio value={"all"} />
+            <h3>Best</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
             onClick={() => searchAllPorducts("product_discount")}
-          />
-          <FormControlLabel
-            value="updatedAt"
-            control={<Radio />}
-            label="New-arrivals"
+          >
+            <Radio value={"is_sale"} />
+            <h3>Sale</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
             onClick={() => searchAllPorducts("updatedAt")}
-          />
-          <FormControlLabel
-            value="product_views"
-            control={<Radio />}
-            label="Most-viewed"
+          >
+            <Radio value={"updatedAt"} />
+            <h3>New</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
             onClick={() => searchAllPorducts("product_views")}
-          />
-          <FormControlLabel
-            value="product_likes"
-            control={<Radio />}
-            label="Most-liked"
+          >
+            <Radio value={"product_views"} />
+            <h3>Views</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
             onClick={() => searchAllPorducts("product_likes")}
-          />
+          >
+            <Radio value={"product_likes"} />
+            <h3>Likes</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
+            onClick={() => searchAllPorducts("product_price")}
+          >
+            <Radio value={"product_price"} />
+            <h3>Price</h3>
+          </Stack>
         </RadioGroup>
       </FormControl>
 
-      <Stack sx={{ m: 5 }}>
+      {/* <Stack sx={{ m: 5 }}>
         <PriceRangeSlider
           searchAllPorducts={searchAllPorducts}
           allProducts={props.allProducts}
         />
-      </Stack>
+      </Stack> */}
     </Stack>
   );
 }

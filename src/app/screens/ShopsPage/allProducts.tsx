@@ -202,14 +202,14 @@ export function AllProducts(props: any) {
             <Stack className={"all_products_box"}>
               <Stack
                 flexDirection={"column"}
-                width={"14%"}
+                width={"20%"}
                 height={"900px"}
+                mt={5}
+                alignItems={"center"}
                 sx={{
                   boxShadow:
                     "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
                 }}
-                alignItems={"center"}
-                justifyContent={"center"}
               >
                 <FilterShop
                   allProducts={allProducts}
@@ -220,7 +220,8 @@ export function AllProducts(props: any) {
                 />
               </Stack>
               <Stack
-                width={"85%"}
+                width={"75%"}
+                ml={5}
                 height={"auto"}
                 flexDirection={"row"}
                 sx={{ flexWrap: "wrap" }}
