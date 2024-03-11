@@ -7,6 +7,7 @@ import {
   FavoriteBorder,
   RemoveRedEye,
   ShoppingCartRounded,
+  Star,
 } from "@mui/icons-material";
 import { Checkbox, Rating, Stack } from "@mui/material";
 import "../../../css/home.css";
@@ -182,11 +183,11 @@ const ProductCard = (props: any) => {
                   </div>
                   <div className="displayStack__2">
                     <div className="productRating">
-                      <Rating
-                        className="half_rating"
-                        defaultValue={3.5}
-                        precision={0.5}
-                      />
+                      <Star sx={{ color: "gold" }} />
+                      <Star sx={{ color: "gold" }} />
+                      <Star sx={{ color: "gold" }} />
+                      <Star sx={{ color: "gold" }} />
+                      <Star />
                     </div>
                     <div className="productTime">29 days left</div>
                   </div>

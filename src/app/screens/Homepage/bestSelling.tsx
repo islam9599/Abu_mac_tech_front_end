@@ -257,22 +257,6 @@ export const BestSelling = () => {
                       </Stack>
                     </Stack>
                   </CardContent>
-                  <CardActions>
-                    <Stack
-                      width={"100%"}
-                      height={"auto"}
-                      flexDirection={"row"}
-                      alignContent={"baseline"}
-                      justifyContent={"space-between"}
-                    >
-                      <Button size="small" variant="contained" color="primary">
-                        Share
-                      </Button>
-                      <Button size="small" variant="contained" color="primary">
-                        Learn More
-                      </Button>
-                    </Stack>
-                  </CardActions>
                 </Card>
               );
             })}
