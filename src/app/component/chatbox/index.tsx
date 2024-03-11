@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { Button, Stack } from "@mui/material";
 import { RippleBadge } from "../../MaterialTheme/styled";
 import { Cancel } from "@mui/icons-material";
@@ -66,7 +65,7 @@ export function Chatbox(props: any) {
             m={2}
           >
             <h2>
-              Welcome dear
+              Welcome dear,
               {verifiedMemberdata?.mb_nick
                 ? ` ${verifiedMemberdata?.mb_nick.toUpperCase()}`
                 : " Guest"}

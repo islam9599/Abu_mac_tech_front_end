@@ -119,7 +119,13 @@ const FlashCard = () => {
                   }}
                 >
                   <div className="productCard">
-                    <Stack flexDirection={"row"} className="icon-container">
+                    <Stack
+                      flexDirection={"row"}
+                      className="icon-container"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
                       <ShoppingCartRounded
                         className={"productCard__cart"}
                         sx={{ width: "29px", height: "24px" }}

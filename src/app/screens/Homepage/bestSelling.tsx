@@ -109,9 +109,9 @@ export const BestSelling = () => {
             sx={{
               width: "60%",
               height: "auto",
-
-              borderRadius: "9px",
+              borderRadius: "19px",
               cursor: "pointer",
+              boxShadow: "rgba(0, 0, 0, 0.4) 0px 30px 90px",
             }}
           >
             <Typography

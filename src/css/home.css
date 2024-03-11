@@ -117,7 +117,7 @@
 
 .productCard {
   position: relative;
-  background-color: var(--color-grey-primary);
+  /* background-color: var(--color-grey-primary); */
   margin: 1rem;
   flex: 1 0 15rem;
   width: 300px;
@@ -212,8 +212,8 @@
   width: 300px;
   height: auto;
   margin: 1rem;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
-    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+    rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
 .home-page .home_card:hover {

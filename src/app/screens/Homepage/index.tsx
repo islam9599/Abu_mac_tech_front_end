@@ -15,7 +15,6 @@ import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setTopBrands } from "./slice";
 import { Shop } from "../../types/user";
-import { Chatbox } from "../../component/chatbox";
 
 /** Redux Slice */
 

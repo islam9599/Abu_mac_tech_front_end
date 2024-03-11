@@ -67,11 +67,17 @@ export const Categories = () => {
                     display: "flex",
                     alignItems: "center",
                     cursor: "pointer",
-                    background: "#ADD8E6",
-                    borderRadius: "19px",
                   }}
                 >
-                  <Stack flexDirection={"column"}>
+                  <Stack
+                    flexDirection={"column"}
+                    sx={{
+                      background: "#ADD8E6",
+                      borderRadius: "19px",
+                      boxShadow:
+                        "rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px",
+                    }}
+                  >
                     <img
                       src={image_path}
                       alt=""
