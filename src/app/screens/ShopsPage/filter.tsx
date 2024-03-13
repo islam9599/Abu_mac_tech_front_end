@@ -81,7 +81,7 @@ export default function FilterShop(props: any) {
         }}
       >
         <FormLabel
-          sx={{ fontWeight: "bold", fontSize: "16px" }}
+          sx={{ fontWeight: "bold", fontSize: "16px", mb: "20px" }}
           id="demo-radio-buttons-group-label"
           onClick={() => sethide(!hide)}
         >
@@ -133,7 +133,7 @@ export default function FilterShop(props: any) {
         }}
       >
         <FormLabel
-          sx={{ fontWeight: "bold", fontSize: "16px" }}
+          sx={{ fontWeight: "bold", fontSize: "16px", mb: "20px" }}
           id="demo-radio-buttons-group-label"
           onClick={() => sethide(!hide)}
         >

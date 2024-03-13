@@ -1,13 +1,6 @@
-import {
-  ArrowBack,
-  ArrowBackRounded,
-  ArrowOutward,
-  Cancel,
-  Close,
-  Menu,
-} from "@mui/icons-material";
-import { Box, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { Menu } from "@mui/icons-material";
+import { Box, Stack } from "@mui/material";
 import { FaArrowUp } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -24,6 +17,7 @@ export const MobileNavbar = (props: any) => {
         display: { xs: "flex", sx: "none", md: "none", lg: "none" },
         width: "100%",
         maxHeight: "auto",
+        mt: "10px",
       }}
     >
       <Stack className="mobile_nav">

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import { SocketContext, socket } from "./app/context/socket";
 import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
 import "./css/index.css";
@@ -15,7 +16,9 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <App />
+        <SocketContext.Provider value={socket}>
+          <App />
+        </SocketContext.Provider>
       </Router>
     </ThemeProvider>
   </Provider>,

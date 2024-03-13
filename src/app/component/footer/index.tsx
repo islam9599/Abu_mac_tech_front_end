@@ -37,7 +37,7 @@ export const Footer = () => {
               display: {
                 xs: "none",
                 sm: "none",
-                md: "none",
+                md: "flex",
                 lg: "flex",
               },
               cursor: "pointer",
@@ -122,8 +122,8 @@ export const Footer = () => {
             <Marginer direction="vertical" width="100%" height="1" bg="#fff" />
             <Stack
               flexDirection={"row"}
-              width={"150px"}
-              height={"40px"}
+              width={"300px"}
+              height={"auto"}
               mt={3}
               justifyContent={"space-between"}
               sx={{ cursor: "pointer" }}
@@ -132,35 +132,62 @@ export const Footer = () => {
                 className="footer_icon_link"
                 href="https://www.facebook.com/islombek.ergashev.315"
               >
-                <Facebook />
+                <Facebook
+                  className="footer_icon"
+                  sx={{ width: "29px", height: "29px" }}
+                />
               </a>
               <a
                 className="footer_icon_link"
                 href="https://www.instagram.com/macshop_uz/"
               >
-                <Instagram />
+                <Instagram
+                  className="footer_icon"
+                  sx={{ width: "29px", height: "29px" }}
+                />
               </a>
               <a
                 className="footer_icon_link"
                 href="https://github.com/islam9599"
               >
-                <GitHub />
+                <GitHub
+                  className="footer_icon"
+                  sx={{ width: "29px", height: "29px" }}
+                />
               </a>
               <a
                 className="footer_icon_link"
                 href="https://twitter.com/Islombek9995"
               >
-                <Twitter />
+                <Twitter
+                  className="footer_icon"
+                  sx={{ width: "29px", height: "29px" }}
+                />
               </a>
               <a
                 className="footer_icon_link"
                 href="https://www.linkedin.com/in/islombek-ergashev-6479681b7/"
               >
-                <LinkedIn />
+                <LinkedIn
+                  className="footer_icon"
+                  sx={{ width: "29px", height: "29px" }}
+                />
               </a>
             </Stack>
           </Stack>
-          <Stack flexDirection={"column"} m={"50px 40px"}>
+          <Stack
+            flexDirection={"column"}
+            m={"50px 40px"}
+            sx={{
+              display: {
+                xs: "none",
+                sm: "flex",
+                md: "flex",
+                lg: "flex",
+              },
+              cursor: "pointer",
+            }}
+          >
             <Typography color={"Background"} variant="h4" mb={5}>
               Download our App
             </Typography>

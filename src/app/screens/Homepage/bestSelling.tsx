@@ -101,55 +101,23 @@ export const BestSelling = () => {
     <div>
       <Container>
         <Stack alignItems={"center"}>
-          <Stack
-            width={"60%"}
-            flexDirection={"row"}
-            justifyContent={"space-between"}
-            m={5}
-            sx={{
-              width: "60%",
-              height: "auto",
-              borderRadius: "19px",
-              cursor: "pointer",
-              boxShadow: "rgba(0, 0, 0, 0.4) 0px 30px 90px",
-            }}
-          >
-            <Typography
+          <Stack className="best_selling_wrapper" m={5}>
+            <h2
+              className="best_selling_category"
               onClick={() => searchCollectionHandler("product_discount")}
-              m={3}
-              color={"#000"}
-              variant="h4"
-              fontWeight={"bold"}
             >
               Best Selling Products
-            </Typography>
-            <Typography
+            </h2>
+            <h2
+              className="best_selling_category"
               onClick={() => searchCollectionHandler("product_likes")}
-              m={3}
-              color={"#000"}
-              variant="h4"
-              fontWeight={"bold"}
             >
               Most Liked Products
-            </Typography>
-            <Typography
-              onClick={() => searchCollectionHandler("createdAt")}
-              m={3}
-              color={"#000"}
-              variant="h4"
-              fontWeight={"bold"}
-            >
-              New Arrivals
-            </Typography>
+            </h2>
+            <h2 className="best_selling_category">New Arrivals</h2>
           </Stack>
 
-          <Stack
-            width={"100%"}
-            flexDirection={"row"}
-            flexWrap={"wrap"}
-            alignItems={"center"}
-            justifyContent={"center"}
-          >
+          <Stack className="best_product_container">
             {/*@ts-ignore */}
             {bestProducts.map((product: Product) => {
               const image_path = `${serverApi}/${product.product_images[0]}`;
@@ -164,41 +132,18 @@ export const BestSelling = () => {
                 >
                   <CardMedia
                     className="card_image"
-                    sx={{
-                      paddingTop: "15px",
-                      boxShadow: "revert-layer",
-                    }}
                     component="img"
                     alt="green iguana"
-                    height="250"
                     image={image_path}
-                    style={{
-                      objectFit: "cover",
-                    }}
                   />
                   <CardContent>
-                    <Typography
-                      variant="h5"
-                      color={"InfoText"}
-                      marginBottom={"10px"}
-                      fontWeight={"bold"}
-                      sx={{
-                        width: "90%",
-                        height: "30px",
-                      }}
-                    >
-                      {product.product_name}
-                    </Typography>
-                    <Stack
-                      width={"100%"}
-                      justifyContent={"space-between"}
-                      flexDirection={"row"}
-                      alignItems={"center"}
-                      position={"relative"}
-                    >
-                      <h2>{product?.product_left_cnt} units left</h2>
+                    <h2 className="product_name">{product.product_name}</h2>
+                    <Stack className="product_price_wrapper">
+                      <h2 className="product_left">
+                        {product?.product_left_cnt} units left
+                      </h2>
 
-                      <h2 style={{ fontSize: "18px" }}>
+                      <h2 className="product_price">
                         ${product?.product_price}
                       </h2>
                     </Stack>
@@ -210,40 +155,25 @@ export const BestSelling = () => {
                       justifyContent={"space-between"}
                     >
                       <Stack
-                        width={"30px"}
+                        width={"40px"}
                         flexDirection={"row"}
                         alignItems={"center"}
+                        justifyContent={"space-between"}
                       >
-                        <RemoveRedEye
-                          className="icon-container"
-                          style={{
-                            width: "22px",
-                            height: "25px",
-                            cursor: "pointer",
-                          }}
-                        />
-                        <h2>{product?.product_views}</h2>
+                        <RemoveRedEye className="icon_container" />
+                        <h2 className="product_count">
+                          {product?.product_views}
+                        </h2>
                       </Stack>
                       <Stack flexDirection={"row"} alignItems={"center"}>
                         <Checkbox
                           onClick={targetLikeProduct}
-                          icon={
-                            <Favorite
-                              style={{
-                                color: "#000",
-                                width: "22px",
-                                height: "25px",
-                              }}
-                            />
-                          }
+                          icon={<Favorite className="icon_container" />}
                           id={product._id}
                           checkedIcon={
                             <Favorite
-                              style={{
-                                color: "red",
-                                width: "22px",
-                                height: "25px",
-                              }}
+                              className="icon_container"
+                              sx={{ color: "red" }}
                             />
                           }
                           checked={
@@ -253,7 +183,9 @@ export const BestSelling = () => {
                               : false
                           }
                         />
-                        <h2>{product?.product_likes}</h2>
+                        <h2 className="product_count">
+                          {product?.product_likes}
+                        </h2>
                       </Stack>
                     </Stack>
                   </CardContent>

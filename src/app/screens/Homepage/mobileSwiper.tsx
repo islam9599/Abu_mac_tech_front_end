@@ -10,7 +10,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Container, Stack } from "@mui/system";
 import { Box } from "@mui/material";
-
 const infoData = [
   {
     id: 1,
@@ -38,7 +37,7 @@ const infoData = [
   },
 ];
 
-export const HotDeal = () => {
+export const MobileSwiper = () => {
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
   const onAutoplayTimeLeft = (s: any, time: any, progress: any) => {
@@ -70,31 +69,34 @@ export const HotDeal = () => {
             return (
               <SwiperSlide
                 key={index.id}
-                className="home_event_wrapper"
                 style={{
                   width: "100%",
-                  height: "550px",
+                  height: "300px",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
                   backgroundImage: `url(${index.background})`,
                   backgroundSize: "cover",
                   borderRadius: "9px",
                 }}
               >
-                <Stack
-                  className="event-info"
-                  flexDirection={"column"}
-                  alignItems={"center"}
-                >
+                <Stack flexDirection={"column"} alignItems={"center"}>
                   <Typography
                     variant="h5"
                     fontFamily={"sans-serif"}
-                    style={{ marginTop: "20px", fontWeight: "bold" }}
+                    style={{
+                      marginTop: "20px",
+                      fontWeight: "bold",
+                      color: "#f1f1f2",
+                    }}
                   >
                     {index.title}
                   </Typography>
                   <Stack flexDirection={"row"}>
                     <Box
-                      maxWidth={"180px"}
-                      maxHeight={"230px"}
+                      maxWidth={"80px"}
+                      maxHeight={"130px"}
                       sx={{
                         display: {
                           xs: "none",
@@ -115,19 +117,22 @@ export const HotDeal = () => {
                       src={index.img}
                       alt=""
                       style={{
-                        maxWidth: "150px",
-                        maxHeight: "200px",
+                        width: "150px",
+                        height: "150px",
                         objectFit: "cover",
-                        borderRadius: "9px",
-                        marginTop: "30px",
-                        marginRight: "50px",
+                        borderRadius: "19px",
+                        marginTop: "10px",
                       }}
                     />
                   </Stack>
                   <Typography
                     variant="h5"
                     fontFamily={"sans-serif"}
-                    style={{ marginTop: "50px", fontWeight: "bold" }}
+                    style={{
+                      marginTop: "50px",
+                      fontWeight: "bold",
+                      color: "#f1f1f2",
+                    }}
                   >
                     Kuzatishda davom eting!
                   </Typography>

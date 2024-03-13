@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { HotDeal } from "./hotDeal";
 import { Container } from "@mui/material";
 import { Advertisements } from "./advertisement";
@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setTopBrands } from "./slice";
 import { Shop } from "../../types/user";
+import { MobileSwiper } from "./mobileSwiper";
 
 /** Redux Slice */
 
@@ -26,6 +27,7 @@ export const Homepage = (props: any) => {
   /** Initialization */
   const { onAdd } = props;
   const { setTopBrands } = actionDispatch(useDispatch());
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 450);
 
   useEffect(() => {
     const shopApiService = new ShopApiService();
@@ -39,7 +41,8 @@ export const Homepage = (props: any) => {
   return (
     <div className="home-page">
       <Container>
-        <HotDeal />
+        {isMobile ? <MobileSwiper /> : <HotDeal />}
+
         <Categories />
         <FlashCard onAdd={onAdd} />
       </Container>

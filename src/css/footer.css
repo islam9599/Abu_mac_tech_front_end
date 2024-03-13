@@ -3,6 +3,10 @@
   height: auto;
   background: #129cb8;
 }
+.footer_icon {
+  width: 49px;
+  height: 49px;
+}
 
 footer {
   padding: 100px 0;
@@ -41,4 +45,6 @@ footer li {
 
 .footer_icon_link {
   color: #000;
+  width: 100px;
+  height: 100px;
 }

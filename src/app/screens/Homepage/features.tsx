@@ -5,31 +5,19 @@ import Marginer from "../../component/marginer";
 export const Features = () => {
   return (
     <div>
-      <Container
-        sx={{
-          width: "100%",
-          height: "140px",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          margin: "40px 0",
-        }}
-      >
+      <Container className="shipping_info_wrapper">
         <Stack
           flexDirection={"column"}
           alignItems={"center"}
           justifyContent={"center"}
         >
           <img
+            className="shipping_info_img"
             src="/home/ic-delivery.svg"
-            style={{ width: "48px", height: "48px", marginBottom: "24px" }}
             alt=""
           />
-          <Typography color={"InfoText"} fontWeight={"bold"}>
-            Fast Worldwide Shipping
-          </Typography>
-          <Typography mt={"10px"}>Get free shipping over $250</Typography>
+          <p className="shippin_info_title">Fast Worldwide Shipping</p>
+          <p className="shippin_info_desc">Get free shipping over $250</p>
         </Stack>
         <Marginer direction="horizontal" width="1" height="126" bg="gray" />
         <Stack
@@ -39,13 +27,11 @@ export const Features = () => {
         >
           <img
             src="/home/ic-call-center.svg"
-            style={{ width: "48px", height: "48px", marginBottom: "24px" }}
+            className="shipping_info_img"
             alt=""
           />
-          <Typography color={"InfoText"} fontWeight={"bold"}>
-            Fast Worldwide Shipping
-          </Typography>
-          <Typography mt={"10px"}>Get free shipping over $250</Typography>
+          <p className="shippin_info_title">Fast Worldwide Shipping</p>
+          <p className="shippin_info_desc">Get free shipping over $250</p>
         </Stack>
         <Marginer direction="horizontal" width="1" height="126" bg="gray" />
 
@@ -54,15 +40,9 @@ export const Features = () => {
           alignItems={"center"}
           justifyContent={"center"}
         >
-          <img
-            src="/home/ic-shield.svg"
-            style={{ width: "48px", height: "48px", marginBottom: "24px" }}
-            alt=""
-          />
-          <Typography color={"InfoText"} fontWeight={"bold"}>
-            Fast Worldwide Shipping
-          </Typography>
-          <Typography mt={"10px"}>Get free shipping over $250</Typography>
+          <img src="/home/ic-shield.svg" className="shipping_info_img" alt="" />
+          <p className="shippin_info_title">Fast Worldwide Shipping</p>
+          <p className="shippin_info_desc">Get free shipping over $250</p>
         </Stack>
         <Marginer direction="horizontal" width="1" height="126" bg="gray" />
 
@@ -73,13 +53,11 @@ export const Features = () => {
         >
           <img
             src="/home/ic-credit-card.svg"
-            style={{ width: "48px", height: "48px", marginBottom: "24px" }}
+            className="shipping_info_img"
             alt=""
           />
-          <Typography color={"InfoText"} fontWeight={"bold"}>
-            Fast Worldwide Shipping
-          </Typography>
-          <Typography mt={"10px"}>Get free shipping over $250</Typography>
+          <p className="shippin_info_title">Fast Worldwide Shipping</p>
+          <p className="shippin_info_desc">Get free shipping over $250</p>
         </Stack>
       </Container>
     </div>

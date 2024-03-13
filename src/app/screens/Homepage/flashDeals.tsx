@@ -129,7 +129,10 @@ const FlashCard = (props: any) => {
                     >
                       <ShoppingCartRounded
                         className={"productCard__cart"}
-                        sx={{ width: "29px", height: "24px" }}
+                        sx={{
+                          width: { xs: "10px", lg: "29px" },
+                          height: { xs: "8px", lg: "24px" },
+                        }}
                         onClick={(e) => {
                           props.onAdd(product);
                           e.stopPropagation();
@@ -137,20 +140,31 @@ const FlashCard = (props: any) => {
                       />
                       <BookmarkBorder
                         className={"productCard__wishlist"}
-                        sx={{ width: "29px", height: "24px" }}
+                        sx={{
+                          width: { xs: "10px", lg: "29px" },
+                          height: { xs: "8px", lg: "24px" },
+                        }}
                       />
                       <Checkbox
+                        sx={{ display: { xs: "none", lg: "flex" } }}
                         className={"productCard__cart"}
                         onClick={targetLikeProduct}
                         icon={
                           <FavoriteBorder
-                            sx={{ width: "29px", height: "24px" }}
+                            sx={{
+                              width: { xs: "10px", lg: "29px" },
+                              height: { xs: "8px", lg: "24px" },
+                            }}
                           />
                         }
                         id={product._id}
                         checkedIcon={
                           <Favorite
-                            sx={{ width: "29px", height: "24px", color: "red" }}
+                            sx={{
+                              width: { xs: "10px", lg: "29px" },
+                              height: { xs: "8px", lg: "24px" },
+                              color: "red",
+                            }}
                           />
                         }
                         checked={
@@ -158,6 +172,13 @@ const FlashCard = (props: any) => {
                             ? true
                             : false
                         }
+                      />
+                      <Favorite
+                        sx={{
+                          display: { sx: "flex", lg: "none" },
+                          width: "10px",
+                          height: "8px",
+                        }}
                       />
                     </Stack>
                     <img
@@ -173,16 +194,22 @@ const FlashCard = (props: any) => {
                         alignItems={"center"}
                         justifyContent={"space-between"}
                       >
-                        <h3 style={{ color: "red" }}>
+                        <h3
+                          className="product_discount"
+                          style={{ color: "red" }}
+                        >
                           {product?.product_discount}% off
                         </h3>
-                        <h2 style={{ textDecoration: "line-through" }}>
-                          {product?.product_price}
+                        <h2
+                          className="product_discount"
+                          style={{ textDecoration: "line-through" }}
+                        >
+                          ${product?.product_price}
                         </h2>
                       </Stack>
 
                       <div className="displayStack__1">
-                        <div className="productPrice">
+                        <div className="product_discount">
                           $
                           {product.product_price -
                             product.product_price / product.product_discount}
@@ -193,11 +220,40 @@ const FlashCard = (props: any) => {
                       </div>
                       <div className="displayStack__2">
                         <div className="productRating">
-                          <Star sx={{ color: "gold" }} />
-                          <Star sx={{ color: "gold" }} />
-                          <Star sx={{ color: "gold" }} />
-                          <Star sx={{ color: "gold" }} />
-                          <Star />
+                          <Star
+                            sx={{
+                              color: "gold",
+                              width: { xs: "10px", lg: "29px" },
+                              height: { xs: "8px", lg: "24px" },
+                            }}
+                          />
+                          <Star
+                            sx={{
+                              color: "gold",
+                              width: { xs: "10px", lg: "29px" },
+                              height: { xs: "8px", lg: "24px" },
+                            }}
+                          />
+                          <Star
+                            sx={{
+                              color: "gold",
+                              width: { xs: "10px", lg: "29px" },
+                              height: { xs: "8px", lg: "24px" },
+                            }}
+                          />
+                          <Star
+                            sx={{
+                              color: "gold",
+                              width: { xs: "10px", lg: "29px" },
+                              height: { xs: "8px", lg: "24px" },
+                            }}
+                          />
+                          <Star
+                            sx={{
+                              width: { xs: "10px", lg: "29px" },
+                              height: { xs: "8px", lg: "24px" },
+                            }}
+                          />
                         </div>
                         <div className="productTime">29 days left</div>
                       </div>
