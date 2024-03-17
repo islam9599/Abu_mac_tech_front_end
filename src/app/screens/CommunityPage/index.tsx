@@ -37,12 +37,11 @@ const targetboArticlesRetriever = createSelector(
   })
 );
 
-const targetBoArticles = [1, 2, 3, 4, 5];
-
 export function CommunityPage() {
   /** Initializations */
   const { setTargetboArticles } = actionDispatch(useDispatch());
   const { targetboArticles } = useSelector(targetboArticlesRetriever);
+  const navigate = useNavigate();
   const [value, setValue] = useState("1");
   const [searchArticlesObj, setSearchArticleObj] = useState<SearchArticleObj>({
     bo_id: "all",
@@ -80,10 +79,7 @@ export function CommunityPage() {
     searchArticlesObj.page = value;
     setSearchArticleObj({ ...searchArticlesObj });
   };
-  const navigate = useNavigate();
-  const navigateToHomeHandler = () => {
-    navigate("/");
-  };
+
   return (
     <div className="community_page">
       <div

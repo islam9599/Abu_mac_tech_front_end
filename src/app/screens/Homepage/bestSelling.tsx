@@ -114,7 +114,12 @@ export const BestSelling = () => {
             >
               Most Liked Products
             </h2>
-            <h2 className="best_selling_category">New Arrivals</h2>
+            <h2
+              className="best_selling_category"
+              onClick={() => searchCollectionHandler("createdAt")}
+            >
+              New Arrivals
+            </h2>
           </Stack>
 
           <Stack className="best_product_container">

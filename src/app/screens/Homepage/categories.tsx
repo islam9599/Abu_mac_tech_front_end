@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
 // Redux
 import { useSelector } from "react-redux";
@@ -41,7 +41,11 @@ export const Categories = () => {
             pagination={{
               clickable: true,
             }}
-            modules={[Navigation]}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            modules={[Autoplay, Navigation]}
             breakpoints={{
               640: {
                 slidesPerView: 2,
@@ -68,6 +72,7 @@ export const Categories = () => {
                     alignItems: "center",
                     cursor: "pointer",
                   }}
+                  onClick={() => navigate("/products")}
                 >
                   <Stack
                     flexDirection={"column"}

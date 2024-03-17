@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   Box,
@@ -14,24 +15,18 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import ImageGallery from "react-image-gallery";
 import ReactImageMagnify from "react-image-magnify";
 
 import {
-  BookmarkBorder,
   Cancel,
   Favorite,
   FavoriteBorder,
   Home,
   RemoveRedEye,
   Search,
-  ShoppingCartRounded,
-  Star,
 } from "@mui/icons-material";
 import Marginer from "../../component/marginer";
-
 import assert from "assert";
-import Card from "../../component/cards";
 import ProductCard from "./productCards";
 // Redux
 
@@ -47,17 +42,15 @@ import {
 } from "./selector";
 import { verifiedMemberdata } from "../../apiServices/verify";
 
-import { ProductSearchObj } from "../../types/other";
 import { setAllProducts, setChosenProduct, setProductReviews } from "./slice";
 import { Product } from "../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
-import { useEffect, useRef, useState } from "react";
+
 import { serverApi } from "../../lib/config";
 import MemberApiService from "../../apiServices/memberApiService";
 import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
-  sweetTopSuccessAlert,
 } from "../../lib/sweetAlert";
 import { Definer } from "../../lib/Definer";
 import {
@@ -142,11 +135,11 @@ export const ChosenProduct = (props: any) => {
 
   const handleProductRatings = (e: any) => {
     product_ratings = e.target.value;
-    console.log("product_ratings", product_ratings);
+    // console.log("product_ratings", product_ratings);
   };
   const handleProductComments = (e: any) => {
     product_comments = e.target.value;
-    console.log("product_comments", product_comments);
+    // console.log("product_comments", product_comments);
   };
 
   const targetLikeProduct = async (e: any) => {
@@ -387,6 +380,7 @@ export const ChosenProduct = (props: any) => {
                   className="half_rating"
                   defaultValue={3.5}
                   precision={0.5}
+                  readOnly
                 />
                 <div className="evaluation_box">
                   <span>{chosenProduct?.product_views}</span>
@@ -407,9 +401,6 @@ export const ChosenProduct = (props: any) => {
                   {chosenProduct?.product_memory} Memory
                 </p>
                 <p className="product_desc_info">
-                  {/* {chosenProduct?.product_description
-                ? chosenProduct?.product_description
-                : "No description!!!"} */}
                   {chosenProduct?.product_storage
                     ? chosenProduct?.product_storage + "Gb SSD"
                     : "No storage information avalaible"}

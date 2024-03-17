@@ -9431,6 +9431,11 @@ react-required-if@1.0.1:
   resolved "https://registry.yarnpkg.com/react-required-if/-/react-required-if-1.0.1.tgz#f41d06bebb75346c206cd1de8dc0ef5b7c8f9abd"
   integrity sha512-n0HDT1G/1GoWvX7HcGzBOVwgfrbaymtEoYBkKOOhca3ThXQYFMjI3uKWcc5DSBHpPbSEJPPWEAV6Zu9BrSG+rg==
 
+react-responsive-3d-carousel@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/react-responsive-3d-carousel/-/react-responsive-3d-carousel-1.4.2.tgz#59ae4deae756e470dff1369ff85e82c47f8fd639"
+  integrity sha512-hAXpPUz2Sf5HnRp4c/7io23lE6DDcwer5GdFJw0zyl0/IAPHDjz5UjYwkTVXMZKYHNpVMJXZme9puY9ENpxvAw==
+
 react-router-dom@^6.21.2:
   version "6.21.2"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.21.2.tgz#5fba851731a194fa32c31990c4829c5e247f650a"

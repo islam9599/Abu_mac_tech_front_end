@@ -41,7 +41,7 @@ class ReviewProductApiService {
         withCredentials: true,
       });
       console.log("state:", result.data.state);
-      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data, Definer.auth_err1);
       assert.ok(result?.data?.state !== "fail", result?.data?.message);
 
       const new_review: Reviews = result.data.data;

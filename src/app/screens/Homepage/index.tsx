@@ -16,6 +16,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { setTopBrands } from "./slice";
 import { Shop } from "../../types/user";
 import { MobileSwiper } from "./mobileSwiper";
+import { PopularAdvertisements } from "./popularAdvertisements";
 
 /** Redux Slice */
 
@@ -64,6 +65,7 @@ export const Homepage = (props: any) => {
         <Container>
           <Features />
           <FollowInstagram />
+          <PopularAdvertisements />
         </Container>
       </div>
     </div>
