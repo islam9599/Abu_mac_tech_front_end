@@ -43,13 +43,12 @@ export const Footer = () => {
               cursor: "pointer",
             }}
           >
-            <Typography
+            <h1
+              className="footer_category_title"
               onClick={() => navigate("/help")}
-              color={"Background"}
-              variant="h4"
             >
               Help
-            </Typography>
+            </h1>
             <Typography
               onClick={() => navigate("/products")}
               color={"InfoText"}
@@ -93,9 +92,12 @@ export const Footer = () => {
             }}
             onClick={() => navigate("/products")}
           >
-            <Typography color={"Background"} variant="h4">
+            <h1
+              className="footer_category_title"
+              onClick={() => navigate("/help")}
+            >
               Shop
-            </Typography>
+            </h1>
             <Typography color={"InfoText"} mt={3} variant="h5">
               New Arrivals
             </Typography>
@@ -110,9 +112,12 @@ export const Footer = () => {
             </Typography>
           </Stack>
           <Stack flexDirection={"column"} m={"50px 40px"}>
-            <Typography color={"Background"} variant="h4">
-              Get in Touch
-            </Typography>
+            <h1
+              className="footer_category_title"
+              onClick={() => navigate("/help")}
+            >
+              Get In Touch
+            </h1>
             <Typography color={"InfoText"} mt={3} variant="h5">
               Call <Call /> (+99899123456789)
             </Typography>
@@ -188,9 +193,12 @@ export const Footer = () => {
               cursor: "pointer",
             }}
           >
-            <Typography color={"Background"} variant="h4" mb={5}>
+            <h1
+              className="footer_category_title"
+              onClick={() => navigate("/help")}
+            >
               Download our App
-            </Typography>
+            </h1>
             <Stack
               flexDirection={"row"}
               width={"100%"}

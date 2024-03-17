@@ -84,8 +84,9 @@ export function Chatbox(props: any) {
         <p
           style={{
             textAlign: "center",
-            fontSize: "16px",
+            fontSize: "12px",
             fontFamily: "serif",
+            fontWeight: "bold",
           }}
         >
           {msg.text}, dear{" "}
@@ -191,13 +192,11 @@ export function Chatbox(props: any) {
           </Stack>
           <Stack width={"100%"} height={"320px"} overflow={"scroll"}>
             <Stack m={2}>
-              {/* <h2>
-                Welcome dear
-                {verifiedMemberdata?.mb_nick
-                  ? ` ${verifiedMemberdata?.mb_nick.toUpperCase()}`
-                  : " Guest"}
-                !
-              </h2> */}
+              <Box className="other_user">
+                <div className="user_txt_wrapper">
+                  <p>Welcome live chat!</p>
+                </div>
+              </Box>
               {messagesList}
             </Stack>
             {/* <Stack

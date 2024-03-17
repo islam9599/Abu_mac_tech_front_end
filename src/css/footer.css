@@ -3,6 +3,12 @@
   height: auto;
   background: #129cb8;
 }
+
+.footer_main_wrapper .footer_category_title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
 .footer_icon {
   width: 49px;
   height: 49px;

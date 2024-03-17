@@ -21,7 +21,7 @@
 
 .other_user {
   display: flex;
-  width: 100%;
+  width: 80%;
   height: auto;
   flex-direction: row;
   align-items: center;
@@ -38,18 +38,18 @@
 }
 
 .user_txt_wrapper {
-  width: 40%;
-  height: 40px;
+  width: 150px;
+  height: 30px;
   border-radius: 20px 20px 20px 0px;
   background: rgba(228, 228, 228, 0.83);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.other_user p {
-  color: #383737;
+.user_txt_wrapper p {
+  color: #007665;
   font-family: Poppins;
-  font-size: 16px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

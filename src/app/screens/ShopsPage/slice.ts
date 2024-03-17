@@ -7,6 +7,7 @@ const initialState: ShopPageState = {
   chosenShop: null,
   targetProducts: [],
   chosenProduct: null,
+  productReviews: [],
 };
 
 const ShopPageSlice = createSlice({
@@ -29,6 +30,9 @@ const ShopPageSlice = createSlice({
     setChosenProduct: (state, action) => {
       state.chosenProduct = action.payload;
     },
+    setProductReviews: (state, action) => {
+      state.productReviews = action.payload;
+    },
   },
 });
 
@@ -38,6 +42,7 @@ export const {
   setChosenShop,
   setTargetProducts,
   setChosenProduct,
+  setProductReviews,
 } = ShopPageSlice.actions;
 
 const ShopPageReducer = ShopPageSlice.reducer;

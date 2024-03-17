@@ -24,6 +24,7 @@ import {
   Home,
   RemoveRedEye,
   Search,
+  Star,
 } from "@mui/icons-material";
 import Marginer from "../../component/marginer";
 
@@ -36,11 +37,15 @@ import { useDispatch } from "react-redux";
 import { Dispatch, original } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { retrieveChosenProduct, retrieveProductsByBrand } from "./selector";
+import {
+  retrieveChosenProduct,
+  retrieveProductReviews,
+  retrieveProductsByBrand,
+} from "./selector";
 import { verifiedMemberdata } from "../../apiServices/verify";
 
 import { ProductSearchObj } from "../../types/other";
-import { setAllProducts, setChosenProduct, setProductsByBrand } from "./slice";
+import { setAllProducts, setChosenProduct, setProductReviews } from "./slice";
 import { Product } from "../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
 import { useEffect, useState } from "react";
@@ -49,12 +54,21 @@ import MemberApiService from "../../apiServices/memberApiService";
 import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
+  sweetTopSuccessAlert,
 } from "../../lib/sweetAlert";
 import { Definer } from "../../lib/Definer";
+import {
+  CreateReviewData,
+  ReviewSearchObj,
+  Reviews,
+} from "../../types/reviewProduct";
+import ReviewProductApiService from "../../apiServices/reviewProduct";
+import moment from "moment";
 
 /** Redux Slice */
 const actionDispatch = (dispatch: Dispatch) => ({
   setChosenProduct: (data: Product) => dispatch(setChosenProduct(data)),
+  setProductReviews: (data: Reviews[]) => dispatch(setProductReviews(data)),
 });
 /** Redux Selector*/
 const setAllProductsRetriever = createSelector(
@@ -69,40 +83,39 @@ const setProductsByBrandRetriever = createSelector(
     productsByBrand,
   })
 );
+const setProductReviewsRetriever = createSelector(
+  retrieveProductReviews,
+  (productReviews) => ({
+    productReviews,
+  })
+);
 
 export const ChosenProduct = (props: any) => {
   /** Initialization */
-  const { setChosenProduct } = actionDispatch(useDispatch());
-
+  const { setChosenProduct, setProductReviews } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(setAllProductsRetriever);
-  console.log("chosenProduct", chosenProduct);
+  const { productReviews } = useSelector(setProductReviewsRetriever);
+  console.log("productReviews", productReviews);
 
   let { product_id } = useParams<{ product_id: string }>();
   console.log("product_id::::::::::", product_id);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
+  const [reviewObj, setReviewObj] = useState<ReviewSearchObj>({
+    page: 1,
+    limit: 3,
+    review_ref_id: product_id,
+  });
   const navigate = useNavigate();
   const changeToAllProductsHandler = () => {
     navigate("/products");
   };
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  const images = [
-    {
-      original: `${serverApi}/${chosenProduct?.product_images[1]}`,
-      thumbnail: `${serverApi}/${chosenProduct?.product_images[1]}`,
-    },
-    {
-      original:
-        "https://static1.xdaimages.com/wordpress/wp-content/uploads/wm/2023/10/space-black-macbook-pro-5.jpg",
-      thumbnail:
-        "https://static1.xdaimages.com/wordpress/wp-content/uploads/wm/2023/10/space-black-macbook-pro-5.jpg",
-    },
-    {
-      original: "https://static.independent.co.uk/2023/11/06/13/Macbook-1.png",
-      thumbnail: "https://static.independent.co.uk/2023/11/06/13/Macbook-1.png",
-    },
-  ];
+  let review_ref_id = product_id,
+    product_comments: string = "",
+    product_ratings: number = 0;
+
   const chosenProductRelatedProcess = async () => {
     try {
       const productService = new ProductApiService();
@@ -111,14 +124,32 @@ export const ChosenProduct = (props: any) => {
       );
       setChosenProduct(product);
     } catch (err) {
-      console.log("dishRelatedProcess: err", err);
+      console.log("chosenProductRelatedProcess: err", err);
     }
   };
   useEffect(() => {
     chosenProductRelatedProcess().then();
   }, [productRebuild]);
 
+  useEffect(() => {
+    const reviewService = new ReviewProductApiService();
+    reviewService
+      .getChosenProductReviews({
+        page: 1,
+        limit: 3,
+        review_ref_id: product_id,
+      })
+      .then((data) => setProductReviews(data))
+      .catch((err) => console.log(err));
+  }, []);
   /** Handlers */
+
+  const handleProductRatings = (e: any) => {
+    product_ratings = e.target.value;
+  };
+  const handleProductComments = (e: any) => {
+    product_comments = e.target.value;
+  };
 
   const targetLikeProduct = async (e: any) => {
     try {
@@ -139,7 +170,31 @@ export const ChosenProduct = (props: any) => {
       sweetErrorHandling(err).then();
     }
   };
+  const handleReviewRequest = async () => {
+    try {
+      const is_fullfilled =
+        product_comments !== "" &&
+        product_ratings !== 0 &&
+        review_ref_id === product_id;
 
+      assert.ok(is_fullfilled, Definer.input_err1);
+
+      const review_data: CreateReviewData = {
+        review_ref_id: product_id,
+        product_ratings: product_ratings,
+        product_comments: product_comments,
+      };
+
+      const reviewApiService = new ReviewProductApiService();
+      await reviewApiService.createReview(review_data);
+
+      window.location.reload();
+      sweetTopSuccessAlert("Successfully review created!", 500);
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
   return (
     <div className="chosen_product">
       <Container sx={{ display: "flex", flexDirection: "column" }}>
@@ -221,28 +276,6 @@ export const ChosenProduct = (props: any) => {
         </Stack>
         <Box className="product_container">
           <Stack mt={10} width={"39%"} height={"100%"}>
-            {/* <ImageGallery items={images} /> */}
-
-            {/* {chosenProduct?.product_images.map((image) => {
-              return (
-                <ReactImageMagnify
-                  {...{
-                    smallImage: {
-                      alt: "Wristwatch by Ted Baker London",
-                      isFluidWidth: false,
-                      width: 200,
-                      height: 200,
-                      src: `${serverApi}/${image}`,
-                    },
-                    largeImage: {
-                      src: `${serverApi}/${image}`,
-                      width: 400,
-                      height: 400,
-                    },
-                  }}
-                />
-              );
-            })} */}
             <Swiper
               loop={true}
               spaceBetween={10}
@@ -266,8 +299,8 @@ export const ChosenProduct = (props: any) => {
                         },
                         largeImage: {
                           src: `${serverApi}/${product_image}`,
-                          width: 600,
-                          height: 800,
+                          width: 1200,
+                          height: 1200,
                         },
                       }}
                     />
@@ -412,32 +445,54 @@ export const ChosenProduct = (props: any) => {
           <Typography m={"40px 0px"} variant="h3">
             Reviews about this product
           </Typography>
-          <Stack
-            width={"80%"}
-            height={"auto"}
-            // sx={{ background: "silver" }}
-            // m={"40px 0px"}
-          >
-            <Stack flexDirection={"row"} m={"30px"} alignItems={"center"}>
-              <img
-                src="/home/auth.svg"
-                style={{ width: "29px", height: "29px" }}
-                alt=""
-              />
-              <Typography m={"0px 10px"} variant="h5">
-                Auth Name
-              </Typography>
-              <Rating
-                className="half_rating"
-                defaultValue={3.5}
-                precision={0.5}
-              />
-              <Typography m={"0px 20px"} variant="h6">
-                20 days ago
-              </Typography>
-            </Stack>
-            <Marginer width="100%" height="1" bg="#000" />
-          </Stack>
+          {productReviews.map((review: Reviews) => {
+            // const image_path = review?.member_data?.mb_image
+            //   ? `${serverApi}/${review?.member_data?.mb_image}}`
+            //   : "/home/auth.svg";
+            const image_path = `${serverApi}/${review?.member_data?.mb_image}`;
+            console.log("image_path::::", image_path);
+            return (
+              <Stack
+                width={"80%"}
+                height={"auto"}
+                // sx={{ background: "silver" }}
+                // m={"40px 0px"}
+              >
+                <Stack flexDirection={"row"} m={"30px"} alignItems={"center"}>
+                  <img
+                    src={image_path}
+                    style={{
+                      width: "29px",
+                      height: "29px",
+                      borderRadius: "19px",
+                    }}
+                    alt=""
+                  />
+                  <Typography m={"0px 10px"} variant="h5">
+                    {review?.member_data.mb_nick}
+                  </Typography>
+                  <div className="productRating">
+                    <Rating value={review?.product_rating} readOnly />
+                  </div>
+                  <Typography m={"0px 20px"} variant="h6">
+                    {moment(review?.createdAt).format("YY-MM-DD HH:mm")}
+                  </Typography>
+                </Stack>
+                <Stack
+                  width={"100%"}
+                  height={"100px"}
+                  sx={{ background: "#f1f1f2", borderRadius: "19px" }}
+                  mb={5}
+                >
+                  <h2 style={{ margin: "10px 30px" }}>
+                    {review?.product_comment}
+                  </h2>
+                </Stack>
+                <Marginer width="100%" height="1" bg="#000" />
+              </Stack>
+            );
+          })}
+
           <Stack flexDirection={"column"} m={"40px 0px"}>
             <Stack
               flexDirection={"row"}
@@ -449,14 +504,16 @@ export const ChosenProduct = (props: any) => {
                 Leave your review
               </Typography>
               <Rating
+                onChange={handleProductRatings}
                 className="half_rating"
                 defaultValue={3.5}
                 precision={0.5}
               />
             </Stack>
             <textarea
+              onChange={handleProductComments}
               name=""
-              style={{ width: "800px", height: "100px" }}
+              style={{ width: "800px", height: "100px", borderRadius: "9px" }}
             ></textarea>
             <Stack
               width={"100%"}
@@ -466,10 +523,22 @@ export const ChosenProduct = (props: any) => {
               <Button
                 sx={{ width: "15%", height: "30px", margin: "40px 0px" }}
                 variant="contained"
+                onClick={handleReviewRequest}
               >
                 Submit
               </Button>
             </Stack>
+          </Stack>
+          <Stack m={5} alignItems={"center"}>
+            <Typography variant="h2">Shop Address</Typography>
+            <iframe
+              src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Equipment%20bazaar%20%E2%80%9CMalika%E2%80%9D,%2087QC+FPV,%20Little%20Ring%20Road,%20Tashkent,%20Toshkent%20Shahri,%20Uzbekistan+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+              width="1320"
+              height="500"
+              style={{ marginTop: "60px" }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </Stack>
         </Stack>
       </Container>

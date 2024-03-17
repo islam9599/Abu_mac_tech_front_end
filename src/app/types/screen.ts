@@ -2,6 +2,7 @@ import { BoArticle } from "./boArticle";
 import { Follower, Following } from "./follow";
 import { Order } from "./order";
 import { Product } from "./product";
+import { Reviews } from "./reviewProduct";
 import { Member, Shop } from "./user";
 
 /** React app state */
@@ -30,6 +31,7 @@ export interface ShopPageState {
   chosenShop: Shop | null;
   targetProducts: Product[];
   chosenProduct: Product | null;
+  productReviews: Reviews[];
 }
 
 /** Orders */

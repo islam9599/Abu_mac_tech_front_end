@@ -23,3 +23,7 @@ export const retrieveChosenProduct = createSelector(
   selectShopPage,
   (shopsPage) => shopsPage.chosenProduct
 );
+export const retrieveProductReviews = createSelector(
+  selectShopPage,
+  (shopsPage) => shopsPage.productReviews
+);

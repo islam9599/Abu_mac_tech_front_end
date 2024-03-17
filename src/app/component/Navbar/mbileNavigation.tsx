@@ -3,6 +3,7 @@ import { Menu } from "@mui/icons-material";
 import { Box, Stack } from "@mui/material";
 import { FaArrowUp } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { TypeAnimation } from "react-type-animation";
 
 export const MobileNavbar = (props: any) => {
   /** Initializations */
@@ -23,19 +24,34 @@ export const MobileNavbar = (props: any) => {
       <Stack className="mobile_nav">
         <Stack className="mobile_nav_wrapper">
           <Stack
-            onClick={() => navigate("/")}
-            className="mobile_nav_log_wrapper"
             alignItems={"center"}
             flexDirection={"row"}
-            position={"relative"}
-            sx={{
-              width: "20%",
-              height: "auto",
-              cursor: "pointer",
-            }}
+            onClick={() => navigate("/")}
           >
-            <img src="/home/macshop.jpg" />
-            <h4> Abu_Mac_Tech</h4>
+            <img
+              src="/home/macshop.jpg"
+              style={{
+                width: "49px",
+                height: "49px",
+                marginRight: "10px",
+                borderRadius: "10px",
+              }}
+            />
+
+            <Box width={"100px"}>
+              <TypeAnimation
+                sequence={[100, "Abu", 100, "Abu_Mac_Tech", () => {}]}
+                wrapper="p"
+                cursor={true}
+                repeat={Infinity}
+                style={{
+                  fontSize: "18px",
+                  display: "inline-block",
+                  color: "#000",
+                  fontWeight: "bold",
+                }}
+              />
+            </Box>
           </Stack>
 
           <Menu
