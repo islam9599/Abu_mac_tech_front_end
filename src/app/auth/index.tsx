@@ -71,7 +71,7 @@ export default function AuthentificationModal(props: any) {
 
       props.handleSignupClose();
       window.location.reload();
-      sweetTopSuccessAlert("Successfully signed-up!!!", 500);
+      sweetTopSuccessAlert("Successfully signed-up!", 500);
     } catch (err) {
       console.log(err);
       sweetErrorHandling(err).then();
@@ -92,6 +92,7 @@ export default function AuthentificationModal(props: any) {
 
       props.handleLoginClose();
       window.location.reload();
+      sweetTopSuccessAlert("Successfully login!", 500);
     } catch (err) {
       console.log(err);
       props.handleLoginClose();

@@ -469,7 +469,7 @@ export const ChosenProduct = (props: any) => {
             return (
               <Stack
                 width={"80%"}
-                height={"auto"}
+                height={"150px"}
                 // sx={{ background: "silver" }}
                 // m={"40px 0px"}
               >
@@ -503,7 +503,7 @@ export const ChosenProduct = (props: any) => {
                     {review?.product_comment}
                   </h2>
                 </Stack>
-                <Marginer width="100%" height="1" bg="#000" />
+                <Marginer width="100%" height="0.1" bg="#000" />
               </Stack>
             );
           })}
@@ -521,7 +521,7 @@ export const ChosenProduct = (props: any) => {
               <Rating
                 onChange={handleProductRatings}
                 className="half_rating"
-                defaultValue={3.5}
+                defaultValue={0}
                 precision={0.5}
               />
             </Stack>

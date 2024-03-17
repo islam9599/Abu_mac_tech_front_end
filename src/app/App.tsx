@@ -21,6 +21,7 @@ import MemberApiService from "./apiServices/memberApiService";
 import {
   sweetFailureProvider,
   sweetTopSmallSuccessAlert,
+  sweetTopSuccessAlert,
 } from "./lib/sweetAlert";
 import { Definer } from "./lib/Definer";
 import { CartItem } from "./types/other";
@@ -58,7 +59,7 @@ function App() {
     try {
       const member = new MemberApiService();
       await member.logoutRequest();
-      await sweetTopSmallSuccessAlert("success", 700, true);
+      sweetTopSuccessAlert("Successfully logout!", 500);
     } catch (err: any) {
       console.log(err);
       sweetFailureProvider(Definer.general_err1);
