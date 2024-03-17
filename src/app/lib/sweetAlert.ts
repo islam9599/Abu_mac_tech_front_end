@@ -19,7 +19,6 @@ export const sweetErrorHandling = async (
       text: error_message,
       showConfirmButton: false,
       width: "600px",
-      titleText: "So sorry, Please login first!",
     });
   }
 };
@@ -75,7 +74,6 @@ export const sweetFailureProvider = async (
     showConfirmButton: show_button,
     confirmButtonText: "OK",
     width: 500,
-    titleText: "So sorry, Please login first!",
   }).then((data) => {
     if (enable_forward) {
       window.location.replace(forward_url);

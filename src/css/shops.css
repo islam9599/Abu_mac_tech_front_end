@@ -221,12 +221,12 @@ body {
 
 .shop_page .chosen_product .chosen_product_info_container {
   padding: 30px 40px;
-  width: 49%;
+  width: 40%;
   height: 452px;
   display: flex;
   flex-direction: column;
   background: #f1f1f2;
-  margin-left: 150px;
+  margin-left: 250px;
 
   border-radius: 16px;
 }

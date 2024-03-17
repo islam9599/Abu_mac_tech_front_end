@@ -18,12 +18,14 @@ import ImageGallery from "react-image-gallery";
 import ReactImageMagnify from "react-image-magnify";
 
 import {
+  BookmarkBorder,
   Cancel,
   Favorite,
   FavoriteBorder,
   Home,
   RemoveRedEye,
   Search,
+  ShoppingCartRounded,
   Star,
 } from "@mui/icons-material";
 import Marginer from "../../component/marginer";
@@ -38,6 +40,7 @@ import { Dispatch, original } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import {
+  retrieveAllProducts,
   retrieveChosenProduct,
   retrieveProductReviews,
   retrieveProductsByBrand,
@@ -48,7 +51,7 @@ import { ProductSearchObj } from "../../types/other";
 import { setAllProducts, setChosenProduct, setProductReviews } from "./slice";
 import { Product } from "../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { serverApi } from "../../lib/config";
 import MemberApiService from "../../apiServices/memberApiService";
 import {
@@ -71,16 +74,16 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setProductReviews: (data: Reviews[]) => dispatch(setProductReviews(data)),
 });
 /** Redux Selector*/
-const setAllProductsRetriever = createSelector(
+const setChosenProductRetriever = createSelector(
   retrieveChosenProduct,
   (chosenProduct) => ({
     chosenProduct,
   })
 );
-const setProductsByBrandRetriever = createSelector(
-  retrieveProductsByBrand,
-  (productsByBrand) => ({
-    productsByBrand,
+const setAllProductsRetriever = createSelector(
+  retrieveAllProducts,
+  (allProducts) => ({
+    allProducts,
   })
 );
 const setProductReviewsRetriever = createSelector(
@@ -93,10 +96,9 @@ const setProductReviewsRetriever = createSelector(
 export const ChosenProduct = (props: any) => {
   /** Initialization */
   const { setChosenProduct, setProductReviews } = actionDispatch(useDispatch());
-  const { chosenProduct } = useSelector(setAllProductsRetriever);
+  const { chosenProduct } = useSelector(setChosenProductRetriever);
   const { productReviews } = useSelector(setProductReviewsRetriever);
-  console.log("productReviews", productReviews);
-
+  const { allProducts } = useSelector(setAllProductsRetriever);
   let { product_id } = useParams<{ product_id: string }>();
   console.log("product_id::::::::::", product_id);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
@@ -107,15 +109,10 @@ export const ChosenProduct = (props: any) => {
     review_ref_id: product_id,
   });
   const navigate = useNavigate();
-  const changeToAllProductsHandler = () => {
-    navigate("/products");
-  };
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
-  let review_ref_id = product_id,
-    product_comments: string = "",
+  let product_comments: string = "",
     product_ratings: number = 0;
-
+  const textInput: any = useRef(null);
   const chosenProductRelatedProcess = async () => {
     try {
       const productService = new ProductApiService();
@@ -127,9 +124,7 @@ export const ChosenProduct = (props: any) => {
       console.log("chosenProductRelatedProcess: err", err);
     }
   };
-  useEffect(() => {
-    chosenProductRelatedProcess().then();
-  }, [productRebuild]);
+  useEffect(() => {}, []);
 
   useEffect(() => {
     const reviewService = new ReviewProductApiService();
@@ -141,14 +136,17 @@ export const ChosenProduct = (props: any) => {
       })
       .then((data) => setProductReviews(data))
       .catch((err) => console.log(err));
-  }, []);
+    chosenProductRelatedProcess().then();
+  }, [productRebuild, product_id]);
   /** Handlers */
 
   const handleProductRatings = (e: any) => {
     product_ratings = e.target.value;
+    console.log("product_ratings", product_ratings);
   };
   const handleProductComments = (e: any) => {
     product_comments = e.target.value;
+    console.log("product_comments", product_comments);
   };
 
   const targetLikeProduct = async (e: any) => {
@@ -170,14 +168,24 @@ export const ChosenProduct = (props: any) => {
       sweetErrorHandling(err).then();
     }
   };
+  const getKeyHandler = (e: any) => {
+    try {
+      if (e.key == "Enter") {
+        handleReviewRequest();
+      }
+    } catch (err) {
+      console.log("getKeyHandler, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
   const handleReviewRequest = async () => {
     try {
-      const is_fullfilled =
-        product_comments !== "" &&
-        product_ratings !== 0 &&
-        review_ref_id === product_id;
-
+      const is_fullfilled = product_comments !== "" && product_ratings !== 0;
       assert.ok(is_fullfilled, Definer.input_err1);
+      if (!product_ratings || !product_comments) {
+        throw new Error("Please fill in all inputs!");
+      }
+      textInput.current.value = "";
 
       const review_data: CreateReviewData = {
         review_ref_id: product_id,
@@ -188,8 +196,8 @@ export const ChosenProduct = (props: any) => {
       const reviewApiService = new ReviewProductApiService();
       await reviewApiService.createReview(review_data);
 
-      window.location.reload();
-      sweetTopSuccessAlert("Successfully review created!", 500);
+      setProductRebuild(new Date());
+      await sweetTopSmallSuccessAlert("success", 700, false);
     } catch (err) {
       console.log(err);
       sweetErrorHandling(err).then();
@@ -275,7 +283,7 @@ export const ChosenProduct = (props: any) => {
           />
         </Stack>
         <Box className="product_container">
-          <Stack mt={10} width={"39%"} height={"100%"}>
+          <Stack mt={10} width={"49%"} height={"100%"}>
             <Swiper
               loop={true}
               spaceBetween={10}
@@ -431,7 +439,6 @@ export const ChosenProduct = (props: any) => {
             </Box>
           </Stack>
         </Box>
-
         <Stack
           height={"auto"}
           flexDirection={"column"}
@@ -439,17 +446,25 @@ export const ChosenProduct = (props: any) => {
           alignItems={"center"}
         >
           <Typography variant="h2">Related Products</Typography>
-          <Stack flexDirection={"row"} width={"100%"} justifyContent={"center"}>
-            <ProductCard />
+          <Stack
+            width={"100%"}
+            height={"auto"}
+            flexDirection={"row"}
+            sx={{ flexWrap: "wrap" }}
+          >
+            <ProductCard
+              setProductRebuild={setProductRebuild}
+              onAdd={props.onAdd}
+            />
           </Stack>
           <Typography m={"40px 0px"} variant="h3">
             Reviews about this product
           </Typography>
           {productReviews.map((review: Reviews) => {
-            // const image_path = review?.member_data?.mb_image
-            //   ? `${serverApi}/${review?.member_data?.mb_image}}`
-            //   : "/home/auth.svg";
-            const image_path = `${serverApi}/${review?.member_data?.mb_image}`;
+            const image_path = review?.member_data?.mb_image
+              ? `${serverApi}/${review?.member_data?.mb_image}`
+              : "/home/auth.svg";
+
             console.log("image_path::::", image_path);
             return (
               <Stack
@@ -468,7 +483,7 @@ export const ChosenProduct = (props: any) => {
                     }}
                     alt=""
                   />
-                  <Typography m={"0px 10px"} variant="h5">
+                  <Typography width={"150px"} m={"0px 10px"} variant="h5">
                     {review?.member_data.mb_nick}
                   </Typography>
                   <div className="productRating">
@@ -480,8 +495,8 @@ export const ChosenProduct = (props: any) => {
                 </Stack>
                 <Stack
                   width={"100%"}
-                  height={"100px"}
-                  sx={{ background: "#f1f1f2", borderRadius: "19px" }}
+                  maxHeight={"100px"}
+                  sx={{ background: "#f1f1f2", borderRadius: "9px" }}
                   mb={5}
                 >
                   <h2 style={{ margin: "10px 30px" }}>
@@ -511,7 +526,9 @@ export const ChosenProduct = (props: any) => {
               />
             </Stack>
             <textarea
+              ref={textInput}
               onChange={handleProductComments}
+              onKeyDown={getKeyHandler}
               name=""
               style={{ width: "800px", height: "100px", borderRadius: "9px" }}
             ></textarea>
