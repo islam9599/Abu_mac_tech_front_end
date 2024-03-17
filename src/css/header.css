@@ -224,9 +224,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background: #f1f1f2;
+  background: #129cb8;
   border-width: 1px 0;
   border-style: solid;
+  border-radius: 9px;
   border-color: #129cb8;
   font-size: 20px;
 }
@@ -244,31 +245,32 @@
 }
 
 .basket_info_box .product_image {
-  width: 60px;
-  height: 60px;
+  width: 49px;
+  height: 49px;
   filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.25));
   border-radius: 19px;
-  margin: 5px;
+  object-fit: cover;
+  margin: 2px;
 }
 
 .basket_info_box .product_name {
-  margin-left: 11px;
-  width: 150px;
+  margin-left: 5px;
+  width: 170px;
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 30px;
+  font-weight: 200;
+  font-size: 13px;
+  line-height: 20px;
   color: #000;
 }
 
 .basket_info_box .product_price {
-  width: 80px;
+  width: 60px;
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 22px;
+  font-weight: 200;
+  font-size: 13px;
+  line-height: 20px;
   color: #ae0000;
   margin-right: 5px;
 }

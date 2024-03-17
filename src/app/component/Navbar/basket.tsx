@@ -119,9 +119,6 @@ export function Basket(props: any) {
               const image_path = `${serverApi}/${item.image}`;
               return (
                 <Box className="basket_info_box">
-                  {/* <div className="cancel_btn">
-                    <Cancel color="primary" />
-                  </div> */}
                   <img
                     src={image_path}
                     alt="product_image"

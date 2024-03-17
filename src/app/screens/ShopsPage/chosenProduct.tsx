@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
+  Autocomplete,
   Box,
   Button,
   Checkbox,
   Container,
   Rating,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -60,6 +62,7 @@ import {
 } from "../../types/reviewProduct";
 import ReviewProductApiService from "../../apiServices/reviewProduct";
 import moment from "moment";
+import { ProductSearchObj } from "../../types/other";
 
 /** Redux Slice */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -95,7 +98,14 @@ export const ChosenProduct = (props: any) => {
   let { product_id } = useParams<{ product_id: string }>();
   console.log("product_id::::::::::", product_id);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
-
+  const [targetProductSearchObj, setTargetProductSearchObj] =
+    useState<ProductSearchObj>({
+      page: 1,
+      limit: 8,
+      order: "product_point",
+      product_brand: "apple",
+      searchText: "",
+    });
   const [reviewObj, setReviewObj] = useState<ReviewSearchObj>({
     page: 1,
     limit: 3,
@@ -132,7 +142,10 @@ export const ChosenProduct = (props: any) => {
     chosenProductRelatedProcess().then();
   }, [productRebuild, product_id]);
   /** Handlers */
-
+  const searchByText = (text: string) => {
+    targetProductSearchObj.searchText = text;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
   const handleProductRatings = (e: any) => {
     product_ratings = e.target.value;
     // console.log("product_ratings", product_ratings);
@@ -199,57 +212,7 @@ export const ChosenProduct = (props: any) => {
   return (
     <div className="chosen_product">
       <Container sx={{ display: "flex", flexDirection: "column" }}>
-        <Stack>
-          <Stack
-            flexDirection={"row"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            m={"50px"}
-          >
-            <form
-              action=""
-              style={{
-                width: "530px",
-                height: "45px",
-                border: "1px solid #129cb8",
-                borderRadius: "9px",
-                display: "flex",
-                alignItems: "center",
-                background: "none",
-                color: "#fff",
-              }}
-            >
-              <input
-                type="text"
-                placeholder="Search product here"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  margin: "5px",
-                  background: "none",
-                  border: "none",
-                  outline: "none",
-                }}
-              />
-              <Box
-                width={"auto"}
-                height={"100%"}
-                sx={{ bgcolor: "#129cb8", borderRadius: "0 9px 9px 0" }}
-                alignItems={"center"}
-                justifyContent={"center"}
-              >
-                <Search
-                  sx={{
-                    width: "100%",
-                    height: "99%",
-                    color: "#fff",
-                    padding: "5px",
-                    cursor: "pointer",
-                  }}
-                />
-              </Box>
-            </form>
-          </Stack>
+        <Stack alignItems={"center"} m={5}>
           <Marginer direction="horizontal" width="1320" height="1" bg="#999" />
         </Stack>
         <Stack
