@@ -10,14 +10,16 @@ export function Advertisements() {
         flexDirection: "column",
         overflow: "hidden",
         marginBottom: "50px",
+        objectFit: "contain",
       }}
     >
       <video
         style={{
           maxWidth: "100%",
-          height: "auto",
+          maxHeight: "auto",
           display: "flex",
           flexDirection: "column",
+          objectFit: "contain",
         }}
         autoPlay={true}
         loop
@@ -26,9 +28,9 @@ export function Advertisements() {
         data-video-media=""
       >
         <source
-          data-src="https://www.apple.com/105/media/us/mac/family/2023/1b2bbf5c-ddc5-44a1-9dfb-7a51c49143fa/anim/welcome/xlarge_2x.mp4"
+          data-src="/home/home_video.mp4"
           type="video/mp4"
-          src="https://www.apple.com/105/media/us/mac/family/2023/1b2bbf5c-ddc5-44a1-9dfb-7a51c49143fa/anim/welcome/xlarge_2x.mp4"
+          src="/home/home_video.mp4"
         />
       </video>
     </div>

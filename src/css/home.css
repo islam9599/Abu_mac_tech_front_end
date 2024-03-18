@@ -367,13 +367,12 @@
     justify-content: center;
     border-radius: 19px;
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 10px 40px;
   }
   .home-page .best_selling_wrapper .best_selling_category {
     font-weight: bold;
     color: #000;
     margin: 5px;
-    font-size: 15px;
+    font-size: 10px;
     cursor: pointer;
   }
   .home-page .best_product_container .home_card {

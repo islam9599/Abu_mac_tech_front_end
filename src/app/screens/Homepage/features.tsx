@@ -30,8 +30,8 @@ export const Features = () => {
             className="shipping_info_img"
             alt=""
           />
-          <p className="shippin_info_title">Fast Worldwide Shipping</p>
-          <p className="shippin_info_desc">Get free shipping over $250</p>
+          <p className="shippin_info_title">24/7 Customer Support</p>
+          <p className="shippin_info_desc">Friendly 24/7 customer support</p>
         </Stack>
         <Marginer direction="horizontal" width="1" height="126" bg="gray" />
 
@@ -41,8 +41,8 @@ export const Features = () => {
           justifyContent={"center"}
         >
           <img src="/home/ic-shield.svg" className="shipping_info_img" alt="" />
-          <p className="shippin_info_title">Fast Worldwide Shipping</p>
-          <p className="shippin_info_desc">Get free shipping over $250</p>
+          <p className="shippin_info_title">Money Back Guarantee</p>
+          <p className="shippin_info_desc">We return money within 30 days</p>
         </Stack>
         <Marginer direction="horizontal" width="1" height="126" bg="gray" />
 
@@ -56,8 +56,8 @@ export const Features = () => {
             className="shipping_info_img"
             alt=""
           />
-          <p className="shippin_info_title">Fast Worldwide Shipping</p>
-          <p className="shippin_info_desc">Get free shipping over $250</p>
+          <p className="shippin_info_title">Secure Online Payment</p>
+          <p className="shippin_info_desc">Accept all major credit cards</p>
         </Stack>
       </Container>
     </div>

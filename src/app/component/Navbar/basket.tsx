@@ -22,7 +22,7 @@ export function Basket(props: any) {
     (a: any, c: CartItem) => a + c.price * c.quantity,
     0
   );
-  const shippingPrice = itemsPrice > 100 ? 0 : 2;
+  const shippingPrice = itemsPrice > 300 ? 0 : 8;
   const totalPrice = itemsPrice + shippingPrice;
   const navigate = useNavigate();
 
@@ -137,7 +137,7 @@ export function Basket(props: any) {
                       +
                     </button>
                   </div>
-                  <Cancel className="remove" onClick={() => onDelete(item)} />
+                  <Cancel className="cancel" onClick={() => onDelete(item)} />
                 </Box>
               );
             })}
@@ -145,7 +145,8 @@ export function Basket(props: any) {
           {cartItems.length > 0 ? (
             <Box className="to_order_box">
               <span className="price_text">
-                Total: {totalPrice} ({itemsPrice} + {shippingPrice})
+                Total: ${totalPrice} (${itemsPrice} +{" "}
+                {shippingPrice > 0 ? `$${shippingPrice}` : 0})
               </span>
               <Button
                 onClick={processOrderHandler}
