@@ -23,10 +23,11 @@ import { Definer } from "./lib/Definer";
 import { CartItem } from "./types/other";
 import { Product } from "./types/product";
 import { Chatbox } from "./component/chatbox";
+import { Spinner } from "./component/spinner";
 
 function App() {
   /** Initializations */
-
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const [signupOpen, setSignupOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -37,6 +38,13 @@ function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
   const [orderRebuild, setOrderRebuild] = useState<Date>(new Date());
   const { pathname } = useLocation();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -167,34 +175,42 @@ function App() {
         />
       )}
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Homepage handleLogoutRequest={handleLogoutRequest} onAdd={onAdd} />
-          }
-        />
-        <Route path="/products" element={<Shops onAdd={onAdd} />}>
-          <Route path=":product_id" element={<ChosenProduct />} />
-          <Route path="phones" element={<PhoneProducts />} />
-          <Route path="laptops" element={<PhoneProducts />} />
-          <Route path="accessories" element={<Accessories />} />
-        </Route>
-        <Route
-          path="/orders"
-          element={
-            <OrdersPage
-              orderRebuild={orderRebuild}
-              setOrderRebuild={setOrderRebuild}
-            />
-          }
-        />
-        <Route path="/community" element={<CommunityPage />} />
-        <Route path="/member-page" element={<MemberPage />}>
-          <Route path="other" element={<VisitOtherPage />} />
-        </Route>
-        <Route path="/help" element={<HelpPage />} />
-      </Routes>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Homepage
+                handleLogoutRequest={handleLogoutRequest}
+                onAdd={onAdd}
+              />
+            }
+          />
+          <Route path="/products" element={<Shops onAdd={onAdd} />}>
+            <Route path=":product_id" element={<ChosenProduct />} />
+            <Route path="phones" element={<PhoneProducts />} />
+            <Route path="laptops" element={<PhoneProducts />} />
+            <Route path="accessories" element={<Accessories />} />
+          </Route>
+          <Route
+            path="/orders"
+            element={
+              <OrdersPage
+                orderRebuild={orderRebuild}
+                setOrderRebuild={setOrderRebuild}
+              />
+            }
+          />
+          <Route path="/community" element={<CommunityPage />} />
+          <Route path="/member-page" element={<MemberPage />}>
+            <Route path="other" element={<VisitOtherPage />} />
+          </Route>
+          <Route path="/help" element={<HelpPage />} />
+        </Routes>
+      )}
+
       <Chatbox />
       <Footer />
       <AuthentificationModal

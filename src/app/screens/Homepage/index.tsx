@@ -50,16 +50,7 @@ export const Homepage = (props: any) => {
         <FlashCard onAdd={onAdd} />
       </Container>
 
-      <div
-        style={{
-          maxWidth: "100%",
-          height: "auto",
-          background: "#f1f1f2",
-          marginTop: "30px",
-          marginBottom: "30px",
-          padding: "30px 0",
-        }}
-      >
+      <div className="best_selling_container">
         <BestSelling />
       </div>
       <Advertisements />

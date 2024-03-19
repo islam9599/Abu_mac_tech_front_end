@@ -49,97 +49,95 @@ export const HotDeal = () => {
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
   return (
-    <Container>
-      <Box mt={5}>
-        <Swiper
-          spaceBetween={30}
-          centeredSlides={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          modules={[Autoplay, Pagination, Navigation]}
-          onAutoplayTimeLeft={onAutoplayTimeLeft}
-          className="mySwiper"
-          style={{ width: "100%", height: "auto" }}
-        >
-          {infoData.map((index, info) => {
-            return (
-              <SwiperSlide
-                key={index.id}
-                className="home_event_wrapper"
-                style={{
-                  width: "100%",
-                  height: "550px",
-                  backgroundImage: `url(${index.background})`,
-                  backgroundSize: "cover",
-                  borderRadius: "9px",
-                }}
+    <Stack mt={5} ml={10} alignItems={"center"}>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        modules={[Autoplay, Pagination, Navigation]}
+        onAutoplayTimeLeft={onAutoplayTimeLeft}
+        className="mySwiper"
+        style={{ width: "100%", height: "auto" }}
+      >
+        {infoData.map((index, info) => {
+          return (
+            <SwiperSlide
+              key={index.id}
+              className="home_event_wrapper"
+              style={{
+                width: "100%",
+                height: "550px",
+                backgroundImage: `url(${index.background})`,
+                backgroundSize: "cover",
+                borderRadius: "9px",
+              }}
+            >
+              <Stack
+                className="event-info"
+                flexDirection={"column"}
+                alignItems={"center"}
               >
-                <Stack
-                  className="event-info"
-                  flexDirection={"column"}
-                  alignItems={"center"}
+                <Typography
+                  variant="h5"
+                  fontFamily={"sans-serif"}
+                  style={{ marginTop: "20px", fontWeight: "bold" }}
                 >
-                  <Typography
-                    variant="h5"
-                    fontFamily={"sans-serif"}
-                    style={{ marginTop: "20px", fontWeight: "bold" }}
+                  {index.title}
+                </Typography>
+                <Stack flexDirection={"row"}>
+                  <Box
+                    maxWidth={"180px"}
+                    maxHeight={"230px"}
+                    sx={{
+                      display: {
+                        xs: "none",
+                        sm: "none",
+                        md: "flex",
+                        lg: "flex",
+                      },
+                      background: "gray",
+                      borderRadius: "9px",
+                      margin: "30px",
+                      color: "#fff",
+                      boxShadow: "4px 6px 20px rgba(0, 0, 0, 0.1)",
+                    }}
                   >
-                    {index.title}
-                  </Typography>
-                  <Stack flexDirection={"row"}>
-                    <Box
-                      maxWidth={"180px"}
-                      maxHeight={"230px"}
-                      sx={{
-                        display: {
-                          xs: "none",
-                          sm: "none",
-                          md: "flex",
-                          lg: "flex",
-                        },
-                        background: "gray",
-                        borderRadius: "9px",
-                        margin: "30px",
-                        color: "#fff",
-                        boxShadow: "4px 6px 20px rgba(0, 0, 0, 0.1)",
-                      }}
-                    >
-                      <h3>{index.discount}</h3>
-                    </Box>
-                    <img
-                      src={index.img}
-                      alt=""
-                      style={{
-                        maxWidth: "150px",
-                        maxHeight: "200px",
-                        objectFit: "cover",
-                        borderRadius: "9px",
-                        marginTop: "30px",
-                        marginRight: "50px",
-                      }}
-                    />
-                  </Stack>
-                  <Typography
-                    variant="h5"
-                    fontFamily={"sans-serif"}
-                    style={{ marginTop: "50px", fontWeight: "bold" }}
-                  >
-                    Kuzatishda davom eting!
-                  </Typography>
+                    <h3>{index.discount}</h3>
+                  </Box>
+                  <img
+                    src={index.img}
+                    alt=""
+                    style={{
+                      maxWidth: "150px",
+                      maxHeight: "200px",
+                      objectFit: "cover",
+                      borderRadius: "9px",
+                      marginTop: "30px",
+                      marginRight: "50px",
+                    }}
+                  />
                 </Stack>
-              </SwiperSlide>
-            );
-          })}
-          <div className="autoplay-progress" slot="container-end">
-            <svg viewBox="0 0 48 48" ref={progressCircle}>
-              <circle cx="24" cy="24" r="20"></circle>
-            </svg>
-            <span ref={progressContent}></span>
-          </div>
-        </Swiper>
-      </Box>
-    </Container>
+                <Typography
+                  variant="h5"
+                  fontFamily={"sans-serif"}
+                  style={{ marginTop: "50px", fontWeight: "bold" }}
+                >
+                  Kuzatishda davom eting!
+                </Typography>
+              </Stack>
+            </SwiperSlide>
+          );
+        })}
+        <div className="autoplay-progress" slot="container-end">
+          <svg viewBox="0 0 48 48" ref={progressCircle}>
+            <circle cx="24" cy="24" r="20"></circle>
+          </svg>
+          <span ref={progressContent}></span>
+        </div>
+      </Swiper>
+    </Stack>
   );
 };

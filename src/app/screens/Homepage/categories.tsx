@@ -1,9 +1,9 @@
-import { Container, Stack } from "@mui/material";
 import React, { useRef } from "react";
+import { Container, Stack } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 
 // Redux
 import { useSelector } from "react-redux";
