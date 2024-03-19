@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Advertisements() {
+export function HomeVideo() {
   return (
     <div
       style={{

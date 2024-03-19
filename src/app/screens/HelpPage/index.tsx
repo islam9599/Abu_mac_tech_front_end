@@ -13,11 +13,9 @@ import {
 import "../../../css/help.css";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { Cancel, ExpandMore, Home } from "@mui/icons-material";
 import Marginer from "../../component/marginer";
-import { Textarea } from "@mui/joy";
 import { useNavigate } from "react-router-dom";
 
 export function HelpPage() {
@@ -74,21 +72,10 @@ export function HelpPage() {
   ];
   const navigate = useNavigate();
 
-  const navigateToHomeHandler = () => {
-    navigate("/");
-  };
   return (
     <div className="help_page">
-      <Container>
+      <Container className="help_main_container">
         <Stack>
-          <Box mt={5}>
-            <Marginer
-              direction="horizontal"
-              width="100%"
-              height="2"
-              bg="#999"
-            />
-          </Box>
           <Stack width={"100%"}>
             <Stack
               className="navigate_home_wrapper"

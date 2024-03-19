@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { Box, Button, Stack } from "@mui/material";
 import { RippleBadge } from "../../MaterialTheme/styled";
-import { ArrowRight, Cancel, Send } from "@mui/icons-material";
+import { ArrowRight, Cancel, Chat, Send } from "@mui/icons-material";
 import { verifiedMemberdata } from "../../apiServices/verify";
 import { SocketContext } from "../../context/socket";
 import { ChatGreetMsg, ChatInfoMsg, ChatMessage } from "../../types/other";
@@ -249,11 +249,15 @@ export function Chatbox(props: any) {
       <Stack mt={10} justifyContent={"flex-end"}>
         <Button>
           {chat ? (
-            <img
+            <Chat
               onClick={() => setChat(!chat)}
-              src="/navbar/chatbox.png"
-              style={{ width: "39px", height: "39px" }}
-              alt=""
+              // src="/navbar/chatbox.png"
+              style={{
+                width: "39px",
+                height: "39px",
+                background: "#f1f1f2",
+                borderRadius: "9px",
+              }}
             />
           ) : (
             <Cancel

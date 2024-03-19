@@ -3,20 +3,16 @@ import "../../../css/header.css";
 import { Box, Container, Stack } from "@mui/system";
 import { Typography } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
-import Search from "@mui/icons-material/Search";
-import Marginer from "../marginer";
-import { ArrowUpward, Favorite } from "@mui/icons-material";
+import { ArrowUpward } from "@mui/icons-material";
 import { TypeAnimation } from "react-type-animation";
 import { verifiedMemberdata } from "../../apiServices/verify";
 import { Basket } from "./basket";
-import { sweetFailureProvider } from "../../lib/sweetAlert";
-import { AuthUser } from "./authUser";
 import { MobileNavbar } from "./mbileNavigation";
 
 export const NavbarPage = (props: any) => {
   /** Initialization */
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const navigate = useNavigate();
+  // const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  // const navigate = useNavigate();
   const { handleSignupOpen, handleLoginOpen } = props;
   const [scrollPosition, setScrollPosition] = useState(0);
   const isScrolled = scrollPosition >= 100;

@@ -50,7 +50,7 @@ export const OthersNavbarPage = (props: any) => {
             height={"60px"}
             padding={"11px 0px"}
             alignItems={"center"}
-            justifyContent={"center"}
+            justifyContent={"space-between"}
           >
             <Stack
               mt={5}
@@ -209,9 +209,9 @@ export const OthersNavbarPage = (props: any) => {
           src="/home/home-others.webp"
           alt=""
         />
-        <Container sx={{ mt: 5 }}>
+        <Box sx={{ mt: 5 }}>
           <Marginer direction="horizontal" width="100%" height="2" bg="#999" />
-        </Container>
+        </Box>
       </Box>
       {isTopScroll && (
         <ArrowUpward

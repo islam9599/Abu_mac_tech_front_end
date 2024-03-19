@@ -55,7 +55,7 @@ export const ShopsPage = (props: any) => {
             height={"60px"}
             padding={"11px 0px"}
             alignItems={"center"}
-            justifyContent={"center"}
+            justifyContent={"space-between"}
           >
             <Stack
               mt={5}
@@ -91,7 +91,7 @@ export const ShopsPage = (props: any) => {
               </Box>
             </Stack>
             <Stack
-              width={"60%"}
+              width={"70%"}
               height={"100%"}
               className="hover-line"
               flexDirection={"row"}

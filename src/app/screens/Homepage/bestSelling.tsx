@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {
   Stack,
-  Typography,
   Card,
   CardMedia,
   CardContent,
-  CardActions,
-  Button,
   Container,
   Checkbox,
 } from "@mui/material";

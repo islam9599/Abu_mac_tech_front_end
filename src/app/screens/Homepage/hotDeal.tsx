@@ -49,7 +49,7 @@ export const HotDeal = () => {
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
   return (
-    <Stack mt={5} ml={10} alignItems={"center"}>
+    <Stack mt={5} alignItems={"center"}>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

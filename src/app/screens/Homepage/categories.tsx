@@ -25,10 +25,6 @@ export const Categories = () => {
 
   /** Handlers */
 
-  const chosenRestaurantHandler = (id: string) => {
-    navigate(`/products/${id}`);
-  };
-
   return (
     <div>
       <Container>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { HotDeal } from "./hotDeal";
 import { Container } from "@mui/material";
-import { Advertisements } from "./advertisement";
+import { HomeVideo } from "./homeVideo";
 import FlashCard from "./flashDeals";
 import { Features } from "./features";
 import { FollowInstagram } from "./follow";
@@ -53,7 +53,7 @@ export const Homepage = (props: any) => {
       <div className="best_selling_container">
         <BestSelling />
       </div>
-      <Advertisements />
+      <HomeVideo />
       <div>
         <Container>
           <Features />
