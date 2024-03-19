@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container, Stack } from "@mui/system";
 import { Typography } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -8,16 +8,38 @@ import { verifiedMemberdata } from "../../apiServices/verify";
 import { Basket } from "./basket";
 import { AuthUser } from "./authUser";
 import { MobileNavbar } from "./mbileNavigation";
+import { ArrowUpward } from "@mui/icons-material";
 
 export const ShopsPage = (props: any) => {
   /** Initialization */
   const navigate = useNavigate();
   const { handleSignupOpen, handleLoginOpen } = props;
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const isScrolled = scrollPosition >= 100;
+  const isTopScroll = scrollPosition >= 300;
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.pageYOffset;
+      setScrollPosition(position);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   /** Handlers */
   const navigateHandler = () => {
     navigate("/");
+  };
+  const topHandler = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
   return (
     <div className="nav_shop_wrapper">
@@ -180,6 +202,13 @@ export const ShopsPage = (props: any) => {
               ) : null}
             </Stack>
           </Stack>
+          {isTopScroll && (
+            <ArrowUpward
+              sx={{ fill: "#ffffff ", width: "40px", height: "40px" }}
+              className="up_icon"
+              onClick={topHandler}
+            />
+          )}
         </Container>
       )}
     </div>

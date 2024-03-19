@@ -27,7 +27,7 @@ export interface HomePageState {
 
 export interface ShopPageState {
   allProducts: Product[];
-  productsByBrand: Shop[];
+  productsByPrice: Shop[];
   chosenShop: Shop | null;
   targetProducts: Product[];
   chosenProduct: Product | null;

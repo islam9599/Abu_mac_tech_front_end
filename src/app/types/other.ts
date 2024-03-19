@@ -7,6 +7,11 @@ export interface ProductSearchObj {
   product_brand?: string;
   searchText?: string;
 }
+export interface ProductSearchPriceObj {
+  min_price: number;
+  max_price: number;
+}
+
 export interface OrderSearchObj {
   page: number;
   limit: number;

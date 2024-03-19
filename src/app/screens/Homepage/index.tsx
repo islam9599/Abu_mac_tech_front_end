@@ -17,6 +17,7 @@ import { setTopBrands } from "./slice";
 import { Shop } from "../../types/user";
 import { MobileSwiper } from "./mobileSwiper";
 import { PopularAdvertisements } from "./popularAdvertisements";
+import { HomeTopSearch } from "./homeTopSearch";
 
 /** Redux Slice */
 
@@ -42,6 +43,7 @@ export const Homepage = (props: any) => {
   return (
     <div className="home-page">
       <Container>
+        <HomeTopSearch handleLogoutRequest={props.handleLogoutRequest} />
         {isMobile ? <MobileSwiper /> : <HotDeal />}
 
         <Categories />

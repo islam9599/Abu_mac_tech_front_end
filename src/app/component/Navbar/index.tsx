@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import Search from "@mui/icons-material/Search";
 import Marginer from "../marginer";
-import { Favorite } from "@mui/icons-material";
+import { ArrowUpward, Favorite } from "@mui/icons-material";
 import { TypeAnimation } from "react-type-animation";
 import { verifiedMemberdata } from "../../apiServices/verify";
 import { Basket } from "./basket";
@@ -18,17 +18,34 @@ export const NavbarPage = (props: any) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const navigate = useNavigate();
   const { handleSignupOpen, handleLoginOpen } = props;
-  useEffect(() => {}, []);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const isScrolled = scrollPosition >= 100;
+  const isTopScroll = scrollPosition >= 300;
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.pageYOffset;
+      setScrollPosition(position);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   /** Handlers */
-  const changeToProductsHandler = () => {
-    navigate("/products");
-  };
-  const navigateHandler = () => {
-    navigate("/");
+  const topHandler = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
   return (
-    <div className="navbar_page">
+    <div
+      // className="navbar_page"
+      className={isScrolled ? "navbar_page active_scroll" : "navbar_page"}
+    >
       <div className="navbar_home">
         <Container>
           <Stack
@@ -67,6 +84,7 @@ export const NavbarPage = (props: any) => {
               }}
               flexDirection={"row"}
               justifyContent={"space-between"}
+              alignItems={"center"}
               mr={15}
             >
               <Box className="hover-line" sx={{ mr: 2 }}>
@@ -154,6 +172,14 @@ export const NavbarPage = (props: any) => {
                   </Typography>
                 </Box>
               ) : null}
+              <Basket
+                cartItems={props.cartItems}
+                onAdd={props.onAdd}
+                onRemove={props.onRemove}
+                onDelete={props.onDelete}
+                onDeleteAll={props.onDeleteAll}
+                setOrderRebuild={props.setOrderRebuild}
+              />
             </Stack>
             <Stack
               width={"100%"}
@@ -167,52 +193,13 @@ export const NavbarPage = (props: any) => {
           </Stack>
         </Container>
       </div>
-      <div className="nav_search_container">
-        <Container>
-          <Stack className={"nav_form_search_wrapper"}>
-            <Stack className="nav_form_logo_wrapper" onClick={navigateHandler}>
-              <img className="nav_form_img" src="/home/macshop.jpg"></img>
-              <Typography className="nav_form_title">Abu_Mac_Tech</Typography>
-            </Stack>
-            <Stack flexDirection={"row"} alignItems={"center"}>
-              <form
-                className="nav_form_wrapper"
-                onClick={changeToProductsHandler}
-                action=""
-              >
-                <input
-                  className="nav_form_input"
-                  type="text"
-                  placeholder="Search product here"
-                />
-                <Box className="nav_form_search">
-                  <Search className="nav_form_search_icon" />
-                </Box>
-              </form>
-            </Stack>
-            <Stack className="nav_icons_wrapper">
-              <AuthUser handleLogoutRequest={props.handleLogoutRequest} />
-              <Favorite
-                className="nav_favorite_icon"
-                onClick={() => {
-                  !verifiedMemberdata
-                    ? sweetFailureProvider("Please login first, kindly!")
-                    : navigate("/member-page");
-                }}
-              />
-              <Basket
-                cartItems={props.cartItems}
-                onAdd={props.onAdd}
-                onRemove={props.onRemove}
-                onDelete={props.onDelete}
-                onDeleteAll={props.onDeleteAll}
-                setOrderRebuild={props.setOrderRebuild}
-              />
-            </Stack>
-          </Stack>
-          <Marginer direction="horizontal" width="1320" height="2" bg="#999" />
-        </Container>
-      </div>
+      {isTopScroll && (
+        <ArrowUpward
+          sx={{ fill: "#ffffff ", width: "40px", height: "40px" }}
+          className="up_icon"
+          onClick={topHandler}
+        />
+      )}
     </div>
   );
 };

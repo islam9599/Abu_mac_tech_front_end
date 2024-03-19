@@ -19,7 +19,7 @@ export function Advertisements() {
           maxHeight: "auto",
           display: "flex",
           flexDirection: "column",
-          objectFit: "contain",
+          objectFit: "cover",
         }}
         autoPlay={true}
         loop

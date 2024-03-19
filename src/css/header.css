@@ -1,18 +1,22 @@
 .navbar_page {
   width: 100%;
   height: auto;
-}
-
-.navbar_page .navbar_home {
-  width: 100%;
-  height: 60px;
-  background: #129cb8;
-  display: flex;
-  align-items: center;
   position: sticky;
   top: 0;
   z-index: 9999;
+  background: #129cb8;
 }
+.active_scroll {
+  transition: all 0.7s;
+  background: #128fc8;
+}
+.navbar_page .navbar_home {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
 .navbar_page .navbar_home .nav_text_animation {
   font-size: 15px;
   display: inline-block;
@@ -22,7 +26,20 @@
 .navbar_page .nav_search_container {
   max-width: 100%;
   height: 120px;
-  margin: 20px 0px;
+  margin-bottom: 20px;
+  background-color: #eef5ff;
+}
+.up_icon {
+  width: 39px;
+  height: 39px;
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  fill: #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #129cb8;
+  transition: all 0.3s;
 }
 @media (max-width: 768px) {
   .navbar_page .navbar_home {
@@ -112,7 +129,7 @@
   cursor: pointer;
 }
 
-.navbar_page .nav_search_container .nav_icons_wrapper {
+.navbar_page .nav_icons_wrapper {
   width: 150px;
   height: 60px;
   display: flex;
@@ -121,7 +138,7 @@
   align-items: center;
 }
 
-.navbar_page .nav_search_container .nav_icons_wrapper .nav_favorite_icon {
+.navbar_page .nav_icons_wrapper .nav_favorite_icon {
   width: 25px;
   height: 25px;
   cursor: pointer;

@@ -1,7 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "@mui/material/Slider";
 import { makeStyles } from "@mui/styles";
 import { Stack } from "@mui/material";
+import { Product } from "../../types/product";
+import ProductApiService from "../../apiServices/productApiService";
+// Redux
+
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveProductsByPrice } from "./selector";
+import { setProductsByPrice } from "./slice";
+/** Redux Slice */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setProductsByPrice: (data: Product[]) => dispatch(setProductsByPrice(data)),
+});
+
+const setProductsByBrandRetriever = createSelector(
+  retrieveProductsByPrice,
+  (productsByPrice) => ({
+    productsByPrice,
+  })
+);
 
 const useStyles = makeStyles({
   root: {
@@ -31,16 +52,32 @@ const useStyles = makeStyles({
 });
 
 const PriceRangeSlider = (props: any) => {
+  /** Initialization */
+  const { setProductsByPrice } = actionDispatch(useDispatch());
+  const [priceRange, setPriceRange] = useState([0, 5000]);
+  const min_price = priceRange[0];
+  const max_price = priceRange[1];
+  const [maxPrice, setMaxPrice] = useState(1000);
   const { searchAllPorducts } = props;
   const classes = useStyles();
-  const [priceRange, setPriceRange] = useState([0, 5000]);
+
+  useEffect(() => {
+    const productService = new ProductApiService();
+
+    productService
+      .getProductsByPriceRange({ min_price: min_price, max_price: max_price })
+      .then((data) => {
+        setProductsByPrice(data);
+      })
+      .catch((err) => console.log(err));
+  }, [min_price, max_price]);
 
   const handleChange = (event: any, newValue: any) => {
     setPriceRange(newValue);
   };
 
   return (
-    <Stack width={"100%"}>
+    <Stack width={"100%"} mt={5}>
       <h2>Shop by price</h2>
       <Slider
         classes={{
@@ -55,7 +92,7 @@ const PriceRangeSlider = (props: any) => {
         onChange={handleChange}
         valueLabelDisplay="auto"
         min={0}
-        max={100}
+        max={5000}
         step={50}
         onClick={() => props.allProducts}
       />

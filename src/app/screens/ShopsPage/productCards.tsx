@@ -13,7 +13,7 @@ import { Checkbox, Rating, Stack } from "@mui/material";
 import "../../../css/home.css";
 import { useNavigate } from "react-router-dom";
 import { createSelector } from "@reduxjs/toolkit";
-import { retrieveAllProducts } from "./selector";
+import { retrieveAllProducts, retrieveProductsByPrice } from "./selector";
 import { useSelector } from "react-redux";
 import { Product } from "../../types/product";
 import { serverApi } from "../../lib/config";
@@ -32,10 +32,17 @@ const setAllProductsRetriever = createSelector(
     allProducts,
   })
 );
+const setProductsByPriceRetriever = createSelector(
+  retrieveProductsByPrice,
+  (productByPrice) => ({
+    productByPrice,
+  })
+);
 
 const ProductCard = (props: any) => {
   /** Initialization */
   const { allProducts } = useSelector(setAllProductsRetriever);
+  const { productByPrice } = useSelector(setProductsByPriceRetriever);
   console.log("allProducts:::::", allProducts);
   const navigate = useNavigate();
 
@@ -73,7 +80,7 @@ const ProductCard = (props: any) => {
         flexDirection={"row"}
         sx={{ flexWrap: "wrap" }}
       >
-        {allProducts.map((product: Product) => {
+        {allProducts?.map((product: Product) => {
           const image_path = `${serverApi}/${product.product_images[0]}`;
 
           return (

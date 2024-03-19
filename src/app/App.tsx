@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Homepage } from "./screens/Homepage";
@@ -18,11 +18,7 @@ import { Accessories } from "./screens/ShopsPage/accessories";
 import { VisitOtherPage } from "./screens/MemberPage/visitOtherPage";
 import AuthentificationModal from "./auth";
 import MemberApiService from "./apiServices/memberApiService";
-import {
-  sweetFailureProvider,
-  sweetTopSmallSuccessAlert,
-  sweetTopSuccessAlert,
-} from "./lib/sweetAlert";
+import { sweetFailureProvider, sweetTopSuccessAlert } from "./lib/sweetAlert";
 import { Definer } from "./lib/Definer";
 import { CartItem } from "./types/other";
 import { Product } from "./types/product";
@@ -40,6 +36,10 @@ function App() {
   const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
   const [orderRebuild, setOrderRebuild] = useState<Date>(new Date());
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   /** Handlers */
   const handleSignupOpen = () => {
@@ -168,7 +168,12 @@ function App() {
       )}
 
       <Routes>
-        <Route path="/" element={<Homepage onAdd={onAdd} />} />
+        <Route
+          path="/"
+          element={
+            <Homepage handleLogoutRequest={handleLogoutRequest} onAdd={onAdd} />
+          }
+        />
         <Route path="/products" element={<Shops onAdd={onAdd} />}>
           <Route path=":product_id" element={<ChosenProduct />} />
           <Route path="phones" element={<PhoneProducts />} />

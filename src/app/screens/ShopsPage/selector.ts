@@ -7,9 +7,9 @@ export const retrieveAllProducts = createSelector(
   selectShopPage,
   (ShopsPage) => ShopsPage.allProducts
 );
-export const retrieveProductsByBrand = createSelector(
+export const retrieveProductsByPrice = createSelector(
   selectShopPage,
-  (shopsPage) => shopsPage.productsByBrand
+  (shopsPage) => shopsPage.productsByPrice
 );
 export const retrieveChosenShop = createSelector(
   selectShopPage,

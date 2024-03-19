@@ -3,7 +3,7 @@ import assert from "assert";
 import { serverApi } from "../lib/config";
 import { Definer } from "../lib/Definer";
 import { Product } from "../types/product";
-import { ProductSearchObj } from "../types/other";
+import { ProductSearchObj, ProductSearchPriceObj } from "../types/other";
 
 class ProductApiService {
   private readonly path: string;
@@ -84,6 +84,25 @@ class ProductApiService {
       return product;
     } catch (err: any) {
       console.log(`error:: getChosenProduct ${err.message}`);
+      throw err;
+    }
+  }
+  public async getProductsByPriceRange(
+    data: ProductSearchPriceObj
+  ): Promise<Product[]> {
+    try {
+      let url = `/products/price?min_price=${data.min_price}&max_price=${data.max_price}`;
+      const result = await axios.get(this.path + url, {
+        withCredentials: true,
+      });
+
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      console.log("state:", result.data.state);
+      const products: Product[] = result.data.data;
+      return products;
+    } catch (err: any) {
+      console.log(`error:: getProductsByPriceRange ${err.message}`);
       throw err;
     }
   }

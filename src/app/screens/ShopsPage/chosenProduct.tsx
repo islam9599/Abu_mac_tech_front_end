@@ -40,7 +40,7 @@ import {
   retrieveAllProducts,
   retrieveChosenProduct,
   retrieveProductReviews,
-  retrieveProductsByBrand,
+  retrieveProductsByPrice,
 } from "./selector";
 import { verifiedMemberdata } from "../../apiServices/verify";
 

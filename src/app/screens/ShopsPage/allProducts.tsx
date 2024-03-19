@@ -16,18 +16,17 @@ import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { retrieveAllProducts, retrieveProductsByBrand } from "./selector";
+import { retrieveAllProducts } from "./selector";
 import { verifiedMemberdata } from "../../apiServices/verify";
 
 import { ProductSearchObj } from "../../types/other";
-import { setAllProducts, setProductsByBrand } from "./slice";
+import { setAllProducts } from "./slice";
 import { Product } from "../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
 
 /** Redux Slice */
 const actionDispatch = (dispatch: Dispatch) => ({
   setAllProducts: (data: Product[]) => dispatch(setAllProducts(data)),
-  setProductsByBrand: (data: Product[]) => dispatch(setProductsByBrand(data)),
 });
 /** Redux Selector*/
 const setAllProductsRetriever = createSelector(
@@ -39,7 +38,7 @@ const setAllProductsRetriever = createSelector(
 
 export function AllProducts(props: any) {
   /** Initialization */
-  const { setAllProducts, setProductsByBrand } = actionDispatch(useDispatch());
+  const { setAllProducts } = actionDispatch(useDispatch());
   const { allProducts } = useSelector(setAllProductsRetriever);
 
   // console.log("productsByBrand::", productsByBrand);

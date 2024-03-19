@@ -38,7 +38,15 @@ export function AuthUser(props: any) {
             >
               My account
             </MenuItem>
-            <MenuItem onClick={handleLogoutRequest}>Logout</MenuItem>
+            <MenuItem
+              onClick={() => {
+                !verifiedMemberdata
+                  ? sweetFailureProvider("Please login first, kindly!")
+                  : handleLogoutRequest();
+              }}
+            >
+              Logout
+            </MenuItem>
           </Menu>
         </Fragment>
       )}

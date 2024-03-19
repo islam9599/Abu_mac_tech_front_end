@@ -59,6 +59,7 @@ export const BestSelling = () => {
       page: 1,
       limit: 6,
       order: "product_price",
+      searchText: "",
     });
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 

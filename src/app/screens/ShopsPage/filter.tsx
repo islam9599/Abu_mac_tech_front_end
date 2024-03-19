@@ -13,18 +13,18 @@ import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { retrieveAllProducts, retrieveProductsByBrand } from "./selector";
+import { retrieveAllProducts, retrieveProductsByPrice } from "./selector";
 import { verifiedMemberdata } from "../../apiServices/verify";
 
 import { ProductSearchObj } from "../../types/other";
-import { setAllProducts, setProductsByBrand } from "./slice";
+import { setAllProducts, setProductsByPrice } from "./slice";
 import { Product } from "../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
 
 /** Redux Slice */
 const actionDispatch = (dispatch: Dispatch) => ({
   setAllProducts: (data: Product[]) => dispatch(setAllProducts(data)),
-  setProductsByBrand: (data: Product[]) => dispatch(setProductsByBrand(data)),
+  setProductsByBrand: (data: Product[]) => dispatch(setProductsByPrice(data)),
 });
 /** Redux Selector*/
 const setAllProductsRetriever = createSelector(
@@ -34,7 +34,7 @@ const setAllProductsRetriever = createSelector(
   })
 );
 const setProductsByBrandRetriever = createSelector(
-  retrieveProductsByBrand,
+  retrieveProductsByPrice,
   (productsByBrand) => ({
     productsByBrand,
   })
@@ -45,7 +45,7 @@ export default function FilterShop(props: any) {
   const { setProductsByBrand } = actionDispatch(useDispatch());
   const [hide, sethide] = useState<boolean>(true);
 
-  const { searchAllPorducts, searchProductBybrandHandler } = props;
+  const { searchAllPorducts, searchProductBybrandHandler, allProducts } = props;
   const [brandProductSearchObj, setBrandProductSearchObj] =
     useState<ProductSearchObj>({
       page: 1,
@@ -186,12 +186,10 @@ export default function FilterShop(props: any) {
         </RadioGroup>
       </FormControl>
 
-      {/* <Stack sx={{ m: 5 }}>
-        <PriceRangeSlider
-          searchAllPorducts={searchAllPorducts}
-          allProducts={props.allProducts}
-        />
-      </Stack> */}
+      <PriceRangeSlider
+        searchAllPorducts={searchAllPorducts}
+        allProducts={allProducts}
+      />
     </Stack>
   );
 }
