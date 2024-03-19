@@ -60,11 +60,11 @@ export const MobileNavbar = (props: any) => {
           />
           <Stack
             position={"absolute"}
-            top={80}
-            right={0}
+            top={70}
             width={"100%"}
             height={"auto"}
             alignItems={"center"}
+            borderRadius={"0 0  9px 9px"}
             sx={{
               display: hide ? "none" : "flex",
               background: "#129cb8",

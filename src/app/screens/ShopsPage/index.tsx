@@ -1,9 +1,8 @@
-import { Container } from "@mui/system";
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import "../../../css/shops.css";
+import { Routes, Route } from "react-router-dom";
 import { AllProducts } from "./allProducts";
 import { ChosenProduct } from "./chosenProduct";
-import "../../../css/shops.css";
 import { PhoneProducts } from "./phoneProducts";
 import { Laptops } from "./laptops";
 import { Accessories } from "./accessories";

@@ -80,7 +80,7 @@ export function Basket(props: any) {
         PaperProps={{
           elevation: 0,
           sx: {
-            width: "500px",
+            width: "450px",
             height: "400px",
             borderRadius: "19px",
             overflow: "visible",

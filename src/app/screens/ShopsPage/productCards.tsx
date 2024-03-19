@@ -43,7 +43,6 @@ const ProductCard = (props: any) => {
   /** Initialization */
   const { allProducts } = useSelector(setAllProductsRetriever);
   const { productByPrice } = useSelector(setProductsByPriceRetriever);
-  console.log("allProducts:::::", allProducts);
   const navigate = useNavigate();
 
   /** Handlers */

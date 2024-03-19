@@ -51,6 +51,8 @@ export function AllProducts(props: any) {
       order: "product_point",
       product_brand: "apple",
       searchText: "",
+      min_price: 0,
+      max_price: 5000,
     });
 
   useEffect(() => {
@@ -73,6 +75,15 @@ export function AllProducts(props: any) {
     targetProductSearchObj.product_brand = brand;
     setTargetProductSearchObj({ ...targetProductSearchObj });
   };
+  const searchMinPriceHandler = (minPrice: number) => {
+    targetProductSearchObj.min_price = minPrice;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
+  const searchMaxPriceHandler = (maxPrice: number) => {
+    targetProductSearchObj.max_price = maxPrice;
+
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
   const searchByCollection = (order: string, collection: string) => {
     targetProductSearchObj.order = order;
     targetProductSearchObj.product_collection = collection;
@@ -91,16 +102,16 @@ export function AllProducts(props: any) {
   return (
     <div className="all_products">
       {isMobile ? (
-        <Container sx={{ width: "400px", height: "400px", mt: "400px" }}>
+        <Container sx={{ width: "400px", height: "400px", mt: "200px" }}>
           <Stack
             width={"100%"}
             height={"300px"}
             justifyContent={"center"}
             alignItems={"center"}
           >
-            <h1>
+            <h2>
               Mobile version is under developing proccess. Please use our web!
-            </h1>
+            </h2>
           </Stack>
         </Container>
       ) : (
@@ -211,6 +222,8 @@ export function AllProducts(props: any) {
                 }}
               >
                 <FilterShop
+                  searchMinPriceHandler={searchMinPriceHandler}
+                  searchMaxPriceHandler={searchMaxPriceHandler}
                   allProducts={allProducts}
                   searchAllPorducts={searchAllPorducts}
                   searchBrandHandler={searchByCollection}

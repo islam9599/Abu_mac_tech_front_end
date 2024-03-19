@@ -189,6 +189,8 @@ export default function FilterShop(props: any) {
       <PriceRangeSlider
         searchAllPorducts={searchAllPorducts}
         allProducts={allProducts}
+        searchMinPriceHandler={props.searchMinPriceHandler}
+        searchMaxPriceHandler={props.searchMaxPriceHandler}
       />
     </Stack>
   );

@@ -6,6 +6,8 @@ export interface ProductSearchObj {
   product_collection?: string;
   product_brand?: string;
   searchText?: string;
+  min_price?: number;
+  max_price?: number;
 }
 export interface ProductSearchPriceObj {
   min_price: number;

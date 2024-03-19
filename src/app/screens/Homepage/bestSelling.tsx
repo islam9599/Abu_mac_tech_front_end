@@ -57,6 +57,8 @@ export const BestSelling = () => {
       limit: 6,
       order: "product_price",
       searchText: "",
+      min_price: 0,
+      max_price: 5000,
     });
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 

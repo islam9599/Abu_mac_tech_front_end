@@ -53,26 +53,35 @@ const useStyles = makeStyles({
 
 const PriceRangeSlider = (props: any) => {
   /** Initialization */
+  const {
+    searchAllPorducts,
+    searchByPriceRangeHandler,
+    searchMinPriceHandler,
+    searchMaxPriceHandler,
+  } = props;
   const { setProductsByPrice } = actionDispatch(useDispatch());
-  const [priceRange, setPriceRange] = useState([0, 5000]);
-  const min_price = priceRange[0];
-  const max_price = priceRange[1];
+  const [priceRange, setPriceRange] = useState([0, 1500]);
+
+  // const min_price = priceRange[0];
+  // const max_price = priceRange[1];
   const [maxPrice, setMaxPrice] = useState(1000);
-  const { searchAllPorducts } = props;
+
   const classes = useStyles();
 
-  useEffect(() => {
-    const productService = new ProductApiService();
+  // useEffect(() => {
+  //   const productService = new ProductApiService();
 
-    productService
-      .getProductsByPriceRange({ min_price: min_price, max_price: max_price })
-      .then((data) => {
-        setProductsByPrice(data);
-      })
-      .catch((err) => console.log(err));
-  }, [min_price, max_price]);
+  //   productService
+  //     .getProductsByPriceRange({ min_price: min_price, max_price: max_price })
+  //     .then((data) => {
+  //       setProductsByPrice(data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [min_price, max_price]);
 
   const handleChange = (event: any, newValue: any) => {
+    searchMinPriceHandler(priceRange[0]);
+    searchMaxPriceHandler(priceRange[1]);
     setPriceRange(newValue);
   };
 
@@ -93,8 +102,7 @@ const PriceRangeSlider = (props: any) => {
         valueLabelDisplay="auto"
         min={0}
         max={5000}
-        step={50}
-        onClick={() => props.allProducts}
+        step={100}
       />
       <Stack
         flexDirection={"row"}

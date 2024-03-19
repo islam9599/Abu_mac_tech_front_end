@@ -119,7 +119,7 @@ export const Footer = () => {
               Get In Touch
             </h1>
             <Typography color={"InfoText"} mt={3} variant="h5">
-              Call <Call /> (+99899123456789)
+              Call <Call /> (+821023088288)
             </Typography>
             <Typography color={"InfoText"} mt={3} mb={5} variant="h5">
               Email <EmailRounded />: eislombek9599@gmail.com

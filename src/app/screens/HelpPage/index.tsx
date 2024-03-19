@@ -19,8 +19,10 @@ import Marginer from "../../component/marginer";
 import { useNavigate } from "react-router-dom";
 
 export function HelpPage() {
+  /** Initializations */
   const [value, setValue] = React.useState("1");
-
+  const navigate = useNavigate();
+  /** Handlers */
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -70,7 +72,6 @@ export function HelpPage() {
     "Information from Other Sources: We might receive information about you from other sources, such as updated delivery and address information from our carriers, which we use to correct our records and deliver your next purchase more easily. Click here to see additional examples of the information we receive!",
     "Other than as set out above, you will receive notice when personal information about you might be shared with third parties, and you will have an opportunity to choose not to share the information!",
   ];
-  const navigate = useNavigate();
 
   return (
     <div className="help_page">
