@@ -209,6 +209,7 @@
 }
 
 .home-page .best_product_container .home_card {
+  position: relative;
   width: 300px;
   height: auto;
   margin: 10px;
@@ -220,7 +221,17 @@
 .home-page .best_product_container .home_card:hover {
   transform: translateY(-12px);
   box-shadow: 8px 12px 24px #bbbbbb;
-  opacity: 1;
+}
+
+.product_discount_wrapper {
+  width: 30%;
+  height: 40px;
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .home-page .best_product_container .home_card .card_image {
@@ -230,10 +241,10 @@
   object-fit: cover;
 }
 
-.home-page .best_product_container .card_image:hover {
+/* .home-page .best_product_container .card_image:hover {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
-}
+} */
 
 .home-page .best_product_container .product_name {
   margin-bottom: 10px;
@@ -251,12 +262,12 @@
   align-items: center;
 }
 .home-page .best_product_container .product_price_wrapper .product_left {
-  color: red;
   font-size: 14px;
 }
 
 .home-page .best_product_container .product_price_wrapper .product_price {
   font-size: 18px;
+  font-weight: bold;
 }
 
 .home-page .best_product_container .icon_container {
@@ -385,7 +396,7 @@
   align-items: center;
   justify-content: center;
   max-width: 300px;
-  max-height: 450px;
+  max-height: 490px;
 }
 
 .productCard {
@@ -394,7 +405,7 @@
   margin: 1rem;
   flex: 1 0 15rem;
   width: 300px;
-  height: 450px;
+  height: 490px;
   transition: 0.2s;
   border-radius: 19px;
   opacity: 0.9;
@@ -482,7 +493,7 @@
 
 .productSales,
 .productTime {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
 }
 
 @media (max-width: 450px) {
@@ -502,6 +513,7 @@
     cursor: pointer;
   }
   .home-page .best_product_container .home_card {
+    position: relative;
     width: 130px;
     height: 220px;
     border-radius: 19px;
@@ -514,7 +526,22 @@
     box-shadow: 8px 12px 24px #bbbbbb;
     opacity: 1;
   }
-
+  .product_discount_wrapper {
+    width: 50%;
+    height: 20px;
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product_discount_wrapper h2 {
+    font-weight: bold;
+    color: #000;
+    font-size: 10px;
+    cursor: pointer;
+  }
   .home-page .best_product_container .home_card .card_image {
     height: 100px;
     padding-top: 15px;

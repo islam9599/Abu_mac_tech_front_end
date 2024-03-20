@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  Autocomplete,
   Box,
   Button,
   Checkbox,
   Container,
   Rating,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -20,12 +18,12 @@ import "swiper/css/thumbs";
 import ReactImageMagnify from "react-image-magnify";
 
 import {
+  ArrowRight,
   Cancel,
   Favorite,
   FavoriteBorder,
   Home,
   RemoveRedEye,
-  Search,
 } from "@mui/icons-material";
 import Marginer from "../../component/marginer";
 import assert from "assert";
@@ -33,7 +31,7 @@ import ProductCard from "./productCards";
 // Redux
 
 import { useDispatch } from "react-redux";
-import { Dispatch, original } from "@reduxjs/toolkit";
+import { Dispatch } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import {
@@ -359,7 +357,7 @@ export const ChosenProduct = (props: any) => {
               <Stack
                 flexDirection={"column"}
                 margin={"10px 0px"}
-                height={"280px"}
+                height={"240px"}
               >
                 <p className="product_desc_info">
                   {chosenProduct?.product_description
@@ -387,7 +385,25 @@ export const ChosenProduct = (props: any) => {
               >
                 <div className="dish_price_box">
                   <span>Price</span>
-                  <span>${chosenProduct?.product_price}</span>
+                  <Stack justifyContent={"space-between"}>
+                    <span
+                      style={
+                        !chosenProduct?.product_discount
+                          ? { display: "none", textDecoration: "none" }
+                          : { textDecoration: "line-through", color: "red" }
+                      }
+                    >
+                      ${chosenProduct?.product_price}
+                    </span>
+                    <span>
+                      $
+                      {chosenProduct?.product_discount
+                        ? chosenProduct?.product_price -
+                          chosenProduct?.product_price /
+                            chosenProduct?.product_discount
+                        : chosenProduct?.product_price}
+                    </span>
+                  </Stack>
                 </div>
                 <div className="btn_box">
                   <Button

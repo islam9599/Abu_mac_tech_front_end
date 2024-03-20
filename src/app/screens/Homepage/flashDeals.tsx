@@ -5,10 +5,18 @@ import {
   BookmarkBorder,
   Favorite,
   FavoriteBorder,
+  RemoveRedEye,
   ShoppingCartRounded,
   Star,
 } from "@mui/icons-material";
-import { Checkbox, Container, Rating, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Checkbox,
+  Container,
+  Rating,
+  Stack,
+  Typography,
+} from "@mui/material";
 import "../../../css/home.css";
 import { Product } from "../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
@@ -129,6 +137,20 @@ const FlashCard = (props: any) => {
                   }}
                 >
                   <div className="productCard">
+                    <Box
+                      className="product_discount_wrapper"
+                      style={
+                        !product?.product_discount
+                          ? { display: "none", textDecoration: "none" }
+                          : {
+                              background: "#129cb8",
+                              zIndex: "9999",
+                              borderRadius: "0 9px 9px 0px",
+                            }
+                      }
+                    >
+                      <h2>{product?.product_discount}% off</h2>
+                    </Box>
                     <Stack
                       flexDirection={"row"}
                       className="icon-container"
@@ -210,28 +232,41 @@ const FlashCard = (props: any) => {
                         alignItems={"center"}
                         justifyContent={"space-between"}
                       >
-                        <h3
-                          className="product_discount"
-                          style={{ color: "red" }}
-                        >
-                          {product?.product_discount}% off
-                        </h3>
                         <h2
                           className="product_discount"
-                          style={{ textDecoration: "line-through" }}
+                          style={
+                            !product?.product_discount
+                              ? { display: "none", textDecoration: "none" }
+                              : {
+                                  textDecoration: "line-through",
+                                  color: "red",
+                                  marginRight: "10px",
+                                }
+                          }
                         >
                           ${product?.product_price}
+                        </h2>
+                        <h2 className="product_discount">
+                          $
+                          {product?.product_discount
+                            ? product?.product_price -
+                              product?.product_price / product?.product_discount
+                            : product?.product_price}
                         </h2>
                       </Stack>
 
                       <div className="displayStack__1">
-                        <div className="product_discount">
-                          $
-                          {product.product_price -
-                            product.product_price / product.product_discount}
-                        </div>
+                        <Stack flexDirection={"row"} alignItems={"center"}>
+                          <RemoveRedEye className="icon_container" />
+                          <h2
+                            className="product_count"
+                            style={{ marginLeft: "5px" }}
+                          >
+                            {product?.product_views}
+                          </h2>
+                        </Stack>
                         <div className="productSales">
-                          {product.product_left_cnt} units left
+                          <p>{product.product_left_cnt} units left</p>
                         </div>
                       </div>
                       <div className="displayStack__2">
@@ -271,7 +306,9 @@ const FlashCard = (props: any) => {
                             }}
                           />
                         </div>
-                        <div className="productTime">29 days left</div>
+                        <p className="productSales">
+                          {product?.product_likes} likes
+                        </p>
                       </div>
                     </div>
                   </div>

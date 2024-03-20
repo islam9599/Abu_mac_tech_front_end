@@ -6,6 +6,7 @@ import {
   CardContent,
   Container,
   Checkbox,
+  Box,
 } from "@mui/material";
 import { ArrowRight, Favorite, RemoveRedEye } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -143,6 +144,20 @@ export const BestSelling = () => {
                     navigate(`/products/${product?._id}`);
                   }}
                 >
+                  <Box
+                    className="product_discount_wrapper"
+                    style={
+                      !product?.product_discount
+                        ? { display: "none", textDecoration: "none" }
+                        : {
+                            background: "#129cb8",
+
+                            borderRadius: "0 9px 9px 0px",
+                          }
+                    }
+                  >
+                    <h2>{product?.product_discount}% off</h2>
+                  </Box>
                   <CardMedia
                     onMouseEnter={() => handleMouseEnter(product?._id)}
                     onMouseLeave={handleMouseLeave}
@@ -164,9 +179,35 @@ export const BestSelling = () => {
                         {product?.product_left_cnt} units left
                       </h2>
 
-                      <h2 className="product_price">
+                      {/* <h2 className="product_price">
                         ${product?.product_price}
-                      </h2>
+                      </h2> */}
+                      <Stack
+                        maxWidth={"100%"}
+                        justifyContent={"space-between"}
+                        flexDirection={"row"}
+                      >
+                        <span
+                          className="product_price"
+                          style={
+                            !product?.product_discount
+                              ? { display: "none", textDecoration: "none" }
+                              : {
+                                  textDecoration: "line-through",
+                                  color: "red",
+                                  marginRight: "10px",
+                                }
+                          }
+                        >
+                          ${product?.product_price}
+                        </span>
+                        <span className="product_price">
+                          {product?.product_discount
+                            ? product?.product_price -
+                              product?.product_price / product?.product_discount
+                            : product?.product_price}
+                        </span>
+                      </Stack>
                     </Stack>
                     <Stack
                       onClick={(e) => {

@@ -9,7 +9,7 @@ import {
   ShoppingCartRounded,
   Star,
 } from "@mui/icons-material";
-import { Checkbox, Rating, Stack } from "@mui/material";
+import { Box, Checkbox, Rating, Stack } from "@mui/material";
 import "../../../css/home.css";
 import { useNavigate } from "react-router-dom";
 import { createSelector } from "@reduxjs/toolkit";
@@ -107,6 +107,20 @@ const ProductCard = (props: any) => {
                   margin: "20px",
                 }}
               >
+                <Box
+                  className="product_discount_wrapper"
+                  style={
+                    !product?.product_discount
+                      ? { display: "none", textDecoration: "none" }
+                      : {
+                          background: "#129cb8",
+                          zIndex: "9999",
+                          borderRadius: "0 9px 9px 0px",
+                        }
+                  }
+                >
+                  <h2>{product?.product_discount}% off</h2>
+                </Box>
                 <Stack
                   flexDirection={"row"}
                   alignContent={"center"}
@@ -123,21 +137,8 @@ const ProductCard = (props: any) => {
                     className={"productCard__cart"}
                     sx={{ width: "29px", height: "24px" }}
                   />
-                  <BookmarkBorder
-                    className={"productCard__wishlist"}
-                    sx={{ width: "29px", height: "24px", bottom: "25px" }}
-                  />
+
                   <Stack position={"relative"}>
-                    <p
-                      style={{
-                        position: "absolute",
-                        bottom: "15px",
-                        left: "30px",
-                        fontSize: "12px",
-                      }}
-                    >
-                      {product?.product_likes}
-                    </p>
                     <Checkbox
                       className={"productCard__cart"}
                       onClick={targetLikeProduct}
@@ -181,9 +182,30 @@ const ProductCard = (props: any) => {
                   <h3 className="productName">{product?.product_name}</h3>
 
                   <div className="displayStack__1">
-                    <div className="productPrice">
-                      ${product?.product_price}
-                    </div>
+                    <Stack flexDirection={"row"}>
+                      <h2
+                        className="productPrice"
+                        style={
+                          !product?.product_discount
+                            ? { display: "none", textDecoration: "none" }
+                            : {
+                                textDecoration: "line-through",
+                                color: "red",
+                                marginRight: "10px",
+                              }
+                        }
+                      >
+                        ${product?.product_price}
+                      </h2>
+                      <h2 className="productPrice">
+                        $
+                        {product?.product_discount
+                          ? product?.product_price -
+                            product?.product_price / product?.product_discount
+                          : product?.product_price}
+                      </h2>
+                    </Stack>
+
                     <Stack
                       width={"30px"}
                       flexDirection={"row"}
@@ -210,7 +232,9 @@ const ProductCard = (props: any) => {
                       <Star sx={{ color: "gold" }} />
                       <Star />
                     </div>
-                    <div className="productTime">29 days left</div>
+                    <div className="productTime">
+                      {product?.product_likes} likes
+                    </div>
                   </div>
                 </div>
               </div>

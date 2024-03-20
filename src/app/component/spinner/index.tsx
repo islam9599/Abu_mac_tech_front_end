@@ -6,7 +6,6 @@ import { Container, Typography } from "@mui/material";
 export function Spinner() {
   return (
     <Container>
-      {" "}
       <Box className="spinner_wrapper">
         <Typography variant="h3">Loading...</Typography>
         <CircularProgress />

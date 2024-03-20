@@ -174,6 +174,7 @@ export function Chatbox(props: any) {
           borderRadius: "19px",
           transition: "opacity 0.5s ease-in-out",
           opacity: chat ? 0 : 1,
+          border: "1px solid #129cb8",
         }}
       >
         <Stack>
