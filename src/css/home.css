@@ -414,12 +414,12 @@
   object-fit: cover;
 }
 
-.productImage:hover {
+/* .productImage:hover {
   object-fit: inherit;
-  /* transition: 0.7s ease-in-out; */
+
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
-}
+} */
 
 .icon-container {
   opacity: 1;

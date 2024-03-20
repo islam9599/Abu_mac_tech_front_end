@@ -51,6 +51,7 @@ export const BestSelling = () => {
   const { setBestProducts } = actionDispatch(useDispatch());
   const { bestProducts } = useSelector(setBestProductsRetriever);
   // console.log("bestProducts::::::selector!!!", bestProducts);
+  const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
   const [targetProductSearchObj, setTargetProductSearchObj] =
     useState<ProductSearchObj>({
       page: 1,
@@ -96,6 +97,13 @@ export const BestSelling = () => {
       sweetErrorHandling(err).then();
     }
   };
+  const handleMouseEnter = (product_id: string) => {
+    setHoveredProductId(product_id);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredProductId(null);
+  };
 
   return (
     <div>
@@ -136,10 +144,18 @@ export const BestSelling = () => {
                   }}
                 >
                   <CardMedia
+                    onMouseEnter={() => handleMouseEnter(product?._id)}
+                    onMouseLeave={handleMouseLeave}
                     className="card_image"
                     component="img"
                     alt="green iguana"
-                    image={image_path}
+                    id={product?._id}
+                    src={
+                      hoveredProductId === product?._id &&
+                      product?.product_images.length > 1
+                        ? `${serverApi}/${product.product_images[1]}`
+                        : `${serverApi}/${product.product_images[0]}`
+                    }
                   />
                   <CardContent>
                     <h2 className="product_name">{product.product_name}</h2>

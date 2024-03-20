@@ -48,12 +48,14 @@ const saleProductsRetriever = createSelector(
 
 const FlashCard = (props: any) => {
   /** Initialization */
+
   const { setSaleProducts } = actionDispatch(useDispatch());
   const { saleProducts } = useSelector(saleProductsRetriever);
   console.log("saleProducts::::::selector!!!", saleProducts);
   const [count, setCount] = useState(0);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
   const navigate = useNavigate();
+  const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
 
   useEffect(() => {
     const shopApiService = new ProductApiService();
@@ -83,6 +85,13 @@ const FlashCard = (props: any) => {
       console.log("err: targetLikeProduct", err);
       sweetErrorHandling(err).then();
     }
+  };
+  const handleMouseEnter = (product_id: string) => {
+    setHoveredProductId(product_id);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredProductId(null);
   };
 
   return (
@@ -182,7 +191,14 @@ const FlashCard = (props: any) => {
                       />
                     </Stack>
                     <img
-                      src={image_path}
+                      onMouseEnter={() => handleMouseEnter(product?._id)}
+                      onMouseLeave={handleMouseLeave}
+                      src={
+                        hoveredProductId === product?._id &&
+                        product?.product_images.length > 1
+                          ? `${serverApi}/${product.product_images[1]}`
+                          : `${serverApi}/${product.product_images[0]}`
+                      }
                       alt="product-img"
                       className="productImage"
                     ></img>

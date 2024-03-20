@@ -247,30 +247,30 @@ export const ChosenProduct = (props: any) => {
               modules={[FreeMode, Thumbs]}
               className="mySwiper2"
             >
-              {chosenProduct?.product_images.map((product_image: string) => {
-                const image_path = `${serverApi}/${product_image}`;
-                return (
-                  <SwiperSlide>
-                    <ReactImageMagnify
-                      className="swiper_second_slider"
-                      {...{
-                        smallImage: {
-                          alt: "",
-                          isFluidWidth: false,
-                          width: 500,
-                          height: 500,
-                          src: `${serverApi}/${product_image}`,
-                        },
-                        largeImage: {
-                          src: `${serverApi}/${product_image}`,
-                          width: 1200,
-                          height: 1200,
-                        },
-                      }}
-                    />
-                  </SwiperSlide>
-                );
-              })}
+              {chosenProduct?.product_images.map(
+                (product_image: string, index) => {
+                  const image_path = `${serverApi}/${product_image}`;
+                  return (
+                    <SwiperSlide key={index} className="swiper_second_slider">
+                      <ReactImageMagnify
+                        {...{
+                          smallImage: {
+                            isFluidWidth: false,
+                            width: 500,
+                            height: 500,
+                            src: `${serverApi}/${product_image}`,
+                          },
+                          largeImage: {
+                            src: `${serverApi}/${product_image}`,
+                            width: 1200,
+                            height: 1200,
+                          },
+                        }}
+                      />
+                    </SwiperSlide>
+                  );
+                }
+              )}
             </Swiper>
 
             <Swiper
@@ -286,7 +286,7 @@ export const ChosenProduct = (props: any) => {
               {chosenProduct?.product_images.map((product_image: string) => {
                 const image_path = `${serverApi}/${product_image}`;
                 return (
-                  <SwiperSlide>
+                  <SwiperSlide className="my">
                     <img src={image_path} />
                   </SwiperSlide>
                 );
@@ -398,6 +398,7 @@ export const ChosenProduct = (props: any) => {
           flexDirection={"column"}
           justifyContent={"center"}
           alignItems={"center"}
+          mt={15}
         >
           <Typography variant="h2">Related Products</Typography>
           <Stack

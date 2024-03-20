@@ -1,6 +1,7 @@
 import React from "react";
-import { Favorite, Search } from "@mui/icons-material";
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Favorite, Notifications, Search } from "@mui/icons-material";
+import { Alert, Box, Container, Stack, Typography } from "@mui/material";
+import Badge from "@mui/material/Badge";
 import { AuthUser } from "../../component/Navbar/authUser";
 import { verifiedMemberdata } from "../../apiServices/verify";
 import { sweetFailureProvider } from "../../lib/sweetAlert";
@@ -44,6 +45,17 @@ export const HomeTopSearch = (props: any) => {
                 : navigate("/member-page");
             }}
           />
+
+          <Badge badgeContent={0} color="primary">
+            <Notifications
+              className="top_favorite_icon"
+              onClick={() => {
+                !verifiedMemberdata
+                  ? sweetFailureProvider("Please login first, kindly!")
+                  : navigate("/member-page");
+              }}
+            />
+          </Badge>
         </Stack>
       </Stack>
       <Marginer direction="horizontal" width="1320" height="2" bg="#999" />

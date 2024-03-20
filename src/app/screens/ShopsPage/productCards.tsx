@@ -41,8 +41,10 @@ const setProductsByPriceRetriever = createSelector(
 
 const ProductCard = (props: any) => {
   /** Initialization */
+
   const { allProducts } = useSelector(setAllProductsRetriever);
   const { productByPrice } = useSelector(setProductsByPriceRetriever);
+  const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
   const navigate = useNavigate();
 
   /** Handlers */
@@ -65,6 +67,13 @@ const ProductCard = (props: any) => {
       sweetErrorHandling(err).then();
     }
   };
+  const handleMouseEnter = (product_id: string) => {
+    setHoveredProductId(product_id);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredProductId(null);
+  };
   return (
     <Stack
       width={"100%"}
@@ -80,8 +89,6 @@ const ProductCard = (props: any) => {
         sx={{ flexWrap: "wrap" }}
       >
         {allProducts?.map((product: Product) => {
-          const image_path = `${serverApi}/${product.product_images[0]}`;
-
           return (
             <Stack
               className="productList"
@@ -89,9 +96,9 @@ const ProductCard = (props: any) => {
                 navigate(`/products/${product?._id}`);
               }}
               m={1}
+              key={product?._id}
             >
               <div
-                key={product?._id}
                 className="productCard"
                 style={{
                   width: "280px",
@@ -158,7 +165,15 @@ const ProductCard = (props: any) => {
                   </Stack>
                 </Stack>
                 <img
-                  src={image_path}
+                  id={product?._id}
+                  onMouseEnter={() => handleMouseEnter(product?._id)}
+                  onMouseLeave={handleMouseLeave}
+                  src={
+                    hoveredProductId === product?._id &&
+                    product?.product_images.length > 1
+                      ? `${serverApi}/${product.product_images[1]}`
+                      : `${serverApi}/${product.product_images[0]}`
+                  }
                   alt="product-img"
                   className="productImage"
                 ></img>
