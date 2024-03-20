@@ -356,7 +356,11 @@ export const ChosenProduct = (props: any) => {
                   />
                 </div>
               </Box>
-              <Stack flexDirection={"column"} margin={"10px 0px"}>
+              <Stack
+                flexDirection={"column"}
+                margin={"10px 0px"}
+                height={"280px"}
+              >
                 <p className="product_desc_info">
                   {chosenProduct?.product_description
                     ? chosenProduct?.product_description
@@ -376,20 +380,27 @@ export const ChosenProduct = (props: any) => {
                 width="100%"
                 bg="#000"
               />
-              <div className="dish_price_box">
-                <span>Price</span>
-                <span>${chosenProduct?.product_price}</span>
-              </div>
-              <div className="btn_box">
-                <Button
-                  variant="contained"
-                  onClick={(e) => {
-                    props.onAdd(chosenProduct);
-                  }}
-                >
-                  Add to cart
-                </Button>
-              </div>
+              <Stack
+                width={"100%"}
+                height={"50px"}
+                justifyContent={"space-between"}
+              >
+                <div className="dish_price_box">
+                  <span>Price</span>
+                  <span>${chosenProduct?.product_price}</span>
+                </div>
+                <div className="btn_box">
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    onClick={(e) => {
+                      props.onAdd(chosenProduct);
+                    }}
+                  >
+                    Add to cart
+                  </Button>
+                </div>
+              </Stack>
             </Box>
           </Stack>
         </Box>
@@ -423,21 +434,12 @@ export const ChosenProduct = (props: any) => {
             console.log("image_path::::", image_path);
             return (
               <Stack
-                width={"80%"}
-                height={"150px"}
+                className="product_reviews_container"
                 // sx={{ background: "silver" }}
                 // m={"40px 0px"}
               >
                 <Stack flexDirection={"row"} m={"30px"} alignItems={"center"}>
-                  <img
-                    src={image_path}
-                    style={{
-                      width: "29px",
-                      height: "29px",
-                      borderRadius: "19px",
-                    }}
-                    alt=""
-                  />
+                  <img src={image_path} alt="" />
                   <Typography width={"150px"} m={"0px 10px"} variant="h5">
                     {review?.member_data.mb_nick}
                   </Typography>
@@ -448,28 +450,16 @@ export const ChosenProduct = (props: any) => {
                     {moment(review?.createdAt).format("YY-MM-DD HH:mm")}
                   </Typography>
                 </Stack>
-                <Stack
-                  width={"100%"}
-                  maxHeight={"100px"}
-                  sx={{ background: "#f1f1f2", borderRadius: "9px" }}
-                  mb={5}
-                >
-                  <h2 style={{ margin: "10px 30px" }}>
-                    {review?.product_comment}
-                  </h2>
+                <Stack className="product_comment">
+                  <h2>{review?.product_comment}</h2>
                 </Stack>
                 <Marginer width="100%" height="0.1" bg="#000" />
               </Stack>
             );
           })}
 
-          <Stack flexDirection={"column"} m={"40px 0px"}>
-            <Stack
-              flexDirection={"row"}
-              width={"100%"}
-              height={"auto"}
-              alignItems={"center"}
-            >
+          <Stack className="create_product_review_wrapper">
+            <Stack className="create_product_review_title">
               <Typography mr={"15px"} variant="h4">
                 Leave your review
               </Typography>
@@ -485,7 +475,6 @@ export const ChosenProduct = (props: any) => {
               onChange={handleProductComments}
               onKeyDown={getKeyHandler}
               name=""
-              style={{ width: "800px", height: "100px", borderRadius: "9px" }}
             ></textarea>
             <Stack
               width={"100%"}

@@ -38,3 +38,12 @@ html {
   width: 15px;
   height: 15px;
 }
+
+.spinner_wrapper {
+  max-width: 1320px;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
