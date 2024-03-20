@@ -35,7 +35,7 @@ export function ProceedOrders(props: any) {
         sweetFailureProvider("Please login first!", true);
       }
       let confirmation = window.confirm(
-        "Buyurtmaga buyurtamani olganingizni tasdiqlaysizmi?"
+        "Do you confirm to get your paid order?"
       );
       if (confirmation) {
         const orderService = new OrderApiService();
@@ -76,12 +76,24 @@ export function ProceedOrders(props: any) {
                         />
                         <p className="title_dish">{product.product_name}</p>
                         <Box className="price_box">
-                          <p>${item.item_price}</p>
+                          <p>
+                            $
+                            {product?.product_discount > 0
+                              ? product?.product_price -
+                                product?.product_price /
+                                  product?.product_discount
+                              : product?.product_price}
+                          </p>
                           <img src="/icons/close.svg" alt="" />
                           <p>{item.item_quantity}</p>
                           <img src="/icons/equal.svg" alt="" />
                           <p style={{ marginLeft: "15px" }}>
-                            ${item.item_price * item.item_quantity}
+                            $
+                            {(product?.product_discount > 0
+                              ? product?.product_price -
+                                product?.product_price /
+                                  product?.product_discount
+                              : product?.product_price) * item.item_quantity}
                           </p>
                         </Box>
                       </Box>

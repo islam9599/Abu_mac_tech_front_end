@@ -90,6 +90,7 @@ function App() {
         name: product.product_name,
         price: product.product_price,
         image: product.product_images[0],
+        discount: product.product_discount,
       };
       const cart_updated = [...cartItems, { ...new_item }];
       setCartItems(cart_updated);

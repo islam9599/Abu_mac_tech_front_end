@@ -3,6 +3,7 @@ export interface OrderItems {
   _id: string;
   item_quantity: number;
   item_price: number;
+  item_discount: number;
   order_id: string;
   product_id: string;
   createdAt: Date;

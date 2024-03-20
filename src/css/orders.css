@@ -225,6 +225,7 @@
 }
 
 .order_page .order_box_scroll .order_name_price .title_dish {
+  width: 200px;
   color: #000;
   font-family: "Commissioner";
   font-size: 16px;

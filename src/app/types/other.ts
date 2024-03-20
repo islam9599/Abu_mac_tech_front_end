@@ -39,6 +39,7 @@ export interface CartItem {
   name: string;
   price: number;
   image: string;
+  discount: number;
 }
 
 export interface ChatMessage {

@@ -18,8 +18,13 @@ export function Basket(props: any) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
+  // const itemsPrice = cartItems.reduce(
+  //   (a: any, c: CartItem) => a + c.price * c.quantity,
+  //   0
+  // );
   const itemsPrice = cartItems.reduce(
-    (a: any, c: CartItem) => a + c.price * c.quantity,
+    (a: any, c: CartItem) =>
+      a + ((c.price * (100 - c.discount)) / 100 / 10) * 10 * c.quantity,
     0
   );
   const shippingPrice = itemsPrice > 300 ? 0 : 8;
@@ -126,7 +131,11 @@ export function Basket(props: any) {
                   />
                   <span className="product_name">{item.name}</span>
                   <p className="product_price">
-                    ${item.price} * {item.quantity}
+                    $
+                    {item.discount > 0
+                      ? item.price - item.price / item.discount
+                      : item.price}
+                    * {item.quantity}
                   </p>
 
                   <div className="col-2">
@@ -145,7 +154,7 @@ export function Basket(props: any) {
           {cartItems.length > 0 ? (
             <Box className="to_order_box">
               <span className="price_text">
-                Total: ${totalPrice} (${itemsPrice} +{" "}
+                Total: ${totalPrice} (${itemsPrice} +
                 {shippingPrice > 0 ? `$${shippingPrice}` : 0})
               </span>
               <Button

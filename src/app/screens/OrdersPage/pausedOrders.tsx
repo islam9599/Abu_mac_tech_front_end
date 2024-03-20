@@ -39,9 +39,7 @@ export function PausedOrders(props: any) {
       if (!verifiedMemberdata) {
         sweetFailureProvider("Please login first!", true);
       }
-      let confirmation = window.confirm(
-        "Buyurtmani bekor qilishni xohlaysizmi?"
-      );
+      let confirmation = window.confirm("Do you want to delete this order?");
       if (confirmation) {
         const orderService = new OrderApiService();
         await orderService.updateOrderStatus(data);
@@ -59,7 +57,7 @@ export function PausedOrders(props: any) {
       if (!verifiedMemberdata) {
         sweetFailureProvider("Please login first!", true);
       }
-      let confirmation = window.confirm("Buyurtmaga tolov qilasizmi?");
+      let confirmation = window.confirm("Do you want to continue to pay?");
       if (confirmation) {
         const orderService = new OrderApiService();
         await orderService.updateOrderStatus(data);
@@ -103,13 +101,24 @@ export function PausedOrders(props: any) {
                         />
                         <p className="title_dish">{product?.product_name}</p>
                         <Box className="price_box">
-                          <p>${item.item_price}</p>
+                          <p>
+                            $
+                            {product?.product_discount > 0
+                              ? product?.product_price -
+                                product?.product_price /
+                                  product?.product_discount
+                              : product?.product_price}
+                          </p>
                           <img src="/icons/close.svg" alt="" />
                           <p>{item.item_quantity}</p>
                           <img src="/icons/equal.svg" alt="" />
                           <p style={{ marginLeft: "15px" }}>
-                            {" "}
-                            ${item.item_price * item.item_quantity}
+                            $
+                            {(product?.product_discount > 0
+                              ? product?.product_price -
+                                product?.product_price /
+                                  product?.product_discount
+                              : product?.product_price) * item.item_quantity}
                           </p>
                         </Box>
                       </Box>
@@ -122,13 +131,13 @@ export function PausedOrders(props: any) {
               <Box className="total_price_box black_solid">
                 <Box className="box_total">
                   <p>Product Price</p>
-                  <p>$60</p>
+                  <p>${order.order_total_amount - order.order_delivery_cost}</p>
                   <img src="/icons/plus.svg" alt="" />
                   <p>Delivery Cost</p>
-                  <p>$15</p>
+                  <p>${order.order_delivery_cost}</p>
                   <p>Total</p>
                   <img src="/icons/equal.svg" alt="" />
-                  <p>$75</p>
+                  <p>${order.order_total_amount}</p>
                 </Box>
                 <Box className="total_price_btn">
                   <Button
