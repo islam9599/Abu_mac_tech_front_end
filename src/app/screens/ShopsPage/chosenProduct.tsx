@@ -61,6 +61,7 @@ import {
 import ReviewProductApiService from "../../apiServices/reviewProduct";
 import moment from "moment";
 import { ProductSearchObj } from "../../types/other";
+import RelatedProducts from "./relatedProduct";
 
 /** Redux Slice */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -207,6 +208,8 @@ export const ChosenProduct = (props: any) => {
       sweetErrorHandling(err).then();
     }
   };
+  const relatedProducts = chosenProduct?.related_collection;
+  console.log("relatedProducts", relatedProducts);
   return (
     <div className="chosen_product">
       <Container sx={{ display: "flex", flexDirection: "column" }}>
@@ -398,9 +401,11 @@ export const ChosenProduct = (props: any) => {
                     <span>
                       $
                       {chosenProduct?.product_discount
-                        ? chosenProduct?.product_price -
-                          chosenProduct?.product_price /
-                            chosenProduct?.product_discount
+                        ? Math.round(
+                            chosenProduct?.product_price -
+                              chosenProduct?.product_price /
+                                chosenProduct?.product_discount
+                          )
                         : chosenProduct?.product_price}
                     </span>
                   </Stack>
@@ -434,7 +439,8 @@ export const ChosenProduct = (props: any) => {
             flexDirection={"row"}
             sx={{ flexWrap: "wrap" }}
           >
-            <ProductCard
+            <RelatedProducts
+              relatedProducts={relatedProducts}
               setProductRebuild={setProductRebuild}
               onAdd={props.onAdd}
             />

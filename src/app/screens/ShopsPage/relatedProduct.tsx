@@ -39,7 +39,7 @@ const setProductsByPriceRetriever = createSelector(
   })
 );
 
-const ProductCard = (props: any) => {
+const RelatedProducts = (props: any) => {
   /** Initialization */
 
   const { allProducts } = useSelector(setAllProductsRetriever);
@@ -88,7 +88,7 @@ const ProductCard = (props: any) => {
         flexDirection={"row"}
         sx={{ flexWrap: "wrap" }}
       >
-        {allProducts?.map((product: Product) => {
+        {props.relatedProducts.slice(0, 8)?.map((product: Product) => {
           return (
             <Stack
               className="productList"
@@ -249,4 +249,4 @@ const ProductCard = (props: any) => {
   );
 };
 
-export default ProductCard;
+export default RelatedProducts;

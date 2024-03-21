@@ -104,9 +104,11 @@ export function PausedOrders(props: any) {
                           <p>
                             $
                             {product?.product_discount > 0
-                              ? product?.product_price -
-                                product?.product_price /
-                                  product?.product_discount
+                              ? Math.round(
+                                  product?.product_price -
+                                    product?.product_price /
+                                      product?.product_discount
+                                )
                               : product?.product_price}
                           </p>
                           <img src="/icons/close.svg" alt="" />
@@ -115,9 +117,11 @@ export function PausedOrders(props: any) {
                           <p style={{ marginLeft: "15px" }}>
                             $
                             {(product?.product_discount > 0
-                              ? product?.product_price -
-                                product?.product_price /
-                                  product?.product_discount
+                              ? Math.round(
+                                  product?.product_price -
+                                    product?.product_price /
+                                      product?.product_discount
+                                )
                               : product?.product_price) * item.item_quantity}
                           </p>
                         </Box>
@@ -131,13 +135,17 @@ export function PausedOrders(props: any) {
               <Box className="total_price_box black_solid">
                 <Box className="box_total">
                   <p>Product Price</p>
-                  <p>${order.order_total_amount - order.order_delivery_cost}</p>
+                  <p>
+                    $
+                    {Math.round(order.order_total_amount) -
+                      order.order_delivery_cost}
+                  </p>
                   <img src="/icons/plus.svg" alt="" />
                   <p>Delivery Cost</p>
                   <p>${order.order_delivery_cost}</p>
-                  <p>Total</p>
+                  <p style={{ color: "red", fontWeight: "bold" }}>Total</p>
                   <img src="/icons/equal.svg" alt="" />
-                  <p>${order.order_total_amount}</p>
+                  <p>${Math.round(order.order_total_amount)}</p>
                 </Box>
                 <Box className="total_price_btn">
                   <Button

@@ -29,7 +29,7 @@ export const Categories = () => {
     <div>
       <Container>
         <Stack alignItems={"center"} marginTop="50px">
-          <h1>Top Brands</h1>
+          <h1>Top Shops</h1>
           <Swiper
             style={{ width: "70%", height: "auto", marginTop: "50px" }}
             slidesPerView={1}

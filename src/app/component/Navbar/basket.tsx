@@ -27,8 +27,9 @@ export function Basket(props: any) {
       a + ((c.price * (100 - c.discount)) / 100 / 10) * 10 * c.quantity,
     0
   );
+
   const shippingPrice = itemsPrice > 300 ? 0 : 8;
-  const totalPrice = itemsPrice + shippingPrice;
+  const totalPrice = Math.round(itemsPrice) + shippingPrice;
   const navigate = useNavigate();
 
   /** Handlers */
@@ -133,7 +134,7 @@ export function Basket(props: any) {
                   <p className="product_price">
                     $
                     {item.discount > 0
-                      ? item.price - item.price / item.discount
+                      ? Math.round(item.price - item.price / item.discount)
                       : item.price}
                     * {item.quantity}
                   </p>
@@ -154,7 +155,7 @@ export function Basket(props: any) {
           {cartItems.length > 0 ? (
             <Box className="to_order_box">
               <span className="price_text">
-                Total: ${totalPrice} (${itemsPrice} +
+                Total: ${totalPrice} (${Math.round(itemsPrice)} +
                 {shippingPrice > 0 ? `$${shippingPrice}` : 0})
               </span>
               <Button

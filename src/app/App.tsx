@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/App.css";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { Homepage } from "./screens/Homepage";
 import { ShopsPage } from "./component/Navbar/shops";
 import { OrdersPage } from "./screens/OrdersPage";
@@ -38,6 +38,7 @@ function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
   const [orderRebuild, setOrderRebuild] = useState<Date>(new Date());
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -68,6 +69,7 @@ function App() {
       const member = new MemberApiService();
       await member.logoutRequest();
       sweetTopSuccessAlert("Successfully logout!", 500);
+      navigate("/");
     } catch (err: any) {
       console.log(err);
       sweetFailureProvider(Definer.general_err1);

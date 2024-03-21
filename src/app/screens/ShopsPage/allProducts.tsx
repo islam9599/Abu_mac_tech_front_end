@@ -89,6 +89,10 @@ export function AllProducts(props: any) {
     targetProductSearchObj.product_collection = collection;
     setTargetProductSearchObj({ ...targetProductSearchObj });
   };
+  const searchSaleProducts = (order: string, collection: string) => {
+    targetProductSearchObj.order = order;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
   const searchByText = (text: string) => {
     targetProductSearchObj.searchText = text;
     setTargetProductSearchObj({ ...targetProductSearchObj });
@@ -222,6 +226,7 @@ export function AllProducts(props: any) {
                 }}
               >
                 <FilterShop
+                  searchSaleProducts={searchSaleProducts}
                   searchMinPriceHandler={searchMinPriceHandler}
                   searchMaxPriceHandler={searchMaxPriceHandler}
                   allProducts={allProducts}

@@ -45,7 +45,12 @@ export default function FilterShop(props: any) {
   const { setProductsByBrand } = actionDispatch(useDispatch());
   const [hide, sethide] = useState<boolean>(true);
 
-  const { searchAllPorducts, searchProductBybrandHandler, allProducts } = props;
+  const {
+    searchAllPorducts,
+    searchProductBybrandHandler,
+    allProducts,
+    searchSaleProducts,
+  } = props;
   const [brandProductSearchObj, setBrandProductSearchObj] =
     useState<ProductSearchObj>({
       page: 1,
@@ -150,7 +155,7 @@ export default function FilterShop(props: any) {
           </Stack>
           <Stack
             flexDirection={"row"}
-            onClick={() => searchAllPorducts("product_discount")}
+            onClick={() => searchSaleProducts("sale")}
           >
             <Radio value={"is_sale"} />
             <h3>Sale</h3>

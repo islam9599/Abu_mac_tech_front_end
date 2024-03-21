@@ -22,6 +22,7 @@ export interface Product {
   product_likes: number;
   product_views: number;
   restaurant_mb_id: string;
+  related_collection: Product;
   createdAt: Date;
   updatedAt: Date;
   me_liked: MeLiked[]; // Meliked

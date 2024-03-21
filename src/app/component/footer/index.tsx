@@ -136,6 +136,7 @@ export const Footer = () => {
               <a
                 className="footer_icon_link"
                 href="https://www.facebook.com/islombek.ergashev.315"
+                target="_blank"
               >
                 <Facebook
                   className="footer_icon"
@@ -145,6 +146,7 @@ export const Footer = () => {
               <a
                 className="footer_icon_link"
                 href="https://www.instagram.com/macshop_uz/"
+                target="_blank"
               >
                 <Instagram
                   className="footer_icon"
@@ -154,6 +156,7 @@ export const Footer = () => {
               <a
                 className="footer_icon_link"
                 href="https://github.com/islam9599"
+                target="_blank"
               >
                 <GitHub
                   className="footer_icon"
@@ -163,6 +166,7 @@ export const Footer = () => {
               <a
                 className="footer_icon_link"
                 href="https://twitter.com/Islombek9995"
+                target="_blank"
               >
                 <Twitter
                   className="footer_icon"
@@ -172,6 +176,7 @@ export const Footer = () => {
               <a
                 className="footer_icon_link"
                 href="https://www.linkedin.com/in/islombek-ergashev-6479681b7/"
+                target="_blank"
               >
                 <LinkedIn
                   className="footer_icon"

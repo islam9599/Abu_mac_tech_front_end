@@ -249,8 +249,11 @@ const FlashCard = (props: any) => {
                         <h2 className="product_discount">
                           $
                           {product?.product_discount
-                            ? product?.product_price -
-                              product?.product_price / product?.product_discount
+                            ? Math.round(
+                                product?.product_price -
+                                  product?.product_price /
+                                    product?.product_discount
+                              )
                             : product?.product_price}
                         </h2>
                       </Stack>

@@ -203,8 +203,11 @@ export const BestSelling = () => {
                         </span>
                         <span className="product_price">
                           {product?.product_discount
-                            ? product?.product_price -
-                              product?.product_price / product?.product_discount
+                            ? Math.round(
+                                product?.product_price -
+                                  product?.product_price /
+                                    product?.product_discount
+                              )
                             : product?.product_price}
                         </span>
                       </Stack>
