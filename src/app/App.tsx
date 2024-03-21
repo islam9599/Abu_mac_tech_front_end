@@ -10,11 +10,8 @@ import { NavbarPage } from "./component/Navbar";
 import { OthersNavbarPage } from "./component/Navbar/others";
 import { Footer } from "./component/footer";
 import { MemberPage } from "./screens/MemberPage";
-
 import { Shops } from "./screens/ShopsPage";
 import { ChosenProduct } from "./screens/ShopsPage/chosenProduct";
-import { PhoneProducts } from "./screens/ShopsPage/phoneProducts";
-import { Accessories } from "./screens/ShopsPage/accessories";
 import { VisitOtherPage } from "./screens/MemberPage/visitOtherPage";
 import AuthentificationModal from "./auth";
 import MemberApiService from "./apiServices/memberApiService";
@@ -193,9 +190,6 @@ function App() {
           />
           <Route path="/products" element={<Shops onAdd={onAdd} />}>
             <Route path=":product_id" element={<ChosenProduct />} />
-            <Route path="phones" element={<PhoneProducts />} />
-            <Route path="laptops" element={<PhoneProducts />} />
-            <Route path="accessories" element={<Accessories />} />
           </Route>
           <Route
             path="/orders"

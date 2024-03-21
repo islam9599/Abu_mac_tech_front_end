@@ -6,7 +6,6 @@ import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Cancel, Home } from "@mui/icons-material";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import assert from "assert";
 // Redux
