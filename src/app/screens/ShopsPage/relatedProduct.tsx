@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
-  BookmarkBorder,
   Favorite,
   FavoriteBorder,
   RemoveRedEye,
   ShoppingCartRounded,
   Star,
 } from "@mui/icons-material";
-import { Box, Checkbox, Rating, Stack } from "@mui/material";
+import { Box, Checkbox, Stack } from "@mui/material";
 import "../../../css/home.css";
 import { useNavigate } from "react-router-dom";
-import { createSelector } from "@reduxjs/toolkit";
-import { retrieveAllProducts, retrieveProductsByPrice } from "./selector";
-import { useSelector } from "react-redux";
 import { Product } from "../../types/product";
 import { serverApi } from "../../lib/config";
 import { verifiedMemberdata } from "../../apiServices/verify";
@@ -25,25 +21,9 @@ import {
   sweetTopSmallSuccessAlert,
 } from "../../lib/sweetAlert";
 import assert from "assert";
-/** Redux Selector*/
-const setAllProductsRetriever = createSelector(
-  retrieveAllProducts,
-  (allProducts) => ({
-    allProducts,
-  })
-);
-const setProductsByPriceRetriever = createSelector(
-  retrieveProductsByPrice,
-  (productByPrice) => ({
-    productByPrice,
-  })
-);
 
 const RelatedProducts = (props: any) => {
   /** Initialization */
-
-  const { allProducts } = useSelector(setAllProductsRetriever);
-  const { productByPrice } = useSelector(setProductsByPriceRetriever);
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
   const navigate = useNavigate();
 
@@ -51,7 +31,6 @@ const RelatedProducts = (props: any) => {
   const targetLikeProduct = async (e: any) => {
     try {
       assert.ok(verifiedMemberdata, Definer.auth_err1);
-
       const memberService = new MemberApiService(),
         like_result: any = await memberService.memberLikeTarget({
           like_ref_id: e.target.id,
@@ -88,7 +67,7 @@ const RelatedProducts = (props: any) => {
         flexDirection={"row"}
         sx={{ flexWrap: "wrap" }}
       >
-        {props.relatedProducts.slice(0, 8)?.map((product: Product) => {
+        {props.relatedProducts?.map((product: Product) => {
           return (
             <Stack
               className="productList"

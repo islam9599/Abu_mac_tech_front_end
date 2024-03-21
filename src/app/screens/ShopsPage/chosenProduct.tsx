@@ -18,7 +18,6 @@ import "swiper/css/thumbs";
 import ReactImageMagnify from "react-image-magnify";
 
 import {
-  ArrowRight,
   Cancel,
   Favorite,
   FavoriteBorder,
@@ -27,22 +26,17 @@ import {
 } from "@mui/icons-material";
 import Marginer from "../../component/marginer";
 import assert from "assert";
-import ProductCard from "./productCards";
+
 // Redux
 
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import {
-  retrieveAllProducts,
-  retrieveChosenProduct,
-  retrieveProductReviews,
-  retrieveProductsByPrice,
-} from "./selector";
+import { retrieveChosenProduct, retrieveProductReviews } from "./selector";
 import { verifiedMemberdata } from "../../apiServices/verify";
 
-import { setAllProducts, setChosenProduct, setProductReviews } from "./slice";
+import { setChosenProduct, setProductReviews } from "./slice";
 import { Product } from "../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
 
@@ -75,12 +69,6 @@ const setChosenProductRetriever = createSelector(
     chosenProduct,
   })
 );
-const setAllProductsRetriever = createSelector(
-  retrieveAllProducts,
-  (allProducts) => ({
-    allProducts,
-  })
-);
 const setProductReviewsRetriever = createSelector(
   retrieveProductReviews,
   (productReviews) => ({
@@ -90,21 +78,13 @@ const setProductReviewsRetriever = createSelector(
 
 export const ChosenProduct = (props: any) => {
   /** Initialization */
+
   const { setChosenProduct, setProductReviews } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(setChosenProductRetriever);
   const { productReviews } = useSelector(setProductReviewsRetriever);
-  const { allProducts } = useSelector(setAllProductsRetriever);
   let { product_id } = useParams<{ product_id: string }>();
   console.log("product_id::::::::::", product_id);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
-  const [targetProductSearchObj, setTargetProductSearchObj] =
-    useState<ProductSearchObj>({
-      page: 1,
-      limit: 8,
-      order: "product_point",
-      product_brand: "apple",
-      searchText: "",
-    });
   const [reviewObj, setReviewObj] = useState<ReviewSearchObj>({
     page: 1,
     limit: 3,
@@ -126,7 +106,6 @@ export const ChosenProduct = (props: any) => {
       console.log("chosenProductRelatedProcess: err", err);
     }
   };
-  useEffect(() => {}, []);
 
   useEffect(() => {
     const reviewService = new ReviewProductApiService();
@@ -140,18 +119,14 @@ export const ChosenProduct = (props: any) => {
       .catch((err) => console.log(err));
     chosenProductRelatedProcess().then();
   }, [productRebuild, product_id]);
+
   /** Handlers */
-  const searchByText = (text: string) => {
-    targetProductSearchObj.searchText = text;
-    setTargetProductSearchObj({ ...targetProductSearchObj });
-  };
+
   const handleProductRatings = (e: any) => {
     product_ratings = e.target.value;
-    // console.log("product_ratings", product_ratings);
   };
   const handleProductComments = (e: any) => {
     product_comments = e.target.value;
-    // console.log("product_comments", product_comments);
   };
 
   const targetLikeProduct = async (e: any) => {
@@ -209,7 +184,6 @@ export const ChosenProduct = (props: any) => {
     }
   };
   const relatedProducts = chosenProduct?.related_collection;
-  console.log("relatedProducts", relatedProducts);
   return (
     <div className="chosen_product">
       <Container sx={{ display: "flex", flexDirection: "column" }}>
