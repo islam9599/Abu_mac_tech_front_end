@@ -334,7 +334,7 @@ export const ChosenProduct = (props: any) => {
               <Stack
                 flexDirection={"column"}
                 margin={"10px 0px"}
-                height={"240px"}
+                height={"260px"}
               >
                 <p className="product_desc_info">
                   {chosenProduct?.product_description
@@ -343,9 +343,10 @@ export const ChosenProduct = (props: any) => {
                   {chosenProduct?.product_memory} Memory
                 </p>
                 <p className="product_desc_info">
-                  {chosenProduct?.product_storage
-                    ? chosenProduct?.product_storage + "Gb SSD"
-                    : "No storage information avalaible"}
+                  {chosenProduct?.product_memory
+                    ? chosenProduct?.product_memory + "gb"
+                    : "No storage information avalaible"}{" "}
+                  memory
                 </p>
               </Stack>
 

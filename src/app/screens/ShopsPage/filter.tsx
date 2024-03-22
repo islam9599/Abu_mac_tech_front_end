@@ -117,14 +117,14 @@ export default function FilterShop(props: any) {
           </Stack>
           <Stack
             flexDirection={"row"}
-            // onClick={() => searchProductBybrandHandler("brand", "samsung")}
+            onClick={() => searchProductBybrandHandler("brand", "hp")}
           >
             <Radio value={"hp"} />
             <h3>Hp</h3>
           </Stack>
           <Stack
             flexDirection={"row"}
-            // onClick={() => searchProductBybrandHandler("brand", "samsung")}
+            onClick={() => searchProductBybrandHandler("brand", "microsoft")}
           >
             <Radio value={"microsoft"} />
             <h3>Microsoft</h3>

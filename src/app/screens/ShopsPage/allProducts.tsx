@@ -197,6 +197,9 @@ export function AllProducts(props: any) {
             <Box className={"fit_search_box"} justifyContent={"center"}>
               <Box className={"fit_box"}>
                 <a onClick={() => searchAllPorducts("all")}>All Products</a>
+                <a onClick={() => searchByCollection("collection", "pc")}>
+                  Desktop
+                </a>
                 <a onClick={() => searchByCollection("collection", "laptop")}>
                   Laptop
                 </a>
