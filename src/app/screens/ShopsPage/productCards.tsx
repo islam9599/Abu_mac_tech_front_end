@@ -229,11 +229,12 @@ const ProductCard = (props: any) => {
                   </div>
                   <div className="displayStack__2">
                     <div className="productRating">
-                      <Star sx={{ color: "gold" }} />
-                      <Star sx={{ color: "gold" }} />
-                      <Star sx={{ color: "gold" }} />
-                      <Star sx={{ color: "gold" }} />
-                      <Star />
+                      <Rating
+                        className="half_rating"
+                        defaultValue={4.5}
+                        precision={0.5}
+                        readOnly
+                      />
                     </div>
                     <div className="productTime">
                       {product?.product_likes} likes

@@ -316,7 +316,7 @@ export const ChosenProduct = (props: any) => {
               <Box className="rating_box">
                 <Rating
                   className="half_rating"
-                  defaultValue={3.5}
+                  defaultValue={4.5}
                   precision={0.5}
                   readOnly
                 />

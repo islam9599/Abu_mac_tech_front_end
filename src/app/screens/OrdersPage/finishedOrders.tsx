@@ -49,7 +49,7 @@ export function FinishedOrders(props: any) {
                           }}
                           alt=""
                         />
-                        <p className="title_dish">{product.product_name}</p>
+                        <p className="title_dish">{product?.product_name}</p>
                         <Box className="price_box">
                           <p>
                             $
