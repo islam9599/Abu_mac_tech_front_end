@@ -274,40 +274,12 @@ const FlashCard = (props: any) => {
                       </div>
                       <div className="displayStack__2">
                         <div className="productRating">
-                          <Star
-                            sx={{
-                              color: "gold",
-                              width: { xs: "10px", lg: "29px" },
-                              height: { xs: "8px", lg: "24px" },
-                            }}
-                          />
-                          <Star
-                            sx={{
-                              color: "gold",
-                              width: { xs: "10px", lg: "29px" },
-                              height: { xs: "8px", lg: "24px" },
-                            }}
-                          />
-                          <Star
-                            sx={{
-                              color: "gold",
-                              width: { xs: "10px", lg: "29px" },
-                              height: { xs: "8px", lg: "24px" },
-                            }}
-                          />
-                          <Star
-                            sx={{
-                              color: "gold",
-                              width: { xs: "10px", lg: "29px" },
-                              height: { xs: "8px", lg: "24px" },
-                            }}
-                          />
-                          <Star
-                            sx={{
-                              width: { xs: "10px", lg: "29px" },
-                              height: { xs: "8px", lg: "24px" },
-                            }}
-                          />
+                          <Rating
+                            className="half_rating"
+                            defaultValue={4.5}
+                            precision={0.5}
+                            readOnly
+                          />{" "}
                         </div>
                         <p className="productSales">
                           {product?.product_likes} likes

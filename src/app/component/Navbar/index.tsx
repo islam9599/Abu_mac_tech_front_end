@@ -8,6 +8,7 @@ import { TypeAnimation } from "react-type-animation";
 import { verifiedMemberdata } from "../../apiServices/verify";
 import { Basket } from "./basket";
 import { MobileNavbar } from "./mbileNavigation";
+import { serverApi } from "../../lib/config";
 
 export const NavbarPage = (props: any) => {
   /** Initialization */
@@ -48,13 +49,13 @@ export const NavbarPage = (props: any) => {
             flexDirection={"row"}
             width={"100%"}
             height={"60px"}
-            justifyContent={"space-between"}
+            justifyContent={"center"}
             alignItems={"center"}
           >
             <Box
               sx={{
                 display: { xs: "none", sm: "none", md: "none", lg: "block" },
-                width: { xs: "none", lg: "600px" },
+                width: { xs: "none", lg: "700px" },
               }}
             >
               <TypeAnimation
@@ -74,14 +75,13 @@ export const NavbarPage = (props: any) => {
               />
             </Box>
             <Stack
-              width={"70%"}
+              width={"100%"}
               sx={{
                 display: { xs: "none", sm: "none", md: "flex", lg: "flex" },
               }}
               flexDirection={"row"}
-              justifyContent={"space-between"}
               alignItems={"center"}
-              mr={15}
+              justifyContent={"space-between"}
             >
               <Box className="hover-line" sx={{ mr: 2 }}>
                 <NavLink className="nav_link" to={"/"}>
@@ -153,12 +153,12 @@ export const NavbarPage = (props: any) => {
               ) : (
                 <Box>
                   <Typography className="nav-title" variant="h6">
-                    Welcome back, {verifiedMemberdata?.mb_nick.toUpperCase()}!
+                    Welcome back, {verifiedMemberdata?.mb_nick?.toUpperCase()}!
                   </Typography>
                 </Box>
               )}
               {verifiedMemberdata ? (
-                <Box className="hover-line" sx={{ mr: 2 }}>
+                <Box className="hover-line" sx={{ m: "0px 5px" }}>
                   <Typography
                     onClick={props.handleLogoutRequest}
                     className="nav-title"
@@ -168,6 +168,7 @@ export const NavbarPage = (props: any) => {
                   </Typography>
                 </Box>
               ) : null}
+
               <Basket
                 cartItems={props.cartItems}
                 onAdd={props.onAdd}

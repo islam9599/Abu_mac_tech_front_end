@@ -53,12 +53,7 @@ const useStyles = makeStyles({
 
 const PriceRangeSlider = (props: any) => {
   /** Initialization */
-  const {
-    searchAllPorducts,
-    searchByPriceRangeHandler,
-    searchMinPriceHandler,
-    searchMaxPriceHandler,
-  } = props;
+  const { searchMinPriceHandler, searchMaxPriceHandler } = props;
   const { setProductsByPrice } = actionDispatch(useDispatch());
   const [priceRange, setPriceRange] = useState([0, 1500]);
 
@@ -86,7 +81,7 @@ const PriceRangeSlider = (props: any) => {
   };
 
   return (
-    <Stack width={"100%"} mt={5}>
+    <Stack width={"100%"}>
       <h2>Shop by price</h2>
       <Slider
         classes={{

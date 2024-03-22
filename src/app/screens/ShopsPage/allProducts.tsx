@@ -220,7 +220,7 @@ export function AllProducts(props: any) {
                 flexDirection={"column"}
                 width={"20%"}
                 height={"900px"}
-                m={"50px 0px"}
+                m={"100px 0px"}
                 alignItems={"center"}
                 sx={{
                   boxShadow:

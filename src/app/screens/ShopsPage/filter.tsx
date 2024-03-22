@@ -94,7 +94,7 @@ export default function FilterShop(props: any) {
         </FormLabel>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="all"
+          defaultValue="none"
           name="radio-buttons-group"
         >
           <Stack flexDirection={"row"} onClick={() => searchAllPorducts("all")}>
@@ -129,7 +129,58 @@ export default function FilterShop(props: any) {
             <Radio value={"microsoft"} />
             <h3>Microsoft</h3>
           </Stack>
+          <FormLabel
+            sx={{ fontWeight: "bold", fontSize: "16px", m: "30px 0" }}
+            id="demo-radio-buttons-group-label"
+            onClick={() => sethide(!hide)}
+          >
+            Default Filtering
+          </FormLabel>
+          <Stack flexDirection={"row"} onClick={() => searchAllPorducts()}>
+            <Radio value={"best"} />
+            <h3>Best</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
+            onClick={() => searchSaleProducts("sale")}
+          >
+            <Radio value={"is_sale"} />
+            <h3>Sale</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
+            onClick={() => searchAllPorducts("updatedAt")}
+          >
+            <Radio value={"updatedAt"} />
+            <h3>New</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
+            onClick={() => searchAllPorducts("product_views")}
+          >
+            <Radio value={"product_views"} />
+            <h3>Views</h3>
+          </Stack>
+          <Stack
+            flexDirection={"row"}
+            onClick={() => searchAllPorducts("product_likes")}
+          >
+            <Radio value={"product_likes"} />
+            <h3>Likes</h3>
+          </Stack>
+          {/* <Stack
+            flexDirection={"row"}
+            onClick={() => searchAllPorducts("product_price")}
+          >
+            <Radio value={"product_price"} />
+            <h3>Price</h3>
+          </Stack> */}
         </RadioGroup>
+        <RadioGroup
+          aria-labelledby="demo-radio-buttons-group-label"
+          defaultValue="none"
+          // name="radio-buttons-group"
+        ></RadioGroup>
       </FormControl>
 
       <FormControl
@@ -137,17 +188,10 @@ export default function FilterShop(props: any) {
           display: "flex",
         }}
       >
-        <FormLabel
-          sx={{ fontWeight: "bold", fontSize: "16px", mb: "20px" }}
-          id="demo-radio-buttons-group-label"
-          onClick={() => sethide(!hide)}
-        >
-          Default Filtering
-        </FormLabel>
-        <RadioGroup
+        {/* <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="all"
-          name="radio-buttons-group"
+          defaultValue="none"
+          // name="radio-buttons-group"
         >
           <Stack flexDirection={"row"} onClick={() => searchAllPorducts()}>
             <Radio value={"all"} />
@@ -188,7 +232,7 @@ export default function FilterShop(props: any) {
             <Radio value={"product_price"} />
             <h3>Price</h3>
           </Stack>
-        </RadioGroup>
+        </RadioGroup> */}
       </FormControl>
 
       <PriceRangeSlider
