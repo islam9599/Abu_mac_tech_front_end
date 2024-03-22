@@ -25,6 +25,7 @@ import assert from "assert";
 const RelatedProducts = (props: any) => {
   /** Initialization */
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
+  const { relatedProducts } = props;
   const navigate = useNavigate();
 
   /** Handlers */
@@ -67,7 +68,7 @@ const RelatedProducts = (props: any) => {
         flexDirection={"row"}
         sx={{ flexWrap: "wrap" }}
       >
-        {props.relatedProducts?.map((product: Product) => {
+        {relatedProducts?.map((product: Product) => {
           return (
             <Stack
               className="productList"

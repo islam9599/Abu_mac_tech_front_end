@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import Menu from "@mui/material/Menu";
-import { Cancel, ShoppingCart } from "@mui/icons-material";
+import { ShoppingCart } from "@mui/icons-material";
 import { Box, Button, Stack } from "@mui/material";
 import { CartItem } from "../../types/other";
 import { serverApi } from "../../lib/config";
@@ -12,6 +12,7 @@ import { Definer } from "../../lib/Definer";
 import OrderApiService from "../../apiServices/orderApiService";
 import { useNavigate } from "react-router-dom";
 import { sweetErrorHandling } from "../../lib/sweetAlert";
+import { FaTrash } from "react-icons/fa";
 
 export function Basket(props: any) {
   /** Initialization */
@@ -147,7 +148,7 @@ export function Basket(props: any) {
                       +
                     </button>
                   </div>
-                  <Cancel className="cancel" onClick={() => onDelete(item)} />
+                  <FaTrash className="cancel" onClick={() => onDelete(item)} />
                 </Box>
               );
             })}
