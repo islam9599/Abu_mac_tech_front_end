@@ -58,7 +58,7 @@ export const Categories = () => {
             }}
             className="mySwiper"
           >
-            {topBrands.map((brand) => {
+            {topBrands?.map((brand) => {
               const image_path = `${serverApi}/${brand.mb_image}`;
               return (
                 <SwiperSlide
