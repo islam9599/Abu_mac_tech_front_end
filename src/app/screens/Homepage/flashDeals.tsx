@@ -54,7 +54,7 @@ const saleProductsRetriever = createSelector(
   })
 );
 
-const FlashCard = (props: any) => {
+const DiscountProducts = (props: any) => {
   /** Initialization */
 
   const { setSaleProducts } = actionDispatch(useDispatch());
@@ -305,4 +305,4 @@ const FlashCard = (props: any) => {
   );
 };
 
-export default FlashCard;
+export default DiscountProducts;

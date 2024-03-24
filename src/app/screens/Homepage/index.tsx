@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { HotDeal } from "./hotDeal";
 import { Container } from "@mui/material";
 import { HomeVideo } from "./homeVideo";
-import FlashCard from "./flashDeals";
+import DiscountProducts from "./flashDeals";
 import { Features } from "./features";
 import { FollowInstagram } from "./follow";
-import { Categories } from "./categories";
+import { TopShops } from "./categories";
 import { BestSelling } from "./bestSelling";
 import ShopApiService from "../../apiServices/shopApiService";
 
@@ -46,8 +46,8 @@ export const Homepage = (props: any) => {
         <HomeTopSearch handleLogoutRequest={props.handleLogoutRequest} />
         {isMobile ? <MobileSwiper /> : <HotDeal />}
 
-        <Categories />
-        <FlashCard onAdd={onAdd} />
+        <TopShops />
+        <DiscountProducts onAdd={onAdd} />
       </Container>
 
       <div className="best_selling_container">

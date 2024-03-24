@@ -16,7 +16,7 @@ const topBrandsRetriever = createSelector(retrieveTopBrands, (topBrands) => ({
   topBrands,
 }));
 
-export const Categories = () => {
+export const TopShops = () => {
   /** Initialization */
   const { topBrands } = useSelector(topBrandsRetriever);
   console.log("topBrands::::::", topBrands);

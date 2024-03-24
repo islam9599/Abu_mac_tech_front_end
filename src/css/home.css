@@ -527,7 +527,7 @@
   }
   .home-page .best_product_container .home_card {
     position: relative;
-    width: 200px;
+    width: 180px;
     height: 300px;
     border-radius: 19px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
@@ -567,7 +567,7 @@
   }
 
   .home-page .best_product_container .product_name {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-weight: bold;
     width: 100%;
     font-size: 15px;
@@ -663,17 +663,16 @@
   }
   .productList {
     display: flex;
-    margin: 2rem;
     align-items: center;
     justify-content: center;
-    width: 200px;
+    width: 180px;
     max-height: 300px;
   }
   .productCard {
     position: relative;
     /* background-color: var(--color-grey-primary); */
     flex: 1 0 10rem;
-    width: 200px;
+    width: 150px;
     height: 300px;
     transition: 0.2s;
     opacity: 0.9;
