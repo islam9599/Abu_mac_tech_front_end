@@ -31,10 +31,11 @@ const AirbnbSlider = styled(Slider)(({ theme }) => ({
   color: "#3a8589",
   height: 3,
   padding: "13px 0",
+  border: "none",
   "& .MuiSlider-thumb": {
     height: 25,
     width: 25,
-    border: "1px solid currentColor",
+    background: "#f1f1f2",
     "& .airbnb-bar": {
       height: 9,
       width: 1,
