@@ -32,17 +32,12 @@ const AirbnbSlider = styled(Slider)(({ theme }) => ({
   height: 3,
   padding: "13px 0",
   "& .MuiSlider-thumb": {
-    height: 27,
-    width: 27,
-    backgroundColor: "#fff",
+    height: 25,
+    width: 25,
     border: "1px solid currentColor",
-    "&:hover": {
-      boxShadow: "0 0 0 8px rgba(58, 133, 137, 0.16)",
-    },
     "& .airbnb-bar": {
       height: 9,
       width: 1,
-      backgroundColor: "currentColor",
       marginLeft: 1,
       marginRight: 1,
     },
