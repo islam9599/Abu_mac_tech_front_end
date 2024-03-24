@@ -104,203 +104,204 @@ const DiscountProducts = (props: any) => {
 
   return (
     <div>
-      <Container>
+      <Stack
+        maxWidth={"100%"}
+        height={"auto"}
+        flexWrap={"wrap"}
+        alignItems={"center"}
+        mt={"100px"}
+        justifyContent={"center"}
+      >
+        <Typography variant="h2" fontWeight={"bold"}>
+          Hot Sale
+        </Typography>
         <Stack
           maxWidth={"100%"}
-          height={"auto"}
           flexWrap={"wrap"}
-          alignItems={"center"}
-          mt={"100px"}
-          justifyContent={"center"}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
         >
-          <Typography variant="h2" fontWeight={"bold"}>
-            Hot Sale
-          </Typography>
-          <Stack
-            maxWidth={"100%"}
-            flexWrap={"wrap"}
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            {saleProducts.map((product: Product) => {
-              const image_path = `${serverApi}/${product.product_images[0]}`;
+          {saleProducts.map((product: Product) => {
+            const image_path = `${serverApi}/${product.product_images[0]}`;
 
-              return (
-                <div
-                  key={product._id}
-                  className="productList"
-                  onClick={() => {
-                    navigate(`/products/${product?._id}`);
-                  }}
-                >
-                  <div className="productCard">
-                    <Box
-                      className="product_discount_wrapper"
-                      style={
-                        !product?.product_discount
-                          ? { display: "none", textDecoration: "none" }
-                          : {
-                              background: "#129cb8",
-                              zIndex: "9999",
-                              borderRadius: "0 9px 9px 0px",
-                            }
-                      }
-                    >
-                      <h2>{product?.product_discount}% off</h2>
-                    </Box>
-                    <Stack
-                      flexDirection={"row"}
-                      className="icon-container"
+            return (
+              <div
+                key={product._id}
+                className="productList"
+                onClick={() => {
+                  navigate(`/products/${product?._id}`);
+                }}
+              >
+                <div className="productCard">
+                  <Box
+                    className="product_discount_wrapper"
+                    style={
+                      !product?.product_discount
+                        ? { display: "none", textDecoration: "none" }
+                        : {
+                            background: "#129cb8",
+                            zIndex: "9999",
+                            borderRadius: "0 9px 9px 0px",
+                          }
+                    }
+                  >
+                    <h2>{product?.product_discount}% off</h2>
+                  </Box>
+                  <Stack
+                    flexDirection={"row"}
+                    className="icon-container"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  >
+                    <ShoppingCartRounded
+                      className={"productCard__cart"}
+                      sx={{
+                        width: { xs: "12px", lg: "29px" },
+                        height: { xs: "12px", lg: "24px" },
+                      }}
                       onClick={(e) => {
+                        props.onAdd(product);
                         e.stopPropagation();
                       }}
-                    >
-                      <ShoppingCartRounded
-                        className={"productCard__cart"}
-                        sx={{
-                          width: { xs: "12px", lg: "29px" },
-                          height: { xs: "12px", lg: "24px" },
-                        }}
-                        onClick={(e) => {
-                          props.onAdd(product);
-                          e.stopPropagation();
-                        }}
-                      />
-                      <BookmarkBorder
-                        className={"productCard__wishlist"}
-                        sx={{
-                          width: { xs: "12px", lg: "29px" },
-                          height: { xs: "12px", lg: "24px" },
-                        }}
-                      />
-                      <Checkbox
-                        sx={{ display: { xs: "none", lg: "flex" } }}
-                        className={"productCard__cart"}
-                        onClick={targetLikeProduct}
-                        icon={
-                          <FavoriteBorder
-                            sx={{
-                              width: { xs: "10px", lg: "29px" },
-                              height: { xs: "8px", lg: "24px" },
-                            }}
-                          />
-                        }
-                        id={product._id}
-                        checkedIcon={
-                          <Favorite
-                            sx={{
-                              width: { xs: "10px", lg: "29px" },
-                              height: { xs: "8px", lg: "24px" },
-                              color: "red",
-                            }}
-                          />
-                        }
-                        checked={
-                          product?.me_liked && product?.me_liked[0]?.my_favorite
-                            ? true
-                            : false
-                        }
-                      />
-                      <Favorite
-                        sx={{
-                          display: { sx: "flex", lg: "none" },
-                          width: "12px",
-                          height: "12px",
-                        }}
-                      />
-                    </Stack>
-                    <img
-                      onMouseEnter={() => handleMouseEnter(product?._id)}
-                      onMouseLeave={handleMouseLeave}
-                      src={
-                        hoveredProductId === product?._id &&
-                        product?.product_images.length > 1
-                          ? `${serverApi}/${product.product_images[1]}`
-                          : `${serverApi}/${product.product_images[0]}`
+                    />
+                    <BookmarkBorder
+                      sx={{
+                        display: { xs: "none", lg: "flex" },
+                        width: { xs: "12px", lg: "29px" },
+                        height: { xs: "12px", lg: "24px" },
+                      }}
+                    />
+                    <Checkbox
+                      sx={{ display: { xs: "none", lg: "flex" } }}
+                      className={"productCard__cart"}
+                      onClick={targetLikeProduct}
+                      icon={
+                        <FavoriteBorder
+                          sx={{
+                            width: { xs: "10px", lg: "29px" },
+                            height: { xs: "8px", lg: "24px" },
+                          }}
+                        />
                       }
-                      alt="product-img"
-                      className="productImage"
-                    ></img>
-                    <div className="productCard__content">
-                      <h3 className="productName">{product.product_name}</h3>
-                      <Stack
-                        width={"100%"}
-                        flexDirection={"row"}
-                        alignItems={"center"}
-                        justifyContent={"space-between"}
+                      id={product._id}
+                      checkedIcon={
+                        <Favorite
+                          sx={{
+                            width: { xs: "10px", lg: "29px" },
+                            height: { xs: "8px", lg: "24px" },
+                            color: "red",
+                          }}
+                        />
+                      }
+                      checked={
+                        product?.me_liked && product?.me_liked[0]?.my_favorite
+                          ? true
+                          : false
+                      }
+                    />
+                    <Favorite
+                      sx={{
+                        display: { sx: "flex", lg: "none" },
+                        width: "12px",
+                        height: "12px",
+                      }}
+                    />
+                  </Stack>
+                  <img
+                    onMouseEnter={() => handleMouseEnter(product?._id)}
+                    onMouseLeave={handleMouseLeave}
+                    src={
+                      hoveredProductId === product?._id &&
+                      product?.product_images.length > 1
+                        ? `${serverApi}/${product.product_images[1]}`
+                        : `${serverApi}/${product.product_images[0]}`
+                    }
+                    alt="product-img"
+                    className="productImage"
+                  ></img>
+                  <div className="productCard__content">
+                    <h3 className="productName">{product.product_name}</h3>
+                    <Stack
+                      width={"100%"}
+                      flexDirection={"row"}
+                      alignItems={"center"}
+                      justifyContent={"space-between"}
+                    >
+                      <h2
+                        className="product_discount"
+                        style={
+                          !product?.product_discount
+                            ? { display: "none", textDecoration: "none" }
+                            : {
+                                textDecoration: "line-through",
+                                color: "red",
+                                marginRight: "10px",
+                              }
+                        }
                       >
+                        ${product?.product_price}
+                      </h2>
+                      <h2 className="product_discount">
+                        $
+                        {product?.product_discount
+                          ? Math.round(
+                              product?.product_price -
+                                product?.product_price /
+                                  product?.product_discount
+                            )
+                          : product?.product_price}
+                      </h2>
+                    </Stack>
+
+                    <div className="displayStack__1">
+                      <Stack flexDirection={"row"} alignItems={"center"}>
+                        <RemoveRedEye
+                          sx={{
+                            display: { sx: "flex", lg: "none" },
+                            width: "12px",
+                            height: "12px",
+                          }}
+                          className="icon_container"
+                        />
                         <h2
-                          className="product_discount"
-                          style={
-                            !product?.product_discount
-                              ? { display: "none", textDecoration: "none" }
-                              : {
-                                  textDecoration: "line-through",
-                                  color: "red",
-                                  marginRight: "10px",
-                                }
-                          }
+                          className="product_count"
+                          style={{ marginLeft: "5px" }}
                         >
-                          ${product?.product_price}
-                        </h2>
-                        <h2 className="product_discount">
-                          $
-                          {product?.product_discount
-                            ? Math.round(
-                                product?.product_price -
-                                  product?.product_price /
-                                    product?.product_discount
-                              )
-                            : product?.product_price}
+                          {product?.product_views}
                         </h2>
                       </Stack>
-
-                      <div className="displayStack__1">
-                        <Stack flexDirection={"row"} alignItems={"center"}>
-                          <RemoveRedEye
-                            sx={{
-                              display: { sx: "flex", lg: "none" },
-                              width: "12px",
-                              height: "12px",
-                            }}
-                            className="icon_container"
-                          />
-                          <h2
-                            className="product_count"
-                            style={{ marginLeft: "5px" }}
-                          >
-                            {product?.product_views}
-                          </h2>
-                        </Stack>
-                        <div className="productSales">
-                          <p>{product.product_left_cnt} units left</p>
-                        </div>
-                      </div>
-                      <div className="displayStack__2">
-                        <div className="productRating">
-                          <Rating
-                            sx={{ width: "70%" }}
-                            className="half_rating"
-                            defaultValue={4.5}
-                            precision={0.5}
-                            readOnly
-                          />{" "}
-                        </div>
-                        <p className="productSales">
-                          {product?.product_likes} likes
-                        </p>
+                      <div className="productSales">
+                        <p>{product.product_left_cnt} units left</p>
                       </div>
                     </div>
+                    <Stack
+                      className="displayStack__2"
+                      sx={{ display: { xs: "none", lg: "flex" } }}
+                    >
+                      <div className="productRating">
+                        <Rating
+                          sx={{ width: "70%" }}
+                          className="half_rating"
+                          defaultValue={4.5}
+                          precision={0.5}
+                          readOnly
+                        />{" "}
+                      </div>
+                      <p className="productSales">
+                        {product?.product_likes} likes
+                      </p>
+                    </Stack>
                   </div>
                 </div>
-              );
-            })}
-          </Stack>
+              </div>
+            );
+          })}
         </Stack>
-      </Container>
+      </Stack>
     </div>
   );
 };

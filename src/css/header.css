@@ -426,12 +426,12 @@
 .mobile_nav .mobile_nav_title {
   font-family: "Times New Roman", Times, serif;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 15px;
   cursor: pointer;
 }
 
 .mobile_nav .nav_mobile_arrow_up {
-  width: 15px;
-  height: 15px;
+  width: 19px;
+  height: 19px;
   margin-bottom: 20px;
 }
