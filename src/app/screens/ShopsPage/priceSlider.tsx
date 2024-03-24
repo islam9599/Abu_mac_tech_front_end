@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Slider from "@mui/material/Slider";
-import { makeStyles } from "@mui/styles";
+import Slider, {
+  SliderThumb,
+  SliderValueLabelProps,
+} from "@mui/material/Slider";
+import { makeStyles, styled } from "@mui/styles";
 import { Stack } from "@mui/material";
 import { Product } from "../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
@@ -12,6 +15,7 @@ import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveProductsByPrice } from "./selector";
 import { setProductsByPrice } from "./slice";
+
 /** Redux Slice */
 const actionDispatch = (dispatch: Dispatch) => ({
   setProductsByPrice: (data: Product[]) => dispatch(setProductsByPrice(data)),
@@ -23,35 +27,46 @@ const setProductsByBrandRetriever = createSelector(
     productsByPrice,
   })
 );
-
-const useStyles = makeStyles({
-  root: {
-    color: "#52af77",
-    height: 10,
-  },
-  thumb: {
-    width: "19px",
-    height: "19px",
-    backgroundImage:
-      "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJR_jwHT-9Lz9dqCmGDcW10lIwxSgplIPmYQ&usqp=CAU)",
-    backgroundSize: "cover",
-    "&:hover, &$active": {
-      boxShadow: "0px 0px 0px 8px rgba(82, 175, 119, 0.16)",
+const AirbnbSlider = styled(Slider)(({ theme }) => ({
+  color: "#3a8589",
+  height: 3,
+  padding: "13px 0",
+  "& .MuiSlider-thumb": {
+    height: 27,
+    width: 27,
+    backgroundColor: "#fff",
+    border: "1px solid currentColor",
+    "&:hover": {
+      boxShadow: "0 0 0 8px rgba(58, 133, 137, 0.16)",
+    },
+    "& .airbnb-bar": {
+      height: 9,
+      width: 1,
+      backgroundColor: "currentColor",
+      marginLeft: 1,
+      marginRight: 1,
     },
   },
-  active: {},
-  valueLabel: {
-    left: "calc(-50% + 4px)",
+  "& .MuiSlider-track": {
+    height: 3,
   },
-  track: {
-    height: 8,
-    borderRadius: 4,
-  },
-  rail: {
-    height: 8,
-    borderRadius: 4,
-  },
-});
+}));
+
+interface AirbnbThumbComponentProps extends React.HTMLAttributes<unknown> {}
+
+function AirbnbThumbComponent(props: AirbnbThumbComponentProps) {
+  const { children, ...other } = props;
+  return (
+    <SliderThumb {...other}>
+      {children}
+      <img
+        src="/home/macshop.jpg"
+        style={{ width: "25px", height: "25px", borderRadius: "19px" }}
+        alt=""
+      />
+    </SliderThumb>
+  );
+}
 
 const PriceRangeSlider = (props: any) => {
   /** Initialization */
@@ -62,8 +77,6 @@ const PriceRangeSlider = (props: any) => {
   // const min_price = priceRange[0];
   // const max_price = priceRange[1];
   const [maxPrice, setMaxPrice] = useState(1000);
-
-  const classes = useStyles();
 
   // useEffect(() => {
   //   const productService = new ProductApiService();
@@ -85,15 +98,12 @@ const PriceRangeSlider = (props: any) => {
   return (
     <Stack width={"100%"}>
       <h2>Shop by price</h2>
-      <Slider
-        classes={{
-          root: classes.root,
-          thumb: classes.thumb,
-          active: classes.active,
-          valueLabel: classes.valueLabel,
-          track: classes.track,
-          rail: classes.rail,
-        }}
+
+      <AirbnbSlider
+        slots={{ thumb: AirbnbThumbComponent }}
+        getAriaLabel={(index) =>
+          index === 0 ? "Minimum price" : "Maximum price"
+        }
         value={priceRange}
         onChange={handleChange}
         valueLabelDisplay="auto"

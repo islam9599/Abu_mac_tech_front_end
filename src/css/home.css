@@ -523,23 +523,18 @@
     font-weight: bold;
     color: #000;
     margin: 10px;
-    font-size: 12px;
+    font-size: 15px;
     cursor: pointer;
   }
   .home-page .best_product_container .home_card {
     position: relative;
     width: 140px;
-    height: 300px;
+    height: 270px;
     border-radius: 19px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
       rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
   }
 
-  .home-page .best_product_container .home_card:hover {
-    transform: translateY(-12px);
-    box-shadow: 8px 12px 24px #bbbbbb;
-    opacity: 1;
-  }
   .product_discount_wrapper {
     width: 50%;
     height: 20px;
@@ -560,11 +555,6 @@
     height: 150px;
     padding-top: 15px;
     object-fit: cover;
-  }
-
-  .home-page .best_product_container .card_image:hover {
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
   }
 
   .home-page .best_product_container .product_name {

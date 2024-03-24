@@ -176,7 +176,7 @@ export const BestSelling = () => {
                     <h2 className="product_name">{product.product_name}</h2>
                     <Stack className="product_price_wrapper">
                       <h2 className="product_left">
-                        {product?.product_left_cnt} units left
+                        {product?.product_left_cnt} left
                       </h2>
 
                       {/* <h2 className="product_price">

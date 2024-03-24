@@ -169,6 +169,7 @@ const DiscountProducts = (props: any) => {
                       }}
                     />
                     <BookmarkBorder
+                      className="productCard__wishlist"
                       sx={{
                         display: { xs: "none", lg: "flex" },
                         width: { xs: "12px", lg: "29px" },
@@ -261,9 +262,8 @@ const DiscountProducts = (props: any) => {
                       <Stack flexDirection={"row"} alignItems={"center"}>
                         <RemoveRedEye
                           sx={{
-                            display: { sx: "flex", lg: "none" },
-                            width: "12px",
-                            height: "12px",
+                            width: "16px",
+                            height: "16px",
                           }}
                           className="icon_container"
                         />
@@ -280,7 +280,10 @@ const DiscountProducts = (props: any) => {
                     </div>
                     <Stack
                       className="displayStack__2"
-                      sx={{ display: { xs: "none", lg: "flex" } }}
+                      sx={{
+                        display: { xs: "none", lg: "flex" },
+                        flexDirection: "row",
+                      }}
                     >
                       <div className="productRating">
                         <Rating
