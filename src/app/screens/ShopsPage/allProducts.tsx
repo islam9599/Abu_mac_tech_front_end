@@ -22,6 +22,7 @@ import { ProductSearchObj } from "../../types/other";
 import { setAllProducts } from "./slice";
 import { Product } from "../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
+import { MobileProgress } from "../../component/mobile_alert";
 
 /** Redux Slice */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -105,18 +106,7 @@ export function AllProducts(props: any) {
   return (
     <div className="all_products">
       {isMobile ? (
-        <Container sx={{ width: "400px", height: "400px", mt: "200px" }}>
-          <Stack
-            width={"100%"}
-            height={"300px"}
-            justifyContent={"center"}
-            alignItems={"center"}
-          >
-            <h2>
-              Mobile version is under developing proccess. Please use our web!
-            </h2>
-          </Stack>
-        </Container>
+        <MobileProgress />
       ) : (
         <Container>
           <Stack

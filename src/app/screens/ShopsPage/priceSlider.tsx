@@ -30,6 +30,8 @@ const useStyles = makeStyles({
     height: 10,
   },
   thumb: {
+    width: "19px",
+    height: "19px",
     backgroundImage:
       "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJR_jwHT-9Lz9dqCmGDcW10lIwxSgplIPmYQ&usqp=CAU)",
     backgroundSize: "cover",

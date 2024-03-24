@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Container, Stack } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -28,8 +28,10 @@ export const Categories = () => {
   return (
     <div>
       <Container>
-        <Stack alignItems={"center"} marginTop="50px">
-          <h1>Top Shops</h1>
+        <Stack alignItems={"center"} marginTop="100px">
+          <Typography variant="h2" fontWeight={"bold"}>
+            Top Shops
+          </Typography>
           <Swiper
             style={{ width: "70%", height: "auto", marginTop: "50px" }}
             slidesPerView={1}

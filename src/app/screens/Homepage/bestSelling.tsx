@@ -115,13 +115,13 @@ export const BestSelling = () => {
               className="best_selling_category"
               onClick={() => searchCollectionHandler("product_discount")}
             >
-              Best Selling Products
+              Best Selling
             </h2>
             <h2
               className="best_selling_category"
               onClick={() => searchCollectionHandler("product_likes")}
             >
-              Most Liked Products
+              Most Liked
             </h2>
             <h2
               className="best_selling_category"
@@ -202,6 +202,7 @@ export const BestSelling = () => {
                           ${product?.product_price}
                         </span>
                         <span className="product_price">
+                          $
                           {product?.product_discount
                             ? Math.round(
                                 product?.product_price -

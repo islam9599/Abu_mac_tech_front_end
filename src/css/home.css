@@ -195,8 +195,13 @@
 .home-page .best_selling_wrapper .best_selling_category {
   font-weight: bold;
   color: #000;
-  margin: 10px;
-  font-size: 20px;
+  margin: 15px 30px;
+  font-size: 29px;
+}
+
+.home-page .best_selling_wrapper .best_selling_category:hover {
+  transition: 0.3s ease-in-out;
+  color: #129cb8;
 }
 
 .home-page .best_product_container {
@@ -516,14 +521,14 @@
   .home-page .best_selling_wrapper .best_selling_category {
     font-weight: bold;
     color: #000;
-    margin: 5px;
-    font-size: 10px;
+    margin: 10px 20px;
+    font-size: 15px;
     cursor: pointer;
   }
   .home-page .best_product_container .home_card {
     position: relative;
-    width: 130px;
-    height: 220px;
+    width: 200px;
+    height: 300px;
     border-radius: 19px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
       rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
@@ -551,7 +556,7 @@
     cursor: pointer;
   }
   .home-page .best_product_container .home_card .card_image {
-    height: 100px;
+    height: 150px;
     padding-top: 15px;
     object-fit: cover;
   }
@@ -562,10 +567,10 @@
   }
 
   .home-page .best_product_container .product_name {
-    margin-bottom: 3px;
+    margin-bottom: 10px;
     font-weight: bold;
     width: 100%;
-    font-size: 10px;
+    font-size: 15px;
   }
 
   .home-page .best_product_container .product_price_wrapper {
@@ -578,20 +583,20 @@
   }
   .home-page .best_product_container .product_price_wrapper .product_left {
     color: red;
-    font-size: 8px;
+    font-size: 12px;
   }
 
   .home-page .best_product_container .product_price_wrapper .product_price {
-    font-size: 8px;
+    font-size: 12px;
   }
 
   .home-page .best_product_container .product_count {
-    font-size: 8px;
+    font-size: 12px;
   }
 
   .home-page .best_product_container .icon_container {
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     cursor: pointer;
   }
   .home-page .shipping_info_wrapper {
@@ -653,25 +658,23 @@
 
   .home-page .insta_images {
     width: 28%;
-
     object-fit: contain;
     margin-right: 2px;
   }
   .productList {
     display: flex;
-    margin-top: 2rem;
+    margin: 2rem;
     align-items: center;
     justify-content: center;
-    width: 150px;
-    max-height: 200px;
+    width: 200px;
+    max-height: 300px;
   }
   .productCard {
     position: relative;
     /* background-color: var(--color-grey-primary); */
-    margin: 1rem;
-    flex: 0.5 0 7.5rem;
-    width: 150px;
-    height: 180px;
+    flex: 1 0 10rem;
+    width: 200px;
+    height: 300px;
     transition: 0.2s;
     opacity: 0.9;
     border-radius: 9px;
@@ -687,7 +690,7 @@
 
   .productImage {
     width: 100%;
-    height: 60px;
+    height: 120px;
     object-fit: cover;
     margin-top: 10px;
   }
@@ -700,6 +703,7 @@
     height: 80px;
   }
   .icon-container {
+    width: 12px;
     opacity: 1;
     cursor: pointer;
     transition: 0.2s;
@@ -707,15 +711,12 @@
     align-items: center;
     margin-top: 5px;
   }
-  .icon-container:hover {
-    color: red;
-    transition: 0.7s ease-in-out;
-  }
+
   .productCard__cart {
     position: absolute;
     right: 5;
     margin: 0.2rem;
-    font-size: 0.5rem;
+    font-size: 1rem;
     transition: 0.2s;
     cursor: pointer;
     display: flex;
@@ -727,7 +728,7 @@
     right: 0rem;
     bottom: 0px;
     margin: 0.2rem;
-    font-size: 0.5rem;
+    font-size: 1rem;
     transition: 0.2s;
     cursor: pointer;
   }
@@ -740,17 +741,17 @@
     fill: var(--color-orange-primary);
   }
 
-  .productCard__content {
-    margin: 0.25rem;
-  }
+  /* .productCard__content {
+    margin: 1rem;
+  } */
 
   .productName {
-    font-size: 0.6rem;
+    font-size: 10px;
     width: 100%;
-    height: 15px;
+    height: 25px;
   }
   .product_discount {
-    font-size: 0.5rem;
+    font-size: 10px;
     font-weight: bold;
   }
 
@@ -763,7 +764,8 @@
   }
 
   .productSales,
-  .productTime {
-    font-size: 0.4rem;
+  .productTime,
+  .product_count {
+    font-size: 8px;
   }
 }

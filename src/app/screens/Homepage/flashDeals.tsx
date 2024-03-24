@@ -110,10 +110,10 @@ const FlashCard = (props: any) => {
           height={"auto"}
           flexWrap={"wrap"}
           alignItems={"center"}
-          mt={"50px"}
+          mt={"100px"}
           justifyContent={"center"}
         >
-          <Typography variant="h3" fontWeight={"bold"}>
+          <Typography variant="h2" fontWeight={"bold"}>
             Hot Sale
           </Typography>
           <Stack
@@ -161,8 +161,8 @@ const FlashCard = (props: any) => {
                       <ShoppingCartRounded
                         className={"productCard__cart"}
                         sx={{
-                          width: { xs: "10px", lg: "29px" },
-                          height: { xs: "8px", lg: "24px" },
+                          width: { xs: "12px", lg: "29px" },
+                          height: { xs: "12px", lg: "24px" },
                         }}
                         onClick={(e) => {
                           props.onAdd(product);
@@ -172,8 +172,8 @@ const FlashCard = (props: any) => {
                       <BookmarkBorder
                         className={"productCard__wishlist"}
                         sx={{
-                          width: { xs: "10px", lg: "29px" },
-                          height: { xs: "8px", lg: "24px" },
+                          width: { xs: "12px", lg: "29px" },
+                          height: { xs: "12px", lg: "24px" },
                         }}
                       />
                       <Checkbox
@@ -207,8 +207,8 @@ const FlashCard = (props: any) => {
                       <Favorite
                         sx={{
                           display: { sx: "flex", lg: "none" },
-                          width: "10px",
-                          height: "8px",
+                          width: "12px",
+                          height: "12px",
                         }}
                       />
                     </Stack>
@@ -260,7 +260,14 @@ const FlashCard = (props: any) => {
 
                       <div className="displayStack__1">
                         <Stack flexDirection={"row"} alignItems={"center"}>
-                          <RemoveRedEye className="icon_container" />
+                          <RemoveRedEye
+                            sx={{
+                              display: { sx: "flex", lg: "none" },
+                              width: "12px",
+                              height: "12px",
+                            }}
+                            className="icon_container"
+                          />
                           <h2
                             className="product_count"
                             style={{ marginLeft: "5px" }}
@@ -275,6 +282,7 @@ const FlashCard = (props: any) => {
                       <div className="displayStack__2">
                         <div className="productRating">
                           <Rating
+                            sx={{ width: "70%" }}
                             className="half_rating"
                             defaultValue={4.5}
                             precision={0.5}
